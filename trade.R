@@ -3,11 +3,9 @@ library('RNeo4j')
 library('igraph')
 library('visNetwork')
 
-setwd("/home/lucie/Bureau/ACUO/OW-9")
-
 # Loading the data
 
-data = read.xlsx2("Data/CCS/CCS v1 0 62_Final_locked.xlsx", sheetIndex=6, startRow=4)
+data = read.xlsx2("CCS v1 0 62_Final_locked.xlsx", sheetIndex=6, startRow=4)
 
 data = data[-1,]
 data = data[-1,]
