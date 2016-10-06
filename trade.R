@@ -42,7 +42,7 @@ for (i in 10:15) {
 #    ccp = getOrCreateNode(graph, "CCP", nameccp=toString(row$Clearing.House))
 #    fcm = getOrCreateNode(graph, "FCM", idfcm=toString(row$Clearing.Broker.LEI), namefcm = toString(row$Clearing.Broker.Name))
     agreement = getOrCreateNode(graph, "Agreement", idagree=toString(row$UTI))
-    traderel = createRel(client, "TRADES", trade)
+    traderel = createRel(client, "POSITIONS_ON", trade)
     tradegree = createRel(trade, "FOLLOWS", agreement)
     margin = createRel(client, "DELIVERS_MARGIN_ACCORDING_TO", agreement)
 #    clearel = createRel(ccp, "CLEARS", trade)
@@ -57,7 +57,7 @@ a = "1234567ABCD8E9FGHJ12"
 b = "CCCIRS4306267"
 
 fquery <- function(x, y) {
-  z1 = paste("MATCH (:Client {idclient:'", x, "'})-[:TRADES]->(t:IRS {idtrade:'", y, "'})", sep='')
+  z1 = paste("MATCH (:Client {idclient:'", x, "'})-[:POSITIONS_ON]->(t:IRS {idtrade:'", y, "'})", sep='')
   z2 = paste(z1, "return t.idtrade as result", sep = "\n ")
   return(z2)
 }
@@ -67,7 +67,7 @@ print(cypher(graph, fquery(a,b)))
 # Uncomment the rest of the code to visualise the graph as a whole (requires lib igraph and visNetwork).
 
 #query2 = "
-#MATCH (c:Client)-[:TRADES]->(t:IRS)
+#MATCH (c:Client)-[:POSITIONS_ON]->(t:IRS)
 #return c.idclient AS from, t.idtrade AS to
 #"
 
