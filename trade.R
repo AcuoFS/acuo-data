@@ -5,7 +5,7 @@ library('visNetwork')
 
 # Loading the data
 
-data = read.xlsx2("CCS v1 0 62_Final_locked.xlsx", sheetIndex=6, startRow=4)
+data = read.xlsx2("CCS_v1_0_62_Final_locked.xlsx", sheetIndex=6, startRow=4)
 
 data = data[-1,]
 data = data[-1,]
@@ -22,6 +22,9 @@ Y
 
 addConstraint(graph, "Client", "idclient")
 addConstraint(graph, "Account", "idaccount")
+addConstraint(graph, "CCP", "nameccp")
+addConstraint(graph, "FCM", "idfcm")
+addConstraint(graph, "Account", "idagree")
 for (x in unique(data$Product.Type)) {   # Each product type is a separate node type
   if (x != '') {
     print(x)
@@ -31,22 +34,27 @@ for (x in unique(data$Product.Type)) {   # Each product type is a separate node 
 
 # Creating nodes and relations from each line. Thanks to the latter constraint, a node is only created if it doesn't already exist.
 
-for (i in 12:15) {
+for (i in 10:15) {
   row = data[i,]
   if (toString(row$Client.Account.ID) != '' & toString(row$USI) != '') {
-    client = getOrCreateNode(graph, "Client", idclient=toString(row$Client.Account.ID), name=toString(row$Client.Account.Legal.Name))
+    client = getOrCreateNode(graph, "Client", idclient=toString(row$Client.Account.LEI), name=toString(row$Client.Account.Legal.Name))
     trade = getOrCreateNode(graph, toString(row$Product.Type), idtrade=toString(row$USI))
-    rel = createRel(client, "TRADES", trade)
-    if (row$Trade.Direction == "B") {
-      rel = createRel(client, "BUYS", trade)
-    } else if (row$Trade.Direction == "S") {
-      rel = createRel(client, "SELLS", trade)
-    }
+#    ccp = getOrCreateNode(graph, "CCP", nameccp=toString(row$Clearing.House))
+#    fcm = getOrCreateNode(graph, "FCM", idfcm=toString(row$Clearing.Broker.LEI), namefcm = toString(row$Clearing.Broker.Name))
+    agreement = getOrCreateNode(graph, "Agreement", idagree=toString(row$UTI))
+    traderel = createRel(client, "TRADES", trade)
+    tradegree = createRel(trade, "FOLLOWS", agreement)
+    margin = createRel(client, "DELIVERS_MARGIN_ACCORDING_TO", agreement)
+#    clearel = createRel(ccp, "CLEARS", trade)
+#    delmarg = createRel(client, "MUST_DELIVER_MARGIN", fcm)
+#    transmarg = createRel(fcm, "TRANSMITS_MARGIN", ccp)
+#    rm(client, trade, ccp, fcm, traderel, clearel, delmarg, transmarg)
+    rm(client, trade, ccp, fcm, traderel, clearel, delmarg, transmarg)
   }
 }
 
-a = "IRSCUST8"
-b = "CCCIRS4314667"
+a = "1234567ABCD8E9FGHJ12"
+b = "CCCIRS4306267"
 
 fquery <- function(x, y) {
   z1 = paste("MATCH (:Client {idclient:'", x, "'})-[:TRADES]->(t:IRS {idtrade:'", y, "'})", sep='')
