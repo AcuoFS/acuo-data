@@ -1,6 +1,4 @@
-clientname,clientid,entityname,entityid
-Client1,C1,Entity1,E1
-Client1,C1,Entity2,E2
-Client1,C1,Entity3,E3
-Client2,C2,Entity4,E4
-Client2,C2,Entity5,E5
+ClientName,ClientId
+client1,c1
+client2,c2
+
