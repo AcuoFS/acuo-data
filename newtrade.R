@@ -1,6 +1,6 @@
 library('RNeo4j')
 
-#graph = startGraph("http://neo4j:7474/db/data")
+graph = startGraph("http://neo4j:7474/db/data")
 clear(graph)
 Y
 
