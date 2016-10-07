@@ -9,19 +9,19 @@ readload <- function(path) {
   return (query)
 }
 
-query1 = readload('client.load')
+query1 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/client.load')
 
 cypher(graph, query1)
 
-query2 = readload('agreement.load')
+query2 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/agreement.load')
 
 cypher(graph, query2)
 
-query3 = readload('entity.load')
+query3 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/entity.load')
 
 cypher(graph, query3)
 
-query4 = readload('irsvanilla.load')
+query4 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/irsvanilla.load')
 
 cypher(graph, query4)
 
