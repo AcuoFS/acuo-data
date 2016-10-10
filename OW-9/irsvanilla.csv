@@ -1,0 +1,6 @@
+TradeDate,Maturity,NotionalReceive,CurrencyReceive,NotionalPay,CurrencyPay,LegType,RateValue,Index,IndexTenor,ResetFrequency,PaymentFrequencyReceive,PaymentFrequencyPay,TradeId,EntityId,AgreementId
+29/07/15,10/07/45,23000000,USD,-23000000,USD,Floating,"1,61",USD-LIBOR-BBA,3M,3M,1T,1T,t1,e1,a1
+29/07/15,16/12/20,21000000,USD,-21000000,USD,Fixed,2,USD-LIBOR-BBA,3M,3M,6M,3M,t2,e2,a2
+29/07/15,16/09/18,7500000,USD,-7500000,USD,Fixed,"2,5",USD-LIBOR-BBA,3M,3M,6M,3M,t3,e3,a2
+29/07/15,08/07/45,5000000,USD,-5000000,USD,Fixed,"1,75",USD-LIBOR-BBA,3M,3M,6M,3M,t4,e4,a3
+09/07/15,12/12/17,1000000,USD,-1000000,USD,Fixed,2,USD-LIBOR-BBA,3M,3M,3M,3M,t5,e5,a4

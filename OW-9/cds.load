@@ -1,0 +1,16 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/cds.csv' 
+AS line
+
+MATCH (e:Entity {entityID:line.EntityId})
+MATCH (a:Agreement {agreementID:line.AgreementId})
+MATCH (c:Client)-[:OWNS]->(:Entity {entityID:line.EntityId})
+
+MERGE (irs:IRS {tradeID:line.TradeId,
+		tradeDate:line.TradeDate,
+		tradeMaturity:line.Maturity,
+		
+})
+
+MERGE (e)-[:POSITIONS_ON]->(irs)
+MERGE (irs)-[:FOLLOWS]->(a)
+MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
