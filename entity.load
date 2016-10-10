@@ -1,8 +1,0 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/entity.csv' 
-AS line
-
-MATCH (c:Client {clientID:line.ClientId})
-
-MERGE (e:Entity {entityID:line.EntityId, entityName:line.EntityName})
-
-MERGE (c)-[:OWNS]->(e);
