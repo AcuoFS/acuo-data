@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/irsvanilla.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/irsfloatfloat.csv' 
 AS line
 
 MATCH (e:Entity {entityID:line.EntityId})
@@ -6,15 +6,16 @@ MATCH (a:Agreement {agreementID:line.AgreementId})
 MATCH (c:Client)-[:OWNS]->(:Entity {entityID:line.EntityId})
 
 MERGE (irs:IRS {tradeID:line.TradeId,
-		legClient:line.LegType,
 		notionalReceive:line.NotionalReceive,
 		notionalPay:line.NotionalPay,
 		currencyReceive:line.CurrencyReceive,
 		currencyPay:line.CurrencyPay,
-		fixedRate:line.RateValue,
-		indexfloat:line.Index,
-		tenorfloat:line.IndexTenor,
-		resetFreq:line.ResetFrequency,
+		indexReceive:line.IndexReceive,
+		tenorReceive:line.IndexTenorReceive,
+		resetFreqReceive:line.ResetFrequencyReceive,
+		indexPay:line.IndexPay,
+		tenorPay:line.IndexTenorPay,
+		resetFreqPay:line.ResetFrequencyPay,
 		payFreqReceive:line.PaymentFrequencyReceive,
 		payFreqPay:line.PaymentFrequencyPay})
 
