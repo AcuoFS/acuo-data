@@ -25,6 +25,14 @@ query4 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/irs
 
 cypher(graph, query4)
 
+fquery <- function(x, y) {
+  z1 = paste("MATCH (:Client {clientID:'", x, "'})-[:OWNS]->(:Entity)-[:POSITIONS_ON]->(t {tradeID:'", y, "'})", sep='')
+  z2 = paste(z1, "return t.tradeID as result", sep = "\n ")
+  return(z2)
+}
+
+print(cypher(graph, fquery(client, trade)))
+
 #linkquery <- function(fromId, toId, rel) {
 #  query = paste("MATCH (n), (m)  WHERE (n)-[:", rel, "]->(m)  RETURN n.", fromId, " AS from, m.", toId, " AS to", sep='')
 #}
