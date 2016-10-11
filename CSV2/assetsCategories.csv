@@ -1,0 +1,5 @@
+Name,Asset_Type,Currency,Ticker,Maturity_Lb,Maturity_Up
+U.S. Treasury Bills,Tbill,USD,,0,1
+British Pound,Cash,GBP,,,
+APPL INC,Equity,USD,APPL,,
+JPM US Equity,Equity,USD,JPM,,

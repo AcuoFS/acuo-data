@@ -1,0 +1,6 @@
+CO,Asset_Type,Currency,Haircut,Maturity_Lb,Maturity_Up,Description,Product_Type
+CME,TBILL,USD,0.50%,0,1,U.S.  Treasury Bill,IRS|CDS|Base
+CME,TBOND,USD,3.00%,3,5,U.S. Treasury Bond,IRS|CDS|Base
+CME,BILL,SGD,5.00%,0,1,Singapore Bill,IRS|CDS|Base
+CME,BOND,GBP,10.50%,30,,UK Bond,IRS|CDS|Base
+CME,EQUITY,USD,30%,,,U.S. Equity,Base
