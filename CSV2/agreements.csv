@@ -1,4 +1,4 @@
-AgreementName,Lei,Date,PartyA,PartyB,Product_Type,Agreement_Type,Currency,CCP
+Name,Lei,Date,PartyA,PartyB,Product_Type,Type,Currency,CCP
 Agreement1,123,13/07/2016,Entity11,FCM1,CDS,Cleared_OTC,USD,CCP1
 Agreement2,234,20/08/2016,Entity12,FCM2,IRS ,Cleared_OTC,USD|EUR,CCP2
 Agreement3,345,03/05/2016,Entity21,Entity01,CDS|IRS,Bilateral_OTC,USD,
