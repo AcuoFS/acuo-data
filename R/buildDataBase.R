@@ -6,7 +6,8 @@ buildDataBase = function() {
     return (query)
   }
   
-  graph = startGraph("http://neo4j:7474/db/data")
+#  graph = startGraph("http://neo4j:7474/db/data")
+  graph = startGraph("http://localhost:7474/db/data")
   clear(graph, input=FALSE)
   
   query1 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load/client.load')
@@ -24,6 +25,12 @@ buildDataBase = function() {
   query4 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load/irsvanilla.load')
   
   cypher(graph, query4)
+
+  query5 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load/irsfloatfloat.load')
   
+  cypher(graph, query5)
+    
   return (graph)
 }
+
+graph = buildDataBase()
