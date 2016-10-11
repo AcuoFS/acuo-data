@@ -1,6 +1,6 @@
 library('RUnit')
 
-source('irsvanilla.R')
+source('buildDataBase.R')
 
 test.suite = defineTestSuite("example",
                 dirs = file.path("test"),
