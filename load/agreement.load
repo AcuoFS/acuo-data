@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/OW-9/agreement.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/agreement.csv' 
 AS line
 
 MERGE (a:Agreement {agreementID:line.AgreementId, agreementName:line.AgreementName})
