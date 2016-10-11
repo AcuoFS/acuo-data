@@ -5,12 +5,17 @@ MATCH (e:Entity {entityID:line.EntityId})
 MATCH (a:Agreement {agreementID:line.AgreementId})
 MATCH (c:Client)-[:OWNS]->(:Entity {entityID:line.EntityId})
 
-MERGE (irs:IRS {tradeID:line.TradeId,
+MERGE (cds:CDS {tradeID:line.TradeId,
 		tradeDate:line.TradeDate,
 		tradeMaturity:line.Maturity,
-		
-})
+		buySellProtection:line.BuySellProtection,
+		currency:line.Currency,
+		underlyingEntity:line.UnderlyingEntity,
+		underlyingAssetID:line.UnderlyingAssetID,
+		notional:tofloat(line.Notional),
+		factor:toFloat(line.Factor),
+		couponRate:toFloat(line.CouponRate)})
 
-MERGE (e)-[:POSITIONS_ON]->(irs)
-MERGE (irs)-[:FOLLOWS]->(a)
+MERGE (e)-[:POSITIONS_ON]->(cds)
+MERGE (cds)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
