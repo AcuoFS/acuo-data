@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/irsvanilla.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/OW-9/irsvanilla.csv' 
 AS line
 
 MATCH (e:Entity {entityID:line.EntityId})

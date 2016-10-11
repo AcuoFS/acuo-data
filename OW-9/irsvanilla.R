@@ -10,24 +10,32 @@ buildIRSVanilla = function() {
   graph = startGraph("http://localhost:7474/db/data")
   clear(graph, input=FALSE)
   
-  query1 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/client.load')
+  query1 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/OW-9/client.load')
   
   cypher(graph, query1)
   
-  query2 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/agreement.load')
+  query2 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/OW-9/agreement.load')
   
   cypher(graph, query2)
   
-  query3 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/entity.load')
+  query3 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/OW-9/entity.load')
   
   cypher(graph, query3)
   
-  query4 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/irsvanilla.load')
+  query4 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/OW-9/irsvanilla.load')
   
   cypher(graph, query4)
   
   return (graph)
 }
+
+#graph = buildIRSVanilla()
+
+#query = "MATCH (:Client {clientID:'c2'})-[:OWNS]->(:Entity)-[:POSITIONS_ON]->(t:IRS {tradeID:'t1'}) return t.tradeID"
+
+#print(cypher(graph, query))
+
+
 
 #fquery <- function(x, y) {
 #  z1 = paste("MATCH (:Client {clientID:'", x, "'})-[:OWNS]->(:Entity)-[:POSITIONS_ON]->(t {tradeID:'", y, "'})", sep='')
