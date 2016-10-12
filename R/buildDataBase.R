@@ -36,6 +36,10 @@ buildDataBase = function() {
   query7 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load/ndf.load')
   
   cypher(graph, query7)
-    
+  
+  query8 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load/fxsi.load')
+  
+  cypher(graph, query8)
+  
   return (graph)
 }
