@@ -3,7 +3,7 @@ AS line
 
 MATCH (e:LegalEntity {id:line.EntityId})
 MATCH (a:Agreement {id:line.AgreementId})
-MATCH (c:Client)-[:OWNS]->(:Entity {id:line.EntityId})
+MATCH (c:Client)-[:MANAGES]->(:LegalEntity {id:line.EntityId})
 
 MERGE (cds:CDS {id:line.TradeId,
 		date:line.TradeDate,
