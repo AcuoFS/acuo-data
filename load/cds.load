@@ -11,7 +11,7 @@ MERGE (cds:CDS {id:line.TradeId,
 		buySellProtection:line.BuySellProtection,
 		currency:line.Currency,
 		underlyingEntity:line.UnderlyingEntity,
-		underlyingAssetID:line.UnderlyingAssetId,
+		underlyingAssetId:line.UnderlyingAssetID,
 		notional:tofloat(line.Notional),
 		factor:toFloat(line.Factor),
 		couponRate:toFloat(line.CouponRate)})
