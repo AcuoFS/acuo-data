@@ -8,6 +8,13 @@ test.numnode = function() {
 	checkEquals(cypher(buildDataBase(), numnodequery)$c, 21)
 }
 
+# I want to test whether the correct amount of relationships was created:
+
+test.numrel = function() {
+  numnodequery = "MATCH (m)-[r]->(n) return count(distinct(r)) AS c"
+  checkEquals(cypher(buildDataBase(), numnodequery)$c, 34)
+}
+
 # I want to test whether the relationships I created are correct:
 
 test.rel = function() {
