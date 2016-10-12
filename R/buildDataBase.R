@@ -28,8 +28,10 @@ buildDataBase = function() {
   query5 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load/irsfloatfloat.load')
   
   cypher(graph, query5)
+  
+  query6 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load/cds.load')
+  
+  cypher(graph, query6)
     
   return (graph)
 }
-
-graph = buildDataBase()
