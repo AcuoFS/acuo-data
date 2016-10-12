@@ -1,13 +1,13 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/OW-9/irsvanilla.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/irsvanilla.csv' 
 AS line
 
-MATCH (e:Entity {entityID:line.EntityId})
-MATCH (a:Agreement {agreementID:line.AgreementId})
-MATCH (c:Client)-[:OWNS]->(:Entity {entityID:line.EntityId})
+MATCH (e:LegalEntity {id:line.EntityId})
+MATCH (a:Agreement {id:line.AgreementId})
+MATCH (c:Client)-[:OWNS]->(:Entity {id:line.EntityId})
 
-MERGE (irs:IRS {tradeID:line.TradeId,
-		tradeDate:line.TradeDate,
-		tradeMaturity:line.Maturity,
+MERGE (irs:IRS {id:line.TradeId,
+		date:line.TradeDate,
+		maturity:line.Maturity,
 		legClient:line.LegType,
 		notionalReceive:toFloat(line.NotionalReceive),
 		notionalPay:toFloat(line.NotionalPay),
@@ -20,6 +20,7 @@ MERGE (irs:IRS {tradeID:line.TradeId,
 		payFreqReceive:line.PaymentFrequencyReceive,
 		payFreqPay:line.PaymentFrequencyPay})
 
+MERGE (e)-[:SIGNS]->(a)
 MERGE (e)-[:POSITIONS_ON]->(irs)
 MERGE (irs)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
