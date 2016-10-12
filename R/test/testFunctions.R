@@ -5,14 +5,14 @@ library(RUnit)
 
 test.numnode = function() {
 	numnodequery = "MATCH (n) return count(distinct(n)) AS c"
-	checkEquals(cypher(buildDataBase(), numnodequery)$c, 26)
+	checkEquals(cypher(buildDataBase(), numnodequery)$c, 31)
 }
 
 # I want to test whether the correct amount of relationships was created:
 
 test.numrel = function() {
   numnodequery = "MATCH (m)-[r]->(n) return count(distinct(r)) AS c"
-  checkEquals(cypher(buildDataBase(), numnodequery)$c, 44)
+  checkEquals(cypher(buildDataBase(), numnodequery)$c, 54)
 }
 
 # I want to test whether the relationships I created are correct:
@@ -114,3 +114,35 @@ test.propcds = function() {
   propquery9 = "MATCH (t:CDS {id:'cdst4'}) return t.couponRate as i"
   checkEquals(cypher(buildDataBase(), propquery9)$i, 6)
 }
+
+test.propndf = function() {
+  propquery1 = "MATCH (t:NDF {id:'ndft1'}) return t.date as a"
+  checkEquals(cypher(buildDataBase(), propquery1)$a, '03/05/14')
+  propquery2 = "MATCH (t:NDF {id:'ndft2'}) return t.buySell as b"
+  checkEquals(cypher(buildDataBase(), propquery2)$b, 'B')
+  propquery3 = "MATCH (t:NDF {id:'ndft3'}) return t.currencySettlement as c"
+  checkEquals(cypher(buildDataBase(), propquery3)$c, 'USD')
+  propquery4 = "MATCH (t:NDF {id:'ndft4'}) return t.currencyTrade as d"
+  checkEquals(cypher(buildDataBase(), propquery4)$d, 'KRW')
+  propquery5 = "MATCH (t:NDF {id:'ndft5'}) return t.settlementCurrencyNotional as e"
+  checkEquals(cypher(buildDataBase(), propquery5)$e, 10004)
+  propquery6 = "MATCH (t:NDF {id:'ndft1'}) return t.agreedFXRate as f"
+  checkEquals(cypher(buildDataBase(), propquery6)$f, 6.7)
+  propquery7 = "MATCH (t:NDF {id:'ndft2'}) return t.fixingDate as g"
+  checkEquals(cypher(buildDataBase(), propquery7)$g, '04/05/15')
+  propquery8 = "MATCH (t:NDF {id:'ndft3'}) return t.index as h"
+  checkEquals(cypher(buildDataBase(), propquery8)$h, 'i3')
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
