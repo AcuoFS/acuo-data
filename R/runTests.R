@@ -1,9 +1,9 @@
 library('RUnit')
 
-source('buildDataBase.R')
+source('R/buildDataBase.R')
 
 test.suite = defineTestSuite("example",
-                dirs = file.path("test"),
+                dirs = file.path("R/test"),
                 testFileRegexp = 'R')
 
 test.result <- runTestSuite(test.suite)
