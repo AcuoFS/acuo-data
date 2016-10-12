@@ -17,7 +17,7 @@ buildDataBase = function() {
   
   cypher(graph, query2)
   
-  query3 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load/entity.load')
+  query3 = readload('https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load/legalentity.load')
   
   cypher(graph, query3)
   
