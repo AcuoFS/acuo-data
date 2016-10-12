@@ -53,11 +53,11 @@ test.rel = function() {
 test.id = function() {
   idquery1 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'irsvt1'}) return t.id as a"
   checkEquals(cypher(buildDataBase(), idquery1)$a, 'irsvt1')
-  idquery2 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'cdst2'}) return t.id as a"
+  idquery2 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'cdst2'}) return t.id as a"
   checkEquals(cypher(buildDataBase(), idquery2)$a, 'cdst2')
-  idquery3 = "MATCH (:Client {id:'c3'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'irsvt1'}) return t.id as b"
+  idquery3 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'irsvt1'}) return t.id as b"
   checkEquals(cypher(buildDataBase(), idquery3)$b, NULL)
-  idquery4 = "MATCH (:Client {id:'c4'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'ndft3'}) return t.id as d"
+  idquery4 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'ndft3'}) return t.id as d"
   checkEquals(cypher(buildDataBase(), idquery4)$d, 'ndft3')
 }
 
