@@ -21,6 +21,7 @@ MERGE (irs:IRS {id:line.TradeId,
 		payFreqReceive:line.PaymentFrequencyReceive,
 		payFreqPay:line.PaymentFrequencyPay})
 
+MERGE (e)-[:SIGNS]->(a)
 MERGE (e)-[:POSITIONS_ON]->(irs)
 MERGE (irs)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
