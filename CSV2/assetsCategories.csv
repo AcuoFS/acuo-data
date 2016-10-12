@@ -1,5 +1,7 @@
-Name,Asset_Type,Currency,Ticker,Maturity_Lb,Maturity_Up
-U.S. Treasury Bills,Tbill,USD,,0,1
-British Pound,Cash,GBP,,,
-APPL INC,Equity,USD,APPL,,
-JPM US Equity,Equity,USD,JPM,,
+Name,Type,Currency,Ticker,Maturity_Lb,Maturity_Up,Haircut,AgreementId
+U.S. Treasury Bills,Tbill,USD,,0,1,0.50%,a1
+British Pound,Cash,GBP,,,,0.00%,a1
+APPL INC,Equity,USD,APPL,,,30%,a1
+JPM US Equity,Equity,USD,JPM,,,30%,a1
+U.S. Treasury Bills,Tbill,USD,,0,1,0.80%,a2
+British Pound,Cash,GBP,,,,2.00%,a2
