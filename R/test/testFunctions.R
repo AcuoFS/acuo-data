@@ -5,14 +5,14 @@ library(RUnit)
 
 test.numnode = function() {
 	numnodequery = "MATCH (n) return count(distinct(n)) AS c"
-	checkEquals(cypher(buildDataBase(), numnodequery)$c, 31)
+	checkEquals(cypher(buildDataBase(), numnodequery)$c, 36)
 }
 
 # I want to test whether the correct amount of relationships was created:
 
 test.numrel = function() {
   numnodequery = "MATCH (m)-[r]->(n) return count(distinct(r)) AS c"
-  checkEquals(cypher(buildDataBase(), numnodequery)$c, 54)
+  checkEquals(cypher(buildDataBase(), numnodequery)$c, 64)
 }
 
 # I want to test whether the relationships I created are correct:
@@ -42,10 +42,14 @@ test.rel = function() {
   checkEquals(cypher(buildDataBase(), relquery11)$rel11, 'POSITIONS_ON')
   relquery12 = "MATCH (t:CDS {id:'cdst4'})-[r]->(a:Agreement {id:'a3'}) return type(r) as rel12"
   checkEquals(cypher(buildDataBase(), relquery12)$rel12, 'FOLLOWS')
-  relquery13 = "MATCH (e:LegalEntity {id:'e4'})-[r]->(t:CDS {id:'cdst4'}) return type(r) as rel13"
+  relquery13 = "MATCH (e:LegalEntity {id:'e4'})-[r]->(t:NDF {id:'ndft4'}) return type(r) as rel13"
   checkEquals(cypher(buildDataBase(), relquery13)$rel13, 'POSITIONS_ON')
-  relquery14 = "MATCH (t:CDS {id:'cdst5'})-[r]->(a:Agreement {id:'a4'}) return type(r) as rel14"
+  relquery14 = "MATCH (t:NDF {id:'ndft5'})-[r]->(a:Agreement {id:'a4'}) return type(r) as rel14"
   checkEquals(cypher(buildDataBase(), relquery14)$rel14, 'FOLLOWS')
+  relquery15 = "MATCH (e:LegalEntity {id:'e5'})-[r]->(t:FXSI {id:'fxsi5'}) return type(r) as rel15"
+  checkEquals(cypher(buildDataBase(), relquery15)$rel15, 'POSITIONS_ON')
+  relquery16 = "MATCH (t:FXSI {id:'fxsi1'})-[r]->(a:Agreement {id:'a1'}) return type(r) as rel16"
+  checkEquals(cypher(buildDataBase(), relquery16)$rel16, 'FOLLOWS')
 }
 
 # I want to test whether I can find a trade with a client ID and a trade ID, and if there is an error when the client's ID is not related to the trade:
@@ -59,6 +63,8 @@ test.id = function() {
   checkEquals(cypher(buildDataBase(), idquery3)$b, NULL)
   idquery4 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'ndft3'}) return t.id as d"
   checkEquals(cypher(buildDataBase(), idquery4)$d, 'ndft3')
+  idquery5 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'fxsi1'}) return t.id as e"
+  checkEquals(cypher(buildDataBase(), idquery4)$e, 'fxsi1')
 }
 
 # I want to test that my IRS have the correct properties:
@@ -140,7 +146,20 @@ test.propndf = function() {
   checkEquals(cypher(buildDataBase(), propquery8)$h, 'i3')
 }
 
-
+test.propfxsi = function() {
+  propquery1 = "MATCH (t:FXSI {id:'fxsi1'}) return t.date as a"
+  checkEquals(cypher(buildDataBase(), propquery1)$a, '28/03/13')
+  propquery2 = "MATCH (t:FXSI {id:'fxsi2'}) return t.baseCurrency as b"
+  checkEquals(cypher(buildDataBase(), propquery2)$b, 'EUR')
+  propquery3 = "MATCH (t:FXSI {id:'fxsi3'}) return t.counterCurrency as c"
+  checkEquals(cypher(buildDataBase(), propquery3)$c, 'GBP')
+  propquery4 = "MATCH (t:FXSI {id:'fxsi4'}) return t.baseCurrencyAmount as d"
+  checkEquals(cypher(buildDataBase(), propquery4)$d, 1000)
+  propquery5 = "MATCH (t:FXSI {id:'fxsi5'}) return t.counterCurrencyAmount as e"
+  checkEquals(cypher(buildDataBase(), propquery5)$e, 149)
+  propquery6 = "MATCH (t:FXSI {id:'fxsi1'}) return t.paymentDate as f"
+  checkEquals(cypher(buildDataBase(), propquery6)$f, "22/05/13")
+}
 
 
 
