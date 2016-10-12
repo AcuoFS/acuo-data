@@ -1,0 +1,6 @@
+Date,BaseCurrency,CounterCurrency,BaseCurrencyAmount,CounterCurrencyAmount,PaymentDate,TradeId,EntityId,AgreementId
+28/03/13,USD,EUR,1000,907,18/05/13,fxsi1,e1,a1
+29/03/13,EUR,SGD,1000,1523,19/05/13,fxsi2,e2,a2
+30/03/13,SGD,GBP,1000,591,20/05/13,fxsi3,e3,a2
+31/03/13,GBP,RMB,1000,8234,21/05/13,fxsi4,e4,a3
+01/04/13,RMB,USD,1000,149,22/05/13,fxsi5,e5,a4
