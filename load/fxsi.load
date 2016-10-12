@@ -5,7 +5,7 @@ MATCH (e:LegalEntity {id:line.EntityId})
 MATCH (a:Agreement {id:line.AgreementId})
 MATCH (c:Client)-[:MANAGES]->(:LegalEntity {id:line.EntityId})
 
-MERGE (f:fxsi {id:line.TradeId,
+MERGE (f:FXSI {id:line.TradeId,
 		date:line.Date,
 		baseCurrency:line.BaseCurrency,
 		counterCurrency:line.CounterCurrency,
