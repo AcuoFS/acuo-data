@@ -11,11 +11,11 @@ MERGE (ndf:NDF {id:line.Id,
 		currencySettlement:line.CurrencySettlement,
 		currencyTrade:line.CurrencyTrade,
 		settlementCurrencyNotional:toFloat(line.SettlementCurrencyNotional),
-		agreedFXRate:toFloat(line.AgreedFXRate),
+		agreedFXRate:toFloat(line.AgreedFxRate),
 		fixingDate:line.FixingDate,
 		index:line.Index})
 
 MERGE (e)-[:SIGNS]->(a)
-MERGE (e)-[:POSITIONS_ON]->(cds)
-MERGE (cds)-[:FOLLOWS]->(a)
+MERGE (e)-[:POSITIONS_ON]->(ndf)
+MERGE (ndf)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
