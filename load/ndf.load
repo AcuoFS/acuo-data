@@ -1,0 +1,21 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/ndf.csv' 
+AS line
+
+MATCH (e:LegalEntity {id:line.EntityId})
+MATCH (a:Agreement {id:line.AgreementId})
+MATCH (c:Client)-[:MANAGES]->(:LegalEntity {id:line.EntityId})
+
+MERGE (ndf:NDF {id:line.Id,
+		date:line.Date,
+		buySell:line.BuySell,
+		currencySettlement:line.CurrencySettlement,
+		currencyTrade:line.CurrencyTrade,
+		settlementCurrencyNotional:toFloat(line.SettlementCurrencyNotional),
+		agreedFXRate:toFloat(line.AgreedFXRate),
+		fixingDate:line.FixingDate,
+		index:line.Index})
+
+MERGE (e)-[:SIGNS]->(a)
+MERGE (e)-[:POSITIONS_ON]->(cds)
+MERGE (cds)-[:FOLLOWS]->(a)
+MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
