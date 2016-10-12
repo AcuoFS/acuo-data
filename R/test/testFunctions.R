@@ -5,14 +5,14 @@ library(RUnit)
 
 test.numnode = function() {
 	numnodequery = "MATCH (n) return count(distinct(n)) AS c"
-	checkEquals(cypher(buildDataBase(), numnodequery)$c, 21)
+	checkEquals(cypher(buildDataBase(), numnodequery)$c, 26)
 }
 
 # I want to test whether the correct amount of relationships was created:
 
 test.numrel = function() {
   numnodequery = "MATCH (m)-[r]->(n) return count(distinct(r)) AS c"
-  checkEquals(cypher(buildDataBase(), numnodequery)$c, 34)
+  checkEquals(cypher(buildDataBase(), numnodequery)$c, 44)
 }
 
 # I want to test whether the relationships I created are correct:
@@ -22,36 +22,42 @@ test.rel = function() {
   checkEquals(cypher(buildDataBase(), relquery1)$rel1, 'MANAGES')
   relquery2 = "MATCH (c:Client {id:'c1'})-[r]->(e:LegalEntity {id:'e5'}) return type(r) as rel2"
   checkEquals(cypher(buildDataBase(), relquery2)$rel2, NULL)
-  relquery3 = "MATCH (i:IRS {id:'irsvt1'})-[r]->(a:Agreement {id:'a1'}) return type(r) as rel3"
+  relquery3 = "MATCH (t:IRS {id:'irsvt1'})-[r]->(a:Agreement {id:'a1'}) return type(r) as rel3"
   checkEquals(cypher(buildDataBase(), relquery3)$rel3, 'FOLLOWS')
-  relquery4 = "MATCH (i:IRS {id:'irsft1'})-[r]->(a:Agreement {id:'a5'}) return type(r) as rel4"
+  relquery4 = "MATCH (t:IRS {id:'irsft1'})-[r]->(a:Agreement {id:'a5'}) return type(r) as rel4"
   checkEquals(cypher(buildDataBase(), relquery4)$rel4, NULL)
   relquery5 = "MATCH (c:Client {id:'c2'})-[r]->(a:Agreement {id:'a3'}) return type(r) as rel5"
   checkEquals(cypher(buildDataBase(), relquery5)$rel5, 'DELIVERS_MARGIN_ACC_TO')
   relquery6 = "MATCH (c:Client {id:'c2'})-[r]->(a:Agreement {id:'a1'}) return type(r) as rel6"
   checkEquals(cypher(buildDataBase(), relquery6)$rel6, NULL)
-  relquery7 = "MATCH (e:LegalEntity {id:'e5'})-[r]->(i:IRS {id:'irsft5'}) return type(r) as rel7"
+  relquery7 = "MATCH (e:LegalEntity {id:'e5'})-[r]->(t:IRS {id:'irsft5'}) return type(r) as rel7"
   checkEquals(cypher(buildDataBase(), relquery7)$rel7, 'POSITIONS_ON')
-  relquery8 = "MATCH (e:LegalEntity {id:'e2'})-[r]->(i:IRS {id:'irsvt4'}) return type(r) as rel8"
+  relquery8 = "MATCH (e:LegalEntity {id:'e2'})-[r]->(t:IRS {id:'irsvt4'}) return type(r) as rel8"
   checkEquals(cypher(buildDataBase(), relquery8)$rel8, NULL)
   relquery9 = "MATCH (e:LegalEntity {id:'e1'})-[r]->(a:Agreement {id:'a1'}) return type(r) as rel9"
   checkEquals(cypher(buildDataBase(), relquery9)$rel9, 'SIGNS')
   relquery10 = "MATCH (e:LegalEntity {id:'e2'})-[r]->(a:Agreement {id:'a4'}) return type(r) as rel10"
   checkEquals(cypher(buildDataBase(), relquery10)$rel10, NULL)
+  relquery11 = "MATCH (e:LegalEntity {id:'e3'})-[r]->(t:CDS {id:'cdst3'}) return type(r) as rel11"
+  checkEquals(cypher(buildDataBase(), relquery11)$rel11, 'POSITIONS_ON')
+  relquery12 = "MATCH (t:CDS {id:'cdst4'})-[r]->(a:Agreement {id:'a3'}) return type(r) as rel12"
+  checkEquals(cypher(buildDataBase(), relquery12)$rel12, 'FOLLOWS')
 }
 
-# I want to test whether I can find a trade with a client ID and a trade ID, and if there is an error when the client's ID is not related to the trade
+# I want to test whether I can find a trade with a client ID and a trade ID, and if there is an error when the client's ID is not related to the trade:
 
 test.id = function() {
-  idquery1 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t:IRS {id:'irsvt1'}) return t.id as a"
+  idquery1 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'irsvt1'}) return t.id as a"
   checkEquals(cypher(buildDataBase(), idquery1)$a, 'irsvt1')
-  idquery2 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t:IRS {id:'irsvt1'}) return t.id as b"
-  checkEquals(cypher(buildDataBase(), idquery2)$b, NULL)
+  idquery2 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'cdst2'}) return t.id as a"
+  checkEquals(cypher(buildDataBase(), idquery1)$a, 'irsvt1')
+  idquery3 = "MATCH (:Client {id:'c3'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'irsvt1'}) return t.id as b"
+  checkEquals(cypher(buildDataBase(), idquery3)$b, NULL)
 }
 
-# I want to test that my IRS have the correct properties
+# I want to test that my IRS have the correct properties:
 
-test.prop = function() {
+test.propirs = function() {
   propquery1 = "MATCH (t:IRS {id:'irsvt1'}) return t.date as d"
   checkEquals(cypher(buildDataBase(), propquery1)$d, '29/07/15')
   propquery2 = "MATCH (t:IRS {id:'irsft2'}) return t.maturity as e"
@@ -84,4 +90,27 @@ test.prop = function() {
   checkEquals(cypher(buildDataBase(), propquery15)$r, '3M')
   propquery16 = "MATCH (t:IRS {id:'irsft1'}) return t.resetFreqPay as s"
   checkEquals(cypher(buildDataBase(), propquery16)$s, '3M')
+}
+
+# I want to check that my CDS have the correct properties:
+
+test.propcds = function() {
+  propquery1 = "MATCH (t:CDS {id:'cdst1'}) return t.date as a"
+  checkEquals(cypher(buildDataBase(), propquery1)$a, '29/07/15')
+  propquery2 = "MATCH (t:CDS {id:'cdst2'}) return t.maturity as b"
+  checkEquals(cypher(buildDataBase(), propquery2)$b, '16/12/20')
+  propquery3 = "MATCH (t:CDS {id:'cdst3'}) return t.buySellProtection as c"
+  checkEquals(cypher(buildDataBase(), propquery3)$c, 'B')
+  propquery4 = "MATCH (t:CDS {id:'cdst4'}) return t.currency as d"
+  checkEquals(cypher(buildDataBase(), propquery4)$d, 'GBP')
+  propquery5 = "MATCH (t:CDS {id:'cdst5'}) return t.underlyingEntity as e"
+  checkEquals(cypher(buildDataBase(), propquery5)$e, 'Caterpillar Inc')
+  propquery6 = "MATCH (t:CDS {id:'cdst1'}) return t.underlyingAssetId as f"
+  checkEquals(cypher(buildDataBase(), propquery6)$f, 'US149123BM26')
+  propquery7 = "MATCH (t:CDS {id:'cdst2'}) return t.notional as g"
+  checkEquals(cypher(buildDataBase(), propquery7)$g, 10000001)
+  propquery8 = "MATCH (t:CDS {id:'cdst3'}) return t.factor as h"
+  checkEquals(cypher(buildDataBase(), propquery8)$h, 0.75)
+  propquery9 = "MATCH (t:CDS {id:'cdst4'}) return t.couponRate as i"
+  checkEquals(cypher(buildDataBase(), propquery9)$i, 6)
 }
