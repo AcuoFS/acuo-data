@@ -1,6 +1,6 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV2/assetInventory.csv' 
 AS line
-WITH line, SPLIT(line.LegalEntityLei, '|') AS Lei
+WITH line, SPLIT(line.legalEntityId, '|') AS Lei
 WHERE Lei IS NOT NULL
 
 
