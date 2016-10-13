@@ -1,4 +1,0 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV2/clients.csv' 
-AS line
-
-MERGE (c:Client {Id:line.Id, Name:line.Name})
