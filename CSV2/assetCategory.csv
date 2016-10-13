@@ -1,0 +1,7 @@
+name,type,currency,ticker,maturityLb,maturityUp,haircut,FXHaircut,agreementId
+U.S. Treasury Bills,Tbill,USD,,0,1,0.50%,0.00%,a1
+British Pound,Cash,GBP,,,,0.00%,5.00%,a1
+APPL INC,Equity,USD,APPL,,,30%,0%,a1
+JPM US Equity,Equity,USD,JPM,,,30%,0%,a1
+U.S. Treasury Bills,Tbill,USD,,0,1,0.80%,0.00%,a2
+British Pound,Cash,GBP,,,,2.00%,5.00%,a2
