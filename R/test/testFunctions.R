@@ -5,14 +5,14 @@ library(RUnit)
 
 test.numnode = function() {
   numnodequery = "MATCH (n) return count(distinct(n)) AS c"
-  checkEquals(cypher(buildDataBase(), numnodequery)$c, 36)
+  checkEquals(cypher(buildDataBase(), numnodequery)$c, 41)
 }
 
 # I want to test whether the correct amount of relationships was created:
 
 test.numrel = function() {
   numnodequery = "MATCH (m)-[r]->(n) return count(distinct(r)) AS c"
-  checkEquals(cypher(buildDataBase(), numnodequery)$c, 64)
+  checkEquals(cypher(buildDataBase(), numnodequery)$c, 74)
 }
 
 # I want to test whether the relationships I created are correct:
@@ -50,6 +50,10 @@ test.rel = function() {
   checkEquals(cypher(buildDataBase(), relquery15)$rel15, 'POSITIONS_ON')
   relquery16 = "MATCH (t:FXSI {id:'fxsi1'})-[r]->(a:Agreement {id:'a1'}) return type(r) as rel16"
   checkEquals(cypher(buildDataBase(), relquery16)$rel16, 'FOLLOWS')
+  relquery17 = "MATCH (e:LegalEntity {id:'e1'})-[r]->(t:FXSI {id:'fxsw1'}) return type(r) as rel17"
+  checkEquals(cypher(buildDataBase(), relquery17)$rel17, 'POSITIONS_ON')
+  relquery18 = "MATCH (t:FXSW {id:'fxsw2'})-[r]->(a:Agreement {id:'a2'}) return type(r) as rel18"
+  checkEquals(cypher(buildDataBase(), relquery18)$rel18, 'FOLLOWS')
 }
 
 # I want to test whether I can find a trade with a client ID and a trade ID, and if there is an error when the client's ID is not related to the trade:
@@ -65,6 +69,8 @@ test.id = function() {
   checkEquals(cypher(buildDataBase(), idquery4)$d, 'ndft4')
   idquery5 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'fxsi1'}) return t.id as e"
   checkEquals(cypher(buildDataBase(), idquery5)$e, 'fxsi1')
+  idquery6 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'fxsw2'}) return t.id as f"
+  checkEquals(cypher(buildDataBase(), idquery6)$f, 'fxsw2')
 }
 
 # I want to test that my IRS have the correct properties:
@@ -159,4 +165,23 @@ test.propfxsi = function() {
   checkEquals(cypher(buildDataBase(), propquery5)$e, 149)
   propquery6 = "MATCH (t:FXSI {id:'fxsi1'}) return t.paymentDate as f"
   checkEquals(cypher(buildDataBase(), propquery6)$f, "18/05/13")
+}
+
+test.propfxsw = function() {
+  propquery1 = "MATCH (t:FXSW {id:'fxsw1'}) return t.date as a"
+  checkEquals(cypher(buildDataBase(), propquery1)$a, '18/05/12')
+  propquery2 = "MATCH (t:FXSW {id:'fxsw2'}) return t.baseCurrency as b"
+  checkEquals(cypher(buildDataBase(), propquery2)$b, 'EUR')
+  propquery3 = "MATCH (t:FXSW {id:'fxsw3'}) return t.counterCurrency as c"
+  checkEquals(cypher(buildDataBase(), propquery3)$c, 'GBP')
+  propquery4 = "MATCH (t:FXSW {id:'fxsw4'}) return t.notionalBaseCurrency as d"
+  checkEquals(cypher(buildDataBase(), propquery4)$d, 10003)
+  propquery5 = "MATCH (t:FXSW {id:'fxsw5'}) return t.nearRate as e"
+  checkEquals(cypher(buildDataBase(), propquery5)$e, 0.15)
+  propquery6 = "MATCH (t:FXSW {id:'fxsw1'}) return t.forwardPoints as f"
+  checkEquals(cypher(buildDataBase(), propquery6)$f, 0.2)
+  propquery7 = "MATCH (t:FXSW {id:'fxsw2'}) return t.nearDate as g"
+  checkEquals(cypher(buildDataBase(), propquery7)$g, '24/05/12')
+  propquery8 = "MATCH (t:FXSW {id:'fxsw3'}) return t.farDate as h"
+  checkEquals(cypher(buildDataBase(), propquery8)$h, '01/07/12')
 }
