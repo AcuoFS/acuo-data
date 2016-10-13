@@ -1,14 +1,14 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV2/assetInventory.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV2/assetsInventory.csv' 
 AS line
 WITH line, SPLIT(line.LegalEntityLei, '|') AS Lei
 WHERE Lei IS NOT NULL
 
 
 UNWIND Lei AS lei
-MATCH (c:Client {id: line.ClientId})-[:MANAGES]->(e:LegalEntity {id:lei})
-MERGE (a:Asset {Name: line.Name, Type: line.Type, Currency:line.Currency})
-MERGE (c)-[:POSSESS {Quantities:line.Quantities}]->(a)
-MERGE (e)-[:ACCESS]->(a)
+MATCH (c:Client {id: line.clientId})-[:MANAGES]->(e:LegalEntity {id:lei})
+MERGE (a:Asset {name: line.name, type: line.type, currency:line.currency})
+MERGE (c)-[:POSSESSES {quantities:line.quantities}]->(a)
+MERGE (e)-[:ACCESSES]->(a)
 
 WITH line,a,e
 
@@ -16,26 +16,26 @@ FOREACH (ignoreMe IN CASE 	WHEN trim(line.ISIN)<>"" THEN [1]
 	ELSE [] END | 	SET a.ISIN=line.ISIN)
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.CUSIP)<>"" THEN [1] 
 	ELSE [] END | SET a.CUSIP=line.CUSIP)
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.Ticker)<>"" THEN [1] 
-	ELSE [] END | SET a.Ticker=line.Ticker)
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.Issue_Date)<>"" THEN [1] 
-	ELSE [] END | SET a.Issue_Date=line.Issue_Date)
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.Maturity_Date)<>"" THEN [1] 
-	ELSE [] END | SET a.Maturity_Date=line.Maturity_Date)
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.Time_To_Maturity)<>"" THEN [1] 
-	ELSE [] END | SET a.Time_To_Maturity=line.Time_To_Maturity)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
+	ELSE [] END | SET a.ticker=line.ticker)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.issueDate)<>"" THEN [1] 
+	ELSE [] END | SET a.issueDate=line.issueDate)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityDate)<>"" THEN [1] 
+	ELSE [] END | SET a.maturityDate=line.maturityDate)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.timeToMaturity)<>"" THEN [1] 
+	ELSE [] END | SET a.timeToMaturity=line.timeToMaturity)
 
 WITH a,e
 
-MATCH Path=(a)<-[:ACCESS]-(e)-[:SIGNS]->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:Asset_Category)
-WHERE a.Type=ac.Type
-AND a.Currency=ac.Currency
+MATCH Path=(a)<-[:ACCESSES]-(e)-[:SIGNS]->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:Asset_Category)
+WHERE a.type=ac.type
+AND a.currency=ac.currency
 MERGE (a)-[i:IS_IN]->(ac)
-SET i.Flag1 = CASE WHEN a.Ticker=ac.Ticker THEN 2
-	WHEN UPPER(a.Type)='CASH' THEN 2
-	WHEN a.Time_To_Maturity<ac.Maturity_Up THEN 1
+SET i.Flag1 = CASE WHEN a.ticker=ac.ticker THEN 2
+	WHEN UPPER(a.type)='CASH' THEN 2
+	WHEN a.timeToMaturity<ac.maturityUp THEN 1
 	ELSE 0 END
-SET i.Flag2 = CASE WHEN a.Time_To_Maturity>ac.Maturity_Lb THEN 1
+SET i.Flag2 = CASE WHEN a.timeToMaturity>ac.maturityLb THEN 1
 	 ELSE 0 END
 SET i.Flag = i.Flag1+i.Flag2
 REMOVE i.Flag1
