@@ -4,7 +4,7 @@ WITH line
 
 MATCH (ag:Agreement {id:line.agreementId})
 MERGE (a:Asset_Category {name: line.name, type: line.type, currency:line.currency})
-MERGE (a)-[:IS_ELIGIBLE_UNDER {haircut:line.haircut, FXHaircut:line.FXHaircut,quantities:line.quantities}]->(ag)
+MERGE (a)-[:IS_ELIGIBLE_UNDER {haircut:line.haircut, FXHaircut:line.FXHaircut}]->(ag)
 
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityLb)<>"" THEN [1] 
 	ELSE [] END | SET a.maturityLb=line.maturityLb)
