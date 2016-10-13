@@ -1,5 +1,0 @@
-clientId,legalEntityId,quantities,name,type,currency,ISIN,ticker,CUSIP,issueDate,maturityDate,timeToMaturity
-c1,e1|e2|e3|e4,50000,U.S. Treasury Bills,Tbill,USD,US912796HW25,,,03/02/2016,02/02/2017,0.31
-c1,e1|e2|e3,100000,British Pound,Cash,GBP,,,,,,
-c1,e2|e4,50000,APPL INC,Equity,USD,,APPL,37833100,,,
-c1,e1|e2|e3,20000,JPM US Equity,Equity,USD,,JPM,46625H100,,,
