@@ -12,3 +12,4 @@ FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityUp)<>"" THEN [1]
 	ELSE [] END | SET a.maturityUp=line.maturityUp)
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
 	ELSE [] END | SET a.ticker=line.ticker)
+	
