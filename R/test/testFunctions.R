@@ -4,8 +4,8 @@ library(RUnit)
 # I want to test whether the correct amount of nodes was created:
 
 test.numnode = function() {
-	numnodequery = "MATCH (n) return count(distinct(n)) AS c"
-	checkEquals(cypher(buildDataBase(), numnodequery)$c, 36)
+  numnodequery = "MATCH (n) return count(distinct(n)) AS c"
+  checkEquals(cypher(buildDataBase(), numnodequery)$c, 36)
 }
 
 # I want to test whether the correct amount of relationships was created:
@@ -61,10 +61,10 @@ test.id = function() {
   checkEquals(cypher(buildDataBase(), idquery2)$a, 'cdst2')
   idquery3 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'irsvt1'}) return t.id as b"
   checkEquals(cypher(buildDataBase(), idquery3)$b, NULL)
-  idquery4 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'ndft3'}) return t.id as d"
-  checkEquals(cypher(buildDataBase(), idquery4)$d, 'ndft3')
+  idquery4 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'ndft4'}) return t.id as d"
+  checkEquals(cypher(buildDataBase(), idquery4)$d, 'ndft4')
   idquery5 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:POSITIONS_ON]->(t {id:'fxsi1'}) return t.id as e"
-  checkEquals(cypher(buildDataBase(), idquery4)$e, 'fxsi1')
+  checkEquals(cypher(buildDataBase(), idquery5)$e, 'fxsi1')
 }
 
 # I want to test that my IRS have the correct properties:
@@ -158,16 +158,5 @@ test.propfxsi = function() {
   propquery5 = "MATCH (t:FXSI {id:'fxsi5'}) return t.counterCurrencyAmount as e"
   checkEquals(cypher(buildDataBase(), propquery5)$e, 149)
   propquery6 = "MATCH (t:FXSI {id:'fxsi1'}) return t.paymentDate as f"
-  checkEquals(cypher(buildDataBase(), propquery6)$f, "22/05/13")
+  checkEquals(cypher(buildDataBase(), propquery6)$f, "18/05/13")
 }
-
-
-
-
-
-
-
-
-
-
-
