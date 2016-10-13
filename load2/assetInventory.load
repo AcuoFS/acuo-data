@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV2/assetInventory.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/assetInventory.csv' 
 AS line
 WITH line, SPLIT(line.legalEntityId, '|') AS Lei
 WHERE Lei IS NOT NULL
@@ -27,7 +27,7 @@ FOREACH (ignoreMe IN CASE 	WHEN trim(line.timeToMaturity)<>"" THEN [1]
 
 WITH a,e
 
-MATCH Path=(a)<-[:ACCESSES]-(e)-[:SIGNS]->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:Asset_Category)
+MATCH Path=(a)<-[:ACCESSES]-(e)-[:SIGNS]->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
 WHERE a.type=ac.type
 AND a.currency=ac.currency
 MERGE (a)-[i:IS_IN]->(ac)
@@ -48,5 +48,3 @@ DELETE i
 WITH a
 MATCH ()-[i:IS_IN]->()
 REMOVE i.Flag
-
-

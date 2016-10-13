@@ -1,9 +1,9 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV2/assetCategories.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/assetCategories.csv' 
 AS line
 WITH line
 
 MATCH (ag:Agreement {id:line.agreementId})
-MERGE (a:Asset_Category {name: line.name, type: line.type, currency:line.currency})
+MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency})
 MERGE (a)-[:IS_ELIGIBLE_UNDER {haircut:line.haircut, FXHaircut:line.FXHaircut}]->(ag)
 
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityLb)<>"" THEN [1] 
