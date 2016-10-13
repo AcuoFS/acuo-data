@@ -1,0 +1,21 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/fxsw.csv' 
+AS line
+
+MATCH (e:LegalEntity {id:line.EntityId})
+MATCH (a:Agreement {id:line.AgreementId})
+MATCH (c:Client)-[:MANAGES]->(:LegalEntity {id:line.EntityId})
+
+MERGE (f:FXSW {id:line.TradeId,
+		date:line.TradeDate,
+		baseCurrency:line.BaseCurrency,
+		counterCurrency:line.CounterCurrency,
+		notionalBaseCurrency:toFloat(line.NotionalBaseCurrency),
+		nearRate:toFloat(line.NearRate),
+		forwardPoints:toFloat(line.ForwardPoints),
+		nearDate:line.NearDate,
+		farDate:line.FarDate})
+
+MERGE (e)-[:SIGNS]->(a)
+MERGE (e)-[:POSITIONS_ON]->(f)
+MERGE (f)-[:FOLLOWS]->(a)
+MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
