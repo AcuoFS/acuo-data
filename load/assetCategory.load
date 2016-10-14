@@ -20,4 +20,3 @@ FOREACH (ignoreMe IN CASE 	WHEN trim(line.FXLimits)<>"" THEN [1]
 	ELSE [] END | SET a.FXLimits=line.FXLimits)
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.debtLimits)<>"" THEN [1] 
 	ELSE [] END | SET a.debtLimits=line.debtLimits)
-
