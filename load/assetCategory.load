@@ -12,4 +12,11 @@ FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityUp)<>"" THEN [1]
 	ELSE [] END | SET a.maturityUp=line.maturityUp)
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
 	ELSE [] END | SET a.ticker=line.ticker)
-	
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.limits)<>"" THEN [1] 
+	ELSE [] END | SET a.limits=line.limits)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.typeLimits)<>"" THEN [1] 
+	ELSE [] END | SET a.typeLimits=line.typeLimits)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.FXLimits)<>"" THEN [1] 
+	ELSE [] END | SET a.FXLimits=line.FXLimits)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.debtLimits)<>"" THEN [1] 
+	ELSE [] END | SET a.debtLimits=line.debtLimits)
