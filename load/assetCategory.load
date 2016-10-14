@@ -4,19 +4,19 @@ WITH line
 
 MATCH (ag:Agreement {id:line.agreementId})
 MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency})
-MERGE (a)-[:IS_ELIGIBLE_UNDER {haircut:line.haircut, FXHaircut:line.FXHaircut}]->(ag)
+MERGE (a)-[:IS_ELIGIBLE_UNDER {haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut)}]->(ag)
 
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityLb)<>"" THEN [1] 
-	ELSE [] END | SET a.maturityLb=line.maturityLb)
+	ELSE [] END | SET a.maturityLb=TOFLOAT(line.maturityLb))
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityUp)<>"" THEN [1] 
-	ELSE [] END | SET a.maturityUp=line.maturityUp)
+	ELSE [] END | SET a.maturityUp=TOFLOAT(line.maturityUp))
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
 	ELSE [] END | SET a.ticker=line.ticker)
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.limits)<>"" THEN [1] 
-	ELSE [] END | SET a.limits=line.limits)
+	ELSE [] END | SET a.limits=TOFLOAT(line.limits))
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.typeLimits)<>"" THEN [1] 
-	ELSE [] END | SET a.typeLimits=line.typeLimits)
+	ELSE [] END | SET a.typeLimits=TOFLOAT(line.typeLimits))
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.FXLimits)<>"" THEN [1] 
-	ELSE [] END | SET a.FXLimits=line.FXLimits)
+	ELSE [] END | SET a.FXLimits=TOFLOAT(line.FXLimits))
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.debtLimits)<>"" THEN [1] 
-	ELSE [] END | SET a.debtLimits=line.debtLimits)
+	ELSE [] END | SET a.debtLimits=TOFLOAT(line.debtLimits))
