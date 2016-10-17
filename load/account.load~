@@ -5,4 +5,4 @@ MATCH (e:LegalEntity {id:line.EntityId})
 
 MERGE (acc:Account {id:line.AccountId, name:line.AccountName})
 
-MERGE (e)-[:HAS]->(acc);
+MERGE (acc)-[:BELONGS_TO]->(e);

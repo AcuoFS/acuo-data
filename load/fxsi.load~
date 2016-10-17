@@ -3,7 +3,7 @@ AS line
 
 MATCH (acc:Account {id:line.AccountId})
 MATCH (a:Agreement {id:line.AgreementId})
-MATCH (e:LegalEntity)-[:HAS]->(acc:Account)
+MATCH (acc)-[:BELONGS_TO]->(e:LegalEntity)
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
 MERGE (f:FXSI {id:line.TradeId,
