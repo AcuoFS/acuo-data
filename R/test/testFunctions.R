@@ -26,9 +26,9 @@ test.rel = function() {
   checkEquals(cypher(buildDataBase(), relquery3)$rel3, 'FOLLOWS')
   relquery4 = "MATCH (t:IRS {id:'irsft1'})-[r]->(a:Agreement {id:'a5'}) return type(r) as rel4"
   checkEquals(cypher(buildDataBase(), relquery4)$rel4, NULL)
-  relquery5 = "MATCH (c:Client {id:'c2'})-[r]->(a:Agreement {id:'a3'}) return type(r) as rel5"
+  relquery5 = "MATCH (c:Client {id:'c2'})-[r]->(a:Agreement {id:'a23'}) return type(r) as rel5"
   checkEquals(cypher(buildDataBase(), relquery5)$rel5, 'DELIVERS_MARGIN_ACC_TO')
-  relquery6 = "MATCH (c:Client {id:'c2'})-[r]->(a:Agreement {id:'a1'}) return type(r) as rel6"
+  relquery6 = "MATCH (c:Client {id:'c2'})-[r]->(a:Agreement {id:'a11'}) return type(r) as rel6"
   checkEquals(cypher(buildDataBase(), relquery6)$rel6, NULL)
   relquery7 = "MATCH (e:LegalEntity {id:'e5'})-[r]->(t:IRS {id:'irsft5'}) return type(r) as rel7"
   checkEquals(cypher(buildDataBase(), relquery7)$rel7, 'POSITIONS_ON')
@@ -40,19 +40,19 @@ test.rel = function() {
   checkEquals(cypher(buildDataBase(), relquery10)$rel10, NULL)
   relquery11 = "MATCH (e:LegalEntity {id:'e3'})-[r]->(t:CDS {id:'cdst3'}) return type(r) as rel11"
   checkEquals(cypher(buildDataBase(), relquery11)$rel11, 'POSITIONS_ON')
-  relquery12 = "MATCH (t:CDS {id:'cdst4'})-[r]->(a:Agreement {id:'a3'}) return type(r) as rel12"
+  relquery12 = "MATCH (t:CDS {id:'cdst4'})-[r]->(a:Agreement {id:'a14'}) return type(r) as rel12"
   checkEquals(cypher(buildDataBase(), relquery12)$rel12, 'FOLLOWS')
   relquery13 = "MATCH (e:LegalEntity {id:'e4'})-[r]->(t:NDF {id:'ndft4'}) return type(r) as rel13"
   checkEquals(cypher(buildDataBase(), relquery13)$rel13, 'POSITIONS_ON')
-  relquery14 = "MATCH (t:NDF {id:'ndft5'})-[r]->(a:Agreement {id:'a4'}) return type(r) as rel14"
+  relquery14 = "MATCH (t:NDF {id:'ndft5'})-[r]->(a:Agreement {id:'a20'}) return type(r) as rel14"
   checkEquals(cypher(buildDataBase(), relquery14)$rel14, 'FOLLOWS')
   relquery15 = "MATCH (e:LegalEntity {id:'e5'})-[r]->(t:FXSI {id:'fxsi5'}) return type(r) as rel15"
   checkEquals(cypher(buildDataBase(), relquery15)$rel15, 'POSITIONS_ON')
-  relquery16 = "MATCH (t:FXSI {id:'fxsi1'})-[r]->(a:Agreement {id:'a1'}) return type(r) as rel16"
+  relquery16 = "MATCH (t:FXSI {id:'fxsi1'})-[r]->(a:Agreement {id:'a21'}) return type(r) as rel16"
   checkEquals(cypher(buildDataBase(), relquery16)$rel16, 'FOLLOWS')
   relquery17 = "MATCH (e:LegalEntity {id:'e1'})-[r]->(t:FXSW {id:'fxsw1'}) return type(r) as rel17"
   checkEquals(cypher(buildDataBase(), relquery17)$rel17, 'POSITIONS_ON')
-  relquery18 = "MATCH (t:FXSW {id:'fxsw2'})-[r]->(a:Agreement {id:'a2'}) return type(r) as rel18"
+  relquery18 = "MATCH (t:FXSW {id:'fxsw2'})-[r]->(a:Agreement {id:'a27'}) return type(r) as rel18"
   checkEquals(cypher(buildDataBase(), relquery18)$rel18, 'FOLLOWS')
 }
 
