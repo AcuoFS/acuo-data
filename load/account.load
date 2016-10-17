@@ -1,0 +1,8 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/account.csv' 
+AS line
+
+MATCH (e:LegalEntity {id:line.EntityId})
+
+MERGE (acc:Account {id:line.AccountId, name:line.AccountName})
+
+MERGE (acc)-[:BELONGS_TO]->(e);
