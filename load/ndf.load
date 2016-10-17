@@ -7,14 +7,16 @@ MATCH (acc)-[:BELONGS_TO]->(e:LegalEntity)
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
 MERGE (ndf:NDF {id:line.Id,
-		date:line.Date,
+		clearingDate:line.ClearingDate,
+		markToMarket:line.MTM,
 		buySell:line.BuySell,
 		currencySettlement:line.CurrencySettlement,
-		currencyTrade:line.CurrencyTrade,
-		settlementCurrencyNotional:toFloat(line.SettlementCurrencyNotional),
+		currencyUnderlying:line.CurrencyUnderlying,
+		notionalInUnderlying:toFloat(line.NotionalInUnderlying),
 		agreedFXRate:toFloat(line.AgreedFxRate),
 		fixingDate:line.FixingDate,
-		index:line.Index})
+		fixingRateToday:line.FixingDateToday,
+		cashSettlement:line.CashSettlement})
 
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(ndf)

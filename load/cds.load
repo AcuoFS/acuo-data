@@ -7,7 +7,8 @@ MATCH (e:LegalEntity)-[:HAS]->(acc:Account)
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
 MERGE (cds:CDS {id:line.TradeId,
-		date:line.TradeDate,
+		clearingDate:line.ClearingDate,
+		markToMarket:line.MTM,
 		maturity:line.Maturity,
 		buySellProtection:line.BuySellProtection,
 		currency:line.Currency,
@@ -15,7 +16,8 @@ MERGE (cds:CDS {id:line.TradeId,
 		underlyingAssetId:line.UnderlyingAssetID,
 		notional:tofloat(line.Notional),
 		factor:toFloat(line.Factor),
-		couponRate:toFloat(line.CouponRate)})
+		couponRate:toFloat(line.CouponRate)
+		seniority:line.Seniority})
 
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(cds)

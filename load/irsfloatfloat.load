@@ -7,8 +7,10 @@ MATCH (e:LegalEntity)-[:HAS]->(acc:Account)
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
 MERGE (irs:IRS {id:line.TradeId,
-		date:line.TradeDate,
 		maturity:line.Maturity,
+		clearingDate:line.ClearingDate,
+		markToMarket:line.MTM,
+		nextCouponPaymentRate:line.NextCouponPaymentRate,
 		notional:toFloat(line.Notional),
 		currencyReceive:line.CurrencyReceive,
 		currencyPay:line.CurrencyPay,
