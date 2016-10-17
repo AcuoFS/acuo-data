@@ -5,12 +5,12 @@ WHERE Account IS NOT NULL
 
 
 UNWIND Account AS account
-MATCH (c:Client {id: line.clientId})-->(acc {id:account})
-MERGE (a:Asset {name: line.name, type: line.type,currency:line.currency,value:line.value})
+MATCH (c:Client {id: line.clientId})-->()<--(acc {id:account})
+MERGE (a:Asset {name: line.name, type: line.type,currency:line.currency,value:TOFLOADT(line.value)})
 MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities)}]->(a)
 MERGE (acc)-[:ACCESSES]->(a)
 
-WITH line,a,e
+WITH line,a,acc
 
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.ISIN)<>"" THEN [1] 
 	ELSE [] END | 	SET a.ISIN=line.ISIN)
