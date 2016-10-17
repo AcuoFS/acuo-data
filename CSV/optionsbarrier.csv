@@ -1,6 +1,6 @@
-Date,Expiry,UnderlyingId,Currency,Notional,Quantity,LongShort,CallPut,StrikePrice,Type,BarrierType,KnockType,BarrierLevel,Rebate,TradeId,EntityId,AgreementId
-08/03/14,08/04/14,US149123BM26,USD,25000,250,Long,Put,95,European,Up,Out,110,105,opt1,e1,a1
-09/03/14,09/04/14,US149123BM27,EUR,30000,300,Short,Call,105,American,Up,In,95,,opt2,e2,a2
-10/03/14,10/04/14,US149123BM28,SGD,35000,350,Long,Put,95,European,Down,In,105,,opt3,e3,a2
-11/03/14,11/04/14,US149123BM29,RMB,40000,400,Short,Call,98,American,Down,Out,90,,opt4,e4,a3
-12/03/14,12/04/14,US149123BM30,GBP,45000,450,Long,Put,101,European,Up,Out,115,110,opt5,e5,a4
+Date,Expiry,UnderlyingId,Currency,Notional,Quantity,LongShort,CallPut,StrikePrice,Type,BarrierType,KnockType,BarrierLevel,Rebate,TradeId,AccountId,AgreementId
+08/03/14,08/04/14,US149123BM26,USD,25000,250,Long,Put,95,European,Up,Out,110,105,optb1,a6,a36
+09/03/14,09/04/14,US149123BM27,EUR,30000,300,Short,Call,105,American,Up,In,95,,optb2,a7,a37
+10/03/14,10/04/14,US149123BM28,SGD,35000,350,Long,Put,95,European,Down,In,105,,optb3,a8,a38
+11/03/14,11/04/14,US149123BM29,RMB,40000,400,Short,Call,98,American,Down,Out,90,,optb4,a9,a39
+12/03/14,12/04/14,US149123BM30,GBP,45000,450,Long,Put,101,European,Up,Out,115,110,optb5,a10,a40

@@ -1,6 +1,6 @@
-Date,BuySell,CurrencySettlement,CurrencyTrade,SettlementCurrencyNotional,AgreedFxRate,FixingDate,Index,Id,EntityId,AgreementId
-03/05/14,S,USD,RMB,10000,6.7,03/05/15,i1,ndft1,e1,a16
-04/05/14,B,EUR,BRL,10001,3.53,04/05/15,i2,ndft2,e2,a17
-05/05/14,S,USD,INR,10002,66.7,05/05/15,i3,ndft3,e3,a18
-06/05/14,B,EUR,KRW,10003,1240.3,06/05/15,i4,ndft4,e4,a19
-07/05/14,S,USD,TWD,10004,31.65,07/05/15,i5,ndft5,e5,a20
+Date,BuySell,CurrencySettlement,CurrencyTrade,SettlementCurrencyNotional,AgreedFxRate,FixingDate,Index,Id,AccountId,AgreementId
+03/05/14,S,USD,RMB,10000,6.7,03/05/15,i1,ndft1,acc6,a16
+04/05/14,B,EUR,BRL,10001,3.53,04/05/15,i2,ndft2,acc7,a17
+05/05/14,S,USD,INR,10002,66.7,05/05/15,i3,ndft3,acc8,a18
+06/05/14,B,EUR,KRW,10003,1240.3,06/05/15,i4,ndft4,acc9,a19
+07/05/14,S,USD,TWD,10004,31.65,07/05/15,i5,ndft5,acc10,a20

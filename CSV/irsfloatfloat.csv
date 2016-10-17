@@ -1,6 +1,6 @@
-TradeDate,Maturity,Notional,CurrencyReceive,CurrencyPay,IndexPay,IndexTenorPay,ResetFrequencyPay,IndexReceive,IndexTenorReceive,ResetFrequencyReceive,PaymentFrequencyReceive,PaymentFrequencyPay,TradeId,EntityId,AgreementId
-29/07/15,10/07/45,23000000,USD,USD,USD-LIBOR-BBA,6M,3M,USD-LIBOR-BBA,3M,3M,1T,1T,irsft1,e1,a6
-29/07/15,16/12/20,21000000,USD,USD,USD-LIBOR-BBA,6M,3M,USD-LIBOR-BBA,3M,3M,6M,3M,irsft2,e2,a7
-29/07/15,16/09/18,7500000,USD,USD,USD-LIBOR-BBA,6M,3M,USD-LIBOR-BBA,3M,3M,6M,3M,irsft3,e3,a8
-29/07/15,08/07/45,5000000,USD,USD,USD-LIBOR-BBA,6M,3M,USD-LIBOR-BBA,3M,3M,6M,3M,irsft4,e4,a8
-09/07/15,12/12/17,1000000,USD,USD,USD-LIBOR-BBA,6M,3M,USD-LIBOR-BBA,3M,3M,3M,3M,irsft5,e5,a10
+TradeDate,Maturity,Notional,CurrencyReceive,CurrencyPay,IndexPay,IndexTenorPay,ResetFrequencyPay,IndexReceive,IndexTenorReceive,ResetFrequencyReceive,PaymentFrequencyReceive,PaymentFrequencyPay,TradeId,AccountId,AgreementId
+29/07/15,10/07/45,23000000,USD,USD,USD-LIBOR-BBA,6M,3M,USD-LIBOR-BBA,3M,3M,1T,1T,irsft1,acc6,a6
+29/07/15,16/12/20,21000000,USD,USD,USD-LIBOR-BBA,6M,3M,USD-LIBOR-BBA,3M,3M,6M,3M,irsft2,acc7,a7
+29/07/15,16/09/18,7500000,USD,USD,USD-LIBOR-BBA,6M,3M,USD-LIBOR-BBA,3M,3M,6M,3M,irsft3,acc8,a8
+29/07/15,08/07/45,5000000,USD,USD,USD-LIBOR-BBA,6M,3M,USD-LIBOR-BBA,3M,3M,6M,3M,irsft4,acc9,a8
+09/07/15,12/12/17,1000000,USD,USD,USD-LIBOR-BBA,6M,3M,USD-LIBOR-BBA,3M,3M,3M,3M,irsft5,acc10,a10
