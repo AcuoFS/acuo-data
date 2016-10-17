@@ -1,9 +1,10 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/fxsi.csv' 
 AS line
 
-MATCH (e:LegalEntity {id:line.EntityId})
+MATCH (acc:Account {id:line.AccountId})
 MATCH (a:Agreement {id:line.AgreementId})
-MATCH (c:Client)-[:MANAGES]->(:LegalEntity {id:line.EntityId})
+MATCH (acc)-[:BELONGS_TO]->(e:LegalEntity)
+MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
 MERGE (f:FXSI {id:line.TradeId,
 		date:line.Date,
@@ -14,6 +15,6 @@ MERGE (f:FXSI {id:line.TradeId,
 		paymentDate:line.PaymentDate})
 
 MERGE (e)-[:SIGNS]->(a)
-MERGE (e)-[:POSITIONS_ON]->(f)
+MERGE (acc)-[:POSITIONS_ON]->(f)
 MERGE (f)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)

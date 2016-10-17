@@ -1,13 +1,14 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/optionsbarrier.csv' 
 AS line
 
-MATCH (e:LegalEntity {id:line.EntityId})
+MATCH (acc:Account {id:line.AccountId})
 MATCH (a:Agreement {id:line.AgreementId})
-MATCH (c:Client)-[:MANAGES]->(:LegalEntity {id:line.EntityId})
+MATCH (acc)-[:BELONGS_TO]->(e:LegalEntity)
+MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
 MERGE (opt:OPT {id:line.TradeId,
 		date:line.Date,
-		expiry:line.Espiry,
+		expiry:line.Expiry,
 		underlyingId:line.UnderlyingId,
 		currency:line.Currency,
 		notional:tofloat(line.Notional),
@@ -28,6 +29,6 @@ WHERE line.Rebate IS NOT NULL SET opt.rebate = line.Rebate
 
 
 MERGE (e)-[:SIGNS]->(a)
-MERGE (e)-[:POSITIONS_ON]->(cds)
-MERGE (cds)-[:FOLLOWS]->(a)
+MERGE (e)-[:POSITIONS_ON]->(opt)
+MERGE (opt)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
