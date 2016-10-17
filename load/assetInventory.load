@@ -1,14 +1,14 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/assetInventory.csv' 
 AS line
-WITH line, SPLIT(line.legalEntityId, '|') AS Lei
-WHERE Lei IS NOT NULL
+WITH line, SPLIT(line.accountId, '|') AS Account
+WHERE Account IS NOT NULL
 
 
-UNWIND Lei AS lei
-MATCH (c:Client {id: line.clientId})-[:MANAGES]->(e:LegalEntity {id:lei})
-MERGE (a:Asset {name: line.name, type: line.type, currency:line.currency})
+UNWIND Account AS account
+MATCH (c:Client {id: line.clientId})-->(acc {id:account})
+MERGE (a:Asset {name: line.name, type: line.type,currency:line.currency,value:line.value})
 MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities)}]->(a)
-MERGE (e)-[:ACCESSES]->(a)
+MERGE (acc)-[:ACCESSES]->(a)
 
 WITH line,a,e
 
@@ -25,9 +25,9 @@ FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityDate)<>"" THEN [1]
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.timeToMaturity)<>"" THEN [1] 
 	ELSE [] END | SET a.timeToMaturity=TOFLOAT(line.timeToMaturity))
 
-WITH a,e
+WITH a,acc
 
-MATCH Path=(a)<-[:ACCESSES]-(e)-[:SIGNS]->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
+MATCH Path=(a)<-[:ACCESSES]-(acc)-[r]->(e:LegalEntity)-[:SIGNS]->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
 WHERE a.type=ac.type
 AND a.currency=ac.currency
 MERGE (a)-[i:IS_IN]->(ac)
