@@ -14,14 +14,14 @@ buildDataBase = function() {
   load.name <- c('client.load',
                  'legalentity.load',
                  'agreement.load',
-                 'assetCategory.load',
-                 'assetInventory.load',
                  'cds.load',
                  'irsvanilla.load', 
                  'irsfloatfloat.load', 
                  'ndf.load', 
                  'fxsi.load', 
-                 'fxsw.load')
+                 'fxsw.load',
+                 'assetCategory.load',
+                 'assetInventory.load')
   
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load/'
   
