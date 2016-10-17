@@ -50,7 +50,7 @@ test.rel = function() {
   checkEquals(cypher(buildDataBase(), relquery15)$rel15, 'POSITIONS_ON')
   relquery16 = "MATCH (t:FXSI {id:'fxsi1'})-[r]->(a:Agreement {id:'a1'}) return type(r) as rel16"
   checkEquals(cypher(buildDataBase(), relquery16)$rel16, 'FOLLOWS')
-  relquery17 = "MATCH (e:LegalEntity {id:'e1'})-[r]->(t:FXSI {id:'fxsw1'}) return type(r) as rel17"
+  relquery17 = "MATCH (e:LegalEntity {id:'e1'})-[r]->(t:FXSW {id:'fxsw1'}) return type(r) as rel17"
   checkEquals(cypher(buildDataBase(), relquery17)$rel17, 'POSITIONS_ON')
   relquery18 = "MATCH (t:FXSW {id:'fxsw2'})-[r]->(a:Agreement {id:'a2'}) return type(r) as rel18"
   checkEquals(cypher(buildDataBase(), relquery18)$rel18, 'FOLLOWS')
@@ -130,7 +130,7 @@ test.propcds = function() {
   propquery8 = "MATCH (t:CDS {id:'cdst3'}) return t.factor as h"
   checkEquals(cypher(buildDataBase(), propquery8)$h, 0.75)
   propquery9 = "MATCH (t:CDS {id:'cdst4'}) return t.couponRate as i"
-  checkEquals(cypher(buildDataBase(), propquery9)$i, 6)
+  checkEquals(cypher(buildDataBase(), propquery9)$i, 0.6)
 }
 
 test.propndf = function() {
