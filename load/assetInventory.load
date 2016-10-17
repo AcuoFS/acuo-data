@@ -5,7 +5,7 @@ WHERE Account IS NOT NULL
 
 
 UNWIND Account AS account
-MATCH (c:Client {id: line.clientId})-->()<--(acc {id:account})
+MATCH (c:Client {id: line.clientId})-[*2]->(acc {id:account})
 MERGE (a:Asset {name: line.name, type: line.type,currency:line.currency,value:TOFLOAT(line.value)})
 MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities)}]->(a)
 MERGE (acc)-[:ACCESSES]->(a)
@@ -27,7 +27,7 @@ FOREACH (ignoreMe IN CASE 	WHEN trim(line.timeToMaturity)<>"" THEN [1]
 
 WITH a,acc
 
-MATCH Path=(a)<-[:ACCESSES]-(acc)-[r]->(e:LegalEntity)-[:SIGNS]->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
+MATCH Path=(a)<-[:ACCESSES]-(acc)<-[:HAS]-(e:LegalEntity)-[:SIGNS]->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
 WHERE a.type=ac.type
 AND a.currency=ac.currency
 MERGE (a)-[i:IS_IN]->(ac)
