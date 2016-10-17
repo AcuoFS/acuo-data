@@ -10,7 +10,7 @@ MERGE (a:Asset {name: line.name, type: line.type,currency:line.currency,value:li
 MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities)}]->(a)
 MERGE (acc)-[:ACCESSES]->(a)
 
-WITH line,a,e
+WITH line,a,acc
 
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.ISIN)<>"" THEN [1] 
 	ELSE [] END | 	SET a.ISIN=line.ISIN)
