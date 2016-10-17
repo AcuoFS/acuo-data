@@ -42,16 +42,17 @@ REMOVE i.Flag1
 REMOVE i.Flag2
 
 WITH i,a,acc,ag
-WHERE i.Flag < 2
-DELETE i
-
-WITH a,acc,ag
-MATCH ()-[i:IS_IN]->()
+WHERE i.Flag = 2
 REMOVE i.Flag
 
-WITH a,acc,ag
+WITH i,a,acc,ag
 MATCH Path=(a)<-[:ACCESSES]-(acc)<-[:HAS]-(e:LegalEntity)
 OPTIONAL MATCH (acc)-->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
-OPTIONAL MATCH (a)-[:IS_IN]-(ac)
+OPTIONAL MATCH (a)-[i:IS_IN]-(ac)
 MERGE (a)-[:IS_AVAILABLE_FOR]->(ag)
 
+
+WITH i
+MATCH ()-[j:IS_IN]->()
+WHERE j.Flag IS NOT NULL
+DELETE j
