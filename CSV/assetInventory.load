@@ -1,0 +1,50 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/assetInventory.csv' 
+AS line
+WITH line, SPLIT(line.accountId, '|') AS Account
+WHERE Account IS NOT NULL
+
+
+UNWIND Account AS account
+MATCH (c:Client {id: line.clientId})-->()<--(acc {id:account})
+MERGE (a:Asset {name: line.name, type: line.type,currency:line.currency,value:TOFLOAT(line.value)})
+MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities)}]->(a)
+MERGE (acc)-[:ACCESSES]->(a)
+
+WITH line,a,acc
+
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.ISIN)<>"" THEN [1] 
+	ELSE [] END | 	SET a.ISIN=line.ISIN)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.CUSIP)<>"" THEN [1] 
+	ELSE [] END | SET a.CUSIP=line.CUSIP)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
+	ELSE [] END | SET a.ticker=line.ticker)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.issueDate)<>"" THEN [1] 
+	ELSE [] END | SET a.issueDate=line.issueDate)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityDate)<>"" THEN [1] 
+	ELSE [] END | SET a.maturityDate=line.maturityDate)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.timeToMaturity)<>"" THEN [1] 
+	ELSE [] END | SET a.timeToMaturity=TOFLOAT(line.timeToMaturity))
+
+WITH a,acc
+
+MATCH Path=(a)<-[:ACCESSES]-(acc)<-[:HAS]-(e:LegalEntity)-[:SIGNS]->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
+WHERE a.type=ac.type
+AND a.currency=ac.currency
+MERGE (a)-[i:IS_IN]->(ac)
+SET i.Flag1 = CASE WHEN a.ticker=ac.ticker THEN 2
+	WHEN UPPER(a.type)='CASH' THEN 2
+	WHEN a.timeToMaturity<ac.maturityUp THEN 1
+	ELSE 0 END
+SET i.Flag2 = CASE WHEN a.timeToMaturity>ac.maturityLb THEN 1
+	 ELSE 0 END
+SET i.Flag = i.Flag1+i.Flag2
+REMOVE i.Flag1
+REMOVE i.Flag2
+
+WITH i,a
+WHERE i.Flag < 2
+DELETE i
+
+WITH a
+MATCH ()-[i:IS_IN]->()
+REMOVE i.Flag
