@@ -1,6 +1,6 @@
-Date,BaseCurrency,CounterCurrency,BaseCurrencyAmount,CounterCurrencyAmount,PaymentDate,TradeId,AccountId,AgreementId
-28/03/13,USD,EUR,1000,907,18/05/13,fxsi1,acc1,a21
-29/03/13,EUR,SGD,1000,1523,19/05/13,fxsi2,acc2,a22
-30/03/13,SGD,GBP,1000,591,20/05/13,fxsi3,acc3,a23
-31/03/13,GBP,RMB,1000,8234,21/05/13,fxsi4,acc4,a24
-01/04/13,RMB,USD,1000,149,22/05/13,fxsi5,acc5,a25
+ClearingDate,BaseCurrency,CounterCurrency,BaseCurrencyAmount,CounterCurrencyAmount,PaymentDate,MTM,TradeId,AccountId,AgreementId
+28/03/13,USD,EUR,1000,907,18/05/13,10,fxsi1,acc1,a21
+29/03/13,EUR,SGD,1000,1523,19/05/13,-78,fxsi2,acc2,a22
+30/03/13,SGD,GBP,1000,591,20/05/13,-13,fxsi3,acc3,a23
+31/03/13,GBP,RMB,1000,8234,21/05/13,6,fxsi4,acc4,a24
+01/04/13,RMB,USD,1000,149,22/05/13,17,fxsi5,acc5,a25

@@ -1,6 +1,6 @@
-TradeDate,BaseCurrency,CounterCurrency,NotionalBaseCurrency,NearRate,ForwardPoints,NearDate,FarDate,TradeId,AccountId,AgreementId
-18/05/12,USD,EUR,10000,0.91,0.2,23/05/12,29/06/12,fxsw1,acc6,a26
-19/05/12,EUR,SGD,10001,1.52,-0.1,24/05/12,30/06/12,fxsw2,acc7,a27
-20/05/12,SGD,GBP,10002,0.59,0.3,25/05/12,01/07/12,fxsw3,acc8,a28
-21/05/12,GBP,RMB,10003,9.18,-0.4,26/05/12,02/07/12,fxsw4,acc9,a29
-22/05/12,RMB,USD,10004,0.15,0.005,27/05/12,03/07/12,fxsw5,acc10,a30
+ClearingDate,BaseCurrency,CounterCurrency,NotionalBaseCurrency,NearRate,ForwardPoints,NearDate,FarDate,MTM,TradeId,AccountId,AgreementId
+18/05/12,USD,EUR,10000,0.91,0.2,23/05/12,29/06/12,89,fxsw1,acc6,a26
+19/05/12,EUR,SGD,10001,1.52,-0.1,24/05/12,30/06/12,-63,fxsw2,acc7,a27
+20/05/12,SGD,GBP,10002,0.59,0.3,25/05/12,01/07/12,107,fxsw3,acc8,a28
+21/05/12,GBP,RMB,10003,9.18,-0.4,26/05/12,02/07/12,18,fxsw4,acc9,a29
+22/05/12,RMB,USD,10004,0.15,0.005,27/05/12,03/07/12,-29,fxsw5,acc10,a30

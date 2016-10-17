@@ -1,4 +1,4 @@
-AgreementName,AgreementId,Date,Type,CCP
+AgreementName,AgreementId,AgreementDate,Type,CCP
 agr1,a1,29/07/15,cleared,LCH Clearnet LTD
 agr2,a2,29/07/15,bilateralOTC,
 agr3,a3,29/07/15,regulatoryOTC,
