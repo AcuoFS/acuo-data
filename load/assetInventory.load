@@ -6,7 +6,7 @@ WHERE Account IS NOT NULL
 
 UNWIND Account AS account
 MATCH (c:Client {id: line.clientId})-->()<--(acc {id:account})
-MERGE (a:Asset {name: line.name, type: line.type,currency:line.currency,value:line.value})
+MERGE (a:Asset {name: line.name, type: line.type,currency:line.currency,value:TOFLOADT(line.value)})
 MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities)}]->(a)
 MERGE (acc)-[:ACCESSES]->(a)
 
