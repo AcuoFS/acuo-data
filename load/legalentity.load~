@@ -1,8 +1,0 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/legalentity.csv' 
-AS line
-
-MATCH (c:Client {id:line.ClientId})
-
-MERGE (e:LegalEntity {id:line.EntityId, name:line.EntityName})
-
-MERGE (c)-[:MANAGES]->(e);

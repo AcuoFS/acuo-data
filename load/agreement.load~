@@ -1,9 +1,0 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/agreement.csv' 
-AS line
-
-MERGE (:Agreement {id:line.AgreementId, name:line.AgreementName, date:line.Date, type:line.Type})
-
-WITH line
-
-MATCH (a:Agreement {id:line.AgreementId})
-WHERE line.CCP IS NOT NULL SET a.CCP = line.CCP
