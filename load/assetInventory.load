@@ -50,6 +50,8 @@ MATCH ()-[i:IS_IN]->()
 REMOVE i.Flag
 
 WITH a,acc,ag
-MATCH Path=(a)<-[:ACCESSES]-(acc)<-[:HAS]-(e:LegalEntity)-[:SIGNS]->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
+MATCH Path=(a)<-[:ACCESSES]-(acc)<-[:HAS]-(e:LegalEntity)
+OPTIONAL MATCH (acc)-->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
 OPTIONAL MATCH (a)-[:IS_IN]-(ac)
 MERGE (a)-[:IS_AVAILABLE_FOR]->(ag)
+
