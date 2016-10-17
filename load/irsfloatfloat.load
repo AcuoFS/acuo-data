@@ -8,7 +8,7 @@ MATCH (c:Client)-[:MANAGES]->(:LegalEntity {id:line.EntityId})
 MERGE (irs:IRS {id:line.TradeId,
 		date:line.TradeDate,
 		maturity:line.Maturity,
-		notional:toFloat(line.Notional),,
+		notional:toFloat(line.Notional),
 		currencyReceive:line.CurrencyReceive,
 		currencyPay:line.CurrencyPay,
 		indexReceive:line.IndexReceive,
