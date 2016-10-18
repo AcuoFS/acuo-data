@@ -21,14 +21,13 @@ MERGE (opt:OPT {id:line.TradeId,
 		knockType:line.KnockType, 
 		BarrierLevel:toFloat(line.BarrierLevel)})
 
+MERGE (e)-[:SIGNS]->(a)
+MERGE (acc)-[:POSITIONS_ON]->(opt)
+MERGE (opt)-[:FOLLOWS]->(a)
+MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
+
 WITH line
 
 MATCH (opt:OPT {id:line.TradeId}) 
 
 WHERE line.Rebate IS NOT NULL SET opt.rebate = line.Rebate
-
-
-MERGE (e)-[:SIGNS]->(a)
-MERGE (e)-[:POSITIONS_ON]->(opt)
-MERGE (opt)-[:FOLLOWS]->(a)
-MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
