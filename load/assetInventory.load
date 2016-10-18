@@ -33,6 +33,7 @@ AND a.currency=ac.currency
 MERGE (a)-[i:IS_IN]->(ac)
 SET i.Flag1 = CASE WHEN a.ticker=ac.ticker THEN 2
 	WHEN UPPER(a.type)='CASH' THEN 2
+	WHEN UPPER(a.type)='GOLD' THEN 2
 	WHEN a.timeToMaturity<ac.maturityUp THEN 1
 	ELSE 0 END
 SET i.Flag2 = CASE WHEN a.timeToMaturity>ac.maturityLb THEN 1
