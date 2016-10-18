@@ -26,7 +26,7 @@ test.rel = function() {
   checkEquals(cypher(buildDataBase(), relquery3)$rel3, 'FOLLOWS')
   relquery4 = "MATCH (t:IRS {id:'irsft1'})-[r]->(a:Agreement {id:'a5'}) return type(r) as rel4"
   checkEquals(cypher(buildDataBase(), relquery4)$rel4, NULL)
-  relquery5 = "MATCH (c:Client {id:'c2'})-[r]->(a:Agreement {id:'a23'}) return type(r) as rel5"
+  relquery5 = "MATCH (c:Client {id:'c2'})-[r]->(a:Agreement {id:'a28'}) return type(r) as rel5"
   checkEquals(cypher(buildDataBase(), relquery5)$rel5, 'DELIVERS_MARGIN_ACC_TO')
   relquery6 = "MATCH (c:Client {id:'c2'})-[r]->(a:Agreement {id:'a11'}) return type(r) as rel6"
   checkEquals(cypher(buildDataBase(), relquery6)$rel6, NULL)
@@ -51,7 +51,7 @@ test.rel = function() {
 # I want to test whether I can find a trade with a client ID and a trade ID, and if there is an error when the client's ID is not related to the trade:
 
 test.id = function() {
-  idquery1 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'irsvt5'}) return t.id as a"
+  idquery1 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'irsvt5'}) return t.id as a"
   checkEquals(cypher(buildDataBase(), idquery1)$a, 'irsvt5')
   idquery2 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'cdst2'}) return t.id as a"
   checkEquals(cypher(buildDataBase(), idquery2)$a, 'cdst2')

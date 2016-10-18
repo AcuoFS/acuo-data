@@ -34,9 +34,9 @@ test.propirs = function() {
   checkEquals(cypher(buildDataBase(), propquery15)$r, '3M')
   propquery16 = "MATCH (t:IRS {id:'irsft1'}) return t.resetFreqPay as s"
   checkEquals(cypher(buildDataBase(), propquery16)$s, '3M')
-  propquery17 = "MATCH (t:IRS {id:irsvt2}) return t.markToMarket as t"
+  propquery17 = "MATCH (t:IRS {id:'irsvt2'}) return t.markToMarket as t"
   checkEquals(cypher(buildDataBase(), propquery17)$t, -54082.03)
-  propquery18 = "MATCH (t:IRS {id:irsft3}) return t.nextCouponPaymentDate as u"
+  propquery18 = "MATCH (t:IRS {id:'irsft3'}) return t.nextCouponPaymentDate as u"
   checkEquals(cypher(buildDataBase(), propquery18)$u, '21/12/16')
 }
 
@@ -131,19 +131,19 @@ test.propoptions = function() {
   checkEquals(cypher(buildDataBase(), propquery1)$a, '08/03/14')
   propquery2 = "MATCH (t:OPT {id:'optb2'}) return t.markToMarket as b"
   checkEquals(cypher(buildDataBase(), propquery2)$b, -15)
-  propquery3 = "MATCH (t:OPT {id:'optv3}) return t.expiry as c"
+  propquery3 = "MATCH (t:OPT {id:'optv3'}) return t.expiry as c"
   checkEquals(cypher(buildDataBase(), propquery3)$c, '10/04/2014')
   propquery4 = "MATCH (t:OPT {id:'optb4'}) return t.underlyingId as d"
   checkEquals(cypher(buildDataBase(), propquery4)$d, 'US149123BM29')
-  propquery5 = "MATCH (t:OPT {id:'optv5}) return t.currency as e"
+  propquery5 = "MATCH (t:OPT {id:'optv5'}) return t.currency as e"
   checkEquals(cypher(buildDataBase(), propquery5)$e, 'GBP')
   propquery6 = "MATCH (t:OPT {id:'optb1'}) return t.quantity as f"
   checkEquals(cypher(buildDataBase(), propquery6)$f, 250)
-  propquery7 = "MATCH (t:OPT {id:'optv2}) return t.longShort as g"
+  propquery7 = "MATCH (t:OPT {id:'optv2'}) return t.longShort as g"
   checkEquals(cypher(buildDataBase(), propquery7)$g, 'Short')
   propquery8 = "MATCH (t:OPT {id:'optb3'}) return t.callPut as h"
   checkEquals(cypher(buildDataBase(), propquery8)$h, 'Put')
-  propquery9 = "MATCH (t:OPT {id:'optv4}) return t.strikePrice as i"
+  propquery9 = "MATCH (t:OPT {id:'optv4'}) return t.strikePrice as i"
   checkEquals(cypher(buildDataBase(), propquery9)$i, 98)
   propquery10 = "MATCH (t:OPT {id:'optb5'}) return t.type as j"
   checkEquals(cypher(buildDataBase(), propquery10)$j, 'European')
