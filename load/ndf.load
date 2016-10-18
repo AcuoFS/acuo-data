@@ -15,8 +15,8 @@ MERGE (ndf:NDF {id:line.Id,
 		notionalInUnderlying:toFloat(line.NotionalInUnderlying),
 		agreedFXRate:toFloat(line.AgreedFxRate),
 		fixingDate:line.FixingDate,
-		fixingRateToday:line.FixingRateToday,
-		cashSettlement:line.CashSettlement})
+		fixingRateToday:toFloat(line.FixingRateToday),
+		cashSettlement:toFloat(line.CashSettlement)})
 
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(ndf)
