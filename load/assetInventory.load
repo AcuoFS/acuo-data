@@ -3,10 +3,13 @@ AS line
 WITH line, SPLIT(line.accountId, '|') AS Account
 WHERE line.clientId IS NOT NULL
 
-UNWIND Account AS account
-MATCH (c:Client {id: line.clientId})-[*2]->(acc {id:account})
+MATCH (c:Client {id:line.clientId})
 MERGE (a:Asset {name: line.name, type: line.type,currency:line.currency,value:TOFLOAT(line.value)})
 MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities)}]->(a)
+WITH  c,a,line,Account
+
+UNWIND Account AS account
+MATCH (c:Client {id: line.clientId})-[*2]->(acc {id:account})
 MERGE (acc)-[:ACCESSES]->(a)
 
 WITH line,a,acc
