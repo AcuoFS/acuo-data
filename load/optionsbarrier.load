@@ -19,7 +19,7 @@ MERGE (opt:OPT {id:line.TradeId,
 		type:line.Type, 
 		barrierType:line.BarrierType, 
 		knockType:line.KnockType, 
-		BarrierLevel:toFloat(line.BarrierLevel)})
+		barrierLevel:toFloat(line.BarrierLevel)})
 
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(opt)
