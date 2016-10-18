@@ -8,7 +8,7 @@ MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
 MERGE (f:FXSW {id:line.TradeId,
 		clearingDate:line.ClearingDate,
-		markToMarket:line.MTM,
+		markToMarket:toFloat(line.MTM),
 		baseCurrency:line.BaseCurrency,
 		counterCurrency:line.CounterCurrency,
 		notionalBaseCurrency:toFloat(line.NotionalBaseCurrency),

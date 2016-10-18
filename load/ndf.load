@@ -8,7 +8,7 @@ MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
 MERGE (ndf:NDF {id:line.Id,
 		clearingDate:line.ClearingDate,
-		markToMarket:line.MTM,
+		markToMarket:toFloat(line.MTM),
 		buySell:line.BuySell,
 		currencySettlement:line.CurrencySettlement,
 		currencyUnderlying:line.CurrencyUnderlying,
