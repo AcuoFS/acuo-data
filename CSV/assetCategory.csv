@@ -22,3 +22,4 @@ British Pound,Cash,GBP,,,,0.02,0.05,2500000,,5000000,,a6
 Offshore Chinese Renminbi,Cash,CHN,,,,0.02,0.1,2000000,,5000000,,a6
 U.S. Treasury Bills,Tbill,USD,,0,1,0.008,0,,,,,a7
 Australian Bond,Bond,AUD,,0,5,0.06,0.05,,,,25000000,a7
+Gold,Gold,GLD,,,,0.15,0,250000,250000,,,a8
