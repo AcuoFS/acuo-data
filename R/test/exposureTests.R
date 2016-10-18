@@ -132,7 +132,7 @@ test.propoptions = function() {
   propquery2 = "MATCH (t:OPT {id:'optb2'}) return t.markToMarket as b"
   checkEquals(cypher(buildDataBase(), propquery2)$b, -15)
   propquery3 = "MATCH (t:OPT {id:'optv3'}) return t.expiry as c"
-  checkEquals(cypher(buildDataBase(), propquery3)$c, '10/04/2014')
+  checkEquals(cypher(buildDataBase(), propquery3)$c, '10/04/14')
   propquery4 = "MATCH (t:OPT {id:'optb4'}) return t.underlyingId as d"
   checkEquals(cypher(buildDataBase(), propquery4)$d, 'US149123BM29')
   propquery5 = "MATCH (t:OPT {id:'optv5'}) return t.currency as e"
