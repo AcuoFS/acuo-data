@@ -16,7 +16,7 @@ MERGE (cds:CDS {id:line.TradeId,
 		underlyingAssetId:line.UnderlyingAssetID,
 		notional:tofloat(line.Notional),
 		factor:toFloat(line.Factor),
-		couponRate:toFloat(line.CouponRate)
+		couponRate:toFloat(line.CouponRate),
 		seniority:line.Seniority})
 
 MERGE (e)-[:SIGNS]->(a)
