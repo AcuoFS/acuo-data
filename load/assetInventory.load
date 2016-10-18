@@ -5,16 +5,6 @@ MATCH (c:Client {id: line.clientId})
 MERGE (a:Asset {name: line.name, type: line.type,currency:line.currency,value:TOFLOAT(line.value)})
 MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities)}]->(a)
 
-WITH line, SPLIT(line.accountId, '|') AS Account
-WHERE Account IS NOT NULL
-
-UNWIND Account AS account
-MATCH (c:Client {id: line.clientId})-[*2]->(acc {id:account})
-OPTIONAL MATCH (c)-[:POSSESSES]->(a:Asset)
-MERGE (acc)-[:ACCESSES]->(a)
-
-WITH line,a,acc
-
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.ISIN)<>"" THEN [1] 
 	ELSE [] END | SET a.ISIN=line.ISIN)
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.CUSIP)<>"" THEN [1] 
@@ -27,6 +17,15 @@ FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityDate)<>"" THEN [1]
 	ELSE [] END | SET a.maturityDate=line.maturityDate)
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.timeToMaturity)<>"" THEN [1] 
 	ELSE [] END | SET a.timeToMaturity=TOFLOAT(line.timeToMaturity))
+
+
+WITH line, SPLIT(line.accountId, '|') AS Account
+WHERE Account IS NOT NULL
+
+UNWIND Account AS account
+MATCH (c:Client {id: line.clientId})-[*2]->(acc {id:account})
+OPTIONAL MATCH (c)-[:POSSESSES]->(a:Asset)
+MERGE (acc)-[:ACCESSES]->(a)
 
 WITH a,acc
 
