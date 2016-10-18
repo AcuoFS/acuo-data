@@ -13,6 +13,7 @@ buildDataBase = function() {
   
   load.name <- c('client.load',
                  'legalentity.load',
+                 'account.load',
                  'agreement.load',
                  'cds.load',
                  'irsvanilla.load', 
