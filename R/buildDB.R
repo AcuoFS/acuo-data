@@ -20,8 +20,8 @@ buildDataBase = function() {
                  'ndf.load', 
                  'fxsi.load', 
                  'fxsw.load',
-		 'optionsvanilla.csv', 
-		 'optionsbarrier.csv', 
+                 'optionsvanilla.load', 
+                 'optionsbarrier.load', 
                  'assetCategory.load',
                  'assetInventory.load')
   

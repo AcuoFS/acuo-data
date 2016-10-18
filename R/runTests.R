@@ -1,6 +1,6 @@
 library('RUnit')
 
-source('R/buildDataBase.R')
+source('R/buildDB.R')
 
 test.suite = defineTestSuite("example",
                 dirs = file.path("R/test"),
