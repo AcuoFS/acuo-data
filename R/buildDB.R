@@ -7,7 +7,7 @@ buildDataBase = function() {
   }
 
   graph = startGraph("http://neo4j:7474/db/data")
-  #graph = startGraph("http://localhost:7474/db/data/")
+#  graph = startGraph("http://localhost:7474/db/data/")
   
   clear(graph,input=FALSE)
   
@@ -20,6 +20,8 @@ buildDataBase = function() {
                  'ndf.load', 
                  'fxsi.load', 
                  'fxsw.load',
+		 'optionsvanilla.csv', 
+		 'optionsbarrier.csv', 
                  'assetCategory.load',
                  'assetInventory.load')
   
