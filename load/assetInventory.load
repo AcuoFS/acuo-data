@@ -48,14 +48,14 @@ WITH i,a,acc,ag
 WHERE i.Flag = 2
 REMOVE i.Flag
 
-WITH i,a,acc,ag
-MATCH Path=(a)<-[:ACCESSES]-(acc)<-[:HAS]-(e:LegalEntity)
-OPTIONAL MATCH (acc)-->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
-OPTIONAL MATCH (a)-[i:IS_IN]-(ac)
-MERGE (a)-[:IS_AVAILABLE_FOR]->(ag)
-
-
-WITH i
+WITH a
 MATCH ()-[j:IS_IN]->()
 WHERE j.Flag IS NOT NULL
 DELETE j
+
+WITH a
+MATCH (c:Client)-[*2]->(acc:Account)-[:ACCESSES]->(a)-[:IS_IN]->(ac)-[:IS_ELIGIBLE_UNDER]->(ag:Agreement)
+WHERE (c)-[:POSSESSES]->(a)
+AND (c)-->(ag)
+MERGE (a)-[:IS_AVAILABLE_FOR]->(ag)
+
