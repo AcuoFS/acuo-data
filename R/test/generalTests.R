@@ -12,7 +12,7 @@ test.numnode = function() {
 
 test.numrel = function() {
   numnodequery = "MATCH (m)-[r]->(n) return count(distinct(r)) AS c"
-  checkEquals(cypher(buildDataBase(), numnodequery)$c, 251)
+  checkEquals(cypher(buildDataBase(), numnodequery)$c, 256)
 }
 
 # I want to test whether the relationships I created are correct:
