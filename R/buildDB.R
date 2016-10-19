@@ -23,6 +23,7 @@ buildDataBase = function() {
                  'fxsw.load',
                  'optionsvanilla.load', 
                  'optionsbarrier.load', 
+                 'fra.load',
                  'assetCategory.load',
                  'assetInventory.load')
   
