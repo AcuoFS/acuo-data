@@ -211,9 +211,9 @@ test.propzcs = function() {
   checkEquals(cypher(buildDataBase(), propquery8)$h, 'USD-LIBOR-BBA')
   propquery9 = "MATCH (t:ZCS {id:'zcs4'}) return t.tenorFloat as i"
   checkEquals(cypher(buildDataBase(), propquery9)$i, '3M')
-  propquery10 = "MATCH (t:ZCS {id:'zcs5'}) return t.resetFrequency as j"
+  propquery10 = "MATCH (t:ZCS {id:'zcs5'}) return t.resetFreq as j"
   checkEquals(cypher(buildDataBase(), propquery10)$j, '3M')
-  propquery11 = "MATCH (t:ZCS {id:'zcs1'}) return t.paymentFrequencyFloating as k"
+  propquery11 = "MATCH (t:ZCS {id:'zcs1'}) return t.payFreqFloating as k"
   checkEquals(cypher(buildDataBase(), propquery11)$k, '1T')
   propquery12 = "MATCH (t:ZCS {id:'zcs2'}) return t.markToMarket as l"
   checkEquals(cypher(buildDataBase(), propquery12)$l, -54082.03)
