@@ -5,14 +5,14 @@ library(RUnit)
 
 test.numnode = function() {
   numnodequery = "MATCH (n) return count(distinct(n)) AS c"
-  checkEquals(cypher(buildDataBase(), numnodequery)$c, 109)
+  checkEquals(cypher(buildDataBase(), numnodequery)$c, 119)
 }
 
 # I want to test whether the correct amount of relationships was created:
 
 test.numrel = function() {
   numnodequery = "MATCH (m)-[r]->(n) return count(distinct(r)) AS c"
-  checkEquals(cypher(buildDataBase(), numnodequery)$c, 256)
+  checkEquals(cypher(buildDataBase(), numnodequery)$c, 278)
 }
 
 # I want to test whether the relationships I created are correct:
@@ -65,4 +65,6 @@ test.id = function() {
   checkEquals(cypher(buildDataBase(), idquery7)$g, 'optv3')
   idquery8 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'optb3'}) return t.id as h"
   checkEquals(cypher(buildDataBase(), idquery8)$h, 'optb3')
+  idquery0 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'fra4'}) return t.id as i"
+  checkEquals(cypher(buildDataBase(), idquery9)$i, 'fra4')
 }
