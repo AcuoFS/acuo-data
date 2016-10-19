@@ -18,8 +18,12 @@ MERGE (zcs:ZCS {id:line.TradeId,
 		fixedRate:toFloat(line.RateValue),
 		indexFloat:line.Index,
 		tenorFloat:line.IndexTenor,
-		resetFreq:line.ResetFrequency,
-		payFreqFloating:line.PaymentFrequencyFloating})
+		resetFreq:line.ResetFrequency})
+
+WITH line
+
+MATCH (zcs:ZCS {id:line.TradeId})
+WHERE line.LegPay = 'Floating' SET zcs.payFreqFloating = line.PaymentFrequencyFloating
 
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(zcs)
