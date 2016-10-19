@@ -36,11 +36,7 @@ test.rel = function() {
   checkEquals(cypher(buildDataBase(), relquery8)$rel8, NULL)
   relquery9 = "MATCH (e:LegalEntity {id:'e1'})-[r]->(a:Agreement {id:'a1'}) return type(r) as rel9"
   checkEquals(cypher(buildDataBase(), relquery9)$rel9, 'SIGNS')
-  relquery10 = "MATCH (e:LegalEntity {id:'e2'})-[r]->(a:Agreement {id:'a4'}) return type(r) as rel10"
-  checkEquals(cypher(buildDataBase(), relquery10)$rel10, NULL)
-  relquery9 = "MATCH (e:LegalEntity {id:'e1'})-[r]->(a:Agreement {id:'a1'}) return type(r) as rel9"
-  checkEquals(cypher(buildDataBase(), relquery9)$rel9, 'SIGNS')
-  relquery10 = "MATCH (e:LegalEntity {id:'e2'})-[r]->(a:Agreement {id:'a4'}) return type(r) as rel10"
+  relquery10 = "MATCH (e:LegalEntity {id:'e1'})-[r]->(a:Agreement {id:'a4'}) return type(r) as rel10"
   checkEquals(cypher(buildDataBase(), relquery10)$rel10, NULL)
   relquery11 = "MATCH (e:LegalEntity {id:'e5'})-[r]->(acc:Account {id:'acc10'}) return type(r) as rel11"
   checkEquals(cypher(buildDataBase(), relquery11)$rel11, 'HAS')
@@ -65,6 +61,6 @@ test.id = function() {
   checkEquals(cypher(buildDataBase(), idquery7)$g, 'optv3')
   idquery8 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'optb3'}) return t.id as h"
   checkEquals(cypher(buildDataBase(), idquery8)$h, 'optb3')
-  idquery0 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'fra4'}) return t.id as i"
+  idquery9 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'fra4'}) return t.id as i"
   checkEquals(cypher(buildDataBase(), idquery9)$i, 'fra4')
 }

@@ -67,6 +67,8 @@ test.propcds = function() {
   checkEquals(cypher(buildDataBase(), propquery11)$k, -10000)
 }
 
+# I want to test that my NDFs have the correct properties:
+
 test.propndf = function() {
   propquery1 = "MATCH (t:NDF {id:'ndft1'}) return t.clearingDate as a"
   checkEquals(cypher(buildDataBase(), propquery1)$a, '03/05/14')
@@ -88,6 +90,8 @@ test.propndf = function() {
   checkEquals(cypher(buildDataBase(), propquery9)$i, -3126)
 }
 
+# I want to test that my FX singles have the correct properties:
+
 test.propfxsi = function() {
   propquery1 = "MATCH (t:FXSI {id:'fxsi1'}) return t.clearingDate as a"
   checkEquals(cypher(buildDataBase(), propquery1)$a, '28/03/13')
@@ -104,6 +108,8 @@ test.propfxsi = function() {
   propquery7 = "MATCH (t:FXSI {id:'fxsi2'}) return t.markToMarket as g"
   checkEquals(cypher(buildDataBase(), propquery7)$g, -78)
 }
+
+# I want to test that my FX swaps have the correct properties:
 
 test.propfxsw = function() {
   propquery1 = "MATCH (t:FXSW {id:'fxsw1'}) return t.clearingDate as a"
@@ -125,6 +131,8 @@ test.propfxsw = function() {
   propquery9 = "MATCH (t:FXSW {id:'fxsw4'}) return t.markToMarket as i"
   checkEquals(cypher(buildDataBase(), propquery9)$i, 18)
 }
+
+# I want to test that my options have the correct properties:
 
 test.propoptions = function() {
   propquery1 = "MATCH (t:OPT {id:'optv1'}) return t.clearingDate as a"
@@ -154,7 +162,48 @@ test.propoptions = function() {
   propquery13 = "MATCH (t:OPT {id:'optb3'}) return t.barrierLevel as m"
   checkEquals(cypher(buildDataBase(), propquery13)$m, 105)
   propquery14 = "MATCH (t:OPT {id:'optb4'}) return t.rebate as n"
-  checkEquals(cypher(buildDataBase(), propquery14)$n, NULL)
+  checkEquals(cypher(buildDataBase(), propquery14)$n, NA)
   propquery15 = "MATCH (t:OPT {id:'optb5'}) return t.rebate as o"
   checkEquals(cypher(buildDataBase(), propquery15)$o, 110)
 }
+
+# I want to test that my FRAs have the correct properties:
+
+test.propfra = function() {
+  propquery1 = "MATCH (t:FRA {id:'fra1'}) return t.clearingDate as a"
+  checkEquals(cypher(buildDataBase(), propquery1)$a, '29/06/13')
+  propquery2 = "MATCH (t:FRA {id:'fra2'}) return t.maturity as b"
+  checkEquals(cypher(buildDataBase(), propquery2)$b, '30/09/13')
+  propquery3 = "MATCH (t:FRA {id:'fra3'}) return t.legPay as c"
+  checkEquals(cypher(buildDataBase(), propquery3)$c, 'Fixed')
+  propquery4 = "MATCH (t:FRA {id:'fra4'}) return t.notional as d"
+  checkEquals(cypher(buildDataBase(), propquery4)$d, 15003)
+  propquery5 = "MATCH (t:FRA {id:'fra5'}) return t.currency as e"
+  checkEquals(cypher(buildDataBase(), propquery5)$e, 'USD')
+  propquery6 = "MATCH (t:FRA {id:'fra1'}) return t.agreedRate as f"
+  checkEquals(cypher(buildDataBase(), propquery6)$f, 1.03)
+  propquery7 = "MATCH (t:FRA {id:'fra2'}) return t.index as g"
+  checkEquals(cypher(buildDataBase(), propquery7)$g, 'USD-LIBOR-BBA')
+  propquery8 = "MATCH (t:FRA {id:'fra3'}) return t.indexTenor as h"
+  checkEquals(cypher(buildDataBase(), propquery8)$h, '3M')
+  propquery9 = "MATCH (t:FRA {id:'fra4'}) return t.markToMarket as i"
+  checkEquals(cypher(buildDataBase(), propquery9)$i, 3)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
