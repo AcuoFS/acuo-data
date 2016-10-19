@@ -194,9 +194,9 @@ test.propfra = function() {
 
 test.propzcs = function() {
   propquery1 = "MATCH (t:ZCS {id:'zcs1'}) return t.clearingDate as a"
-  checkEquals(cypher(buildDataBase(), propquery1)$a, '10/11/2012')
+  checkEquals(cypher(buildDataBase(), propquery1)$a, '10/11/12')
   propquery2 = "MATCH (t:ZCS {id:'zcs2'}) return t.maturity as b"
-  checkEquals(cypher(buildDataBase(), propquery2)$b, '11/11/2014')
+  checkEquals(cypher(buildDataBase(), propquery2)$b, '11/11/14')
   propquery3 = "MATCH (t:ZCS {id:'zcs3'}) return t.legPay as c"
   checkEquals(cypher(buildDataBase(), propquery3)$c, 'Floating')
   propquery4 = "MATCH (t:ZCS {id:'zcs4'}) return t.notional as d"
