@@ -17,7 +17,7 @@ MERGE (zcs:ZCS {id:line.TradeId,
 		fixedRate:toFloat(line.RateValue),
 		indexFloat:line.Index,
 		tenorFloat:line.IndexTenor,
-		resetFreq:line.ResetFrequency
+		resetFreq:line.ResetFrequency,
 		payFreqFloating:line.PaymentFrequencyFloating})
 
 WITH line
