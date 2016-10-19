@@ -35,7 +35,7 @@ buildDataBase = function() {
   
   for(i in 1:length(load.name)){
     load.query[i] <- readload(load.url[i])
-    cypher(graph,unlist(load.query[i]))
+    cypher(graph,load.query[[i]])
   }
   
   return(graph)
