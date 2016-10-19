@@ -1,4 +1,4 @@
-Date,Maturity,LegPay,Currency,Notional,AgreedRate,Index,IndexTenor,MTM,TradeId,AccountId,AgreementId
+ClearingDate,Maturity,LegPay,Currency,Notional,AgreedRate,Index,IndexTenor,MTM,TradeId,AccountId,AgreementId
 29/06/13,29/09/13,Fixed,USD,15000,1.03,USD-LIBOR-BBA,3M,-35,fra1,acc1,a41
 30/06/13,30/09/13,Floating,USD,15001,1.04,USD-LIBOR-BBA,3M,15,fra2,acc2,a42
 01/07/13,01/10/13,Fixed,USD,15002,1.05,USD-LIBOR-BBA,3M,-20,fra3,acc3,a43
