@@ -13,7 +13,7 @@ MERGE (fra:FRA {id:line.TradeId,
 		legPay:line.LegPay,
 		notional:toFloat(line.Notional),
 		currency:line.Currency,
-		agreedRate:line.AgreedRate,
+		agreedRate:toFloat(line.AgreedRate),
 		index:line.Index,
 		indexTenor:line.IndexTenor})
 
