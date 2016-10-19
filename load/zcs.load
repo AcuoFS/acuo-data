@@ -20,12 +20,12 @@ MERGE (zcs:ZCS {id:line.TradeId,
 		resetFreq:line.ResetFrequency,
 		payFreqFloating:line.PaymentFrequencyFloating})
 
-WITH line
-
-MATCH (zcs:ZCS {id:line.TradeId})
-WHERE line.LegPay = 'Floating' SET zcs.nextCouponPaymentDate = line.NextCouponPaymentDate
-
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(zcs)
 MERGE (zcs)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
+
+WITH line
+
+MATCH (zcs:ZCS {id:line.TradeId})
+WHERE line.LegPay = 'Floating' SET zcs.nextCouponPaymentDate = line.NextCouponPaymentDate
