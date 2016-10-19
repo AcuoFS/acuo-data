@@ -30,4 +30,4 @@ WITH line
 
 MATCH (opt:OPT {id:line.TradeId}) 
 
-WHERE line.Rebate IS NOT NULL SET opt.rebate = line.Rebate
+WHERE line.Rebate IS NOT NULL SET opt.rebate = toFloat(line.Rebate)
