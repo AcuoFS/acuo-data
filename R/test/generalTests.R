@@ -63,6 +63,6 @@ test.id = function() {
   checkEquals(cypher(buildDataBase(), idquery8)$h, 'optb3')
   idquery9 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'fra4'}) return t.id as i"
   checkEquals(cypher(buildDataBase(), idquery9)$i, 'fra4')
-  idquery10 = "MATCH5 (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'zcs5'}) return t.id as j"
+  idquery10 = "MATCH (:Client {id:'c2'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'zcs5'}) return t.id as j"
   checkEquals(cypher(buildDataBase(), idquery10)$j, 'zcs5')
 }
