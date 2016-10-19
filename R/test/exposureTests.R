@@ -190,8 +190,38 @@ test.propfra = function() {
   checkEquals(cypher(buildDataBase(), propquery9)$i, 3)
 }
 
+# I want to test that my ZCS have the correct properties:
 
-
+test.propzcs = function() {
+  propquery1 = "MATCH (t:ZCS {id:'zcs1'}) return t.clearingDate as a"
+  checkEquals(cypher(buildDataBase(), propquery1)$a, '29/06/13')
+  propquery2 = "MATCH (t:ZCS {id:'zcs2'}) return t.maturity as b"
+  checkEquals(cypher(buildDataBase(), propquery2)$b, '30/09/13')
+  propquery3 = "MATCH (t:ZCS {id:'zcs3'}) return t.legPay as c"
+  checkEquals(cypher(buildDataBase(), propquery3)$c, 'Fixed')
+  propquery4 = "MATCH (t:ZCS {id:'zcs4'}) return t.notional as d"
+  checkEquals(cypher(buildDataBase(), propquery4)$d, 15003)
+  propquery5 = "MATCH (t:ZCS {id:'zcs5'}) return t.currencyReceive as e"
+  checkEquals(cypher(buildDataBase(), propquery5)$e, 'USD')
+  propquery6 = "MATCH (t:ZCS {id:'zcs1'}) return t.currencyPay as f"
+  checkEquals(cypher(buildDataBase(), propquery6)$f, 'USD')
+  propquery7 = "MATCH (t:ZCS {id:'zcs2'}) return t.rateValue as g"
+  checkEquals(cypher(buildDataBase(), propquery7)$g, 2.3)
+  propquery8 = "MATCH (t:ZCS {id:'zcs3'}) return t.index as h"
+  checkEquals(cypher(buildDataBase(), propquery8)$h, 'USD-LIBOR-BBA')
+  propquery9 = "MATCH (t:ZCS {id:'zcs4'}) return t.indexTenor as i"
+  checkEquals(cypher(buildDataBase(), propquery9)$i, '3M')
+  propquery10 = "MATCH (t:ZCS {id:'zcs5'}) return t.resetFrequency as j"
+  checkEquals(cypher(buildDataBase(), propquery10)$j, '3M')
+  propquery11 = "MATCH (t:ZCS {id:'zcs1'}) return t.paymentFrequencyFloating as k"
+  checkEquals(cypher(buildDataBase(), propquery11)$k, '1T')
+  propquery12 = "MATCH (t:ZCS {id:'zcs2'}) return t.markToMarket as l"
+  checkEquals(cypher(buildDataBase(), propquery12)$l, -54082.03)
+  propquery13 = "MATCH (t:ZCS {id:'zcs3'}) return t.nextCouponPaymentDate as m"
+  checkEquals(cypher(buildDataBase(), propquery13)$m, '12/05/13')
+  propquery14 = "MATCH (t:ZCS {id:'zcs4'}) return t.nextCouponPaymentDate as n"
+  checkEquals(cypher(buildDataBase(), propquery14)$n, NA)
+}
 
 
 
