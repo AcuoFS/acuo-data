@@ -1,0 +1,24 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/swaption.csv' 
+AS line
+
+MATCH (acc:Account {id:line.AccountId})
+MATCH (a:Agreement {id:line.AgreementId})
+MATCH (e:LegalEntity)-[:HAS]->(acc:Account)
+MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
+
+MERGE (swopt:SWOPT {id:line.TradeId,
+		clearingDate:line.ClearingDate,
+		expiry:line.Expiry,
+		longShort:line.LongShort,
+		type:line.Type,
+		swapBeginning:line.SwapBeginning,
+		swapmaturity:line.SwapMaturity,
+		markToMarket:toFloat(line.MTM),
+		legPay:line.LegPay,
+		notional:toFloat(line.Notional),
+		currency:line.Currency,
+		fixedRate:toFloat(line.FixedRate),
+		indexFloat:line.Index,
+		tenorFloat:line.IndexTenor,
+		resetFreq:line.ResetFrequency,
+		payFreqFloating:line.PaymentFrequencyFloating})
