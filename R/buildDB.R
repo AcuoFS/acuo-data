@@ -25,6 +25,7 @@ buildDataBase = function() {
                  'optionsbarrier.load', 
                  'fra.load',
                  'zcs.load', 
+                 'swaptions.load',
                  'assetCategory.load',
                  'assetInventory.load')
   
