@@ -11,31 +11,31 @@ buildDataBase = function() {
   
   clear(graph,input=FALSE)
   
-  load.name <- c('client.load',
-                 'legalentity.load',
-                 'account.load',
-                 'agreement.load',
-                 'cds.load',
-                 'irsvanilla.load', 
-                 'irsfloatfloat.load', 
-                 'ndf.load', 
-                 'fxsi.load', 
-                 'fxsw.load',
-                 'optionsvanilla.load', 
-                 'optionsbarrier.load', 
-                 'fra.load',
-                 'zcs.load', 
-                 'swaption.load',
-                 'assetCategory.load',
-                 'assetInventory.load')
+  load.name <- c('/client.load',
+                 '/legalentity.load',
+                 '/account.load',
+                 '/agreement.load',
+                 '/cds.load',
+                 '/irsvanilla.load', 
+                 '/irsfloatfloat.load', 
+                 '/ndf.load', 
+                 '/fxsi.load', 
+                 '/fxsw.load',
+                 '/optionsvanilla.load', 
+                 '/optionsbarrier.load', 
+                 '/fra.load',
+                 '/zcs.load', 
+                 '/swaption.load',
+                 '/assetCategory.load',
+                 '/assetInventory.load')
   
-  l = length(load.name)
+#  l = length(load.name)
   
-  for(i in 1:l) {
-    load.name = cbind(load.name, paste('index', load.name[i], sep=''))
-  }
+#  for(i in 1:l) {
+#    load.name = cbind(load.name, paste('index', load.name[i], sep=''))
+#  }
   
-  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load/'
+  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load'
   
   load.url<-paste(load.preurl,sep='',load.name)
   
