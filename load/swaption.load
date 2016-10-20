@@ -20,5 +20,5 @@ MERGE (swopt:SWOPT {id:line.TradeId,
 		fixedRate:toFloat(line.FixedRate),
 		indexFloat:line.Index,
 		tenorFloat:line.IndexTenor,
-		resetFreq:line.ResetFrequency,
+		resetFreq:line.ResetFreq,
 		payFreqFloating:line.PaymentFrequencyFloating})
