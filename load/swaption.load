@@ -24,6 +24,8 @@ MERGE (swopt:SWOPT {id:line.TradeId,
 		payFreqFloat:line.PaymentFrequencyFloating, 
 		payFreqFixed:line.PaymentFrequencyFixed})
 
+CREATE INDEX ON :SWOPT(id)
+
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(swopt)
 MERGE (swopt)-[:FOLLOWS]->(a)

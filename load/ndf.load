@@ -18,6 +18,8 @@ MERGE (ndf:NDF {id:line.Id,
 		fixingRateToday:toFloat(line.FixingRateToday),
 		cashSettlement:toFloat(line.CashSettlement)})
 
+CREATE INDEX ON :NDF(id)
+
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(ndf)
 MERGE (ndf)-[:FOLLOWS]->(a)

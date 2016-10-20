@@ -21,6 +21,8 @@ MERGE (opt:OPT {id:line.TradeId,
 		knockType:line.KnockType, 
 		barrierLevel:toFloat(line.BarrierLevel)})
 
+CREATE INDEX ON :OPT(id)
+
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(opt)
 MERGE (opt)-[:FOLLOWS]->(a)

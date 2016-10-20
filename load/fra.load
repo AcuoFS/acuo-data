@@ -17,6 +17,8 @@ MERGE (fra:FRA {id:line.TradeId,
 		index:line.Index,
 		indexTenor:line.IndexTenor})
 
+CREATE INDEX ON :FRA(id)
+
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(fra)
 MERGE (fra)-[:FOLLOWS]->(a)

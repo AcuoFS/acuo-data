@@ -17,6 +17,8 @@ MERGE (f:FXSW {id:line.TradeId,
 		nearDate:line.NearDate,
 		farDate:line.FarDate})
 
+CREATE INDEX ON :FXSW(id)
+
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(f)
 MERGE (f)-[:FOLLOWS]->(a)

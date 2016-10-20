@@ -18,6 +18,7 @@ MERGE (opt:OPT {id:line.TradeId,
 		strikePrice:toFloat(line.StrikePrice),
 		type:line.Type})
 
+CREATE INDEX ON :OPT(id)
 
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(opt)
