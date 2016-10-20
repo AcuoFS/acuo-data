@@ -4,7 +4,6 @@ library(RUnit)
 # I want to test whether the correct amount of nodes was created:
 
 test.numnode = function() {
-  graph = buildDataBase()
   numnodequery = "MATCH (n) return count(distinct(n)) AS c"
   checkEquals(cypher(graph, numnodequery)$c, 139)
 }
@@ -12,7 +11,6 @@ test.numnode = function() {
 # I want to test whether the correct amount of relationships was created:
 
 test.numrel = function() {
-  graph = buildDataBase()
   numnodequery = "MATCH (m)-[r]->(n) return count(distinct(r)) AS c"
   checkEquals(cypher(graph, numnodequery)$c, 318)
 }
@@ -20,7 +18,6 @@ test.numrel = function() {
 # I want to test whether the relationships I created are correct:
 
 test.rel = function() {
-  graph = buildDataBase()
   relquery1 = "MATCH (c:Client {id:'c1'})-[r]->(e:LegalEntity {id:'e1'}) return type(r) as rel1"
   checkEquals(cypher(graph, relquery1)$rel1, 'MANAGES')
   relquery2 = "MATCH (c:Client {id:'c1'})-[r]->(e:LegalEntity {id:'e5'}) return type(r) as rel2"
@@ -50,7 +47,6 @@ test.rel = function() {
 # I want to test whether I can find a trade with a client ID and a trade ID, and if there is an error when the client's ID is not related to the trade:
 
 test.id = function() {
-  graph = buildDataBase()
   idquery1 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'irsvt5'}) return t.id as a"
   checkEquals(cypher(graph, idquery1)$a, 'irsvt5')
   idquery2 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'cdst2'}) return t.id as a"
