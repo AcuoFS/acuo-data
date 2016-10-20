@@ -22,8 +22,6 @@ MERGE (irs:IRS {id:line.TradeId,
 		payFreqReceive:line.PaymentFrequencyReceive,
 		payFreqPay:line.PaymentFrequencyPay})
 
-CREATE INDEX ON :IRS(id)
-
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(irs)
 MERGE (irs)-[:FOLLOWS]->(a)
