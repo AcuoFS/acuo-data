@@ -15,8 +15,6 @@ MERGE (f:FXSI {id:line.TradeId,
 		counterCurrencyAmount:toFloat(line.CounterCurrencyAmount),
 		paymentDate:line.PaymentDate})
 
-CREATE INDEX ON :FXSI(id)
-
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(f)
 MERGE (f)-[:FOLLOWS]->(a)

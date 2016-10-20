@@ -20,8 +20,6 @@ MERGE (zcs:ZCS {id:line.TradeId,
 		resetFreq:line.ResetFrequency,
 		payFreqFloating:line.PaymentFrequencyFloating})
 
-CREATE INDEX ON :ZCS(id)
-
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(zcs)
 MERGE (zcs)-[:FOLLOWS]->(a)

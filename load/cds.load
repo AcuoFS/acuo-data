@@ -19,8 +19,6 @@ MERGE (cds:CDS {id:line.TradeId,
 		couponRate:toFloat(line.CouponRate),
 		seniority:line.Seniority})
 
-CREATE INDEX ON :CDS(id)
-
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(cds)
 MERGE (cds)-[:FOLLOWS]->(a)
