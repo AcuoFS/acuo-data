@@ -9,14 +9,13 @@ MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 MERGE (zcs:ZCS {id:line.TradeId,
 		clearingDate:line.ClearingDate,
 		maturity:line.Maturity,
-		markToMarket:toFloat(line.MTM),
 		legPay:line.LegPay,
 		notional:toFloat(line.Notional),
 		currencyReceive:line.CurrencyReceive,
 		currencyPay:line.CurrencyPay,
 		fixedRate:toFloat(line.RateValue),
-		indexFloat:line.Index,
-		tenorFloat:line.IndexTenor,
+		index:line.Index,
+		indexTenor:line.IndexTenor,
 		resetFreq:line.ResetFrequency,
 		payFreqFloating:line.PaymentFrequencyFloating})
 

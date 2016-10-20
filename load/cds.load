@@ -8,7 +8,6 @@ MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
 MERGE (cds:CDS {id:line.TradeId,
 		clearingDate:line.ClearingDate,
-		markToMarket:toFloat(line.MTM),
 		maturity:line.Maturity,
 		buySellProtection:line.BuySellProtection,
 		currency:line.Currency,

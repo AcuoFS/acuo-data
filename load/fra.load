@@ -9,11 +9,10 @@ MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 MERGE (fra:FRA {id:line.TradeId,
 		clearingDate:line.ClearingDate,
 		maturity:line.Maturity,
-		markToMarket:toFloat(line.MTM),
 		legPay:line.LegPay,
 		notional:toFloat(line.Notional),
 		currency:line.Currency,
-		agreedRate:toFloat(line.AgreedRate),
+		fixedRate:toFloat(line.AgreedRate),
 		index:line.Index,
 		indexTenor:line.IndexTenor})
 

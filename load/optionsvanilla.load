@@ -8,7 +8,6 @@ MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
 MERGE (opt:OPT {id:line.TradeId,
 		clearingDate:line.ClearingDate,
-		markToMarket:toFloat(line.MTM),
 		expiry:line.Expiry,
 		underlyingId:line.UnderlyingId,
 		currency:line.Currency,
