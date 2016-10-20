@@ -29,11 +29,12 @@ buildDataBase = function() {
                  '/assetCategory.load',
                  '/assetInventory.load')
   
-#  l = length(load.name)
+  l = length(load.name) - 2
   
-#  for(i in 1:l) {
-#    load.name = cbind(load.name, paste('index', load.name[i], sep=''))
-#  }
+  for(i in 1:l) {
+    load.name = cbind(paste('constraint', load.name[i], sep=''), load.name)
+    load.name = cbind(load.name, paste('index', load.name[i], sep=''))
+  }
   
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load'
   
