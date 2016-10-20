@@ -25,9 +25,15 @@ buildDataBase = function() {
                  'optionsbarrier.load', 
                  'fra.load',
                  'zcs.load', 
-                 'swaptions.load',
+                 'swaption.load',
                  'assetCategory.load',
                  'assetInventory.load')
+  
+  l = length(load.name)
+  
+  for(i in 1:l) {
+    load.name = cbind(load.name, paste('index', load.name[i], sep=''))
+  }
   
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load/'
   
@@ -42,6 +48,3 @@ buildDataBase = function() {
   
   return(graph)
 }
-
-graph = buildDataBase()
-
