@@ -16,7 +16,7 @@ MERGE (zcs:ZCS {id:line.TradeId,
 		index:line.Index,
 		indexTenor:line.IndexTenor,
 		resetFreq:line.ResetFrequency,
-		payFreqFloating:line.PaymentFrequencyFloating})
+		payFreqFloat:line.PaymentFrequencyFloating})
 
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(zcs)
