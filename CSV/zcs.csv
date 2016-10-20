@@ -1,6 +1,6 @@
-ClearingDate,Maturity,Notional,CurrencyReceive,CurrencyPay,LegPay,RateValue,Index,IndexTenor,ResetFrequency,PaymentFrequencyFloating,MTM,NextCouponPaymentDate,TradeId,AccountId,AgreementId
-10/11/12,10/11/14,230000,USD,USD,Floating,1.16,USD-LIBOR-BBA,3M,3M,1T,-10000,10/11/13,zcs1,acc6,a46
-11/11/12,11/11/14,210000,USD,USD,Fixed,2.3,USD-LIBOR-BBA,3M,3M,6M,-54082.03,,zcs2,acc7,a47
-12/11/12,12/11/14,75000,USD,USD,Floating,1.8,USD-LIBOR-BBA,3M,3M,6M,21473.71,12/05/13,zcs3,acc8,a48
-13/11/12,13/11/14,50000,USD,USD,Fixed,1.53,USD-LIBOR-BBA,3M,3M,6M,-6760.54,,zcs4,acc9,a49
-14/11/12,14/11/14,10000,USD,USD,Floating,0.9,USD-LIBOR-BBA,3M,3M,3M,274598.13,14/02/13,zcs5,acc10,a50
+ClearingDate,Maturity,Notional,CurrencyReceive,CurrencyPay,LegPay,RateValue,Index,IndexTenor,ResetFrequency,PaymentFrequencyFloating,NextCouponPaymentDate,TradeId,AccountId,AgreementId
+10/11/12,10/11/14,230000,USD,USD,Floating,1.16,USD-LIBOR-BBA,3M,3M,1T,10/11/13,zcs1,acc6,a46
+11/11/12,11/11/14,210000,USD,USD,Fixed,2.3,USD-LIBOR-BBA,3M,3M,6M,,zcs2,acc7,a47
+12/11/12,12/11/14,75000,USD,USD,Floating,1.8,USD-LIBOR-BBA,3M,3M,6M,12/05/13,zcs3,acc8,a48
+13/11/12,13/11/14,50000,USD,USD,Fixed,1.53,USD-LIBOR-BBA,3M,3M,6M,,zcs4,acc9,a49
+14/11/12,14/11/14,10000,USD,USD,Floating,0.9,USD-LIBOR-BBA,3M,3M,3M,14/02/13,zcs5,acc10,a50
