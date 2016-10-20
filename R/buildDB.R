@@ -31,11 +31,14 @@ buildDataBase = function() {
   
   l = length(load.name) - 2
   
+  load.constr = vector(length=l)
+  
   for(i in 1:l) {
-    load.name = cbind(paste('constraint', load.name[i], sep=''), load.name)
-    load.name = cbind(load.name, paste('index', load.name[i], sep=''))
+    load.constr[i] = paste('constraint', load.name[i], sep='')
   }
   
+  load.name = c(load.name, load.constr)
+
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load'
   
   load.url<-paste(load.preurl,sep='',load.name)
@@ -49,3 +52,5 @@ buildDataBase = function() {
   
   return(graph)
 }
+
+graph = buildDataBase()
