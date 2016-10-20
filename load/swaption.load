@@ -21,7 +21,8 @@ MERGE (swopt:SWOPT {id:line.TradeId,
 		indexFloat:line.Index,
 		tenorFloat:line.IndexTenor,
 		resetFreq:line.ResetFreq,
-		payFreqFloating:line.PaymentFrequencyFloating})
+		payFreqFloating:line.PaymentFrequencyFloating, 
+		payFreqFixed:line.PaymentFrequencyFixed})
 
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(swopt)
