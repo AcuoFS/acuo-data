@@ -4,7 +4,6 @@ library(RUnit)
 # I want to test that my IRS have the correct properties:
 
 test.propirs = function() {
-  graph = buildDataBase()
   propquery1 = "MATCH (t:IRS {id:'irsvt1'}) return t.clearingDate as d"
   checkEquals(cypher(graph, propquery1)$d, '29/07/15')
   propquery2 = "MATCH (t:IRS {id:'irsft2'}) return t.maturity as e"
@@ -13,15 +12,13 @@ test.propirs = function() {
   checkEquals(cypher(graph, propquery3)$f, 'Fixed')
   propquery4 = "MATCH (t:IRS {id:'irsvt4'}) return t.notional as g"
   checkEquals(cypher(graph, propquery4)$g, 5000000)
-  propquery6 = "MATCH (t:IRS {id:'irsft1'}) return t.currencyReceive as i"
+  propquery6 = "MATCH (t:IRS {id:'irsft1'}) return t.currency as i"
   checkEquals(cypher(graph, propquery6)$i, 'USD')
-  propquery7 = "MATCH (t:IRS {id:'irsvt2'}) return t.currencyPay as j"
-  checkEquals(cypher(graph, propquery7)$j, 'USD')
   propquery8 = "MATCH (t:IRS {id:'irsvt3'}) return t.fixedRate as k"
   checkEquals(cypher(graph, propquery8)$k, 2.5)
-  propquery9 = "MATCH (t:IRS {id:'irsvt4'}) return t.indexFloat as l"
+  propquery9 = "MATCH (t:IRS {id:'irsvt4'}) return t.index as l"
   checkEquals(cypher(graph, propquery9)$l, 'USD-LIBOR-BBA')
-  propquery10 = "MATCH (t:IRS {id:'irsvt5'}) return t.tenorFloat as m"
+  propquery10 = "MATCH (t:IRS {id:'irsvt5'}) return t.indexTenor as m"
   checkEquals(cypher(graph, propquery10)$m, '3M')
   propquery11 = "MATCH (t:IRS {id:'irsvt1'}) return t.resetFreq as n"
   checkEquals(cypher(graph, propquery11)$n, '3M')
@@ -31,12 +28,10 @@ test.propirs = function() {
   checkEquals(cypher(graph, propquery13)$p, '3M')
   propquery14 = "MATCH (t:IRS {id:'irsft4'}) return t.indexPay as q"
   checkEquals(cypher(graph, propquery14)$q, 'USD-LIBOR-BBA')
-  propquery15 = "MATCH (t:IRS {id:'irsft5'}) return t.tenorReceive as r"
+  propquery15 = "MATCH (t:IRS {id:'irsft5'}) return t.indexTenorReceive as r"
   checkEquals(cypher(graph, propquery15)$r, '3M')
   propquery16 = "MATCH (t:IRS {id:'irsft1'}) return t.resetFreqPay as s"
   checkEquals(cypher(graph, propquery16)$s, '3M')
-  propquery17 = "MATCH (t:IRS {id:'irsvt2'}) return t.markToMarket as t"
-  checkEquals(cypher(graph, propquery17)$t, -54082.03)
   propquery18 = "MATCH (t:IRS {id:'irsft3'}) return t.nextCouponPaymentDate as u"
   checkEquals(cypher(graph, propquery18)$u, '21/12/16')
 }
@@ -44,7 +39,6 @@ test.propirs = function() {
 # I want to check that my CDS have the correct properties:
 
 test.propcds = function() {
-  graph = buildDataBase()
   propquery1 = "MATCH (t:CDS {id:'cdst1'}) return t.clearingDate as a"
   checkEquals(cypher(graph, propquery1)$a, '29/07/15')
   propquery2 = "MATCH (t:CDS {id:'cdst2'}) return t.maturity as b"
@@ -65,14 +59,11 @@ test.propcds = function() {
   checkEquals(cypher(graph, propquery9)$i, 0.6)
   propquery10 = "MATCH (t:CDS {id:'cdst5'}) return t.seniority as j"
   checkEquals(cypher(graph, propquery10)$j, 'SB')
-  propquery11 = "MATCH (t:CDS {id:'cdst1'}) return t.markToMarket as k"
-  checkEquals(cypher(graph, propquery11)$k, -10000)
 }
 
 # I want to test that my NDFs have the correct properties:
 
 test.propndf = function() {
-  graph = buildDataBase()
   propquery1 = "MATCH (t:NDF {id:'ndft1'}) return t.clearingDate as a"
   checkEquals(cypher(graph, propquery1)$a, '03/05/14')
   propquery2 = "MATCH (t:NDF {id:'ndft2'}) return t.buySell as b"
@@ -96,7 +87,6 @@ test.propndf = function() {
 # I want to test that my FX singles have the correct properties:
 
 test.propfxsi = function() {
-  graph = buildDataBase()
   propquery1 = "MATCH (t:FXSI {id:'fxsi1'}) return t.clearingDate as a"
   checkEquals(cypher(graph, propquery1)$a, '28/03/13')
   propquery2 = "MATCH (t:FXSI {id:'fxsi2'}) return t.baseCurrency as b"
@@ -109,14 +99,11 @@ test.propfxsi = function() {
   checkEquals(cypher(graph, propquery5)$e, 149)
   propquery6 = "MATCH (t:FXSI {id:'fxsi1'}) return t.paymentDate as f"
   checkEquals(cypher(graph, propquery6)$f, "18/05/13")
-  propquery7 = "MATCH (t:FXSI {id:'fxsi2'}) return t.markToMarket as g"
-  checkEquals(cypher(graph, propquery7)$g, -78)
 }
 
 # I want to test that my FX swaps have the correct properties:
 
 test.propfxsw = function() {
-  graph = buildDataBase()
   propquery1 = "MATCH (t:FXSW {id:'fxsw1'}) return t.clearingDate as a"
   checkEquals(cypher(graph, propquery1)$a, '18/05/12')
   propquery2 = "MATCH (t:FXSW {id:'fxsw2'}) return t.baseCurrency as b"
@@ -133,18 +120,13 @@ test.propfxsw = function() {
   checkEquals(cypher(graph, propquery7)$g, '24/05/12')
   propquery8 = "MATCH (t:FXSW {id:'fxsw3'}) return t.farDate as h"
   checkEquals(cypher(graph, propquery8)$h, '01/07/12')
-  propquery9 = "MATCH (t:FXSW {id:'fxsw4'}) return t.markToMarket as i"
-  checkEquals(cypher(graph, propquery9)$i, 18)
 }
 
 # I want to test that my options have the correct properties:
 
 test.propoptions = function() {
-  graph = buildDataBase()
   propquery1 = "MATCH (t:OPT {id:'optv1'}) return t.clearingDate as a"
   checkEquals(cypher(graph, propquery1)$a, '08/03/14')
-  propquery2 = "MATCH (t:OPT {id:'optb2'}) return t.markToMarket as b"
-  checkEquals(cypher(graph, propquery2)$b, -15)
   propquery3 = "MATCH (t:OPT {id:'optv3'}) return t.expiry as c"
   checkEquals(cypher(graph, propquery3)$c, '10/04/14')
   propquery4 = "MATCH (t:OPT {id:'optb4'}) return t.underlyingId as d"
@@ -176,7 +158,6 @@ test.propoptions = function() {
 # I want to test that my FRAs have the correct properties:
 
 test.propfra = function() {
-  graph = buildDataBase()
   propquery1 = "MATCH (t:FRA {id:'fra1'}) return t.clearingDate as a"
   checkEquals(cypher(graph, propquery1)$a, '29/06/13')
   propquery2 = "MATCH (t:FRA {id:'fra2'}) return t.maturity as b"
@@ -187,20 +168,17 @@ test.propfra = function() {
   checkEquals(cypher(graph, propquery4)$d, 15003)
   propquery5 = "MATCH (t:FRA {id:'fra5'}) return t.currency as e"
   checkEquals(cypher(graph, propquery5)$e, 'USD')
-  propquery6 = "MATCH (t:FRA {id:'fra1'}) return t.agreedRate as f"
+  propquery6 = "MATCH (t:FRA {id:'fra1'}) return t.fixedRate as f"
   checkEquals(cypher(graph, propquery6)$f, 1.03)
   propquery7 = "MATCH (t:FRA {id:'fra2'}) return t.index as g"
   checkEquals(cypher(graph, propquery7)$g, 'USD-LIBOR-BBA')
   propquery8 = "MATCH (t:FRA {id:'fra3'}) return t.indexTenor as h"
   checkEquals(cypher(graph, propquery8)$h, '3M')
-  propquery9 = "MATCH (t:FRA {id:'fra4'}) return t.markToMarket as i"
-  checkEquals(cypher(graph, propquery9)$i, 3)
 }
 
 # I want to test that my ZCS have the correct properties:
 
 test.propzcs = function() {
-  graph = buildDataBase()
   propquery1 = "MATCH (t:ZCS {id:'zcs1'}) return t.clearingDate as a"
   checkEquals(cypher(graph, propquery1)$a, '10/11/12')
   propquery2 = "MATCH (t:ZCS {id:'zcs2'}) return t.maturity as b"
@@ -209,22 +187,18 @@ test.propzcs = function() {
   checkEquals(cypher(graph, propquery3)$c, 'Floating')
   propquery4 = "MATCH (t:ZCS {id:'zcs4'}) return t.notional as d"
   checkEquals(cypher(graph, propquery4)$d, 50000)
-  propquery5 = "MATCH (t:ZCS {id:'zcs5'}) return t.currencyReceive as e"
+  propquery5 = "MATCH (t:ZCS {id:'zcs5'}) return t.currency as e"
   checkEquals(cypher(graph, propquery5)$e, 'USD')
-  propquery6 = "MATCH (t:ZCS {id:'zcs1'}) return t.currencyPay as f"
-  checkEquals(cypher(graph, propquery6)$f, 'USD')
   propquery7 = "MATCH (t:ZCS {id:'zcs2'}) return t.fixedRate as g"
   checkEquals(cypher(graph, propquery7)$g, 2.3)
-  propquery8 = "MATCH (t:ZCS {id:'zcs3'}) return t.indexFloat as h"
+  propquery8 = "MATCH (t:ZCS {id:'zcs3'}) return t.index as h"
   checkEquals(cypher(graph, propquery8)$h, 'USD-LIBOR-BBA')
-  propquery9 = "MATCH (t:ZCS {id:'zcs4'}) return t.tenorFloat as i"
+  propquery9 = "MATCH (t:ZCS {id:'zcs4'}) return t.indexTenor as i"
   checkEquals(cypher(graph, propquery9)$i, '3M')
   propquery10 = "MATCH (t:ZCS {id:'zcs5'}) return t.resetFreq as j"
   checkEquals(cypher(graph, propquery10)$j, '3M')
-  propquery11 = "MATCH (t:ZCS {id:'zcs1'}) return t.payFreqFloating as k"
+  propquery11 = "MATCH (t:ZCS {id:'zcs1'}) return t.payFreqFloat as k"
   checkEquals(cypher(graph, propquery11)$k, '1T')
-  propquery12 = "MATCH (t:ZCS {id:'zcs2'}) return t.markToMarket as l"
-  checkEquals(cypher(graph, propquery12)$l, -54082.03)
   propquery13 = "MATCH (t:ZCS {id:'zcs3'}) return t.nextCouponPaymentDate as m"
   checkEquals(cypher(graph, propquery13)$m, '12/05/13')
   propquery14 = "MATCH (t:ZCS {id:'zcs4'}) return t.nextCouponPaymentDate as n"
@@ -254,9 +228,9 @@ test.propswopt = function() {
   checkEquals(cypher(graph, propquery9)$i, 'SGD')
   propquery10 = "MATCH (t:SWOPT {id:'swopt5'}) return t.fixedRate as j"
   checkEquals(cypher(graph, propquery10)$j, 5)
-  propquery11 = "MATCH (t:SWOPT {id:'swopt1'}) return t.indexFloat as k"
+  propquery11 = "MATCH (t:SWOPT {id:'swopt1'}) return t.index as k"
   checkEquals(cypher(graph, propquery11)$k, 'USD-LIBOR-BBA')
-  propquery12 = "MATCH (t:SWOPT {id:'swopt2'}) return t.tenorFloat as l"
+  propquery12 = "MATCH (t:SWOPT {id:'swopt2'}) return t.indexTenor as l"
   checkEquals(cypher(graph, propquery12)$l, '3M')
   propquery13 = "MATCH (t:SWOPT {id:'swopt3'}) return t.resetFreq as m"
   checkEquals(cypher(graph, propquery13)$m, '3M')
@@ -264,19 +238,5 @@ test.propswopt = function() {
   checkEquals(cypher(graph, propquery14)$n, '6M')
   propquery15 = "MATCH (t:SWOPT {id:'swopt5'}) return t.payFreqFixed as o"
   checkEquals(cypher(graph, propquery15)$o, '1T')
-  propquery16 = "MATCH (t:SWOPT {id:'swopt1'}) return t.markToMarket as p"
-  checkEquals(cypher(graph, propquery16)$p, 6000)
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
