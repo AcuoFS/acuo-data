@@ -1,7 +1,22 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/info7.csv' 
 AS line
 
+// We need to figure whether this is a child node resulting from a dispute.
+
+MATCH (mcparent:MarginCall {id:line.ParentCallId})
+
+WITH line, mcparent, 
+		CASE WHEN (line.CallId <> line.ParentCallId) THEN [1] ELSE []
+		END
+	AS Dispute
+
+FOREACH (i IN Dispute | MERGE (:MarginCall {id:line.CallId})-[:CHILD]->(mcparent))
+
+WITH line
+http://danstonchat.com/latest.html
 MATCH (mc:MarginCall {id:line.CallId})
+
+// Back to the general background: creating the node and a LAST relationship
 
 MERGE (mc)-[:LAST]->(n:CallStep {step:line.NewStatus, time:line.Time})
 
@@ -11,12 +26,13 @@ WITH mc, n, line,
 	AS firstNode
 
 FOREACH (i IN firstNode | MERGE (mc)-[:FIRST]->(n))
+
 WITH mc, n, line
 
-// We delete the previous [:LAST] relationship. In case there's a split (partial dispute), we ensure the proper [:LAST] node is deleted (correct PrevStatus, different time). 
+// We delete the previous [:LAST] relationship and add a [:NEXT] relationship
 
-MATCH (n)<-[:LAST]-(mc)-[delRel:LAST]-(m {step:line.PrevStatus})
+MATCH (n)<-[:LAST]-(mc)-[delRel:LAST]->(m {step:line.PrevStatus})
 WHERE m.time <> n.time
 DELETE delRel
 
-MERGE (m)-[:NEXT]->(n)
+MERGE (m)-[:NEXT]->(n) 
