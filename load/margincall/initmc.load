@@ -1,4 +1,4 @@
-LOAD CSV USING HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/initialmc.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/initialmc.csv' 
 AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
