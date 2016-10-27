@@ -12,6 +12,8 @@ WITH mc, n,
 
 FOREACH (v in firstNode | MERGE (mc)-[:FIRST]->(n))
 
+WITH mc, n
+
 // We delete the previous [:LAST] relationship. In case there's a split (partial dispute), we ensure the proper [:LAST] node is deleted (correct PrevStatus, different time). 
 
 MATCH (n)<-[:LAST]-(mc)-[delRel:LAST]-(m {step:line.PrevStatus})
