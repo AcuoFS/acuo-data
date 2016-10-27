@@ -6,12 +6,11 @@ MATCH (mc:MarginCall {id:line.CallId})
 MERGE (mc)-[:LAST]->(n:CallStep {step:line.NewStatus, time:line.Time})
 
 WITH mc, n, line,
-	CASE WHEN NOT ((mc)-[:FIRST]->(n)) THEN [1] ELSE []
-	END
-	as firstNode
+		CASE WHEN NOT ((mc)-[:FIRST]->()) THEN [1] ELSE []
+		END
+	AS firstNode
 
-FOREACH (v in firstNode | MERGE (mc)-[:FIRST]->(n))
-
+FOREACH (i IN firstNode | MERGE (mc)-[:FIRST]->(n))
 WITH mc, n, line
 
 // We delete the previous [:LAST] relationship. In case there's a split (partial dispute), we ensure the proper [:LAST] node is deleted (correct PrevStatus, different time). 
