@@ -1,4 +1,2 @@
-PrevStatus,NewStatus,Assets,Time,CallId,ParentCallId
-Presented,Pledged,asset1|asset2|asset3,26/10/16 10:41,mc1,mc1
-Presented,Pledged,asset4|asset5,26/10/16 10:41,mc2,mc2
-Presented,Pledged,asset6|asset7|asset8,26/10/16 10:41,mc6,mc3
+PrevStatus,NewStatus,AgreedAmount,MarkToMarket,CollateralBalance,InitialMargin,ReasonCode,Time,AgreedCallId,DisputeCallId,CallId
+Received,PartialDispute,19500,1000000,19500,,9008,26/10/16 10:01,mc6,mc7,mc3

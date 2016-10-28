@@ -1,3 +1,4 @@
 PrevStatus,NewStatus,RelevantInfo,Time,CallId,ParentCallId
-Pledged,Accepted,RelevantInfo1,26/10/16 14:41,mc1,mc1
-Pledged,Accepted,RelevantInfo2,26/10/16 14:42,mc6,mc3
+Presented,Disputed,RelevantInfo,26/10/16 10:45,mc7,mc3
+Presented,Disputed,RelevantInfo,26/10/16 10:45,mc4,mc4
+Presented,Disputed,RelevantInfo,26/10/16 10:45,mc5,mc5

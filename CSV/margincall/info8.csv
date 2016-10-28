@@ -1,3 +1,2 @@
 PrevStatus,NewStatus,RelevantInfo,Time,CallId,ParentCallId
-Rejected,Pledged,asset4|asset5|asset9,26/10/16 18:41,mc2,mc2
-DisputeCanceled,Pledged,asset10|asset11,26/10/16 18:41,mc5,mc5
+Disputed,DisputeCanceled,RelevantInfo,26/10/16 17:08,mc5,mc5
