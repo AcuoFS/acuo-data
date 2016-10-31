@@ -1,6 +1,6 @@
-PrevStatus,NewStatus,RelevantInfo,Time,CallId,ParentCallId
-NULL,Presented,RelevantInfo,25/10/16 08:40,mc1,mc1
-NULL,Presented,RelevantInfo,25/10/16 08:40,mc2,mc2
-NULL,Presented,RelevantInfo,25/10/16 08:40,mc3,mc3
-NULL,Presented,RelevantInfo,25/10/16 08:40,mc4,mc4
-NULL,Presented,RelevantInfo,25/10/16 08:40,mc5,mc5
+PrevStatus,NewStatus,RelevantInfo,Time,CallId
+NULL,Presented,RelevantInfo,25/10/16 08:40,mc1
+NULL,Presented,RelevantInfo,25/10/16 08:40,mc2
+NULL,Presented,RelevantInfo,25/10/16 08:40,mc3
+NULL,Presented,RelevantInfo,25/10/16 08:40,mc4
+NULL,Presented,RelevantInfo,25/10/16 08:40,mc5
