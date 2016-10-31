@@ -1,25 +1,25 @@
-name,type,currency,ticker,maturityLb,maturityUp,haircut,FXHaircut,limits,typeLimits,FXLimits,debtLimits,agreementId
-U.S. Treasury Bills,Tbill,USD,,0,1,0.005,0,,,,,a1
-British Pound,Cash,GBP,,,,0,0.05,2500000,,5000000,,a1
-APPL INC,Equity,USD,APPL,,,0.3,0,,5000000,,,a1
-JPM US Equity,Equity,USD,JPM,,,0.3,0,,5000000,,,a1
-U.S. Treasury Bills,Tbill,USD,,0,1,0.008,0,,,,,a2
-British Pound,Cash,GBP,,,,0.02,0.05,2500000,,5000000,,a2
-Offshore Chinese Renminbi,Cash,CHN,,,,0.02,0.1,2000000,,5000000,,a2
-Australian Bond,Bond,AUD,,0,5,0.06,0.05,,,,25000000,a2
-U.S. Treasury Bills,Tbill,USD,,0,1,0.005,0,,,,,a3
-APPL INC,Equity,USD,APPL,,,0.35,0,,5000000,,,a3
-JPM US Equity,Equity,USD,JPM,,,0.35,0,,5000000,,,a3
-British Pound,Cash,GBP,,,,0.02,0.05,2500000,,5000000,,a4
-Australian Bond,Bond,AUD,,0,5,0.06,0.05,,,,25000000,a4
-U.S. Treasury Bills,Tbill,USD,,0,1,0.005,0,,,,,a5
-British Pound,Cash,GBP,,,,0,0.05,2500000,,5000000,,a5
-APPL INC,Equity,USD,APPL,,,0.3,0,,5000000,,,a5
-JPM US Equity,Equity,USD,JPM,,,0.3,0,,5000000,,,a5
-U.S. Treasury Bills,Tbill,USD,,0,1,0.008,0,,,,,a6
-British Pound,Cash,GBP,,,,0.02,0.05,2500000,,5000000,,a6
-Offshore Chinese Renminbi,Cash,CHN,,,,0.02,0.1,2000000,,5000000,,a6
-U.S. Treasury Bills,Tbill,USD,,0,1,0.008,0,,,,,a7
-Australian Bond,Bond,AUD,,0,5,0.06,0.05,,,,25000000,a7
-JPM US Equity,Equity,USD,JPM,,,0.3,0,,5000000,,,a8
-Gold,Gold,GLD,,,,0.15,0,250000,250000,,,a8
+name,type,currency,externalCost,ticker,maturityLb,maturityUp,haircut,FXHaircut,limits,typeLimits,FXLimits,debtLimits,agreementId
+U.S. Treasury Bills,Tbill,USD,0.01,,0,1,0.005,0,,,,,a1
+British Pound,Cash,GBP,0.01,,,,0,0.05,2500000,,5000000,,a1
+APPL INC,Equity,USD,0.03,APPL,,,0.3,0,,5000000,,,a1
+JPM US Equity,Equity,USD,0.03,JPM,,,0.3,0,,5000000,,,a1
+U.S. Treasury Bills,Tbill,USD,0.01,,0,1,0.008,0,,,,,a2
+British Pound,Cash,GBP,0.01,,,,0.02,0.05,2500000,,5000000,,a2
+Offshore Chinese Renminbi,Cash,CHN,0.05,,,,0.02,0.1,2000000,,5000000,,a2
+Australian Bond,Bond,AUD,0.02,,0,5,0.06,0.05,,,,25000000,a2
+U.S. Treasury Bills,Tbill,USD,0.02,,0,1,0.005,0,,,,,a3
+APPL INC,Equity,USD,0.05,APPL,,,0.35,0,,5000000,,,a3
+JPM US Equity,Equity,USD,0.08,JPM,,,0.35,0,,5000000,,,a3
+British Pound,Cash,GBP,0.01,,,,0.02,0.05,2500000,,5000000,,a4
+Australian Bond,Bond,AUD,0.02,,0,5,0.06,0.05,,,,25000000,a4
+U.S. Treasury Bills,Tbill,USD,0.01,,0,1,0.005,0,,,,,a5
+British Pound,Cash,GBP,0.01,,,,0,0.05,2500000,,5000000,,a5
+APPL INC,Equity,USD,0.05,APPL,,,0.3,0,,5000000,,,a5
+JPM US Equity,Equity,USD,0.05,JPM,,,0.3,0,,5000000,,,a5
+U.S. Treasury Bills,Tbill,USD,0.03,,0,1,0.008,0,,,,,a6
+British Pound,Cash,GBP,0.05,,,,0.02,0.05,2500000,,5000000,,a6
+Offshore Chinese Renminbi,Cash,CHN,0.1,,,,0.02,0.1,2000000,,5000000,,a6
+U.S. Treasury Bills,Tbill,USD,0.02,,0,1,0.008,0,,,,,a7
+Australian Bond,Bond,AUD,0.04,,0,5,0.06,0.05,,,,25000000,a7
+JPM US Equity,Equity,USD,0.1,JPM,,,0.3,0,,5000000,,,a8
+Gold,Gold,GLD,0.05,,,,0.15,0,250000,250000,,,a8
