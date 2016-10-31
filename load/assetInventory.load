@@ -4,8 +4,10 @@ WITH line, SPLIT(line.accountId, '|') AS Account
 WHERE line.clientId IS NOT NULL
 
 MATCH (c:Client {id:line.clientId})
-MERGE (a:Asset {name: line.name, type: line.type,currency:line.currency,value:TOFLOAT(line.value)})
-MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities)}]->(a)
+MERGE (a:Asset {id: line.id,name:line.name,currency:line.currency,value:TOFLOAT(line.value)})
+
+MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities),pledgedQuantities:TOFLOAT(line.quantities),
+	internalCost:TOFLOAT(line.internalCost),opptCost:TOFLOAT(line.opptCost)}]->(a)
 WITH  c,a,line,Account
 
 UNWIND Account AS account
