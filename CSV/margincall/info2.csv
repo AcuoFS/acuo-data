@@ -1,2 +1,2 @@
 PrevStatus,NewStatus,AgreedAmount,MarkToMarket,CollateralBalance,InitialMargin,ReasonCode,Time,AgreedCallId,DisputeCallId,CallId
-Received,PartialDispute,19500,1000000,19500,,9008,26/10/16 10:01,mc6,mc7,mc3
+Presented,PartialDispute,15000,995000,15000,,9007,26/10/16 10:01,mc6,mc7,mc3
