@@ -4,7 +4,7 @@ WITH line, SPLIT(line.accountId, '|') AS Account
 WHERE line.clientId IS NOT NULL
 
 MATCH (c:Client {id:line.clientId})
-MERGE (a:Asset {id: line.id,name:line.name,currency:line.currency,value:TOFLOAT(line.value)})
+MERGE (a:Asset {id: line.id,name:line.name,currency:line.currency,value:TOFLOAT(line.value),type:line.type})
 
 MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities),pledgedQuantities:TOFLOAT(line.quantities),
 	internalCost:TOFLOAT(line.internalCost),opptCost:TOFLOAT(line.opptCost)}]->(a)
@@ -56,8 +56,8 @@ WHERE j.Flag IS NOT NULL
 DELETE j
 
 WITH a
-MATCH (c:Client)-[*2]->(acc:Account)-[:ACCESSES]->(a)-[:IS_IN]->(ac)-[:IS_ELIGIBLE_UNDER]->(ag:Agreement)
+MATCH (c:Client)-[*2]->(acc:Account)-[:ACCESSES]->(a)-[:IS_IN]->(ac)-[ie:IS_ELIGIBLE_UNDER]->(ag:Agreement)
 WHERE (c)-[:POSSESSES]->(a)
 AND (c)-->(ag)
-MERGE (a)-[:IS_AVAILABLE_FOR]->(ag)
+MERGE (a)-[:IS_AVAILABLE_FOR {haircut:ie.haircut,FXHaircut:ie.FXHaircut,interestRate:ie.interestRate,externalCost:ie.externalCost}]->(ag)
 
