@@ -31,11 +31,9 @@ buildDataBase = function() {
   
   l = length(load.name) - 2
   
-  load.constr = vector(length=l)
-  
-  for(i in 1:l) {
-    load.constr[i] = paste('constraint', load.name[i], sep='')
-  }
+  idx = c(1:l, l+2)
+ 
+  load.constr = paste('constraint', load.name[idx], sep='')
   
   load.name = c(load.name, load.constr)
 
