@@ -31,29 +31,15 @@ SET a.timeToMaturityDays = futureDays - todayDays,
 
 WITH a,acc
 
-MATCH (a)<--()-->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
+MATCH (a)<--(c:Client)-->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
 WHERE a.type=ac.type
 AND a.currency=ac.currency
-MERGE (a)-[i:IS_IN]->(ac)
-SET i.Flag1 = CASE WHEN a.ticker=ac.ticker THEN 2
-	WHEN UPPER(a.type)='CASH' THEN 2
-	WHEN UPPER(a.type)='GOLD' THEN 2
-	WHEN a.timeToMaturity<ac.maturityUp THEN 1
-	ELSE 0 END
-SET i.Flag2 = CASE WHEN a.timeToMaturity>ac.maturityLb THEN 1
-	 ELSE 0 END
-SET i.Flag = i.Flag1+i.Flag2
-REMOVE i.Flag1
-REMOVE i.Flag2
 
-WITH i,a,acc,ag
-WHERE i.Flag = 2
-REMOVE i.Flag
-
-WITH a
-MATCH ()-[j:IS_IN]->()
-WHERE j.Flag IS NOT NULL
-DELETE j
+FOREACH (ignoreMe IN CASE WHEN a.ticker=ac.ticker THEN 1
+	WHEN UPPER(a.type)='CASH' THEN 1
+	WHEN UPPER(a.type)='GOLD' THEN 1
+	WHEN a.timeToMaturityYears<ac.maturityUp AND  a.timeToMaturityYears>ac.maturityLb THEN 1
+	ELSE [] END | MERGE (a)-[i:IS_IN]->(ac))
 
 WITH a
 MATCH (c:Client)-[*2]->(acc:Account)-[:ACCESSES]->(a)-[:IS_IN]->(ac)-[ie:IS_ELIGIBLE_UNDER]->(ag:Agreement)
