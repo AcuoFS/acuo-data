@@ -1,38 +1,52 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/info2.csv' 
 AS line
 
-// We need to figure whether this is a child node resulting from a dispute.
+// This is a partial dispute node. We still check for safety's sake. 
 
-MATCH (mcparent:MarginCall {id:line.ParentCallId})
+MATCH (pmc {id:line.CallId})-[:DIRECTED_TO]->(c:Client)
 
-WITH line, mcparent, 
-		CASE WHEN (line.CallId <> line.ParentCallId) THEN [1] ELSE []
+WITH line, pmc, c,
+		CASE WHEN (line.NewStatus = 'PartialDispute') THEN [1] ELSE []
 		END
-	AS Dispute
+	AS partdispute
 
-FOREACH (i IN Dispute | MERGE (:MarginCall {id:line.CallId})-[:CHILD]->(mcparent))
+// If exception ? (Correct ? Tell the client/MarginSphere ?)
 
-WITH line
-http://danstonchat.com/latest.html
-MATCH (mc:MarginCall {id:line.CallId})
+FOREACH (i IN partdispute | 
+	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
+                                                                    callAmount:toFloat(line.AgreedAmount), 
+                                                                    markToMarketClient:toFloat(line.MarkToMarket),
+                                                                    collateralBalanceClient:toFloat(line.CollateralBalance),
+                                                                    reasonCode:line.ReasonCode,
+                                                                    parentRank:pmc.parentRank+1
+	})-[:DIRECTED_TO]->(c) 
+
+	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
+                                                                    callAmount:pmc.callAmount-toFloat(line.AgreedAmount),
+                                                                    markToMarketClient:toFloat(line.MarkToMarket),
+                                                                    collateralBalanceClient:toFloat(line.CollateralBalance),
+                                                                    reasonCode:line.ReasonCode, 
+                                                                    parentRank:pmc.parentRank+1
+	})-[:DIRECTED_TO]->(c)
+)
 
 // Back to the general background: creating the node and a LAST relationship
 
-MERGE (mc)-[:LAST]->(n:CallStep {step:line.NewStatus, time:line.Time})
+WITH line, pmc
 
-WITH mc, n, line,
-		CASE WHEN NOT ((mc)-[:FIRST]->()) THEN [1] ELSE []
+MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
+
+WITH pmc, n, line,
+		CASE WHEN NOT ((pmc)-[:FIRST]->()) THEN [1] ELSE []
 		END
-	AS firstNode
+	AS firstnode
 
-FOREACH (i IN firstNode | MERGE (mc)-[:FIRST]->(n))
+FOREACH (i IN firstnode | MERGE (pmc)-[:FIRST {time:line.Time}]->(n))
 
-WITH mc, n, line
+WITH pmc, n, line
 
 // We delete the previous [:LAST] relationship and add a [:NEXT] relationship
 
-MATCH (n)<-[:LAST]-(mc)-[delRel:LAST]->(m {step:line.PrevStatus})
-WHERE m.time <> n.time
-DELETE delRel
+OPTIONAL MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m {step:line.PrevStatus})
+FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
 
-MERGE (m)-[:NEXT]->(n) 
