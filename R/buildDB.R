@@ -27,15 +27,22 @@ buildDataBase = function() {
                  '/zcs.load', 
                  '/swaption.load',
                  '/assetCategory.load',
-                 '/assetInventory.load')
+                 '/assetInventory.load', 
+                 '/margincall/initmc.load')
+
+  for (i in 1:10) {
+    load.name <- c(load.name, paste('/margincall/info', toString(i), '.load', sep=''))
+  }
   
-  l = length(load.name) - 2
+  load.constr <- c('/loadconstraint/account.load', 
+                   '/loadconstraint/agreement.load',
+                   '/loadconstraint/asset.load',
+                   '/loadconstraint/client.load',
+                   '/loadconstraint/legalentity.load',
+                   '/loadconstraint/margincall.load',
+                   '/loadconstraint/trade.load')
   
-  idx = c(1:l, l+2)
- 
-  load.constr = paste('constraint', load.name[idx], sep='')
-  
-  load.name = c(load.name, load.constr)
+  load.name = c(load.constr, load.name)
 
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load'
   
