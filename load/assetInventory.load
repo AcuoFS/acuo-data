@@ -6,7 +6,7 @@ WHERE line.clientId IS NOT NULL
 MATCH (c:Client {id:line.clientId})
 MERGE (a:Asset {id: line.id,name:line.name,currency:line.currency,value:TOFLOAT(line.value),type:line.type})
 
-MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities),pledgedQuantities:TOFLOAT(line.quantities),
+MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities),pledgedQuantities:TOFLOAT(line.pledgedQuantities),
 	internalCost:TOFLOAT(line.internalCost),opptCost:TOFLOAT(line.opptCost)}]->(a)
 WITH  c,a,line,Account
 
