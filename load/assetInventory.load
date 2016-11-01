@@ -6,7 +6,7 @@ WHERE line.clientId IS NOT NULL
 MATCH (c:Client {id:line.clientId})
 MERGE (a:Asset {id: line.id,name:line.name,currency:line.currency,value:TOFLOAT(line.value),type:line.type})
 
-MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities),pledgedQuantities:TOFLOAT(line.pledgedQuantities),
+MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities),pledgedQuantities:TOFLOAT(line.quantities),
 	internalCost:TOFLOAT(line.internalCost),opptCost:TOFLOAT(line.opptCost)}]->(a)
 WITH  c,a,line,Account
 
@@ -14,7 +14,7 @@ UNWIND Account AS account
 MATCH (c:Client {id: line.clientId})-[*2]->(acc {id:account})
 MERGE (acc)-[:ACCESSES]->(a)
 
-WITH line,a,acc
+WITH line,a,acc, tofloat(timestamp()/1000/60/60/24) AS todayDays
 
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.ISIN)<>"" THEN [1] 
 	ELSE [] END | SET a.ISIN=line.ISIN)
@@ -22,12 +22,12 @@ FOREACH (ignoreMe IN CASE 	WHEN trim(line.CUSIP)<>"" THEN [1]
 	ELSE [] END | SET a.CUSIP=line.CUSIP)
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
 	ELSE [] END | SET a.ticker=line.ticker)
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.issueDate)<>"" THEN [1] 
-	ELSE [] END | SET a.issueDate=line.issueDate)
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityDate)<>"" THEN [1] 
-	ELSE [] END | SET a.maturityDate=line.maturityDate)
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.timeToMaturity)<>"" THEN [1] 
-	ELSE [] END | SET a.timeToMaturity=TOFLOAT(line.timeToMaturity))
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityDate)<>"" THEN [1] 
+	ELSE [] END | SET a.issueDate=line.issueDate, a.maturityDate=line.maturityDate)
+WITH a,todayDays,acc
+CALL apoc.date.parse(a.maturityDate,'d','MM/dd/yyyy') YIELD value AS futureDays
+SET a.timeToMaturityDays = futureDays - todayDays,
+    a.timeToMaturityYears = a.timeToMaturityDays/365
 
 WITH a,acc
 
