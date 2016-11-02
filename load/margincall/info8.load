@@ -20,3 +20,11 @@ WITH pmc, n, line
 
 OPTIONAL MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m {step:line.PrevStatus})
 FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
+
+// This is a cancel dispute node. We still check for safety's sake. 
+
+WITH line
+
+MATCH (pl:MarginCall {id:line.CallId})
+WHERE line.NewStatus = 'DisputeCanceled'
+REMOVE pl.markToMarketClient, pl.collateralBalanceClient, pl.reasonCode
