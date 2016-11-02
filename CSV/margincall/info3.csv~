@@ -2,4 +2,3 @@ PrevStatus,NewStatus,Assets,Quantities,Time,CallId
 Presented,Pledged,US912796HW25|GBP,50|5000,26/10/16 10:41,mc1
 Presented,Pledged,46625H100|US912796HW25,100|85,26/10/16 10:41,mc2
 PartialDispute,Pledged,37833100|GBP,100|4300,26/10/16 10:41,mc6
-Presented,Pledged,46625H100|GBP|US912796HW25,100|500|30,26/10/16 10:41,mc8

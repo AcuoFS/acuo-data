@@ -1,3 +1,4 @@
-PrevStatus,NewStatus,RelevantInfo,Time,CallId
-Pledged,Accepted,RelevantInfo,26/10/16 19:00,mc2
-Pledged,Accepted,RelevantInfo,26/10/16 19:00,mc5
+PrevStatus,NewStatus,Time,CallId
+Pledged,Accepted,26/10/16 19:00,mc2
+Pledged,Accepted,26/10/16 19:00,mc5
+Pledged,Accepted,27/10/16 19:00,mc8

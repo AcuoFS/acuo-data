@@ -1,6 +1,7 @@
 ValuationDate,CallDate,CallType,Currency,TotalCallAmount,ReturnAmount,DeliverAmount,CollateralValue,PendingCollateral,Exposure,IMRole,AgreementId,CallId
-24/10/16,25/10/16,Variation,USD,10000,3000,7000,100000,0,1000000,Pledgor,a1,mc1
+24/10/16,25/10/16,Variation,USD,10000,0,10000,100000,0,1000000,Pledgor,a1,mc1
 24/10/16,25/10/16,Variation,SGD,15000,0,15000,100000,0,1000000,Pledgor,a2,mc2
-24/10/16,25/10/16,Variation,EUR,20000,19750,250,100000,10000,1000000,Pledgor,a3,mc3
+24/10/16,25/10/16,Variation,EUR,20000,0,20000,100000,10000,1000000,Pledgor,a3,mc3
 24/10/16,25/10/16,Variation,GBP,250,0,250,100000,0,1000000,Pledgor,a4,mc4
-24/10/16,25/10/16,Variation,CHF,30000,5000,25000,100000,0,1000000,Pledgor,a5,mc5
+24/10/16,25/10/16,Variation,CHF,30000,0,30000,100000,0,1000000,Pledgor,a5,mc5
+24/10/16,25/10/16,Variation,AUD,10000,0,10000,100000,0,1000000,Pledgor,a6,mc8
