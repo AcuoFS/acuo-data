@@ -27,4 +27,6 @@ WITH line
 
 MATCH (pl:MarginCall {id:line.CallId})
 WHERE line.NewStatus = 'Dispute'
-SET pl.markToMarketClient:toFloat(line.MarkToMarket), pl.collateralBalanceClient:toFloat(line.CollateralBalance), pl.disputeReasonCode:line.ReasonCode
+SET pl.markToMarketClient:toFloat(line.MarkToMarket), 
+    pl.collateralBalanceClient:toFloat(line.CollateralBalance), 
+    pl.disputeReasonCode:line.ReasonCode
