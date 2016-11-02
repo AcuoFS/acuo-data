@@ -27,8 +27,8 @@ WITH line
 
 MATCH (pl:MarginCall {id:line.CallId})
 WHERE line.NewStatus = 'Pledged'
-SET pl.assetsPledged = line.Assets, pl.quantitiesPledged = line.Quantities
+SET pl.assetsPledged = line.Assets, pl.pledgedQuantities = line.Quantities
 WITH line, pl, RANGE(0, SIZE(SPLIT(line.Assets, '|'))-1) as len
 UNWIND(len) as i
 	MATCH (pl)-[:DIRECTED_TO]->(c:Client)-[poss:POSSESSES]->(a:Asset {id:SPLIT(line.Assets, '|')[i]})
-	SET poss.quantitiesPledged = poss.quantitiesPledged + toFloat(SPLIT(line.Quantities, '|')[i])
+	SET poss.pledgedQuantities = poss.pledgedQuantities + toFloat(SPLIT(line.Quantities, '|')[i])
