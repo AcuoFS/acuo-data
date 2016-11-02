@@ -15,9 +15,6 @@ WITH line, pmc, c,
 FOREACH (i IN partdispute | 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
                                                                     callAmount:toFloat(line.AgreedAmount), 
-                                                                    markToMarketClient:toFloat(line.MarkToMarket),
-                                                                    collateralBalanceClient:toFloat(line.CollateralBalance),
-                                                                    reasonCode:line.ReasonCode,
                                                                     parentRank:pmc.parentRank+1
 	})-[:DIRECTED_TO]->(c) 
 
@@ -25,7 +22,7 @@ FOREACH (i IN partdispute |
                                                                     callAmount:pmc.callAmount-toFloat(line.AgreedAmount),
                                                                     markToMarketClient:toFloat(line.MarkToMarket),
                                                                     collateralBalanceClient:toFloat(line.CollateralBalance),
-                                                                    reasonCode:line.ReasonCode, 
+                                                                    DisputeReasonCode:line.DisputeReasonCode, 
                                                                     parentRank:pmc.parentRank+1
 	})-[:DIRECTED_TO]->(c)
 )
