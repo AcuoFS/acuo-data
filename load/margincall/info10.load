@@ -26,11 +26,9 @@ FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE 
 WITH line
 
 MATCH (pl:MarginCall {id:line.CallId})
-WHERE line.NewStatus = 'Accepted'
-SET pl.assetsSettled=pl.assetsPledged, pl.settledQuantities=pl.quantitiespledged
-REMOVE pl.assetsPledged, pl.pledgedQuantities
-WITH line, pl, RANGE(0, SIZE(SPLIT(pl.assetsSettled, '|'))-1) as len
+WHERE line.NewStatus = 'Pledged'
+SET pl.assetsPledged = line.Assets, pl.pledgedQuantities = line.Quantities
+WITH line, pl, RANGE(0, SIZE(SPLIT(line.Assets, '|'))-1) as len
 UNWIND(len) as i
-	MATCH (pl)-[:DIRECTED_TO]->(c:Client)-[poss:POSSESSES]->(a:Asset {id:SPLIT(pl.assetsSettled, '|')[i]})
-	SET poss.pledgedQuantities = poss.pledgedQuantities - toFloat(SPLIT(pl.settledQuantities, '|')[i])
-	SET poss.settledQuantities = poss.settledQuantities + toFloat(SPLIT(pl.settledQuantities, '|')[i])
+	MATCH (pl)-[:DIRECTED_TO]->(c:Client)-[poss:POSSESSES]->(a:Asset {id:SPLIT(line.Assets, '|')[i]})
+	SET poss.pledgedQuantities = poss.pledgedQuantities + toFloat(SPLIT(line.Quantities, '|')[i]))
