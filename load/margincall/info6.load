@@ -30,6 +30,5 @@ WHERE line.NewStatus = 'Rejected' OR line.NewStatus = 'PledgeCanceled'
 WITH line, pl, RANGE(0, SIZE(SPLIT(pl.assetsPledged, '|'))-1) as len
 UNWIND(len) as i
 	MATCH (pl)-[:DIRECTED_TO]->(c:Client)-[poss:POSSESSES]->(a:Asset {id:SPLIT(pl.assetsPledged, '|')[i]})
-	SET poss.pledgedQuantities = poss.pledgedQuantities - toFloat(SPLIT(pl.quantitiesPledged, '|')[i])
+	SET poss.quantitiesPledged = poss.quantitiesPledged - toFloat(SPLIT(pl.quantitiesPledged, '|')[i])
 	REMOVE pl.assetsPledged, pl.quantitiesPledged
-

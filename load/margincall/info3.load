@@ -31,4 +31,4 @@ SET pl.assetsPledged = line.Assets, pl.quantitiesPledged = line.Quantities
 WITH line, pl, RANGE(0, SIZE(SPLIT(line.Assets, '|'))-1) as len
 UNWIND(len) as i
 	MATCH (pl)-[:DIRECTED_TO]->(c:Client)-[poss:POSSESSES]->(a:Asset {id:SPLIT(line.Assets, '|')[i]})
-	SET poss.pledgedQuantities = poss.pledgedQuantities + toFloat(SPLIT(line.Quantities, '|')[i])
+	SET poss.quantitiesPledged = poss.quantitiesPledged + toFloat(SPLIT(line.Quantities, '|')[i])
