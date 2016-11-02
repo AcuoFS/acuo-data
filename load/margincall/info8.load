@@ -27,4 +27,4 @@ WITH line
 
 MATCH (pl:MarginCall {id:line.CallId})
 WHERE line.NewStatus = 'DisputeCanceled'
-REMOVE pl.markToMarketClient, pl.collateralBalanceClient, pl.reasonCode
+REMOVE pl.markToMarketClient, pl.collateralBalanceClient, pl.disputeReasonCode
