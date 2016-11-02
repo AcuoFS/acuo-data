@@ -28,7 +28,7 @@ WITH line
 MATCH (pl:MarginCall {id:line.CallId})
 WHERE line.NewStatus = 'Accepted'
 SET pl.assetsSettled=pl.assetsPledged, pl.settledQuantities=pl.pledgedQuantities
-REMOVE pl.assetsPledged, pl.pledgedQuantities
+//REMOVE pl.assetsPledged, pl.pledgedQuantities
 WITH line, pl, RANGE(0, SIZE(SPLIT(pl.assetsSettled, '|'))-1) as len
 UNWIND(len) as i
 	MATCH (pl)-[:DIRECTED_TO]->(c:Client)-[poss:POSSESSES]->(a:Asset {id:SPLIT(pl.assetsSettled, '|')[i]})
