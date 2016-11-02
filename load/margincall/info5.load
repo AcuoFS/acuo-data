@@ -20,3 +20,17 @@ WITH pmc, n, line
 
 OPTIONAL MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m {step:line.PrevStatus})
 FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
+
+// This is an acception node. We still check for safety's sake. 
+
+WITH line
+
+MATCH (pl:MarginCall {id:line.CallId})
+WHERE line.NewStatus = 'Accepted'
+SET pl.assetsSettled=pl.assetsPledged, pl.quantitiesSettled=pl.quantitiespledged
+REMOVE pl.assetsPledged, pl.quantitiesPledged
+WITH line, pl, RANGE(0, SIZE(SPLIT(pl.assetsSettled, '|'))-1) as len
+UNWIND(len) as i
+	MATCH (pl)-[:DIRECTED_TO]->(c:Client)-[poss:POSSESSES]->(a:Asset {id:SPLIT(pl.assetsSettled, '|')[i]})
+	SET poss.settledQuantities = poss.settledQuantities - toFloat(SPLIT(pl.quantitiesSettled, '|')[i])
+
