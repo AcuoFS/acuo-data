@@ -43,16 +43,16 @@ test.marginCallProperties = function() {
   checkEquals(cypher(graph, prop12)$r, '10000')
   prop13 = "MATCH (m:MarginCall {id:'mc4'}) RETURN m.markToMarketClient as r"
   checkEquals(cypher(graph, prop13)$r, 995750)
-  prop14 = "MATCH (m:MarginCall {id:'mc5'}) RETURN m.collateralBalanceClient as r"
-  checkEquals(cypher(graph, prop14)$r, 0)
-  prop15 = "MATCH (m:MarginCall {id:'mc7'}) RETURN m.disputeReasonCode as r"
-  checkEquals(cypher(graph, prop15)$r, '9007')
-  prop16 = "MATCH (m:MarginCall {id:'mc4'}) RETURN m.cancelReasonCode as r"
+  prop14 = "MATCH (m:MarginCall {id:'mc7'}) RETURN m.collateralBalanceClient as r"
+  checkEquals(cypher(graph, prop14)$r, 15000)
+  prop15 = "MATCH (m:MarginCall {id:'mc4'}) RETURN m.disputeReasonCode as r"
+  checkEquals(cypher(graph, prop15)$r, '9008')
+  prop16 = "MATCH (m:MarginCall {id:'mc7'}) RETURN m.cancelReasonCode as r"
   checkEquals(cypher(graph, prop16)$r, '9999')
   prop17 = "MATCH (m:MarginCall {id:'mc5'}) RETURN m.pledgedAssets as r"
   checkEquals(cypher(graph, prop17)$r, NA)
   prop18 = "MATCH (m:MarginCall {id:'mc8'}) RETURN m.quantitiesPledged as r"
-  checkEquals(cypher(graph, prop12)$r, NA)
+  checkEquals(cypher(graph, prop18)$r, NA)
 }
 
 test.quantities = function() {
