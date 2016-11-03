@@ -1,11 +1,14 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/assetCategory.csv' 
 AS line
-WITH line
+WITH line, SPLIT(line.callType,'|') AS callTypes
 
 MATCH (ag:Agreement {id:line.agreementId})
 MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency})
-MERGE (a)-[is:IS_ELIGIBLE_UNDER {haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
+WITH line,a,ag, callTypes
+
+MERGE (a)-[is:IS_ELIGIBLE_UNDER {callType: callTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
 	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate)}]->(ag)
+WITH line,is,a,ag
 
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityLb)<>"" THEN [1] 
 	ELSE [] END | SET a.maturityLb=TOFLOAT(line.maturityLb))
@@ -21,3 +24,9 @@ FOREACH (ignoreMe IN CASE 	WHEN trim(line.FXLimits)<>"" THEN [1]
 	ELSE [] END | SET is.FXLimits=TOFLOAT(line.FXLimits))
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.debtLimits)<>"" THEN [1] 
 	ELSE [] END | SET is.debtLimits=TOFLOAT(line.debtLimits))
+
+// Use only one relationship and the property 'callTypes' for the eligibility
+// In the case that the haircut/cost/limit for IM/VM are different,
+// we cannot use only onw relationship, 
+// Refer to the other load file: assetCategory.load
+
