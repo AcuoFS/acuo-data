@@ -1,4 +1,4 @@
-PrevStatus,NewStatus,MarkToMarket,CollateralBalance,InitialMargin,ReasonCode,Time,CallId
+PrevStatus,NewStatus,MarkToMarket,CollateralBalance,InitialMargin,DisputeReasonCode,Time,CallId
 PartialDispute,Disputed,995000,15000,,9007,26/10/16 10:45,mc7
 Presented,Disputed,995750,250,,9008,26/10/16 10:45,mc4
 Presented,Disputed,1000000,0,,9007,26/10/16 10:45,mc5
