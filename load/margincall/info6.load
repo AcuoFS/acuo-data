@@ -31,7 +31,3 @@ WITH line, pl, RANGE(0, SIZE(SPLIT(pl.assetsPledged, '|'))-1) as len
 UNWIND(len) as i
 	MATCH (pl)-[:DIRECTED_TO]->(c:Client)-[poss:POSSESSES]->(a:Asset {id:SPLIT(pl.assetsPledged, '|')[i]})
 	SET poss.pledgedQuantities = poss.pledgedQuantities - toFloat(SPLIT(pl.pledgedQuantities, '|')[i])
-
-WITH pl
-
-REMOVE pl.assetsPledged, pl.pledgedQuantities
