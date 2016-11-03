@@ -5,14 +5,14 @@ library(RUnit)
 
 test.numnode = function() {
   numnodequery = "MATCH (n) return count(distinct(n)) AS c"
-  checkEquals(cypher(graph, numnodequery)$c, 139)
+  checkEquals(cypher(graph, numnodequery)$c, 174)
 }
 
 # I want to test whether the correct amount of relationships was created:
 
 test.numrel = function() {
   numnodequery = "MATCH (m)-[r]->(n) return count(distinct(r)) AS c"
-  checkEquals(cypher(graph, numnodequery)$c, 318)
+  checkEquals(cypher(graph, numnodequery)$c, 369)
 }
 
 # I want to test whether the relationships I created are correct:
