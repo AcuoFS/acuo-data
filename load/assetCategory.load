@@ -7,7 +7,7 @@ MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency
 WITH line,a,ag, callTypes
 
 MERGE (a)-[is:IS_ELIGIBLE_UNDER {callType: callTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
-	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate)}]->(ag)
+	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate),FXRate:TOFLOAT(line.FXRate)}]->(ag)
 WITH line,is,a,ag
 
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityLb)<>"" THEN [1] 
