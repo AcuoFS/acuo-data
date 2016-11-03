@@ -31,7 +31,6 @@ WITH a,acc
 MATCH (a)<--(c:Client)-->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
 WHERE a.type=ac.type
 AND a.currency=ac.currency
-AND ag.type = 'cleared'
 
 FOREACH (ignoreMe IN CASE WHEN a.ticker=ac.ticker THEN 1
 	WHEN UPPER(a.type)='CASH' THEN 1
@@ -45,11 +44,3 @@ WHERE (c)-[:POSSESSES]->(a)
 AND (c)-->(ag)
 MERGE (a)-[:IS_AVAILABLE_FOR {haircut:ie.haircut,FXHaircut:ie.FXHaircut,interestRate:ie.interestRate,externalCost:ie.externalCost,callType:ie.callType}]->(ag)
 
-WITH c,acc
-MATCH (ac:AssetCategory)-[ie:IS_ELIGIBLE_UNDER]->(ag)<-[*1]-(c)-[*2]->(acc:Account)-[:ACCESSES]->(a:Asset)
-WHERE UPPER(a.type) = 'CASH'
-AND UPPER(ac.type) = 'CASH'
-AND UPPER(ag.type) <> 'CLEARED'
-WITH a,ag, COLLECT(DISTINCT(ac.currency)) AS ccy
-WHERE NOT a.currency IN ccy
-MERGE (a)-[:IS_AVAILABLE_FOR {haircut:0,FXHaircut:0.08,interestRate:a.yield,externalCost:0,callType:['IM','VM']}]->(ag)
