@@ -37,10 +37,10 @@ test.marginCallProperties = function() {
   checkEquals(cypher(graph, prop9)$r, 1000000)
   prop10 = "MATCH (m:MarginCall {id:'mc4'}) RETURN m.IMRole as r"
   checkEquals(cypher(graph, prop10)$r, 'Pledgor')
-  prop11 = "MATCH (m:MarginCall {id:'mc5'}) RETURN m.settledAssets as r"
-  checkEquals(cypher(graph, prop11)$r, 'US912796HW25|GBP|3783310|46625H100')
-  prop12 = "MATCH (m:MarginCall {id:'mc8'}) RETURN m.quantitiesSettled as r"
-  checkEquals(cypher(graph, prop12)$r, '50|5000')
+  prop11 = "MATCH (m:MarginCall {id:'mc5'}) RETURN m.assetsSettled as r"
+  checkEquals(cypher(graph, prop11)$r, 'US912796HW25|GBP|37833100|46625H100')
+  prop12 = "MATCH (m:MarginCall {id:'mc8'}) RETURN m.settledQuantities as r"
+  checkEquals(cypher(graph, prop12)$r, '10000')
   prop13 = "MATCH (m:MarginCall {id:'mc4'}) RETURN m.markToMarketClient as r"
   checkEquals(cypher(graph, prop13)$r, 995750)
   prop14 = "MATCH (m:MarginCall {id:'mc5'}) RETURN m.collateralBalanceClient as r"
