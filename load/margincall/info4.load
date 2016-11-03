@@ -26,7 +26,7 @@ FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE 
 WITH line
 
 MATCH (pl:MarginCall {id:line.CallId})
-WHERE line.NewStatus = 'Dispute'
+WHERE line.NewStatus = 'Disputed'
 SET pl.markToMarketClient = toFloat(line.MarkToMarket), 
     pl.collateralBalanceClient = toFloat(line.CollateralBalance), 
     pl.disputeReasonCode = line.DisputeReasonCode
