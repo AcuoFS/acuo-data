@@ -52,4 +52,4 @@ AND UPPER(ac.type) = 'CASH'
 AND UPPER(ag.type) <> 'CLEARED'
 WITH a,ag, COLLECT(DISTINCT(ac.currency)) AS ccy
 WHERE NOT a.currency IN ccy
-MERGE (a)-[:IS_AVAILABLE_FOR {haircut:0.08,interestRate:a.yield,externalCost:0,callType:['IM','VM']}]->(ag)
+MERGE (a)-[:IS_AVAILABLE_FOR {haircut:0,FXHaircut:0.08,interestRate:a.yield,externalCost:0,callType:['IM','VM']}]->(ag)
