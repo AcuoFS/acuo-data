@@ -1,4 +1,4 @@
-AgreementName,AgreementId,AgreementDate,Type,CCP,MTA,Rounding,CutoffTime
+AgreementName,AgreementId,AgreementDate,Type,CCP,MTA,Rounding,NotificationTime
 agr1,a1,29/07/15,cleared,LCH Clearnet LTD,2500,500,17:00:00
 agr2,a2,29/07/15,bilateralOTC,,2500,500,17:00:00
 agr3,a3,29/07/15,regulatoryOTC,,2500,500,17:00:00
