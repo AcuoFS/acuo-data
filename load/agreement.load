@@ -1,7 +1,7 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/agreement.csv' 
 AS line
 
-MERGE (:Agreement {id:line.AgreementId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, MTA:toFloat(line.MTA), rounding:toFloat(line.Rounding), cutoffTime:line.CutoffTime})
+MERGE (:Agreement {id:line.AgreementId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, MTA:toFloat(line.MTA), rounding:toFloat(line.Rounding), notificationTime:line.NotificationTime})
 
 WITH line
 
