@@ -1,56 +1,56 @@
 AgreementName,AgreementId,AgreementDate,Type,CCP,MTA,Rounding,NotificationTime
-agr1,a1,29/07/15,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr2,a2,29/07/15,bilateralOTC,,2500,500,17:00:00
-agr3,a3,29/07/15,regulatoryOTC,,2500,500,17:00:00
-agr4,a4,29/07/15,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr5,a5,09/07/15,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr6,a6,29/07/15,bilateralOTC,,2500,500,17:00:00
-agr7,a7,29/07/15,regulatoryOTC,,2500,500,17:00:00
-agr8,a8,29/07/15,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr9,a9,29/07/15,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr10,a10,09/07/15,bilateralOTC,,2500,500,17:00:00
-agr11,a11,29/07/15,regulatoryOTC,,2500,500,17:00:00
-agr12,a12,29/07/15,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr13,a13,29/07/15,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr14,a14,29/07/15,bilateralOTC,,2500,500,17:00:00
-agr15,a15,09/07/15,regulatoryOTC,,2500,500,17:00:00
-agr16,a16,03/05/14,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr17,a17,04/05/14,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr18,a18,05/05/14,bilateralOTC,,2500,500,17:00:00
-agr19,a19,06/05/14,regulatoryOTC,,2500,500,17:00:00
-agr20,a20,07/05/14,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr21,a21,28/03/13,bilateralOTC,,2500,500,17:00:00
-agr22,a22,29/03/13,regulatoryOTC,,2500,500,17:00:00
-agr23,a23,30/03/13,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr24,a24,31/03/13,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr25,a25,01/04/13,bilateralOTC,,2500,500,17:00:00
-agr26,a26,18/05/12,regulatoryOTC,,2500,500,17:00:00
-agr27,a27,19/05/12,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr28,a28,20/05/12,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr29,a29,21/05/12,bilateralOTC,,2500,500,17:00:00
-agr30,a30,22/05/12,regulatoryOTC,,2500,500,17:00:00
-agr31,a31,08/03/14,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr32,a32,09/03/14,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr33,a33,10/03/14,bilateralOTC,,2500,500,17:00:00
-agr34,a34,11/03/14,regulatoryOTC,,2500,500,17:00:00
-agr35,a35,12/03/14,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr36,a36,08/03/14,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr37,a37,09/03/14,bilateralOTC,,2500,500,17:00:00
-agr38,a38,10/03/14,regulatoryOTC,,2500,500,17:00:00
-agr39,a39,11/03/14,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr40,a40,12/03/14,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr41,a41,29/06/13,bilateralOTC,,2500,500,17:00:00
-agr42,a42,30/06/13,regulatoryOTC,,2500,500,17:00:00
-agr43,a43,01/07/13,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr44,a44,02/07/13,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr45,a45,03/07/13,bilateralOTC,,2500,500,17:00:00
-agr46,a46,10/11/12,regulatoryOTC,,2500,500,17:00:00
-agr47,a47,11/11/12,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr48,a48,12/11/12,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr49,a49,13/11/12,bilateralOTC,,2500,500,17:00:00
-agr50,a50,14/11/12,regulatoryOTC,,2500,500,17:00:00
-agr51,a51,13/11/12,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr52,a52,14/11/12,cleared,LCH Clearnet LTD,2500,500,17:00:00
-agr53,a53,15/11/12,bilateralOTC,,2500,500,17:00:00
-agr54,a54,16/11/12,regulatoryOTC,,2500,500,17:00:00
-agr55,a55,17/11/12,cleared,LCH Clearnet LTD,2500,500,17:00:00
+agr1,a1,29/07/15,cleared,LCH Clearnet LTD,2500,500,12:00
+agr2,a2,29/07/15,bilateralOTC,,2500,500,12:00
+agr3,a3,29/07/15,regulatoryOTC,,2500,500,12:00
+agr4,a4,29/07/15,cleared,LCH Clearnet LTD,2500,500,12:00
+agr5,a5,09/07/15,cleared,LCH Clearnet LTD,2500,500,12:00
+agr6,a6,29/07/15,bilateralOTC,,2500,500,12:00
+agr7,a7,29/07/15,regulatoryOTC,,2500,500,12:00
+agr8,a8,29/07/15,cleared,LCH Clearnet LTD,2500,500,12:00
+agr9,a9,29/07/15,cleared,LCH Clearnet LTD,2500,500,12:00
+agr10,a10,09/07/15,bilateralOTC,,2500,500,12:00
+agr11,a11,29/07/15,regulatoryOTC,,2500,500,12:00
+agr12,a12,29/07/15,cleared,LCH Clearnet LTD,2500,500,12:00
+agr13,a13,29/07/15,cleared,LCH Clearnet LTD,2500,500,12:00
+agr14,a14,29/07/15,bilateralOTC,,2500,500,12:00
+agr15,a15,09/07/15,regulatoryOTC,,2500,500,12:00
+agr16,a16,03/05/14,cleared,LCH Clearnet LTD,2500,500,12:00
+agr17,a17,04/05/14,cleared,LCH Clearnet LTD,2500,500,12:00
+agr18,a18,05/05/14,bilateralOTC,,2500,500,12:00
+agr19,a19,06/05/14,regulatoryOTC,,2500,500,12:00
+agr20,a20,07/05/14,cleared,LCH Clearnet LTD,2500,500,12:00
+agr21,a21,28/03/13,bilateralOTC,,2500,500,12:00
+agr22,a22,29/03/13,regulatoryOTC,,2500,500,12:00
+agr23,a23,30/03/13,cleared,LCH Clearnet LTD,2500,500,12:00
+agr24,a24,31/03/13,cleared,LCH Clearnet LTD,2500,500,12:00
+agr25,a25,01/04/13,bilateralOTC,,2500,500,12:00
+agr26,a26,18/05/12,regulatoryOTC,,2500,500,12:00
+agr27,a27,19/05/12,cleared,LCH Clearnet LTD,2500,500,12:00
+agr28,a28,20/05/12,cleared,LCH Clearnet LTD,2500,500,12:00
+agr29,a29,21/05/12,bilateralOTC,,2500,500,12:00
+agr30,a30,22/05/12,regulatoryOTC,,2500,500,12:00
+agr31,a31,08/03/14,cleared,LCH Clearnet LTD,2500,500,12:00
+agr32,a32,09/03/14,cleared,LCH Clearnet LTD,2500,500,12:00
+agr33,a33,10/03/14,bilateralOTC,,2500,500,12:00
+agr34,a34,11/03/14,regulatoryOTC,,2500,500,12:00
+agr35,a35,12/03/14,cleared,LCH Clearnet LTD,2500,500,12:00
+agr36,a36,08/03/14,cleared,LCH Clearnet LTD,2500,500,12:00
+agr37,a37,09/03/14,bilateralOTC,,2500,500,12:00
+agr38,a38,10/03/14,regulatoryOTC,,2500,500,12:00
+agr39,a39,11/03/14,cleared,LCH Clearnet LTD,2500,500,12:00
+agr40,a40,12/03/14,cleared,LCH Clearnet LTD,2500,500,12:00
+agr41,a41,29/06/13,bilateralOTC,,2500,500,12:00
+agr42,a42,30/06/13,regulatoryOTC,,2500,500,12:00
+agr43,a43,01/07/13,cleared,LCH Clearnet LTD,2500,500,12:00
+agr44,a44,02/07/13,cleared,LCH Clearnet LTD,2500,500,12:00
+agr45,a45,03/07/13,bilateralOTC,,2500,500,12:00
+agr46,a46,10/11/12,regulatoryOTC,,2500,500,12:00
+agr47,a47,11/11/12,cleared,LCH Clearnet LTD,2500,500,12:00
+agr48,a48,12/11/12,cleared,LCH Clearnet LTD,2500,500,12:00
+agr49,a49,13/11/12,bilateralOTC,,2500,500,12:00
+agr50,a50,14/11/12,regulatoryOTC,,2500,500,12:00
+agr51,a51,13/11/12,cleared,LCH Clearnet LTD,2500,500,12:00
+agr52,a52,14/11/12,cleared,LCH Clearnet LTD,2500,500,12:00
+agr53,a53,15/11/12,bilateralOTC,,2500,500,12:00
+agr54,a54,16/11/12,regulatoryOTC,,2500,500,12:00
+agr55,a55,17/11/12,cleared,LCH Clearnet LTD,2500,500,12:00
