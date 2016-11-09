@@ -1,0 +1,9 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/recipientInfo.csv' 
+AS line
+
+MATCH (a:Agreement {id:line.AgreementId})<-[s:SIGNS]-(e:LegalEntity)
+SET s.recipientAddress = line.recipientAddress,
+	s.recipientRegion = recipientRegion,
+	s.businessTimeFrom = businessTimeFrom,
+	s.businessTimeTo = businessTimeTo
+
