@@ -1,5 +1,4 @@
-// WITH timestamp()/1000/60/60 AS now
-CALL apoc.date.parse("25/10/16 9:00" ,"h","dd/MM/yy HH:mm") YIELD value as now
+WITH timestamp()/1000/60/60 AS now
 
 MATCH (a:Agreement)<-[:STEMS_FROM]-(m:MarginCall {callType:'Variation'})-[:FIRST]->(:Step {step:'Presented'})
 WITH *, SPLIT(r.time, ' ')[0] + ' ' + a.notificationTime as rawUnadjustedTime
