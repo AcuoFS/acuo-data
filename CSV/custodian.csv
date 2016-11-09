@@ -1,0 +1,13 @@
+custodianId,custodianName,clientId,assetId,quantities
+cust1,custodian1,c1,US912796HW25,500000
+cust1,custodian1,c1,GBP,50000
+cust1,custodian1,c1,37833100,500000
+cust1,custodian1,c1,46625H100,200000
+cust1,custodian1,c1,USD,20000000
+cust1,custodian1,c1,JPY,5000000
+cust1,custodian1,c1,CAD,40000000
+cust2,custodian2,c2,US912796HW25,1000000
+cust2,custodian2,c2,GBP,500000
+cust2,custodian2,c2,37833100,700000
+cust2,custodian2,c2,46625H100,200000
+cust2,custodian2,c2,Gold,500000
