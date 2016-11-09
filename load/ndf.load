@@ -6,7 +6,7 @@ MATCH (a:Agreement {id:line.AgreementId})
 MATCH (e:LegalEntity)-[:HAS]->(acc:Account)
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
-MERGE (ndf:NDF {id:line.Id,
+MERGE (ndf:Trade {id:line.Id,
 		clearingDate:line.ClearingDate,
 		buySell:line.BuySell,
 		currencySettlement:line.CurrencySettlement,
@@ -15,7 +15,10 @@ MERGE (ndf:NDF {id:line.Id,
 		agreedFXRate:toFloat(line.AgreedFxRate),
 		fixingDate:line.FixingDate,
 		fixingRateToday:toFloat(line.FixingRateToday),
-		cashSettlement:toFloat(line.CashSettlement)})
+		cashSettlement:toFloat(line.CashSettlement), 
+		markToMarketT:line.MarkToMarketT,
+		markToMarketTm1:line.MarkToMarketTm1})
+SET ndf:NDF
 
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(ndf)

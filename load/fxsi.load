@@ -6,13 +6,17 @@ MATCH (a:Agreement {id:line.AgreementId})
 MATCH (e:LegalEntity)-[:HAS]->(acc:Account)
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
-MERGE (f:FXSI {id:line.TradeId,
+MERGE (f:Trade {id:line.TradeId,
 		clearingDate:line.ClearingDate,
 		baseCurrency:line.BaseCurrency,
 		counterCurrency:line.CounterCurrency,
 		baseCurrencyAmount:toFloat(line.BaseCurrencyAmount),
 		counterCurrencyAmount:toFloat(line.CounterCurrencyAmount),
-		paymentDate:line.PaymentDate})
+		paymentDate:line.PaymentDate, 
+		markToMarketT:line.MarkToMarketT,
+		markToMarketTm1:line.MarkToMarketTm1})
+
+SET f:FXSI
 
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(f)

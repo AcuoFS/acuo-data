@@ -6,7 +6,7 @@ MATCH (a:Agreement {id:line.AgreementId})
 MATCH (e:LegalEntity)-[:HAS]->(acc:Account)
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
-MERGE (irs:IRS {id:line.TradeId,
+MERGE (irs:Trade {id:line.TradeId,
 		maturity:line.Maturity,
 		clearingDate:line.ClearingDate,
 		nextCouponPaymentDate:line.NextCouponPaymentDate,
@@ -19,7 +19,10 @@ MERGE (irs:IRS {id:line.TradeId,
 		indexTenorPay:line.IndexTenorPay,
 		resetFreqPay:line.ResetFrequencyPay,
 		payFreqReceive:line.PaymentFrequencyReceive,
-		payFreqPay:line.PaymentFrequencyPay})
+		payFreqPay:line.PaymentFrequencyPay, 
+		markToMarketT:line.MarkToMarketT,
+		markToMarketTm1:line.MarkToMarketTm1})
+SET irs:IRS
 
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(irs)

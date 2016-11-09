@@ -6,7 +6,7 @@ MATCH (a:Agreement {id:line.AgreementId})
 MATCH (e:LegalEntity)-[:HAS]->(acc:Account)
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
-MERGE (swopt:SWOPT {id:line.TradeId,
+MERGE (swopt:Trade {id:line.TradeId,
 		clearingDate:line.ClearingDate,
 		expiry:line.Expiry,
 		longShort:line.LongShort,
@@ -21,7 +21,11 @@ MERGE (swopt:SWOPT {id:line.TradeId,
 		indexTenor:line.IndexTenor,
 		resetFreq:line.ResetFreq,
 		payFreqFloat:line.PaymentFrequencyFloating, 
-		payFreqFixed:line.PaymentFrequencyFixed})
+		payFreqFixed:line.PaymentFrequencyFixed, 
+		markToMarketT:line.MarkToMarketT,
+		markToMarketTm1:line.MarkToMarketTm1})
+
+SET swopt:Swopt
 
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(swopt)

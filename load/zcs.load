@@ -6,7 +6,7 @@ MATCH (a:Agreement {id:line.AgreementId})
 MATCH (e:LegalEntity)-[:HAS]->(acc:Account)
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
-MERGE (zcs:ZCS {id:line.TradeId,
+MERGE (zcs:Trade {id:line.TradeId,
 		clearingDate:line.ClearingDate,
 		maturity:line.Maturity,
 		legPay:line.LegPay,
@@ -16,7 +16,10 @@ MERGE (zcs:ZCS {id:line.TradeId,
 		index:line.Index,
 		indexTenor:line.IndexTenor,
 		resetFreq:line.ResetFrequency,
-		payFreqFloat:line.PaymentFrequencyFloating})
+		payFreqFloat:line.PaymentFrequencyFloating, 
+		markToMarketT:line.MarkToMarketT,
+		markToMarketTm1:line.MarkToMarketTm1})
+SET zcs:ZCS
 
 MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(zcs)
