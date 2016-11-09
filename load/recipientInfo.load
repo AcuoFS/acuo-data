@@ -3,7 +3,7 @@ AS line
 
 MATCH (a:Agreement {id:line.AgreementId})<-[s:SIGNS]-(e:LegalEntity)
 SET s.recipientAddress = line.recipientAddress,
-	s.recipientRegion = recipientRegion,
-	s.businessTimeFrom = businessTimeFrom,
-	s.businessTimeTo = businessTimeTo
+	s.recipientRegion = line.recipientRegion,
+	s.businessTimeFrom = line.businessTimeFrom,
+	s.businessTimeTo = line.businessTimeTo
 
