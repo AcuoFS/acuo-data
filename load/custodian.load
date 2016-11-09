@@ -1,0 +1,7 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/custodian.csv' 
+AS line
+
+MATCH (a:Asset {id:line.assetId})
+MERGE (cust: Custodian {id:line.custodianId,name:line.custodianName})-[:IS_HELD_BY 
+{quantity: line.quantities, businessTimeFrom:line.businessTimeFrom,businessTimeTo:line.businessTimeTo}]->(a)
+
