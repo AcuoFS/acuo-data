@@ -1,7 +1,7 @@
 WITH timestamp()/1000/60/60 AS now
 
-MATCH (a:Agreement)<-[:STEMS_FROM]-(m:MarginCall {callType:'Variation'})-[:FIRST]->(:Step {step:'Presented'})
-WITH *, SPLIT(r.time, ' ')[0] + ' ' + a.notificationTime as rawUnadjustedTime
+MATCH (a:Agreement)<-[:STEMS_FROM]-(m:MarginCall {callType:'Variation'})
+WITH *, m.callDate + ' ' + a.notificationTime as rawUnadjustedTime
 CALL apoc.date.parse(rawUnadjustedTime, "h", "dd/MM/yy HH:mm") YIELD value as unadjustedTime
 WITH *
 WHERE unadjustedTime-now <= 24
