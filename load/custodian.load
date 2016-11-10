@@ -6,5 +6,5 @@ MERGE (cust: Custodian {id:line.custodianId,name:line.custodianName})
 WITH line, cust
 
 MATCH (a:Asset {id:line.assetId})
-MERGE (cust)-[:IS_HELD_BY {quantity: line.quantities,clientId:line.clientId, businessTimeFrom:line.businessTimeFrom,businessTimeTo:line.businessTimeTo}]->(a)
+MERGE (cust)<-[:IS_HELD_BY {quantity: line.quantities,clientId:line.clientId, businessTimeFrom:line.businessTimeFrom,businessTimeTo:line.businessTimeTo}]-(a)
 
