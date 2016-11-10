@@ -30,7 +30,6 @@ buildDataBase = function() {
                  '/assetCategory.load',
                  '/assetInventory.load', 
                  '/custodian.load',
-                 '/assetInventory.load',
                  '/margincall/initmc.load')
 
   for (i in 1:10) {
@@ -48,17 +47,6 @@ buildDataBase = function() {
 
   load.name <- c(load.name, ('/notificationtime.load'))
   
-  load.constr <- c('constraint/account.load', 
-                   'constraint/agreement.load',
-                   'constraint/asset.load',
-                   'constraint/client.load',
-                   'constraint/legalentity.load',
-                   'constraint/custodian.load',
-                   'constraint/margincall.load',
-                   'constraint/trade.load')
-
-  load.name = c(load.constr, load.name)
-
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/load'
   
   load.url<-paste(load.preurl,sep='',load.name)
