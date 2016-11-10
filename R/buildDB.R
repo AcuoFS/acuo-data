@@ -15,6 +15,7 @@ buildDataBase = function() {
                  '/legalentity.load',
                  '/account.load',
                  '/agreement.load',
+                 '/recipientInfo.load',
                  '/cds.load',
                  '/irsvanilla.load', 
                  '/irsfloatfloat.load', 
@@ -28,6 +29,7 @@ buildDataBase = function() {
                  '/swaption.load',
                  '/assetCategory.load',
                  '/assetInventory.load', 
+                 '/custodian.load',
                  '/margincall/initmc.load')
 
   for (i in 1:10) {
@@ -39,6 +41,7 @@ buildDataBase = function() {
                    '/loadconstraint/asset.load',
                    '/loadconstraint/client.load',
                    '/loadconstraint/legalentity.load',
+                   '/loadconstraint/custodian.load',
                    '/loadconstraint/margincall.load',
                    '/loadconstraint/trade.load')
   
