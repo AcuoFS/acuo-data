@@ -122,36 +122,36 @@ test.propfxsw = function() {
   checkEquals(cypher(graph, propquery8)$h, '01/07/12')
 }
 
-# I want to test that my options have the correct properties:
+# I want to test that my Options have the correct properties:
 
-test.propoptions = function() {
-  propquery1 = "MATCH (t:OPT {id:'optv1'}) return t.clearingDate as a"
+test.propOptions = function() {
+  propquery1 = "MATCH (t:Opt {id:'optv1'}) return t.clearingDate as a"
   checkEquals(cypher(graph, propquery1)$a, '08/03/14')
-  propquery3 = "MATCH (t:OPT {id:'optv3'}) return t.expiry as c"
+  propquery3 = "MATCH (t:Opt {id:'optv3'}) return t.expiry as c"
   checkEquals(cypher(graph, propquery3)$c, '10/04/14')
-  propquery4 = "MATCH (t:OPT {id:'optb4'}) return t.underlyingId as d"
+  propquery4 = "MATCH (t:Opt {id:'optb4'}) return t.underlyingId as d"
   checkEquals(cypher(graph, propquery4)$d, 'US149123BM29')
-  propquery5 = "MATCH (t:OPT {id:'optv5'}) return t.currency as e"
+  propquery5 = "MATCH (t:Opt {id:'optv5'}) return t.currency as e"
   checkEquals(cypher(graph, propquery5)$e, 'GBP')
-  propquery6 = "MATCH (t:OPT {id:'optb1'}) return t.quantity as f"
+  propquery6 = "MATCH (t:Opt {id:'optb1'}) return t.quantity as f"
   checkEquals(cypher(graph, propquery6)$f, 250)
-  propquery7 = "MATCH (t:OPT {id:'optv2'}) return t.longShort as g"
+  propquery7 = "MATCH (t:Opt {id:'optv2'}) return t.longShort as g"
   checkEquals(cypher(graph, propquery7)$g, 'Short')
-  propquery8 = "MATCH (t:OPT {id:'optb3'}) return t.callPut as h"
+  propquery8 = "MATCH (t:Opt {id:'optb3'}) return t.callPut as h"
   checkEquals(cypher(graph, propquery8)$h, 'Put')
-  propquery9 = "MATCH (t:OPT {id:'optv4'}) return t.strikePrice as i"
+  propquery9 = "MATCH (t:Opt {id:'optv4'}) return t.strikePrice as i"
   checkEquals(cypher(graph, propquery9)$i, 98)
-  propquery10 = "MATCH (t:OPT {id:'optb5'}) return t.type as j"
+  propquery10 = "MATCH (t:Opt {id:'optb5'}) return t.type as j"
   checkEquals(cypher(graph, propquery10)$j, 'European')
-  propquery11 = "MATCH (t:OPT {id:'optb1'}) return t.barrierType as k"
+  propquery11 = "MATCH (t:Opt {id:'optb1'}) return t.barrierType as k"
   checkEquals(cypher(graph, propquery11)$k, 'Up')
-  propquery12 = "MATCH (t:OPT {id:'optb2'}) return t.knockType as l"
+  propquery12 = "MATCH (t:Opt {id:'optb2'}) return t.knockType as l"
   checkEquals(cypher(graph, propquery12)$l, 'In')
-  propquery13 = "MATCH (t:OPT {id:'optb3'}) return t.barrierLevel as m"
+  propquery13 = "MATCH (t:Opt {id:'optb3'}) return t.barrierLevel as m"
   checkEquals(cypher(graph, propquery13)$m, 105)
-  propquery14 = "MATCH (t:OPT {id:'optb4'}) return t.rebate as n"
+  propquery14 = "MATCH (t:Opt {id:'optb4'}) return t.rebate as n"
   checkEquals(cypher(graph, propquery14)$n, NA)
-  propquery15 = "MATCH (t:OPT {id:'optb5'}) return t.rebate as o"
+  propquery15 = "MATCH (t:Opt {id:'optb5'}) return t.rebate as o"
   checkEquals(cypher(graph, propquery15)$o, 110)
 }
 
@@ -207,36 +207,36 @@ test.propzcs = function() {
 
 # I want to test that my swaptions have the correct properties:
 
-test.propswopt = function() {
-  propquery1 = "MATCH (t:SWOPT {id:'swopt1'}) return t.clearingDate as a"
+test.propSwopt = function() {
+  propquery1 = "MATCH (t:Swopt {id:'swopt1'}) return t.clearingDate as a"
   checkEquals(cypher(graph, propquery1)$a, '13/11/12')
-  propquery2 = "MATCH (t:SWOPT {id:'swopt2'}) return t.expiry as b"
+  propquery2 = "MATCH (t:Swopt {id:'swopt2'}) return t.expiry as b"
   checkEquals(cypher(graph, propquery2)$b, '14/02/12')
-  propquery3 = "MATCH (t:SWOPT {id:'swopt3'}) return t.longShort as c"
+  propquery3 = "MATCH (t:Swopt {id:'swopt3'}) return t.longShort as c"
   checkEquals(cypher(graph, propquery3)$c, 'Long')
-  propquery4 = "MATCH (t:SWOPT {id:'swopt4'}) return t.type as d"
+  propquery4 = "MATCH (t:Swopt {id:'swopt4'}) return t.type as d"
   checkEquals(cypher(graph, propquery4)$d, 'American')
-  propquery5 = "MATCH (t:SWOPT {id:'swopt5'}) return t.swapBeginning as e"
+  propquery5 = "MATCH (t:Swopt {id:'swopt5'}) return t.swapBeginning as e"
   checkEquals(cypher(graph, propquery5)$e, '19/02/12')
-  propquery6 = "MATCH (t:SWOPT {id:'swopt1'}) return t.swapMaturity as f"
+  propquery6 = "MATCH (t:Swopt {id:'swopt1'}) return t.swapMaturity as f"
   checkEquals(cypher(graph, propquery6)$f, '15/02/14')
-  propquery7 = "MATCH (t:SWOPT {id:'swopt2'}) return t.legPay as g"
+  propquery7 = "MATCH (t:Swopt {id:'swopt2'}) return t.legPay as g"
   checkEquals(cypher(graph, propquery7)$g, 'Floating')
-  propquery8 = "MATCH (t:SWOPT {id:'swopt3'}) return t.notional as h"
+  propquery8 = "MATCH (t:Swopt {id:'swopt3'}) return t.notional as h"
   checkEquals(cypher(graph, propquery8)$h, 20003)
-  propquery9 = "MATCH (t:SWOPT {id:'swopt4'}) return t.currency as i"
+  propquery9 = "MATCH (t:Swopt {id:'swopt4'}) return t.currency as i"
   checkEquals(cypher(graph, propquery9)$i, 'SGD')
-  propquery10 = "MATCH (t:SWOPT {id:'swopt5'}) return t.fixedRate as j"
+  propquery10 = "MATCH (t:Swopt {id:'swopt5'}) return t.fixedRate as j"
   checkEquals(cypher(graph, propquery10)$j, 5)
-  propquery11 = "MATCH (t:SWOPT {id:'swopt1'}) return t.index as k"
+  propquery11 = "MATCH (t:Swopt {id:'swopt1'}) return t.index as k"
   checkEquals(cypher(graph, propquery11)$k, 'USD-LIBOR-BBA')
-  propquery12 = "MATCH (t:SWOPT {id:'swopt2'}) return t.indexTenor as l"
+  propquery12 = "MATCH (t:Swopt {id:'swopt2'}) return t.indexTenor as l"
   checkEquals(cypher(graph, propquery12)$l, '3M')
-  propquery13 = "MATCH (t:SWOPT {id:'swopt3'}) return t.resetFreq as m"
+  propquery13 = "MATCH (t:Swopt {id:'swopt3'}) return t.resetFreq as m"
   checkEquals(cypher(graph, propquery13)$m, '3M')
-  propquery14 = "MATCH (t:SWOPT {id:'swopt4'}) return t.payFreqFloat as n"
+  propquery14 = "MATCH (t:Swopt {id:'swopt4'}) return t.payFreqFloat as n"
   checkEquals(cypher(graph, propquery14)$n, '6M')
-  propquery15 = "MATCH (t:SWOPT {id:'swopt5'}) return t.payFreqFixed as o"
+  propquery15 = "MATCH (t:Swopt {id:'swopt5'}) return t.payFreqFixed as o"
   checkEquals(cypher(graph, propquery15)$o, '1T')
 }
 
