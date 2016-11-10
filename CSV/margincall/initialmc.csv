@@ -5,3 +5,5 @@ ValuationDate,CallDate,CallType,Currency,TotalCallAmount,ReturnAmount,DeliverAmo
 24/10/16,25/10/16,Variation,GBP,250,0,250,100000,0,1000000,Pledgor,a4,mc4
 24/10/16,25/10/16,Variation,CHF,30000,0,30000,100000,0,1000000,Pledgor,a5,mc5
 24/10/16,25/10/16,Variation,AUD,10000,0,10000,100000,0,1000000,Pledgor,a6,mc8
+09/11/16,10/11/16,Variation,USD,10000,0,10000,100000,0,1000000,Pledgor,a7,mc9
+09/11/16,10/11/16,Variation,USD,10000,0,10000,100000,0,1000000,Pledgor,a8,mc10

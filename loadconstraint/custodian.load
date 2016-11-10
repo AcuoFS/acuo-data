@@ -1,0 +1,2 @@
+CREATE CONSTRAINT ON (n:Custodian)
+ASSERT n.id IS UNIQUE
