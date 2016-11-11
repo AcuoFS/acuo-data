@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/info9.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/info3.csv' 
 AS line
 
 MATCH (pmc {id:line.CallId})-[:DIRECTED_TO]->(c:Client)
@@ -27,8 +27,8 @@ WITH line
 
 MATCH (pl:MarginCall {id:line.CallId})
 WHERE line.NewStatus = 'Pledged'
-SET pl.assetsPledged = line.Assets, pl.pledgedQuantities = line.Quantities
+SET pl.assetsPledged = line.Assets, pl.pledgedQuantities = line.Quantities, pl.pledgedCustodianAccount = line.CustodianAccount
 WITH line, pl, RANGE(0, SIZE(SPLIT(line.Assets, '|'))-1) as len
 UNWIND(len) as i
-	MATCH (pl)-[:DIRECTED_TO]->(c:Client)-[poss:POSSESSES]->(a:Asset {id:SPLIT(line.Assets, '|')[i]})
-	SET poss.pledgedQuantities = poss.pledgedQuantities + toFloat(SPLIT(line.Quantities, '|')[i])
+	MATCH (a:Asset {id:SPLIT(line.Assets, '|')[i]})<-[h:HOLDS]-(:CustodianAccount {id:SPLIT(line.CustodianAccount, '|')[i]})
+	SET h.pledgedQuantities = h.pledgedQuantities + toFloat(SPLIT(line.Quantities, '|')[i])
