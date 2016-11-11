@@ -32,3 +32,4 @@ FOREACH (ignoreMe IN CASE WHEN a.ticker=ac.ticker THEN 1
 	WHEN UPPER(a.type)='GOLD' THEN 1
 	WHEN a.timeToMaturityYears<ac.maturityUp AND  a.timeToMaturityYears>ac.maturityLb THEN 1
 	ELSE [] END | MERGE (a)-[i:IS_IN]->(ac))
+
