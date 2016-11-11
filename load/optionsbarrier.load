@@ -30,6 +30,6 @@ MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
 
 WITH line
 
-MATCH (opt:OPT {id:line.TradeId}) 
+MATCH (opt:Opt {id:line.TradeId}) 
 
 WHERE line.Rebate IS NOT NULL SET opt.rebate = toFloat(line.Rebate)
