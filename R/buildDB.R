@@ -6,8 +6,8 @@ buildDataBase = function() {
     return (query)
   }
 
-  graph = startGraph("http://neo4j:7474/db/data")
-#  graph = startGraph("http://localhost:7474/db/data/")
+#  graph = startGraph("http://neo4j:7474/db/data")
+  graph = startGraph("http://localhost:7474/db/data/")
   
   clear(graph,input=FALSE)
   
@@ -48,7 +48,7 @@ buildDataBase = function() {
                    '/loadconstraint/margincall.load',
                    '/loadconstraint/trade.load')
 
-  load.name <- c(load.constr,paste('/load',load.name,sep=""), ('/notificationtime.load'))
+  load.name <- c(load.constr,paste('/load',load.name,sep=""), ('/load/notificationtime.load'))
   
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master'
   
