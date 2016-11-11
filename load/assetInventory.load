@@ -1,6 +1,6 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/assetInventory.csv' 
 AS line
-WITH line, SPLIT(line.accountId, '|') AS Account
+WITH line
 WHERE line.clientId IS NOT NULL
 
 MATCH (c:Client {id:line.clientId})
@@ -8,25 +8,20 @@ MERGE (a:Asset {id: line.id,idType: line.idType, name:line.name,currency:line.cu
 
 MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities),pledgedQuantities:TOFLOAT(line.pledgedQuantities),settledQuantities: TOFLOAT(line.settledQuantities),
 	internalCost:TOFLOAT(line.internalCost),opptCost:TOFLOAT(line.opptCost)}]->(a)
-WITH  c,a,line,Account
 
-UNWIND Account AS account
-MATCH (c:Client {id: line.clientId})-[*2]->(acc {id:account})
-MERGE (acc)-[:ACCESSES]->(a)
-
-WITH line,a,acc, timestamp()/1000/60/60/24 AS todayDays
+WITH line,a, timestamp()/1000/60/60/24 AS todayDays
 
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
 	ELSE [] END | SET a.ticker=line.ticker)
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityDate)<>"" THEN [1] 
 	ELSE [] END | SET a.issueDate=line.issueDate, a.maturityDate=line.maturityDate)
-WITH a,todayDays,acc
+WITH a,todayDays
 CALL apoc.date.parse(a.maturityDate,'d','MM/dd/yyyy') YIELD value AS futureDays
 SET a.timeToMaturityDays = CASE WHEN futureDays>todayDays THEN TOFLOAT(futureDays-todayDays)
                                 ELSE 0 END,
     a.timeToMaturityYears = a.timeToMaturityDays/365
 
-WITH a,acc
+WITH a
 
 MATCH (a)<--(c:Client)-->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
 WHERE a.type=ac.type
@@ -37,11 +32,3 @@ FOREACH (ignoreMe IN CASE WHEN a.ticker=ac.ticker THEN 1
 	WHEN UPPER(a.type)='GOLD' THEN 1
 	WHEN a.timeToMaturityYears<ac.maturityUp AND  a.timeToMaturityYears>ac.maturityLb THEN 1
 	ELSE [] END | MERGE (a)-[i:IS_IN]->(ac))
-
-WITH a
-MATCH (c:Client)-[*2]->(acc:Account)-[:ACCESSES]->(a)-[:IS_IN]->(ac)-[ie:IS_ELIGIBLE_UNDER]->(ag:Agreement)
-WHERE (c)-[:POSSESSES]->(a)
-AND (c)-->(ag)
-MERGE (a)-[:IS_AVAILABLE_FOR {haircut:ie.haircut,FXHaircut:ie.FXHaircut,interestRate:ie.interestRate,
-	externalCost:ie.externalCost,FXRate: ie.FXRate, callType:ie.callType}]->(ag)
-

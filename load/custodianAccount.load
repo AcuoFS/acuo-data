@@ -1,7 +1,13 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/custodian.csv' 
-AS line
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/custodianAccount.csv' 
+AS line 
+WITH line, SPLIT(line.tradingAccountId,'|') AS Accounts
 
-MATCH (a:Asset {id:line.assetId}), (cust:Costodian {id:line.CostodianId})
 MERGE (custac: CustodianAccount {id:line.accountId,name:line.accountName,region:line.accountRegion})
-MERGE (custac)<-[:IS_HELD_BY {quantity: line.quantities, businessTimeFrom:line.businessTimeFrom,businessTimeTo:line.businessTimeTo}]-(a)
+WITH custac,line,Accounts
+MATCH (cust:Custodian {id:line.custodianId})
 MERGE (custac)<-[:MANAGES]-(cust)
+
+WITH Accounts,custac
+UNWIND Accounts AS Account
+MATCH (acc:Account {id:Account})
+MERGE (custac)<-[:ACCESSES]-(acc)
