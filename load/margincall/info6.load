@@ -29,5 +29,5 @@ MATCH (pl:MarginCall {id:line.CallId})
 WHERE line.NewStatus = 'Rejected' OR line.NewStatus = 'PledgeCanceled'
 WITH line, pl, RANGE(0, SIZE(SPLIT(pl.assetsPledged, '|'))-1) as len
 UNWIND(len) as i
-	(a:Asset {id:SPLIT(pl.assetsPledged, '|')[i]})<-[h:HOLDS]-(:CustodianAccount {id:SPLIT(pl.pledgedCustodianAccount, '|')[i]})
+	MATCH (a:Asset {id:SPLIT(pl.assetsPledged, '|')[i]})<-[h:HOLDS]-(:CustodianAccount {id:SPLIT(pl.pledgedCustodianAccount, '|')[i]})
 	SET h.pledgedQuantities = h.pledgedQuantities - toFloat(SPLIT(pl.pledgedQuantities, '|')[i])

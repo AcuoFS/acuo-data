@@ -16,8 +16,8 @@ MERGE (ndf:Trade {id:line.Id,
 		fixingDate:line.FixingDate,
 		fixingRateToday:toFloat(line.FixingRateToday),
 		cashSettlement:toFloat(line.CashSettlement), 
-		markToMarketT:line.MarkToMarketT,
-		markToMarketTm1:line.MarkToMarketTm1})
+		markToMarketT:toFloat(line.MarkToMarketT),
+		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
 SET ndf:NDF
 
 MERGE (e)-[:SIGNS]->(a)

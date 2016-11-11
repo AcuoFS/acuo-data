@@ -20,8 +20,8 @@ MERGE (irs:Trade {id:line.TradeId,
 		resetFreqPay:line.ResetFrequencyPay,
 		payFreqReceive:line.PaymentFrequencyReceive,
 		payFreqPay:line.PaymentFrequencyPay, 
-		markToMarketT:line.MarkToMarketT,
-		markToMarketTm1:line.MarkToMarketTm1})
+		markToMarketT:toFloat(line.MarkToMarketT),
+		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
 SET irs:IRS
 
 MERGE (e)-[:SIGNS]->(a)
