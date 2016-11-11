@@ -56,12 +56,12 @@ test.marginCallProperties = function() {
 }
 
 test.quantities = function() {
-  qty1 = "MATCH (:CustodyAccount {id:'custac2'})-[h:HOLDS]->(:Asset{id:'GBP'}) RETURN h.settledQuantities as q"
-  checkEquals(cypher(graph, qty1)$q, 36100)
-  qty2 = "MATCH (:CustodyAccount {id:'custac1'})-[h:HOLDS]->(:Asset{id:'US912796HW25'}) RETURN h.pledgedQuantities as q"
+  qty1 = "MATCH (:CustodianAccount {id:'custac2'})-[h:HOLDS]->(:Asset{id:'GBP'}) RETURN h.settledQuantities as q"
+  checkEquals(cypher(graph, qty1)$q, 30000)
+  qty2 = "MATCH (:CustodianAccount {id:'custac1'})-[h:HOLDS]->(:Asset{id:'US912796HW25'}) RETURN h.pledgedQuantities as q"
   checkEquals(cypher(graph, qty2)$q, 0)
-  qty3 = "MATCH (:CustodyAccount {id:'custac3'})-[h:HOLDS]->(:Asset{id:'37833100'}) RETURN h.settledQuantities as q"
+  qty3 = "MATCH (:CustodianAccount {id:'custac3'})-[h:HOLDS]->(:Asset{id:'37833100'}) RETURN h.settledQuantities as q"
   checkEquals(cypher(graph, qty3)$q, 200)
-  qty4 = "MATCH (:CustodyAccount {id:'custac4'})-[h:HOLDS]->(:Asset{id:'46625H100'}) RETURN h.pledgedQuantities as q"
+  qty4 = "MATCH (:CustodianAccount {id:'custac4'})-[h:HOLDS]->(:Asset{id:'46625H100'}) RETURN h.pledgedQuantities as q"
   checkEquals(cypher(graph, qty4)$q, 0)
 }
