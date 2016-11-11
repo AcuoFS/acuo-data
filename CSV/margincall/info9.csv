@@ -1,4 +1,4 @@
-PrevStatus,NewStatus,Assets,Quantities,Time,CallId
-Rejected,Pledged,GBP,15000,26/10/16 18:41,mc2
-DisputeCanceled,Pledged,US912796HW25|GBP|37833100|46625H100,100|1800|100|100,26/10/16 18:41,mc5
-PledgeCanceled,Pledged,GBP,10000,26/10/16 18:41,mc8
+PrevStatus,NewStatus,Assets,Quantities,CustodianAccount,Time,CallId
+Rejected,Pledged,GBP,15000,custac5,26/10/16 18:41,mc2
+DisputeCanceled,Pledged,US912796HW25|GBP|37833100|46625H100,100|1800|100|100,custac1|custac1|custac3|custac4,26/10/16 18:41,mc5
+PledgeCanceled,Pledged,GBP,10000,custac5,26/10/16 18:41,mc8
