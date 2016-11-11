@@ -27,5 +27,9 @@ MERGE (mc)-[:DIRECTED_TO]->(c)
 WITH line
 
 MATCH (mc:MarginCall {id:line.CallId})-[:STEMS_FROM]->(a:Agreement)
+SET m.notificationTime = m.callDate + ' ' + a.notificationTime
+WITH *
 WHERE mc.totalCallAmount < a.MTA
 SET mc.belowMTA=1
+
+
