@@ -16,8 +16,8 @@ MERGE (opt:Trade {id:line.TradeId,
 		callPut:line.CallPut,
 		strikePrice:toFloat(line.StrikePrice),
 		type:line.Type, 
-		markToMarketT:line.MarkToMarketT,
-		markToMarketTm1:line.MarkToMarketTm1})
+		markToMarketT:toFloat(line.MarkToMarketT),
+		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
 SET opt:Opt
 
 MERGE (e)-[:SIGNS]->(a)

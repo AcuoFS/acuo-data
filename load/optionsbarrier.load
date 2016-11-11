@@ -19,8 +19,8 @@ MERGE (opt:Trade {id:line.TradeId,
 		barrierType:line.BarrierType, 
 		knockType:line.KnockType, 
 		barrierLevel:toFloat(line.BarrierLevel), 
-		markToMarketT:line.MarkToMarketT,
-		markToMarketTm1:line.MarkToMarketTm1})
+		markToMarketT:toFloat(line.MarkToMarketT),
+		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
 SET opt:Opt
 
 MERGE (e)-[:SIGNS]->(a)

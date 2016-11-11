@@ -13,8 +13,8 @@ MERGE (f:Trade {id:line.TradeId,
 		baseCurrencyAmount:toFloat(line.BaseCurrencyAmount),
 		counterCurrencyAmount:toFloat(line.CounterCurrencyAmount),
 		paymentDate:line.PaymentDate, 
-		markToMarketT:line.MarkToMarketT,
-		markToMarketTm1:line.MarkToMarketTm1})
+		markToMarketT:toFloat(line.MarkToMarketT),
+		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
 
 SET f:FXSI
 

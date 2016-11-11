@@ -17,8 +17,8 @@ MERGE (cds:Trade {id:line.TradeId,
 		factor:toFloat(line.Factor),
 		couponRate:toFloat(line.CouponRate),
 		seniority:line.Seniority, 
-		markToMarketT:line.MarkToMarketT,
-		markToMarketTm1:line.MarkToMarketTm1})
+		markToMarketT:toFloat(line.MarkToMarketT),
+		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
 SET cds:CDS
 
 MERGE (e)-[:SIGNS]->(a)

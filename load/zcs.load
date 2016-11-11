@@ -17,8 +17,8 @@ MERGE (zcs:Trade {id:line.TradeId,
 		indexTenor:line.IndexTenor,
 		resetFreq:line.ResetFrequency,
 		payFreqFloat:line.PaymentFrequencyFloating, 
-		markToMarketT:line.MarkToMarketT,
-		markToMarketTm1:line.MarkToMarketTm1})
+		markToMarketT:toFloat(line.MarkToMarketT),
+		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
 SET zcs:ZCS
 
 MERGE (e)-[:SIGNS]->(a)

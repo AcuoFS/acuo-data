@@ -15,8 +15,8 @@ MERGE (fra:Trade {id:line.TradeId,
 		fixedRate:toFloat(line.AgreedRate),
 		index:line.Index,
 		indexTenor:line.IndexTenor, 
-		markToMarketT:line.MarkToMarketT,
-		markToMarketTm1:line.MarkToMarketTm1})
+		markToMarketT:toFloat(line.MarkToMarketT),
+		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
 SET fra:FRA
 
 MERGE (e)-[:SIGNS]->(a)
