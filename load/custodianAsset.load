@@ -2,8 +2,15 @@ LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/m
 AS line 
 
 MATCH (custac:CustodianAccount {id:line.accountId}), (a:Asset {id:line.assetId})
-MERGE (custac)-[h:HOLDS {quantities:TOFLOAT(line.quantities),pledgedQuantities:TOFLOAT(line.pledgedQuantities),settledQuantities:TOFLOAT(line.settledQuantities),
-	businessTimeFrom:line.businessTimeFrom, businessTimeTo:line.businessTimeTo}]->(a)
+MERGE (custac)-[h:HOLDS {businessTimeFrom:line.businessTimeFrom, businessTimeTo:line.businessTimeTo}]->(a)
+ON CREATE SET
+	h.quantities=TOFLOAT(line.quantities),
+	h.pledgedQuantities=TOFLOAT(line.pledgedQuantities),
+	h.settledQuantities=TOFLOAT(line.settledQuantities)
+ON MATCH SET
+	h.quantities=TOFLOAT(line.quantities),
+	h.pledgedQuantities=TOFLOAT(line.pledgedQuantities),
+	h.settledQuantities=TOFLOAT(line.settledQuantities)
 
 WITH custac,a
 MATCH (ac)-[ie:IS_ELIGIBLE_UNDER]->(ag:Agreement)<-[:SIGNS]-(e:LegalEntity)-[:HAS]->(acc:Account)-[:ACCESSES]->(custac)-[:HOLDS]->(a)
