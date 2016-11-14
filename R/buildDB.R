@@ -5,8 +5,9 @@ buildDataBase = function() {
     query = paste(readLines(path), collapse="\n")
     return (query)
   }
-  
-  #  graph = startGraph("http://neo4j:7474/db/data")
+
+
+#  graph = startGraph("http://neo4j:7474/db/data")
   graph = startGraph("http://localhost:7474/db/data/")
   
   clear(graph,input=FALSE)
@@ -33,7 +34,7 @@ buildDataBase = function() {
                  '/custodianAccount.load',
                  '/custodianAsset.load',
                  '/margincall/initmc.load')
-  
+
   for (i in 1:10) {
     load.name <- c(load.name, paste('/margincall/info', toString(i), '.load', sep=''))
   }
@@ -47,9 +48,7 @@ buildDataBase = function() {
                    '/loadconstraint/custodianAccount.load',
                    '/loadconstraint/margincall.load',
                    '/loadconstraint/trade.load')
-  
-  load.name <- c(load.constr,paste('/load',load.name,sep=""), ('/load/notificationtime.load'))
-  
+
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master'
   
   load.url<-paste(load.preurl,sep='',load.name)
