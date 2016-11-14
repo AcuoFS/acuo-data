@@ -5,37 +5,38 @@ buildDataBase = function() {
     query = paste(readLines(path), collapse="\n")
     return (query)
   }
-  
-  #  graph = startGraph("http://neo4j:7474/db/data")
+
+
+#  graph = startGraph("http://neo4j:7474/db/data")
   graph = startGraph("http://localhost:7474/db/data/")
   
   clear(graph,input=FALSE)
   
-  load.name <- c('/client.load',
-                 '/legalentity.load',
-                 '/account.load',
-                 '/agreement.load',
-                 '/recipientInfo.load',
-                 '/cds.load',  
-                 '/irsvanilla.load', 
-                 '/irsfloatfloat.load', 
-                 '/ndf.load', 
-                 '/fxsi.load', 
-                 '/fxsw.load',
-                 '/optionsvanilla.load', 
-                 '/optionsbarrier.load', 
-                 '/fra.load',
-                 '/zcs.load', 
-                 '/swaption.load',
-                 '/assetCategory.load',
-                 '/assetInventory.load', 
-                 '/custodian.load',
-                 '/custodianAccount.load',
-                 '/custodianAsset.load',
-                 '/margincall/initmc.load')
-  
+  load.name <- c('/load/client.load',
+                 '/load/legalentity.load',
+                 '/load/account.load',
+                 '/load/agreement.load',
+                 '/load/recipientInfo.load',
+                 '/load/cds.load',  
+                 '/load/irsvanilla.load', 
+                 '/load/irsfloatfloat.load', 
+                 '/load/ndf.load', 
+                 '/load/fxsi.load', 
+                 '/load/fxsw.load',
+                 '/load/optionsvanilla.load', 
+                 '/load/optionsbarrier.load', 
+                 '/load/fra.load',
+                 '/load/zcs.load', 
+                 '/load/swaption.load',
+                 '/load/assetCategory.load',
+                 '/load/assetInventory.load', 
+                 '/load/custodian.load',
+                 '/load/custodianAccount.load',
+                 '/load/custodianAsset.load',
+                 '/load/margincall/initmc.load')
+
   for (i in 1:10) {
-    load.name <- c(load.name, paste('/margincall/info', toString(i), '.load', sep=''))
+    load.name <- c(load.name, paste('/load/margincall/info', toString(i), '.load', sep=''))
   }
   
   load.constr <- c('/loadconstraint/account.load', 
@@ -47,9 +48,7 @@ buildDataBase = function() {
                    '/loadconstraint/custodianAccount.load',
                    '/loadconstraint/margincall.load',
                    '/loadconstraint/trade.load')
-  
-  load.name <- c(load.constr,paste('/load',load.name,sep=""), ('/load/notificationtime.load'))
-  
+
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master'
   
   load.url<-paste(load.preurl,sep='',load.name)
