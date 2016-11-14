@@ -6,7 +6,8 @@ WHERE line.clientId IS NOT NULL
 MATCH (c:Client {id:line.clientId})
 MERGE (a:Asset {id: line.id,idType: line.idType, name:line.name,currency:line.currency,value:TOFLOAT(line.value),yield: TOFLOAT(line.yield),type:line.type})
 
-MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities),pledgedQuantities:TOFLOAT(line.pledgedQuantities),settledQuantities: TOFLOAT(line.settledQuantities),
+//MERGE (c)-[:POSSESSES {quantities:TOFLOAT(line.quantities),pledgedQuantities:TOFLOAT(line.pledgedQuantities),settledQuantities: TOFLOAT(line.settledQuantities),
+MERGE (c)-[:POSSESSES {quantities:0,pledgedQuantities:0,settledQuantities: 0,
 	internalCost:TOFLOAT(line.internalCost),opptCost:TOFLOAT(line.opptCost)}]->(a)
 
 WITH line,a, timestamp()/1000/60/60/24 AS todayDays
