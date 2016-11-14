@@ -7,8 +7,8 @@ buildDataBase = function() {
   }
 
 
-#  graph = startGraph("http://neo4j:7474/db/data")
-  graph = startGraph("http://localhost:7474/db/data/")
+  graph = startGraph("http://neo4j:7474/db/data")
+#  graph = startGraph("http://localhost:7474/db/data/")
   
   clear(graph,input=FALSE)
   
@@ -16,7 +16,6 @@ buildDataBase = function() {
                  '/load/legalentity.load',
                  '/load/account.load',
                  '/load/agreement.load',
-                 '/load/recipientInfo.load',
                  '/load/cds.load',  
                  '/load/irsvanilla.load', 
                  '/load/irsfloatfloat.load', 
@@ -28,6 +27,7 @@ buildDataBase = function() {
                  '/load/fra.load',
                  '/load/zcs.load', 
                  '/load/swaption.load',
+                 '/load/recipientInfo.load',
                  '/load/assetCategory.load',
                  '/load/assetInventory.load', 
                  '/load/custodian.load',
