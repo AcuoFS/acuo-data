@@ -14,6 +14,7 @@ MERGE (a)-[:IS_AVAILABLE_FOR {haircut:ie.haircut,FXHaircut:ie.FXHaircut,interest
 WITH DISTINCT a
 
 MATCH path1 = (custac:CustodianAccount)-[h:HOLDS]->(a)<-[p:POSSESSES]-(c:Client)
+WHERE (c)-[*3]->(custac)
 
 SET p.quantities = p.quantities+h.quantities,
     p.pledgedQuantities = p.pledgedQuantities+h.pledgedQuantities,
