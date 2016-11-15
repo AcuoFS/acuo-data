@@ -1,0 +1,40 @@
+//WITH timestamp()/1000/60/60 AS now
+
+MATCH (ag:Agreement)<-[:STEMS_FROM]-(m:MarginCall {callType:'Variation'})
+WHERE m.id IN {callId}
+
+CALL apoc.date.parse(m.notificationTime, 'm', 'dd/MM/yy HH:mm') YIELD value AS notificationMinute
+WITH *
+MATCH (m)-[f:FIRST]->(:Step {step:'Presented'})
+CALL apoc.date.parse(f.time, 'm', 'dd/MM/yy HH:mm') YIELD value AS callTimeMinute
+
+WITH *
+WHERE callTimeMinute <= notificationMinute
+
+MATCH path=(acc:Account)-[:ACCESSES]->(ca:CustodianAccount)-[h:HOLDS]->(a:Asset)-[:IS_AVAILABLE_FOR]->(ag:Agreement)<-[s:SIGNS]-(e:LegalEntity)
+
+WHERE (e)-[:HAS]->(acc)
+AND (m)-[:STEMS_FROM]-(ag)
+//AND a.id IN ['USD','GBP']
+
+WITH DISTINCT path, e,acc,ca,ag,m,a,SPLIT(h.businessTimeTo,':') AS hTo, SPLIT(s.businessTimeTo,':') AS sTo
+
+WITH m, (TOINT(hTo[0])*60+TOINT(hTo[1])) AS hToNum, (TOINT(sTo[0])*60+TOINT(sTo[1])) AS sToNum, hTo,sTo
+
+WITH m.id AS m, [min(hToNum),min(sToNum)] as time
+
+WITH m, CASE WHEN time[0]<time[1] THEN time[0] ELSE time[1] END AS time
+
+
+WITH m,time,TOINT(time/60) AS hour
+WITH m,time,TOSTRING(time-hour*60) AS minute, TOSTRING(hour) AS hour
+WITH m, 
+	 CASE WHEN LENGTH(TRIM(minute)) = 1 THEN '0'+TRIM(minute)
+		  WHEN LENGTH(TRIM(minute)) = 2 THEN TRIM(minute)
+          ELSE []	END AS minute,
+	 CASE WHEN LENGTH(TRIM(hour)) = 1 THEN '0'+TRIM(hour)
+		  WHEN LENGTH(TRIM(hour)) = 2 THEN TRIM(hour)
+		  ELSE [] END AS hour
+
+RETURN m,(hour+':'+minute) AS time
+ORDER BY m
