@@ -1,11 +1,11 @@
 library('RNeo4j')
 
-buildDataBase = function() {
-  readload <- function(path) {
-    query = paste(readLines(path), collapse="\n")
-    return (query)
-  }
+readLoad <- function(path) {
+  query = paste(readLines(path), collapse="\n")
+  return (query)
+}
 
+buildDataBase = function() {
 
 #  graph = startGraph("http://neo4j:7474/db/data")
   graph = startGraph("http://localhost:7474/db/data/")
@@ -56,7 +56,7 @@ buildDataBase = function() {
   load.query<-list()
   
   for(i in 1:length(load.name)){
-    load.query[i] <- readload(load.url[i])
+    load.query[i] <- readLoad(load.url[i])
     cypher(graph,load.query[[i]])
   }
   
