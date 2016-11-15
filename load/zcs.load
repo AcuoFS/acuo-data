@@ -27,6 +27,3 @@ MERGE (zcs)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
 
 WITH line
-
-MATCH (zcs:ZCS {id:line.TradeId})
-WHERE line.LegPay = 'Floating' SET zcs.nextCouponPaymentDate = line.NextCouponPaymentDate
