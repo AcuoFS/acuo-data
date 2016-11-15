@@ -13,10 +13,10 @@ MERGE (zcs:Trade {id:line.TradeId,
 		notional:toFloat(line.Notional),
 		currency:line.Currency,
 		fixedRate:toFloat(line.RateValue),
-		index:line.Index,
+		indexName:line.IndexName,
 		indexTenor:line.IndexTenor,
-		resetFreq:line.ResetFrequency,
-		payFreqFloat:line.PaymentFrequencyFloating, 
+		initialIndex:toFloat(line.InitialIndex),
+		finalIndex:toFloat(line.FinalIndex),
 		markToMarketT:toFloat(line.MarkToMarketT),
 		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
 SET zcs:ZCS
