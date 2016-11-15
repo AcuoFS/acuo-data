@@ -191,18 +191,14 @@ test.propzcs = function() {
   checkEquals(cypher(graph, propquery5)$e, 'USD')
   propquery7 = "MATCH (t:ZCS {id:'zcs2'}) return t.fixedRate as g"
   checkEquals(cypher(graph, propquery7)$g, 2.3)
-  propquery8 = "MATCH (t:ZCS {id:'zcs3'}) return t.index as h"
+  propquery8 = "MATCH (t:ZCS {id:'zcs3'}) return t.indexName as h"
   checkEquals(cypher(graph, propquery8)$h, 'USD-LIBOR-BBA')
   propquery9 = "MATCH (t:ZCS {id:'zcs4'}) return t.indexTenor as i"
   checkEquals(cypher(graph, propquery9)$i, '3M')
-  propquery10 = "MATCH (t:ZCS {id:'zcs5'}) return t.resetFreq as j"
-  checkEquals(cypher(graph, propquery10)$j, '3M')
-  propquery11 = "MATCH (t:ZCS {id:'zcs1'}) return t.payFreqFloat as k"
-  checkEquals(cypher(graph, propquery11)$k, '1T')
-  propquery13 = "MATCH (t:ZCS {id:'zcs3'}) return t.nextCouponPaymentDate as m"
-  checkEquals(cypher(graph, propquery13)$m, '12/05/13')
-  propquery14 = "MATCH (t:ZCS {id:'zcs4'}) return t.nextCouponPaymentDate as n"
-  checkEquals(cypher(graph, propquery14)$n, NA)
+  propquery10 = "MATCH (t:ZCS {id:'zcs5'}) return t.initialIndex as j"
+  checkEquals(cypher(graph, propquery10)$j, 9999)
+  propquery11 = "MATCH (t:ZCS {id:'zcs1'}) return t.finalIndex as k"
+  checkEquals(cypher(graph, propquery11)$k, 10995)
 }
 
 # I want to test that my swaptions have the correct properties:
