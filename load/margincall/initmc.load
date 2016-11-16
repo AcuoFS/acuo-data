@@ -2,7 +2,7 @@ LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/m
 AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
-MATCH (c:Client)-[:DELIVERS_MARGIN_ACC_TO]->(a)
+MATCH (c:Client)-[:OWNS]->(e:LegalEntity)-[s:SIGNS]->(a)
 
 MERGE (mc:MarginCall {id:line.CallId,
                       valuationDate:line.ValuationDate,
@@ -16,8 +16,8 @@ MERGE (mc:MarginCall {id:line.CallId,
                       pendingCollateral:toFloat(line.PendingCollateral),
                       exposure:toFloat(line.Exposure),
                       IMRole:line.IMRole,
-                      roundedReturnAmount:floor(toFloat(line.ReturnAmount)/a.rounding)*a.rounding, 
-                      roundedDeliverAmount:ceil(toFloat(line.DeliverAmount)/a.rounding)*a.rounding,
+                      roundedReturnAmount:floor(toFloat(line.ReturnAmount)/s.rounding)*s.rounding, 
+                      roundedDeliverAmount:ceil(toFloat(line.DeliverAmount)/s.rounding)*s.rounding,
                       belowMTA:0,
                       parentRank:1})
 
@@ -29,7 +29,7 @@ WITH line
 MATCH (mc:MarginCall {id:line.CallId})-[:STEMS_FROM]->(a:Agreement)
 SET mc.notificationTime = mc.callDate + ' ' + a.notificationTime
 WITH *
-WHERE mc.totalCallAmount < a.MTA
+WHERE mc.totalCallAmount < s.MTA
 SET mc.belowMTA=1
 
 
