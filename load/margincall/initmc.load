@@ -2,7 +2,7 @@ LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/m
 AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
-MATCH (c:Client)-[:OWNS]->(e:LegalEntity)-[s:SIGNS]->(a)
+MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:SIGNS]->(a)
 
 MERGE (mc:MarginCall {id:line.CallId,
                       valuationDate:line.ValuationDate,
