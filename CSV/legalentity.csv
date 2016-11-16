@@ -1,6 +1,6 @@
-EntityName,EntityId,ClientId
-legalentity1,e1,c1
-legalentity2,e2,c1
-legalentity3,e3,c1
-legalentity4,e4,c2
-legalentity5,e5,c2
+EntityName,EntityId,ClientId,HolidayZone
+legalentity1,e1,c1,London
+legalentity2,e2,c1,London
+legalentity3,e3,c1,New-York
+legalentity4,e4,c2,London
+legalentity5,e5,c2,New-York
