@@ -2,7 +2,8 @@ LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/m
 AS line
 
 MATCH (a:Agreement)<-[s:SIGNS]-(e:LegalEntity)
-WHERE a.id = line.AgreementId
+WHERE a.id = line.agreementId
+AND e.id = line.legalEntityId
 SET s.recipientId = line.recipientId,
 	s.recipientAddress = line.recipientAddress,
 	s.recipientRegion = line.recipientRegion,
