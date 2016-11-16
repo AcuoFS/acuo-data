@@ -49,6 +49,8 @@ buildDataBase = function() {
                    '/loadconstraint/margincall.load',
                    '/loadconstraint/trade.load')
 
+  load.name <- c(load.constr,load.name)
+  
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master'
   
   load.url<-paste(load.preurl,sep='',load.name)
