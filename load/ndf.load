@@ -3,7 +3,6 @@ AS line
 
 MATCH (acc:Account {id:line.AccountId})
 MATCH (a:Agreement {id:line.AgreementId})
-MATCH (e:LegalEntity)-[:HAS]->(acc:Account)
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
 MERGE (ndf:Trade {id:line.Id,
@@ -20,7 +19,6 @@ MERGE (ndf:Trade {id:line.Id,
 		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
 SET ndf:NDF
 
-MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(ndf)
 MERGE (ndf)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)

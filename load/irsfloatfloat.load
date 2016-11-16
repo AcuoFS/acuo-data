@@ -3,7 +3,6 @@ AS line
 
 MATCH (acc:Account {id:line.AccountId})
 MATCH (a:Agreement {id:line.AgreementId})
-MATCH (e:LegalEntity)-[:HAS]->(acc:Account)
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
 
 MERGE (irs:Trade {id:line.TradeId,
@@ -24,7 +23,6 @@ MERGE (irs:Trade {id:line.TradeId,
 		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
 SET irs:IRS
 
-MERGE (e)-[:SIGNS]->(a)
 MERGE (acc)-[:POSITIONS_ON]->(irs)
 MERGE (irs)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
