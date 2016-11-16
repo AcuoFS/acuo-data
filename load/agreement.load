@@ -1,7 +1,11 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/agreement.csv' 
 AS line
 
-MERGE (:Agreement {id:line.AgreementId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, MTA:toFloat(line.MTA), rounding:toFloat(line.Rounding), notificationTime:line.NotificationTime})
+MERGE (a:Agreement {id:line.AgreementId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, notificationTime:line.NotificationTime})
+
+MERGE (l1:LegalEntity {id:line.Party1})-[s1:SIGNS]->(a)<-[s2:SIGNS]-(l2:LegalEntity {id:line.Party2})
+ON CREATE SET l1.holidayZone = line.HolidayZone1, l2.holidayZone = line.HolidayZone2
+SET s1.MTA = line.MTA1, s1.initialMarginBalance = line.InitialBalance1, s1.variationMarginBalance = line.VariationBalance1, s1.rounding=line.Rounding1, s2.MTA = line.MTA2, s2.initialMarginBalance = line.InitialBalance2, s2.variationMarginBalance = line.VariationBalance2, s2.rounding=line.Rounding2
 
 WITH line
 
