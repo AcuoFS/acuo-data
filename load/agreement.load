@@ -3,17 +3,15 @@ AS line
 
 MERGE (a:Agreement {id:line.AgreementId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, notificationTime:line.NotificationTime})
 
-MERGE (l1:LegalEntity {id:line.Party1})
-ON CREATE SET l1.holidayZone = line.HolidayZone1
+WITH line, a,
+		CASE WHEN NOT line.Type = 'cleared' THEN [1] ELSE []
+		END
+	AS bilateral
 
-MERGE (l2:LegalEntity {id:line.Party2})
-ON CREATE SET l2.holidayZone = line.HolidayZone2
-
-MERGE (l1)-[s1:SIGNS]->(a)
-SET s1.MTA = line.MTA1, s1.initialMarginBalance = line.InitialBalance1, s1.variationMarginBalance = line.VariationBalance1, s1.rounding=line.Rounding1
-
-MERGE (l2)-[s2:SIGNS]->(a)
-SET s2.MTA = line.MTA2, s2.initialMarginBalance = line.InitialBalance2, s2.variationMarginBalance = line.VariationBalance2, s2.rounding=line.Rounding2
+FOREACH (i in bilateral | MERGE (l1:LegalEntity {id:line.Party1, holidayZone:line.HolidayZone1})
+                          MERGE (l2:LegalEntity {id:line.Party2, holidayZone = line.HolidayZone2})
+                          MERGE (l1)-[s1:SIGNS {MTA:toFloat(line.MTA1), initialMarginBalance:toFloat(line.InitialBalance1), variationMarginBalance:toFloat(line.VariationBalance1), rounding=toFloat(line.Rounding1)}]->(a)
+                          MERGE (l2)-[s2:SIGNS {MTA:toFloat(line.MTA2), initialMarginBalance:toFloat(line.InitialBalance2), variationMarginBalance:toFloat(line.VariationBalance2), rounding=toFloat(line.Rounding2)}]->(a))
 
 WITH line
 
