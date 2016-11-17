@@ -25,3 +25,11 @@ SET irs:IRS
 MERGE (acc)-[:POSITIONS_ON]->(irs)
 MERGE (irs)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
+MERGE (e)-[:SIGNS]->(a)
+
+//with *,
+//		CASE WHEN NOT (e)-[:SIGNS]->(a) THEN [1] ELSE []
+//		END
+//	as noSign
+
+//FOREACH (i in noSign | MERGE (e)-[:SIGNS]->(a))
