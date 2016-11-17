@@ -1,20 +1,6 @@
 library(RNeo4j)
 library(RUnit)
 
-# I want to test whether the correct amount of nodes was created:
-
-test.numnode = function() {
-  numnodequery = "MATCH (n) return count(distinct(n)) AS c"
-  checkEquals(cypher(graph, numnodequery)$c, 174)
-}
-
-# I want to test whether the correct amount of relationships was created:
-
-test.numrel = function() {
-  numnodequery = "MATCH (m)-[r]->(n) return count(distinct(r)) AS c"
-  checkEquals(cypher(graph, numnodequery)$c, 369)
-}
-
 # I want to test whether the relationships I created are correct:
 
 test.rel = function() {
@@ -68,3 +54,30 @@ test.id = function() {
   idquery11 = "MATCH (:Client {id:'c1'})-[:MANAGES]->(:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t {id:'swopt1'}) return t.id as k"
   checkEquals(cypher(graph, idquery11)$k, 'swopt1')
 }
+
+# I want to test whether Entities, Agreements and the SIGNS relationship have the correct properties
+
+test.agree = function() {
+  query1 = "MATCH (e:LegalEntity {id:'e1'}) RETURN e.holidayZone as r"
+  checkEquals(cypher(graph, query1)$r, 'London')
+  query2 = "MATCH (e:LegalEntity {id:'e7'}) RETURN e.holidayZone as r"
+  checkEquals(cypher(graph, query2)$r, 'Singapore')
+  query3 = "MATCH (:LegalEntity{id:'e1'})-[s:SIGNS]->(:Agreement {id:'a2'}) RETURN s.MTA as r"
+  checkEquals(cypher(graph, query3)$r, 2500)
+  query4 = "MATCH (:LegalEntity{id:'e7'})-[s:SIGNS]->(:Agreement {id:'a3'}) RETURN s.MTA as r"
+  checkEquals(cypher(graph, query4)$r, 2500)
+  query5 = "MATCH (:LegalEntity{id:'e3'})-[s:SIGNS]->(:Agreement {id:'a6'}) RETURN s.initialMarginBalance as r"
+  checkEquals(cypher(graph, query5)$r, 1505)
+  query6 = "MATCH (:LegalEntity{id:'e9'})-[s:SIGNS]->(:Agreement {id:'a7'}) RETURN s.initialMarginBalance as r"
+  checkEquals(cypher(graph, query6)$r, 1406)
+  query7 = "MATCH (:LegalEntity{id:'e5'})-[s:SIGNS]->(:Agreement {id:'a10'}) RETURN s.variationMarginBalance as r"
+  checkEquals(cypher(graph, query7)$r, 1050)
+  query8 = "MATCH (:LegalEntity{id:'e7'})-[s:SIGNS]->(:Agreement {id:'a11'}) RETURN s.variationMarginBalance as r"
+  checkEquals(cypher(graph, query8)$r, -1000)
+}
+
+
+
+
+
+

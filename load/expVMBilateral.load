@@ -1,0 +1,81 @@
+MATCH (a:Agreement {type:'bilateralOTC'})
+
+WITH a, timestamp()/1000 AS today
+
+CALL apoc.date.format(today,'s', 'dd/MM/yyyy') YIELD value as todayFormatted
+CALL apoc.date.format(today+86400,'s', 'dd/MM/yyyy') YIELD value as tmrFormatted
+
+// Function to figure out whether this is a working day in both locations (we probably need to match the LegalEntity as well as the Counterpart). Directly in Neo4j ? (Where would we store this data ?) Java layer ? R 'Holidays' or 'timeDate' package ? 
+
+WITH *
+
+MATCH (:Client)-[:MANAGES]->(e1:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t:Trade)-[:FOLLOWS]->(a)
+MATCH (e1)-[s1:SIGNS]->(a)<-[s2:SIGNS]-(e2:LegalEntity)
+WHERE e2.id <> e1.id // Fetch party, counterparty and SIGNS relationship
+
+// Is MtM updated every day ? If so, can we just fetch it ?
+
+WITH todayFormatted, tmrFormatted, a, e1, e2, s1, s2, sum(t.markToMarketT) as expT, sum(t.markToMarketTm1) as expTm1
+
+WITH *, expT - expTm1 as diff
+
+WITH *, 
+		CASE WHEN diff >= s2.MTA >= 0 THEN [1] ELSE [] // My exposure increased -> the counterpart gets a margin call. 
+		END
+	as oppMarginCall
+
+FOREACH (i in oppMarginCall | MERGE (:MarginCall {valuationDate:todayFormatted,
+                                                  callDate:tmrFormatted,
+                                                  callType:'Variation',
+                                                  agreementId:a.id,
+                                                  status:'Expected',
+                                                  transferorId:'e2', 
+                                                  transfereeId:'e1', 
+                                                  totalCallAmount:abs(diff),
+                                                  balanceTransferor:s2.variationMarginBalance,
+                                                  roundingTransferor:s2.rounding})
+)
+
+WITH *, 
+		CASE WHEN -diff >= s1.MTA >= 0 THEN [1] ELSE [] // My exposure decreased -> I get a margin call. 
+		END
+	as selfMarginCall
+
+FOREACH (i in selfMarginCall | MERGE (:MarginCall {valuationDate:todayFormatted,
+                                                  callDate:tmrFormatted,
+                                                  callType:'Variation',
+                                                  agreementId:a.id,
+                                                  status:'Expected',
+                                                  transferorId:'e1', 
+                                                  transfereeId:'e2', 
+                                                  totalCallAmount:abs(diff),
+                                                  balanceTransferor:s1.variationMarginBalance,
+                                                  roundingTransferor:s1.rounding})
+)
+
+WITH *
+
+MATCH (mc:MarginCall {valuationDate:todayFormatted, callType:'Variation', status:'Expected', agreementId:a.id})
+
+WITH *, 
+		CASE WHEN mc.balanceTransferor <= -mc.totalCallAmount < 0 THEN mc.totallCallAmount
+		WHEN -mc.totalCallAmount < mc.balanceTransferor <= 0 THEN -mc.balanceTransferor
+		WHEN mc.balanceTransferor > 0 THEN 0 
+		END
+	AS retValue
+
+SET mc.returnAmount = retValue, mc.deliveryAmount = mc.totalCallAmount - mc.returnAmount, mc.collateralValue = mc.balanceTransferor, mc.exposure = expT, mc.notificationTime = mc.callDate + ' ' + a.notificationTime
+
+MERGE (mc)-[:STEMS_FROM]->(a)
+
+WITH *
+
+MATCH (tor:LegalEntity {id:mc.transferorId})
+MERGE (mc)-[:DIRECTED_TO]->(tor)
+
+WITH * 
+
+MATCH (tee:LegalEntity {id:mc.transfereeId})
+MERGE (mc)-[:SENT_FROM]->(tee)
+
+REMOVE mc.agreement, mc.transferorId, mc.tranfereeId, mc.balanceTransferor, mc.roundingTransferor
