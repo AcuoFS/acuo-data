@@ -1,4 +1,4 @@
-AgreementName,AgreementId,AgreementDate,Type,CCP,Party1,Party2,MTA1,MTA2,InitialBalance1,InitialBalance1,VariationBalance1,VariationBalance2,Rounding1,Rounding2,HolidayZone1,HolidayZone2,NotificationTime
+AgreementName,AgreementId,AgreementDate,Type,CCP,Party1,Party2,MTA1,MTA2,InitialBalance1,InitialBalance2,VariationBalance1,VariationBalance2,Rounding1,Rounding2,HolidayZone1,HolidayZone2,NotificationTime
 agr1,a1,29/07/15,cleared,LCH Clearnet LTD,e1,,,,,,,,,,,,12:00:00
 agr2,a2,29/07/15,bilateralOTC,,e1,e7,2500,2500,1501,1401,1450,-1450,500,500,London,Singapore,12:00:00
 agr3,a3,29/07/15,regulatoryOTC,,e2,e7,2500,2500,1502,1402,1400,-1400,500,500,London,Singapore,12:00:00
