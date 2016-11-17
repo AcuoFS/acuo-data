@@ -1,0 +1,30 @@
+LOAD CSV WITH HEADERS FROM '' 
+AS line
+
+MATCH (pmc {id:line.CallId})-[:DIRECTED_TO]->(c:Client)
+
+WITH line, pmc
+
+MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
+
+WITH pmc, n, line,
+		CASE WHEN NOT ((pmc)-[:FIRST]->()) THEN [1] ELSE []
+		END
+	AS firstnode
+
+FOREACH (i IN firstnode | MERGE (pmc)-[:FIRST {time:line.Time}]->(n))
+
+WITH pmc, n, line
+
+// We delete the previous [:LAST] relationship and add a [:NEXT] relationship
+
+OPTIONAL MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m {step:line.PrevStatus})
+FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
+
+// This is a cancellation node. We still check for safety's sake. 
+
+WITH line
+
+MATCH (pl:MarginCall {id:line.CallId})
+WHERE line.NewStatus = 'Canceled'
+SET pl.cancelReasonCode = line.CancelReasonCode

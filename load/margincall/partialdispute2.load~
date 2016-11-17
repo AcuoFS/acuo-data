@@ -17,7 +17,7 @@ FOREACH (i IN partdispute |
                                                                     callAmount:toFloat(line.AgreedAmount), 
                                                                     markToMarketClient:toFloat(line.MarkToMarket),
                                                                     collateralBalanceClient:toFloat(line.CollateralBalance),
-                                                                    disputeReasonCode:line.DisputeReasonCode, 
+                                                                    reasonCode:line.ReasonCode,
                                                                     parentRank:pmc.parentRank+1
 	})-[:DIRECTED_TO]->(c) 
 
@@ -25,7 +25,7 @@ FOREACH (i IN partdispute |
                                                                     callAmount:pmc.callAmount-toFloat(line.AgreedAmount),
                                                                     markToMarketClient:toFloat(line.MarkToMarket),
                                                                     collateralBalanceClient:toFloat(line.CollateralBalance),
-                                                                    disputeReasonCode:line.DisputeReasonCode, 
+                                                                    reasonCode:line.ReasonCode, 
                                                                     parentRank:pmc.parentRank+1
 	})-[:DIRECTED_TO]->(c)
 )

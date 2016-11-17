@@ -3,7 +3,7 @@ AS line
 
 MATCH (acc:Account {id:line.AccountId})
 MATCH (a:Agreement {id:line.AgreementId})
-MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)
+MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[:HAS]->(acc)
 
 MERGE (opt:Trade {id:line.TradeId,
 		clearingDate:line.ClearingDate,
@@ -22,3 +22,4 @@ SET opt:Opt
 MERGE (acc)-[:POSITIONS_ON]->(opt)
 MERGE (opt)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
+MERGE (e)-[:SIGNS]->(a)
