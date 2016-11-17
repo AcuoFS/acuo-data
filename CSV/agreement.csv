@@ -1,56 +1,56 @@
 AgreementName,AgreementId,AgreementDate,Type,CCP,Party1,Party2,MTA1,MTA2,InitialBalance1,InitialBalance1,VariationBalance1,VariationBalance2,Rounding1,Rounding2,HolidayZone1,HolidayZone2,NotificationTime
-agr1,a1,29/07/15,cleared,LCH Clearnet LTD,e1,e6,2500,2500,1500,1400,1500,-1500,500,500,London,Singapore,12:00:00
+agr1,a1,29/07/15,cleared,LCH Clearnet LTD,e1,,,,,,,,,,,,12:00:00
 agr2,a2,29/07/15,bilateralOTC,,e1,e7,2500,2500,1501,1401,1450,-1450,500,500,London,Singapore,12:00:00
 agr3,a3,29/07/15,regulatoryOTC,,e2,e7,2500,2500,1502,1402,1400,-1400,500,500,London,Singapore,12:00:00
-agr4,a4,29/07/15,cleared,LCH Clearnet LTD,e2,e7,2500,2500,1503,1403,1350,-1350,500,500,London,Singapore,12:00:00
-agr5,a5,09/07/15,cleared,LCH Clearnet LTD,e3,e8,2500,2500,1504,1404,1300,-1300,500,500,New-York,Paris,12:00:00
+agr4,a4,29/07/15,cleared,LCH Clearnet LTD,e2,,,,,,,,,,,,12:00:00
+agr5,a5,09/07/15,cleared,LCH Clearnet LTD,e3,,,,,,,,,,,,12:00:00
 agr6,a6,29/07/15,bilateralOTC,,e3,e8,2500,2500,1505,1405,1250,-1250,500,500,New-York,Paris,12:00:00
 agr7,a7,29/07/15,regulatoryOTC,,e3,e9,2500,2500,1506,1406,1200,-1200,500,500,New-York,London,12:00:00
-agr8,a8,29/07/15,cleared,LCH Clearnet LTD,e4,e6,2500,2500,1507,1407,1150,-1150,500,500,London,Singapore,12:00:00
-agr9,a9,29/07/15,cleared,LCH Clearnet LTD,e4,e7,2500,2500,1508,1408,1100,-1100,500,500,London,Singapore,12:00:00
+agr8,a8,29/07/15,cleared,LCH Clearnet LTD,e4,,,,,,,,,,,,12:00:00
+agr9,a9,29/07/15,cleared,LCH Clearnet LTD,e4,,,,,,,,,,,,12:00:00
 agr10,a10,09/07/15,bilateralOTC,,e5,e7,2500,2500,1509,1409,1050,-1050,500,500,New-York,Singapore,12:00:00
 agr11,a11,29/07/15,regulatoryOTC,,e1,e7,2500,2500,1510,1410,1000,-1000,500,500,London,Singapore,12:00:00
-agr12,a12,29/07/15,cleared,LCH Clearnet LTD,e1,e8,2500,2500,1511,1411,950,-950,500,500,London,Paris,12:00:00
-agr13,a13,29/07/15,cleared,LCH Clearnet LTD,e2,e8,2500,2500,1512,1412,900,-900,500,500,London,Paris,12:00:00
+agr12,a12,29/07/15,cleared,LCH Clearnet LTD,e1,,,,,,,,,,,,12:00:00
+agr13,a13,29/07/15,cleared,LCH Clearnet LTD,e2,,,,,,,,,,,,12:00:00
 agr14,a14,29/07/15,bilateralOTC,,e2,e9,2500,2500,1513,1413,850,-850,500,500,London,London,12:00:00
 agr15,a15,09/07/15,regulatoryOTC,,e3,e6,2500,2500,1514,1414,800,-800,500,500,New-York,Singapore,12:00:00
-agr16,a16,03/05/14,cleared,LCH Clearnet LTD,e3,e7,2500,2500,1515,1415,750,-750,500,500,New-York,Singapore,12:00:00
-agr17,a17,04/05/14,cleared,LCH Clearnet LTD,e3,e7,2500,2500,1516,1416,700,-700,500,500,New-York,Singapore,12:00:00
+agr16,a16,03/05/14,cleared,LCH Clearnet LTD,e3,,,,,,,,,,,,12:00:00
+agr17,a17,04/05/14,cleared,LCH Clearnet LTD,e3,,,,,,,,,,,,12:00:00
 agr18,a18,05/05/14,bilateralOTC,,e4,e7,2500,2500,1517,1417,650,-650,500,500,London,Singapore,12:00:00
 agr19,a19,06/05/14,regulatoryOTC,,e4,e8,2500,2500,1518,1418,600,-600,500,500,London,Paris,12:00:00
-agr20,a20,07/05/14,cleared,LCH Clearnet LTD,e5,e8,2500,2500,1519,1419,550,-550,500,500,New-York,Paris,12:00:00
+agr20,a20,07/05/14,cleared,LCH Clearnet LTD,e5,,,,,,,,,,,,12:00:00
 agr21,a21,28/03/13,bilateralOTC,,e1,e9,2500,2500,1520,1420,500,-500,500,500,London,London,12:00:00
 agr22,a22,29/03/13,regulatoryOTC,,e1,e6,2500,2500,1521,1421,450,-450,500,500,London,Singapore,12:00:00
-agr23,a23,30/03/13,cleared,LCH Clearnet LTD,e2,e7,2500,2500,1522,1422,400,-400,500,500,London,Singapore,12:00:00
-agr24,a24,31/03/13,cleared,LCH Clearnet LTD,e2,e7,2500,2500,1523,1423,350,-350,500,500,London,Singapore,12:00:00
+agr23,a23,30/03/13,cleared,LCH Clearnet LTD,e2,,,,,,,,,,,,12:00:00
+agr24,a24,31/03/13,cleared,LCH Clearnet LTD,e2,,,,,,,,,,,,12:00:00
 agr25,a25,01/04/13,bilateralOTC,,e3,e7,2500,2500,1524,1424,300,-300,500,500,New-York,Singapore,12:00:00
 agr26,a26,18/05/12,regulatoryOTC,,e3,e8,2500,2500,1525,1425,250,-250,500,500,New-York,Paris,12:00:00
-agr27,a27,19/05/12,cleared,LCH Clearnet LTD,e3,e8,2500,2500,1526,1426,200,-200,500,500,New-York,Paris,12:00:00
-agr28,a28,20/05/12,cleared,LCH Clearnet LTD,e4,e9,2500,2500,1527,1427,150,-150,500,500,London,London,12:00:00
+agr27,a27,19/05/12,cleared,LCH Clearnet LTD,e3,,,,,,,,,,,,12:00:00
+agr28,a28,20/05/12,cleared,LCH Clearnet LTD,e4,,,,,,,,,,,,12:00:00
 agr29,a29,21/05/12,bilateralOTC,,e4,e6,2500,2500,1528,1428,100,-100,500,500,London,Singapore,12:00:00
 agr30,a30,22/05/12,regulatoryOTC,,e5,e7,2500,2500,1529,1429,50,-50,500,500,New-York,Singapore,12:00:00
-agr31,a31,08/03/14,cleared,LCH Clearnet LTD,e1,e7,2500,2500,1530,1430,0,0,500,500,London,Singapore,12:00:00
-agr32,a32,09/03/14,cleared,LCH Clearnet LTD,e1,e7,2500,2500,1531,1431,-50,50,500,500,London,Singapore,12:00:00
+agr31,a31,08/03/14,cleared,LCH Clearnet LTD,e1,,,,,,,,,,,,12:00:00
+agr32,a32,09/03/14,cleared,LCH Clearnet LTD,e1,,,,,,,,,,,,12:00:00
 agr33,a33,10/03/14,bilateralOTC,,e2,e8,2500,2500,1532,1432,-100,100,500,500,London,Paris,12:00:00
 agr34,a34,11/03/14,regulatoryOTC,,e2,e8,2500,2500,1533,1433,-150,150,500,500,London,Paris,12:00:00
-agr35,a35,12/03/14,cleared,LCH Clearnet LTD,e3,e9,2500,2500,1534,1434,-200,200,500,500,New-York,London,12:00:00
-agr36,a36,08/03/14,cleared,LCH Clearnet LTD,e3,e6,2500,2500,1535,1435,-250,250,500,500,New-York,Singapore,12:00:00
+agr35,a35,12/03/14,cleared,LCH Clearnet LTD,e3,,,,,,,,,,,,12:00:00
+agr36,a36,08/03/14,cleared,LCH Clearnet LTD,e3,,,,,,,,,,,,12:00:00
 agr37,a37,09/03/14,bilateralOTC,,e3,e7,2500,2500,1536,1436,-300,300,500,500,New-York,Singapore,12:00:00
 agr38,a38,10/03/14,regulatoryOTC,,e4,e7,2500,2500,1537,1437,-350,350,500,500,London,Singapore,12:00:00
-agr39,a39,11/03/14,cleared,LCH Clearnet LTD,e4,e7,2500,2500,1538,1438,-400,400,500,500,London,Singapore,12:00:00
-agr40,a40,12/03/14,cleared,LCH Clearnet LTD,e5,e8,2500,2500,1539,1439,-450,450,500,500,New-York,Paris,12:00:00
+agr39,a39,11/03/14,cleared,LCH Clearnet LTD,e4,,,,,,,,,,,,12:00:00
+agr40,a40,12/03/14,cleared,LCH Clearnet LTD,e5,,,,,,,,,,,,12:00:00
 agr41,a41,29/06/13,bilateralOTC,,e1,e8,2500,2500,1540,1440,-500,500,500,500,London,Paris,12:00:00
 agr42,a42,30/06/13,regulatoryOTC,,e1,e9,2500,2500,1541,1441,-550,550,500,500,London,London,12:00:00
-agr43,a43,01/07/13,cleared,LCH Clearnet LTD,e2,e6,2500,2500,1542,1442,-600,600,500,500,London,Singapore,12:00:00
-agr44,a44,02/07/13,cleared,LCH Clearnet LTD,e2,e7,2500,2500,1543,1443,-650,650,500,500,London,Singapore,12:00:00
+agr43,a43,01/07/13,cleared,LCH Clearnet LTD,e2,,,,,,,,,,,,12:00:00
+agr44,a44,02/07/13,cleared,LCH Clearnet LTD,e2,,,,,,,,,,,,12:00:00
 agr45,a45,03/07/13,bilateralOTC,,e3,e7,2500,2500,1544,1444,-700,700,500,500,New-York,Singapore,12:00:00
 agr46,a46,10/11/12,regulatoryOTC,,e3,e7,2500,2500,1545,1445,-750,750,500,500,New-York,Singapore,12:00:00
-agr47,a47,11/11/12,cleared,LCH Clearnet LTD,e3,e8,2500,2500,1546,1446,-800,800,500,500,New-York,Paris,12:00:00
-agr48,a48,12/11/12,cleared,LCH Clearnet LTD,e4,e8,2500,2500,1547,1447,-850,850,500,500,London,Paris,12:00:00
+agr47,a47,11/11/12,cleared,LCH Clearnet LTD,e3,,,,,,,,,,,,12:00:00
+agr48,a48,12/11/12,cleared,LCH Clearnet LTD,e4,,,,,,,,,,,,12:00:00
 agr49,a49,13/11/12,bilateralOTC,,e4,e9,2500,2500,1548,1448,-900,900,500,500,London,London,12:00:00
 agr50,a50,14/11/12,regulatoryOTC,,e5,e6,2500,2500,1549,1449,-950,950,500,500,New-York,Singapore,12:00:00
-agr51,a51,13/11/12,cleared,LCH Clearnet LTD,e1,e7,2500,2500,1550,1450,-1000,1000,500,500,London,Singapore,12:00:00
-agr52,a52,14/11/12,cleared,LCH Clearnet LTD,e1,e7,2500,2500,1551,1451,-1050,1050,500,500,London,Singapore,12:00:00
+agr51,a51,13/11/12,cleared,LCH Clearnet LTD,e1,,,,,,,,,,,,12:00:00
+agr52,a52,14/11/12,cleared,LCH Clearnet LTD,e1,,,,,,,,,,,,12:00:00
 agr53,a53,15/11/12,bilateralOTC,,e2,e7,2500,2500,1552,1452,-1100,1100,500,500,London,Singapore,12:00:00
 agr54,a54,16/11/12,regulatoryOTC,,e2,e8,2500,2500,1553,1453,-1150,1150,500,500,London,Paris,12:00:00
-agr55,a55,17/11/12,cleared,LCH Clearnet LTD,e3,e8,2500,2500,1554,1454,-1200,1200,500,500,New-York,Paris,12:00:00
+agr55,a55,17/11/12,cleared,LCH Clearnet LTD,e3,,,,,,,,,,,,12:00:00
