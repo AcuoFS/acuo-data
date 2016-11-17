@@ -64,7 +64,7 @@ WITH *,
 		END
 	AS retValue
 
-SET mc.returnAmount = retValue, mc.deliveryAmount = mc.totalCallAmount - mc.returnAmount, mc.collateralValue = mc.balanceTransferor, mc.exposure = expT, mc.notificationTime = callDate + ' ' + a.notificationTime
+SET mc.returnAmount = retValue, mc.deliveryAmount = mc.totalCallAmount - mc.returnAmount, mc.collateralValue = mc.balanceTransferor, mc.exposure = expT, mc.notificationTime = mc.callDate + ' ' + a.notificationTime
 
 MERGE (mc)-[:STEMS_FROM]->(a)
 
