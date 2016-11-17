@@ -16,8 +16,6 @@ MERGE (mc:MarginCall {id:line.CallId,
                       pendingCollateral:toFloat(line.PendingCollateral),
                       exposure:toFloat(line.Exposure),
                       IMRole:line.IMRole,
-                      roundedReturnAmount:floor(toFloat(line.ReturnAmount)/s.rounding)*s.rounding, 
-                      roundedDeliverAmount:ceil(toFloat(line.DeliverAmount)/s.rounding)*s.rounding,
                       belowMTA:0,
                       parentRank:1})
 
@@ -28,7 +26,14 @@ WITH *
 
 MATCH (mc:MarginCall {id:line.CallId})-[:STEMS_FROM]->(a:Agreement)
 SET mc.notificationTime = mc.callDate + ' ' + a.notificationTime
+
 WITH *
+
+WHERE NOT a.type = 'cleared'
+SET mc.roundedReturnAmount=floor(toFloat(line.ReturnAmount)/s.rounding)*s.rounding, mc.roundedDeliverAmount=ceil(toFloat(line.DeliverAmount)/s.rounding)*s.rounding
+
+WITH *
+
 WHERE mc.totalCallAmount < s.MTA
 SET mc.belowMTA=1
 
