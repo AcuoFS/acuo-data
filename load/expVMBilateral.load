@@ -55,7 +55,7 @@ FOREACH (i in selfMarginCall | MERGE (:MarginCall {valuationDate:todayFormatted,
 
 WITH *
 
-MATCH (mc:MarginCall {valuationDate:todayFormatted, callType:'Variation', agreementId:a.id})
+MATCH (mc:MarginCall {valuationDate:todayFormatted, callType:'Variation', status:'Expected', agreementId:a.id})
 
 WITH *, 
 		CASE WHEN mc.balanceTransferor <= -mc.totalCallAmount < 0 THEN mc.totallCallAmount
