@@ -1,7 +1,0 @@
-WITH timestamp()/1000/60/60 AS now
-
-MATCH (a:Agreement)<-[:STEMS_FROM]-(m:MarginCall {callType:'Variation'})
-CALL apoc.date.parse(m.notificationTime, 'h', 'dd/MM/yy HH:mm') YIELD value as unadjustedTime
-WITH *
-WHERE 0 <= unadjustedTime-now <= 24
-RETURN m.id as a, m.notificationTime as b

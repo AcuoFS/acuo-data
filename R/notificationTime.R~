@@ -1,5 +1,0 @@
-library('RNeo4j')
-
-source('R/buildDB.R')
-
-
