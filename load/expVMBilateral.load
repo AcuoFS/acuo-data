@@ -29,8 +29,8 @@ FOREACH (i in oppMarginCall | MERGE (:MarginCall {valuationDate:todayFormatted,
                                                   callType:'Variation',
                                                   agreementId:a.id,
                                                   status:'Expected',
-                                                  transferorId:'e2', 
-                                                  transfereeId:'e1', 
+                                                  transferorId:e2.id, 
+                                                  transfereeId:e1.id, 
                                                   totalCallAmount:abs(diff),
                                                   balanceTransferor:s2.variationMarginBalance,
                                                   roundingTransferor:s2.rounding})
@@ -46,8 +46,8 @@ FOREACH (i in selfMarginCall | MERGE (:MarginCall {valuationDate:todayFormatted,
                                                   callType:'Variation',
                                                   agreementId:a.id,
                                                   status:'Expected',
-                                                  transferorId:'e1', 
-                                                  transfereeId:'e2', 
+                                                  transferorId:e1.id, 
+                                                  transfereeId:e2.id, 
                                                   totalCallAmount:abs(diff),
                                                   balanceTransferor:s1.variationMarginBalance,
                                                   roundingTransferor:s1.rounding})
@@ -78,4 +78,4 @@ WITH *
 MATCH (tee:LegalEntity {id:mc.transfereeId})
 MERGE (mc)-[:SENT_FROM]->(tee)
 
-REMOVE mc.agreement, mc.transferorId, mc.tranfereeId, mc.balanceTransferor, mc.roundingTransferor
+REMOVE mc.agreementId, mc.transferorId, mc.tranfereeId, mc.balanceTransferor, mc.roundingTransferor
