@@ -58,13 +58,13 @@ WITH *
 MATCH (mc:MarginCall {valuationDate:todayFormatted, callType:'Variation', status:'Expected', agreementId:a.id})
 
 WITH *, 
-		CASE WHEN mc.balanceTransferor <= -mc.totalCallAmount < 0 THEN mc.totallCallAmount
+		CASE WHEN mc.balanceTransferor <= -mc.totalCallAmount < 0 THEN mc.totalCallAmount
 		WHEN -mc.totalCallAmount < mc.balanceTransferor <= 0 THEN -mc.balanceTransferor
 		WHEN mc.balanceTransferor > 0 THEN 0 
 		END
 	AS retValue
 
-SET mc.returnAmount = retValue, mc.deliveryAmount = mc.totalCallAmount - mc.returnAmount, mc.collateralValue = mc.balanceTransferor, mc.exposure = expT, mc.notificationTime = mc.callDate + ' ' + a.notificationTime
+SET mc.returnAmount = retValue, mc.deliveryAmount = mc.totalCallAmount - mc.returnAmount, mc.collateralValue = -mc.balanceTransferor, mc.exposure = abs(expT), mc.notificationTime = mc.callDate + ' ' + a.notificationTime
 
 MERGE (mc)-[:STEMS_FROM]->(a)
 
