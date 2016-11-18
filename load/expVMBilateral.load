@@ -1,4 +1,5 @@
-MATCH (a:Agreement {type:'bilateralOTC'})
+MATCH (a:Agreement)
+WHERE type = 'regulatoryOTC' OR type = 'bilateralOTC'
 
 WITH a, timestamp()/1000 AS today
 
