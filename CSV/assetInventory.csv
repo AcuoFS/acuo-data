@@ -1,15 +1,15 @@
 clientId,id,idType,quantities,availableQuantities,pledgedQuantities,settledQuantities,internalCost,opptCost,value,yield,name,type,isdaType,currency,ticker,issueDate,maturityDate
 c1,US912796HW25,ISIN,500000,300000,200000,0,0.03,0.01,100,0.04,U.S. Treasury Bills,Tbill,MM Instruments,USD,,03/02/2016,02/02/2017
 c1,GBP,CASH,1000000,800000,0,200000,0.01,0.05,1,0.03,British Pound,Cash,Cash,GBP,,,
-c1,37833100,CUSIP,500000,400000,100000,0,0.02,0.02,117,0.01,APPL INC,Equity,Coporate Equity,USD,APPL,,
-c1,46625H100,CUSIP,200000,100000,100000,0,0.02,0.02,65,0.01,JPM US Equity,Equity,Coporate Equity,USD,JPM,,
+c1,37833100,CUSIP,500000,400000,100000,0,0.02,0.02,117,0.01,APPL INC,Equity,Corporate Equity,USD,APPL,,
+c1,46625H100,CUSIP,200000,100000,100000,0,0.02,0.02,65,0.01,JPM US Equity,Equity,Corporate Equity,USD,JPM,,
 c1,USD,CASH,20000000,20000000,0,0,0.03,0.04,1,0.05,US dollar,Cash,Cash,USD,,,
 c1,JPY,CASH,5000000,5000000,0,0,0.01,0.02,1,0.02,Japanese yen,Cash,Cash,JPY,,,
 c1,CAD,CASH,40000000,40000000,0,0,0.01,0.01,1,0.01,Canadian dollar,Cash,Cash,CAD,,,
 c2,US912796HW25,ISIN,1000000,400000,100000,500000,0.03,0.01,100,0.04,U.S. Treasury Bills,Tbill,MM Instruments,USD,,03/02/2016,02/02/2017
 c2,GBP,CASH,500000,500000,0,0,0.01,0.05,1,0.03,British Pound,Cash,Cash,GBP,,,
-c2,37833100,CUSIP,700000,700000,0,0,0.02,0.02,117,0.01,APPL INC,Equity,Coporate Equity,USD,APPL,,
-c2,46625H100,CUSIP,200000,150000,50000,0,0.02,0.02,65,0.01,JPM US Equity,Equity,Coporate Equity,USD,JPM,,
+c2,37833100,CUSIP,700000,700000,0,0,0.02,0.02,117,0.01,APPL INC,Equity,Corporate Equity,USD,APPL,,
+c2,46625H100,CUSIP,200000,150000,50000,0,0.02,0.02,65,0.01,JPM US Equity,Equity,Corporate Equity,USD,JPM,,
 c2,Gold,Gold,500000,450000,50000,0,0.03,0.01,10,0,Gold,Gold,Gold,GLD,,,
 c2,USD,CASH,3000000,3000000,0,0,0.03,0.04,1,0.05,US dollar,Cash,Cash,USD,,,
 ,,,,,,,,,,,,,,,,,
