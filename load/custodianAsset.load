@@ -26,7 +26,7 @@ MATCH path1 = (custac:CustodianAccount)-[h:HOLDS]->(a)<-[p:POSSESSES]-(c:Client)
 WHERE (c)-[*3]->(custac)
 
 SET p.quantities = p.quantities+h.quantities,
-	p.availableQuantities = p.pledgedQuantities+h.pledgedQuantities,
+	p.availableQuantities = p.availableQuantities+h.availableQuantities,
     p.pledgedQuantities = p.pledgedQuantities+h.pledgedQuantities,
     p.settledQuantities = p.settledQuantities+h.settledQuantities
 
