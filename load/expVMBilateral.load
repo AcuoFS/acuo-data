@@ -32,7 +32,7 @@ FOREACH (i in oppMarginCall | MERGE (:ExpectedMarginCall {id:valuationDate + '-'
                                                   status:'Expected',
                                                   transferorId:e2.id, 
                                                   transfereeId:e1.id, 
-                                                  totalCallAmount:abs(diff),
+                                                  callAmount:abs(diff),
                                                   balanceTransferor:s2.variationMarginBalance,
                                                   roundingTransferor:s2.rounding})
 )
@@ -50,7 +50,7 @@ FOREACH (i in selfMarginCall | MERGE (:ExpectedMarginCall {id:valuationDate + '-
                                                   status:'Expected',
                                                   transferorId:e1.id, 
                                                   transfereeId:e2.id, 
-                                                  totalCallAmount:abs(diff),
+                                                  callAmount:abs(diff),
                                                   balanceTransferor:s1.variationMarginBalance,
                                                   roundingTransferor:s1.rounding})
 )
@@ -62,13 +62,13 @@ MATCH (mc:ExpectedMarginCall {valuationDate:todayFormatted, callType:'Variation'
 SET mc:MarginCall
 
 WITH *, 
-		CASE WHEN mc.balanceTransferor <= -mc.totalCallAmount < 0 THEN mc.totalCallAmount
-		WHEN -mc.totalCallAmount < mc.balanceTransferor <= 0 THEN -mc.balanceTransferor
+		CASE WHEN mc.balanceTransferor <= -mc.callAmount < 0 THEN mc.callAmount
+		WHEN -mc.callAmount < mc.balanceTransferor <= 0 THEN -mc.balanceTransferor
 		WHEN mc.balanceTransferor > 0 THEN 0 
 		END
 	AS retValue
 
-SET mc.returnAmount = retValue, mc.deliveryAmount = mc.totalCallAmount - mc.returnAmount, mc.collateralValue = -mc.balanceTransferor, mc.exposure = abs(expT), mc.notificationTime = mc.callDate + ' ' + a.notificationTime
+SET mc.returnAmount = retValue, mc.deliveryAmount = mc.callAmount - mc.returnAmount, mc.collateralValue = -mc.balanceTransferor, mc.exposure = abs(expT), mc.notificationTime = mc.callDate + ' ' + a.notificationTime
 
 SET mc.returnAmount = floor(mc.returnAmount/mc.roundingTransferor)*mc.roundingTransferor, mc.deliverAmount = ceil(mc.deliverAmount/mc.roundingTransferor)*mc.roundingTransferor
 
