@@ -66,6 +66,8 @@ WITH *,
 
 SET mc.returnAmount = retValue, mc.deliveryAmount = mc.totalCallAmount - mc.returnAmount, mc.collateralValue = -mc.balanceTransferor, mc.exposure = abs(expT), mc.notificationTime = mc.callDate + ' ' + a.notificationTime
 
+SET mc.returnAmount = floor(mc.returnAmount/mc.roundingTransferor)*mc.roundingTransferor, mc.deliverAmount = ceil(mc.deliverAmount/mc.roundingTransferor)*mc.roundingTransferor
+
 MERGE (mc)-[:STEMS_FROM]->(a)
 
 WITH *
