@@ -24,7 +24,7 @@ WITH *,
 		END
 	as oppMarginCall
 
-FOREACH (i in oppMarginCall | MERGE (:ExpectedMarginCall {id:valuationDate + '-' + a.id + '-' + 'Variation',
+FOREACH (i in oppMarginCall | MERGE (:ExpectedMarginCall {id:todayFormatted + '-' + a.id + '-' + 'Variation',
                                                   valuationDate:todayFormatted,
                                                   callDate:tmrFormatted,
                                                   callType:'Variation',
@@ -42,7 +42,7 @@ WITH *,
 		END
 	as selfMarginCall
 
-FOREACH (i in selfMarginCall | MERGE (:ExpectedMarginCall {id:valuationDate + '-' + a.id + '-' + 'Variation',
+FOREACH (i in selfMarginCall | MERGE (:ExpectedMarginCall {id:todayFormatted + '-' + a.id + '-' + 'Variation',
                                                   valuationDate:todayFormatted,
                                                   callDate:tmrFormatted,
                                                   callType:'Variation',
