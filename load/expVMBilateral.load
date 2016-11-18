@@ -24,7 +24,8 @@ WITH *,
 		END
 	as oppMarginCall
 
-FOREACH (i in oppMarginCall | MERGE (:MarginCall {valuationDate:todayFormatted,
+FOREACH (i in oppMarginCall | MERGE (:ExpectedMarginCall {id:valuationDate + '-' + a.id + '-' + 'Variation',
+                                                  valuationDate:todayFormatted,
                                                   callDate:tmrFormatted,
                                                   callType:'Variation',
                                                   agreementId:a.id,
@@ -41,7 +42,8 @@ WITH *,
 		END
 	as selfMarginCall
 
-FOREACH (i in selfMarginCall | MERGE (:MarginCall {valuationDate:todayFormatted,
+FOREACH (i in selfMarginCall | MERGE (:ExpectedMarginCall {id:valuationDate + '-' + a.id + '-' + 'Variation',
+                                                  valuationDate:todayFormatted,
                                                   callDate:tmrFormatted,
                                                   callType:'Variation',
                                                   agreementId:a.id,
@@ -55,7 +57,9 @@ FOREACH (i in selfMarginCall | MERGE (:MarginCall {valuationDate:todayFormatted,
 
 WITH *
 
-MATCH (mc:MarginCall {valuationDate:todayFormatted, callType:'Variation', status:'Expected', agreementId:a.id})
+MATCH (mc:ExpectedMarginCall {valuationDate:todayFormatted, callType:'Variation', status:'Expected', agreementId:a.id})
+
+SET mc:MarginCall
 
 WITH *, 
 		CASE WHEN mc.balanceTransferor <= -mc.totalCallAmount < 0 THEN mc.totalCallAmount
