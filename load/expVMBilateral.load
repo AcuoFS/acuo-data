@@ -2,8 +2,8 @@ MATCH (a:Agreement {type:'bilateralOTC'})
 
 WITH a, timestamp()/1000 AS today
 
-CALL apoc.date.format(today,'s', 'dd/MM/yyyy') YIELD value as todayFormatted
-CALL apoc.date.format(today+86400,'s', 'dd/MM/yyyy') YIELD value as tmrFormatted
+CALL apoc.date.format(today,'s', 'dd/MM/yy') YIELD value as todayFormatted
+CALL apoc.date.format(today+86400,'s', 'dd/MM/yy') YIELD value as tmrFormatted
 
 // Function to figure out whether this is a working day in both locations (we probably need to match the LegalEntity as well as the Counterpart). Directly in Neo4j ? (Where would we store this data ?) Java layer ? R 'Holidays' or 'timeDate' package ? 
 
