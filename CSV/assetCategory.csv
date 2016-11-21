@@ -1,7 +1,7 @@
 name,type,currency,externalCost,interestRate,FXRate,ticker,maturityLb,maturityUp,haircut,FXHaircut,limits,typeLimits,FXLimits,debtLimits,agreementId,callType
 U.S. Treasury Bills,Tbill,USD,0.01,0,1,,0,1,0.005,0,,,,,a1,Initial
 British Pound,Cash,GBP,0.01,0.02,0.8,,,,0,0.05,2500000,,5000000,,a1,Initial|Variation
-Japanese Yen,Cash,JPY,0.04,0.01,1.3,,,,0,0.05,2500000,,5000000,,a1,Initial|Variation
+Japanese Yen,Cash,JPY,0.04,0.01,103,,,,0,0.05,2500000,,5000000,,a1,Initial|Variation
 US dollar,Cash,USD,0.05,0.05,1,,,,0,0,2500000,,5000000,,a1,Initial|Variation
 Canadian dollar,Cash,CAD,0.05,0.03,1.34,,,,0,0.05,2500000,,5000000,,a1,Initial|Variation
 APPL INC,Equity,USD,0.03,0,1,APPL,,,0.3,0,,5000000,,,a1,Initial
