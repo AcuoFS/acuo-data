@@ -10,7 +10,7 @@ British Pound,Cash,GBP,0,0.03,0.8,,,,0,0,2500000,,5000000,,a2,Initial|Variation
 Japanese Yen,Cash,JPY,0,0.01,103,,,,0,0,2500000,,5000000,,a2,Initial|Variation
 US dollar,Cash,USD,0,0.05,1,,,,0,0,2500000,,5000000,,a2,Initial|Variation
 Canadian dollar,Cash,CAD,0.05,0.03,1.34,,,,0,0.08,2500000,,5000000,,a2,Initial|Variation
-British Pound,Cash,GBP,0,0.03,0.25,,,,0,0,2500000,,5000000,,a3,Initial|Variation
+British Pound,Cash,GBP,0,0.03,0.8,,,,0,0,2500000,,5000000,,a3,Initial|Variation
 Japanese Yen,Cash,JPY,0,0.01,103,,,,0,0,2500000,,5000000,,a3,Initial|Variation
 US dollar,Cash,USD,0,0.05,1,,,,0,0,2500000,,5000000,,a3,Initial|Variation
 Canadian dollar,Cash,CAD,0.05,0.03,1.34,,,,0,0.08,2500000,,5000000,,a3,Initial|Variation
