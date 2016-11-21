@@ -1,9 +1,10 @@
-MATCH (a:Agreement {type:'bilateralOTC'})
+MATCH (a:Agreement)
+WHERE type = 'regulatoryOTC' OR type = 'bilateralOTC'
 
 WITH a, timestamp()/1000 AS today
 
-CALL apoc.date.format(today,'s', 'dd/MM/yyyy') YIELD value as todayFormatted
-CALL apoc.date.format(today+86400,'s', 'dd/MM/yyyy') YIELD value as tmrFormatted
+CALL apoc.date.format(today,'s', 'dd/MM/yy') YIELD value as todayFormatted
+CALL apoc.date.format(today+86400,'s', 'dd/MM/yy') YIELD value as tmrFormatted
 
 // Function to figure out whether this is a working day in both locations (we probably need to match the LegalEntity as well as the Counterpart). Directly in Neo4j ? (Where would we store this data ?) Java layer ? R 'Holidays' or 'timeDate' package ? 
 
@@ -24,14 +25,15 @@ WITH *,
 		END
 	as oppMarginCall
 
-FOREACH (i in oppMarginCall | MERGE (:MarginCall {valuationDate:todayFormatted,
+FOREACH (i in oppMarginCall | MERGE (:ExpectedMarginCall {id:todayFormatted + '-' + a.id + '-' + 'Variation',
+                                                  valuationDate:todayFormatted,
                                                   callDate:tmrFormatted,
                                                   callType:'Variation',
                                                   agreementId:a.id,
                                                   status:'Expected',
                                                   transferorId:e2.id, 
                                                   transfereeId:e1.id, 
-                                                  totalCallAmount:abs(diff),
+                                                  callAmount:abs(diff),
                                                   balanceTransferor:s2.variationMarginBalance,
                                                   roundingTransferor:s2.rounding})
 )
@@ -41,30 +43,35 @@ WITH *,
 		END
 	as selfMarginCall
 
-FOREACH (i in selfMarginCall | MERGE (:MarginCall {valuationDate:todayFormatted,
+FOREACH (i in selfMarginCall | MERGE (:ExpectedMarginCall {id:todayFormatted + '-' + a.id + '-' + 'Variation',
+                                                  valuationDate:todayFormatted,
                                                   callDate:tmrFormatted,
                                                   callType:'Variation',
                                                   agreementId:a.id,
                                                   status:'Expected',
                                                   transferorId:e1.id, 
                                                   transfereeId:e2.id, 
-                                                  totalCallAmount:abs(diff),
+                                                  callAmount:abs(diff),
                                                   balanceTransferor:s1.variationMarginBalance,
                                                   roundingTransferor:s1.rounding})
 )
 
 WITH *
 
-MATCH (mc:MarginCall {valuationDate:todayFormatted, callType:'Variation', status:'Expected', agreementId:a.id})
+MATCH (mc:ExpectedMarginCall {valuationDate:todayFormatted, callType:'Variation', status:'Expected', agreementId:a.id})
+
+SET mc:MarginCall
 
 WITH *, 
-		CASE WHEN mc.balanceTransferor <= -mc.totalCallAmount < 0 THEN mc.totalCallAmount
-		WHEN -mc.totalCallAmount < mc.balanceTransferor <= 0 THEN -mc.balanceTransferor
+		CASE WHEN mc.balanceTransferor <= -mc.callAmount < 0 THEN mc.callAmount
+		WHEN -mc.callAmount < mc.balanceTransferor <= 0 THEN -mc.balanceTransferor
 		WHEN mc.balanceTransferor > 0 THEN 0 
 		END
 	AS retValue
 
-SET mc.returnAmount = retValue, mc.deliveryAmount = mc.totalCallAmount - mc.returnAmount, mc.collateralValue = -mc.balanceTransferor, mc.exposure = abs(expT), mc.notificationTime = mc.callDate + ' ' + a.notificationTime
+SET mc.returnAmount = retValue, mc.deliveryAmount = mc.callAmount - mc.returnAmount, mc.collateralValue = -mc.balanceTransferor, mc.exposure = abs(expT), mc.notificationTime = mc.callDate + ' ' + a.notificationTime
+
+SET mc.returnAmount = floor(mc.returnAmount/mc.roundingTransferor)*mc.roundingTransferor, mc.deliverAmount = ceil(mc.deliverAmount/mc.roundingTransferor)*mc.roundingTransferor
 
 MERGE (mc)-[:STEMS_FROM]->(a)
 
