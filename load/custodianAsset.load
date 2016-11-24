@@ -24,9 +24,9 @@ WITH DISTINCT a
 
 MATCH path1 = (custac:CustodianAccount)-[h:HOLDS]->(a)<-[p:POSSESSES]-(c:Client)
 WHERE (c)-[*3]->(custac)
-
-SET p.quantities = p.quantities+h.quantities,
-	p.availableQuantities = p.availableQuantities+h.availableQuantities,
-    p.pledgedQuantities = p.pledgedQuantities+h.pledgedQuantities,
-    p.settledQuantities = p.settledQuantities+h.settledQuantities
+WITH DISTINCT p, SUM(h.quantities) AS hQ, SUM(h.availableQuantities) AS hAQ, SUM(p.pledgedQuantities) AS hPQ, SUM(h.settledQuantities) AS hSQ
+SET p.quantities = hQ,
+	p.availableQuantities = hAQ,
+    p.pledgedQuantities = hPQ,
+    p.settledQuantities = hSQ
 
