@@ -1,0 +1,42 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/irsvanilla.csv' 
+AS line
+
+MATCH (acc:Account {id:line.AccountId})
+MATCH (a:Agreement {id:line.AgreementId})
+MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[:HAS]->(acc)
+
+MERGE (irs:Trade {id:line.TradeId, clearingDate:line.ClearingDate, maturity:line.Maturity, markToMarketT:toFloat(line.MarkToMarketT), markToMarketTm1:toFloat(line.MarkToMarketTm1)})
+SET irs:IRS
+
+WITH *,
+		CASE WHEN line.Direction = 'Pay' AND line.Type = 'Fixed' THEN [1] ELSE []
+		END
+	as dirPayFixed
+
+FOREACH (i in dirPayFixed | MERGE (irs)-[:PAYS]->(l:Leg {type:line.Type, notional:toFloat(line.Notional), paymentFrequency:line.PaymentFrequency, payStart:line.PayStart, payEnd:line.payEnd, rollConvention:line.RollConvention, refCalendar:line.RefCalendar, nextCouponPaymentDate:line.NextCouponPaymentDate, fixedRate:toFloat(line.RateValue)}))
+
+WITH *,
+		CASE WHEN line.Direction = 'Pay' AND line.Type = 'Floating' THEN [1] ELSE []
+		END
+	as dirPayFloat
+
+FOREACH (i in dirPayFloat | MERGE (irs)-[:PAYS]->(l:Leg {type:line.Type, notional:toFloat(line.Notional), paymentFrequency:line.PaymentFrequency, payStart:line.PayStart, payEnd:line.payEnd, rollConvention:line.RollConvention, refCalendar:line.RefCalendar, nextCouponPaymentDate:line.NextCouponPaymentDate, index:line.Index, indexTenor:line.IndexTenor, resetFrequency:line.ResetFrequency}))
+
+WITH *,
+		CASE WHEN line.Direction = 'Receive' AND line.Type = 'Fixed' THEN [1] ELSE []
+		END
+	as dirReceiveFixed
+
+FOREACH (i in dirReceiveFixed | MERGE (irs)-[:RECEIVES]->(l:Leg {type:line.Type, notional:toFloat(line.Notional), paymentFrequency:line.PaymentFrequency, payStart:line.PayStart, payEnd:line.payEnd, rollConvention:line.RollConvention, refCalendar:line.RefCalendar, nextCouponPaymentDate:line.NextCouponPaymentDate, fixedRate:toFloat(line.RateValue)}))
+
+WITH *,
+		CASE WHEN line.Direction = 'Receive' AND line.Type = 'Floating' THEN [1] ELSE []
+		END
+	as dirReceiveFloat
+
+FOREACH (i in dirReceiveFloat | MERGE (irs)-[:RECEIVES]->(l:Leg {type:line.Type, notional:toFloat(line.Notional), paymentFrequency:line.PaymentFrequency, payStart:line.PayStart, payEnd:line.payEnd, rollConvention:line.RollConvention, refCalendar:line.RefCalendar, nextCouponPaymentDate:line.NextCouponPaymentDateindex:line.Index, indexTenor:line.IndexTenor, resetFrequency:line.ResetFrequency}))
+
+MERGE (acc)-[:POSITIONS_ON]->(irs)
+MERGE (irs)-[:FOLLOWS]->(a)
+MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
+MERGE (e)-[:SIGNS]->(a)
