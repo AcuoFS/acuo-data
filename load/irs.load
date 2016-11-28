@@ -34,7 +34,7 @@ WITH *,
 		END
 	as dirReceiveFloat
 
-FOREACH (i in dirReceiveFloat | MERGE (irs)-[:RECEIVES]->(l:Leg {type:line.Type, notional:toFloat(line.Notional), paymentFrequency:line.PaymentFrequency, payStart:line.PayStart, payEnd:line.payEnd, rollConvention:line.RollConvention, refCalendar:line.RefCalendar, nextCouponPaymentDate:line.NextCouponPaymentDateindex:line.Index, indexTenor:line.IndexTenor, resetFrequency:line.ResetFrequency}))
+FOREACH (i in dirReceiveFloat | MERGE (irs)-[:RECEIVES]->(l:Leg {type:line.Type, notional:toFloat(line.Notional), paymentFrequency:line.PaymentFrequency, payStart:line.PayStart, payEnd:line.payEnd, rollConvention:line.RollConvention, refCalendar:line.RefCalendar, nextCouponPaymentDate:line.NextCouponPaymentDate, index:line.Index, indexTenor:line.IndexTenor, resetFrequency:line.ResetFrequency}))
 
 MERGE (acc)-[:POSITIONS_ON]->(irs)
 MERGE (irs)-[:FOLLOWS]->(a)
