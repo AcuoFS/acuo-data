@@ -1,6 +1,0 @@
-ClearingDate,Maturity,Notional,Currency,LegPay,RateValue,Index,IndexTenor,ResetFrequency,PaymentFrequencyReceive,PaymentFrequencyPay,NextCouponPaymentDate,MarkToMarketT,MarkToMarketTm1,TradeId,AccountId,AgreementId
-29/07/15,10/07/45,23000000,USD,Floating,1.61,USD-LIBOR-BBA,3M,3M,1T,1T,09/20/13,23000000,23010000,irsvt1,acc1,a1
-29/07/15,16/12/20,21000000,USD,Fixed,2,USD-LIBOR-BBA,3M,3M,6M,3M,13/10/15,21000000,21020000,irsvt2,acc2,a2
-29/07/15,16/09/18,7500000,USD,Fixed,2.5,USD-LIBOR-BBA,3M,3M,6M,3M,21/12/16,7500000,7530000,irsvt3,acc3,a3
-29/07/15,08/07/45,5000000,USD,Fixed,1.75,USD-LIBOR-BBA,3M,3M,6M,3M,16/01/15,5000000,5040000,irsvt4,acc4,a4
-09/07/15,12/12/17,1000000,USD,Fixed,2,USD-LIBOR-BBA,3M,3M,3M,3M,08/01/16,1000000,1050000,irsvt5,acc5,a5
