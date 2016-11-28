@@ -15,9 +15,7 @@ MERGE (cds:Trade {id:line.TradeId,
 		notional:tofloat(line.Notional),
 		factor:toFloat(line.Factor),
 		couponRate:toFloat(line.CouponRate),
-		seniority:line.Seniority, 
-		markToMarketT:toFloat(line.MarkToMarketT),
-		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
+		seniority:line.Seniority})
 SET cds:CDS
 
 MERGE (acc)-[:POSITIONS_ON]->(cds)

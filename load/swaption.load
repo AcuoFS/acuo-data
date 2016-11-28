@@ -20,9 +20,7 @@ MERGE (swopt:Trade {id:line.TradeId,
 		indexTenor:line.IndexTenor,
 		resetFreq:line.ResetFreq,
 		payFreqFloat:line.PaymentFrequencyFloating, 
-		payFreqFixed:line.PaymentFrequencyFixed, 
-		markToMarketT:toFloat(line.MarkToMarketT),
-		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
+		payFreqFixed:line.PaymentFrequencyFixed})
 
 SET swopt:Swopt
 
