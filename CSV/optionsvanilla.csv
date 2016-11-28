@@ -1,6 +1,6 @@
-ClearingDate,Expiry,UnderlyingId,Currency,Quantity,LongShort,CallPut,StrikePrice,Type,MarkToMarketT,MarkToMarketTm1,TradeId,AccountId,AgreementId
-08/03/14,08/04/14,US149123BM26,USD,250,Long,Put,95,European,25000,30500,optv1,acc1,a31
-09/03/14,09/04/14,US149123BM27,EUR,300,Short,Call,105,American,30000,30501,optv2,acc2,a32
-10/03/14,10/04/14,US149123BM28,SGD,350,Long,Put,95,European,35000,30502,optv3,acc3,a33
-11/03/14,11/04/14,US149123BM29,RMB,400,Short,Call,98,American,40000,30503,optv4,acc4,a34
-12/03/14,12/04/14,US149123BM30,GBP,450,Long,Put,101,European,45000,30504,optv5,acc5,a35
+ClearingDate,Expiry,UnderlyingId,Currency,Quantity,LongShort,CallPut,StrikePrice,Type,TradeId,AccountId,AgreementId
+08/03/14,08/04/14,US149123BM26,USD,250,Long,Put,95,European,optv1,acc1,a31
+09/03/14,09/04/14,US149123BM27,EUR,300,Short,Call,105,American,optv2,acc2,a32
+10/03/14,10/04/14,US149123BM28,SGD,350,Long,Put,95,European,optv3,acc3,a33
+11/03/14,11/04/14,US149123BM29,RMB,400,Short,Call,98,American,optv4,acc4,a34
+12/03/14,12/04/14,US149123BM30,GBP,450,Long,Put,101,European,optv5,acc5,a35
