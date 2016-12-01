@@ -6,17 +6,17 @@ MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:SIGNS]->(a)
 
 MERGE (mc:MarginCall {callDate:line.CallDate,
                       callType:line.CallType})
-SET id=line.CallId,
-    receivedValuationDate=line.ValuationDate,
-    receivedCurrency=line.Currency,
-    receivedCallAmount=toFloat(line.TotalCallAmount),
-    receivedReturnAmount=toFloat(line.ReturnAmount),
-    receivedDeliverAmount=toFloat(line.DeliverAmount),
-    receivedCollateralValue=toFloat(line.CollateralValue),
-    receivedPendingCollateral=toFloat(line.PendingCollateral),
-    receivedExposure=toFloat(line.Exposure),
-    receivedIMRole=line.IMRole,
-    parentRank=1
+SET mc.id=line.CallId,
+    mc.receivedValuationDate=line.ValuationDate,
+    mc.receivedCurrency=line.Currency,
+    mc.receivedCallAmount=toFloat(line.TotalCallAmount),
+    mc.receivedReturnAmount=toFloat(line.ReturnAmount),
+    mc.receivedDeliverAmount=toFloat(line.DeliverAmount),
+    mc.receivedCollateralValue=toFloat(line.CollateralValue),
+    mc.receivedPendingCollateral=toFloat(line.PendingCollateral),
+    mc.receivedExposure=toFloat(line.Exposure),
+    mc.receivedIMRole=line.IMRole,
+    mc.parentRank=1
 
 MERGE (mc)-[:STEMS_FROM]->(a)
 MERGE (mc)-[:DIRECTED_TO]->(c)
@@ -29,7 +29,7 @@ SET mc.notificationTime = mc.callDate + ' ' + a.notificationTime
 WITH *
 
 WHERE NOT a.type = 'cleared'
-SET mc.roundedReturnAmount=floor(toFloat(line.ReturnAmount)/s.rounding)*s.rounding, mc.roundedDeliverAmount=ceil(toFloat(line.DeliverAmount)/s.rounding)*s.rounding, belowMTA=0
+SET mc.roundedReturnAmount=floor(toFloat(line.ReturnAmount)/s.rounding)*s.rounding, mc.roundedDeliverAmount=ceil(toFloat(line.DeliverAmount)/s.rounding)*s.rounding, mc.belowMTA=0
 
 WITH *
 
