@@ -7,7 +7,7 @@ WITH line, pmc, c
 
 MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
 
-WITH pmc, n, line c,
+WITH pmc, n, line, c,
 		CASE WHEN NOT ((pmc)-[:FIRST]->()) THEN [1] ELSE []
 		END
 	AS firstnode
