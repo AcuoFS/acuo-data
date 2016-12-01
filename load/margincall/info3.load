@@ -33,4 +33,5 @@ UNWIND(len) as i
 	MATCH (c)-[p:POSSESSES]->(a:Asset {id:SPLIT(line.Assets, '|')[i]})<-[h:HOLDS]-(:CustodianAccount {id:SPLIT(line.CustodianAccount, '|')[i]})
 	SET h.pledgedQuantities = h.pledgedQuantities + toFloat(SPLIT(line.Quantities, '|')[i]),
             h.availableQuantities = h.availableQuantities - toFloat(SPLIT(line.Quantities, '|')[i]),
+            p.pledgedQuantities = p.pledgedQuantities + toFloat(SPLIT(line.Quantities, '|')[i]),
             p.availableQuantities = p.availableQuantities - toFloat(SPLIT(line.Quantities, '|')[i])

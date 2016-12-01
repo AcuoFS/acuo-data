@@ -6,17 +6,17 @@ MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:SIGNS]->(a)
 
 MERGE (mc:MarginCall {callDate:line.CallDate,
                       callType:line.CallType})
-SET id:line.CallId,
-    receivedValuationDate:line.ValuationDate,
-    receivedCurrency:line.Currency,
-    receivedCallAmount:toFloat(line.TotalCallAmount),
-    receivedReturnAmount:toFloat(line.ReturnAmount),
-    receivedDeliverAmount:toFloat(line.DeliverAmount),
-    receivedCollateralValue:toFloat(line.CollateralValue),
-    receivedPendingCollateral:toFloat(line.PendingCollateral),
-    receivedExposure:toFloat(line.Exposure),
-    receivedIMRole:line.IMRole,
-    parentRank:1
+SET id=line.CallId,
+    receivedValuationDate=line.ValuationDate,
+    receivedCurrency=line.Currency,
+    receivedCallAmount=toFloat(line.TotalCallAmount),
+    receivedReturnAmount=toFloat(line.ReturnAmount),
+    receivedDeliverAmount=toFloat(line.DeliverAmount),
+    receivedCollateralValue=toFloat(line.CollateralValue),
+    receivedPendingCollateral=toFloat(line.PendingCollateral),
+    receivedExposure=toFloat(line.Exposure),
+    receivedIMRole=line.IMRole,
+    parentRank=1
 
 MERGE (mc)-[:STEMS_FROM]->(a)
 MERGE (mc)-[:DIRECTED_TO]->(c)
