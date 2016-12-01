@@ -28,7 +28,7 @@ WITH line, c
 MATCH (pl:MarginCall {id:line.CallId})
 WHERE line.NewStatus = 'Pledged'
 SET pl.assetsPledged = line.Assets, pl.pledgedQuantities = line.Quantities, pl.pledgedCustodianAccount = line.CustodianAccount
-WITH line, pl, RANGE(0, SIZE(SPLIT(line.Assets, '|'))-1) as len
+WITH line, pl, c, RANGE(0, SIZE(SPLIT(line.Assets, '|'))-1) as len
 UNWIND(len) as i
 	MATCH (c)-[p:POSSESSES]->(a:Asset {id:SPLIT(line.Assets, '|')[i]})<-[h:HOLDS]-(:CustodianAccount {id:SPLIT(line.CustodianAccount, '|')[i]})
 	SET h.pledgedQuantities = h.pledgedQuantities + toFloat(SPLIT(line.Quantities, '|')[i]),
