@@ -29,7 +29,7 @@ SET mc.notificationTime = mc.callDate + ' ' + a.notificationTime
 WITH *
 
 WHERE NOT a.type = 'cleared'
-SET mc.roundedReturnAmount=floor(toFloat(line.ReturnAmount)/s.rounding)*s.rounding, mc.roundedDeliverAmount=ceil(toFloat(line.DeliverAmount)/s.rounding)*s.rounding, belowMTA:0
+SET mc.roundedReturnAmount=floor(toFloat(line.ReturnAmount)/s.rounding)*s.rounding, mc.roundedDeliverAmount=ceil(toFloat(line.DeliverAmount)/s.rounding)*s.rounding, belowMTA=0
 
 WITH *
 
