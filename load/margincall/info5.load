@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/info10.csv'
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/info5.csv'
 AS line
 
 MATCH (pmc {id:line.CallId})-[:DIRECTED_TO]->(c:Client)
@@ -29,7 +29,7 @@ MATCH (pl:MarginCall {id:line.CallId})
 WHERE line.NewStatus = 'Accepted'
 SET pl.assetsSettled=pl.assetsPledged, pl.settledQuantities=pl.pledgedQuantities, pl.settledCustodianAccount=pl.pledgedCustodianAccount
 REMOVE pl.assetsPledged, pl.pledgedQuantities, pl.pledgedCustodianAccount
-WITH line, pl, RANGE(0, SIZE(SPLIT(pl.assetsSettled, '|'))-1) as len
+WITH line, c, pl, RANGE(0, SIZE(SPLIT(pl.assetsSettled, '|'))-1) as len
 UNWIND(len) as i
 	MATCH (c)-[p:POSSESSES]->(a:Asset {id:SPLIT(pl.assetsSettled, '|')[i]})<-[h:HOLDS]-(:CustodianAccount {id:SPLIT(pl.settledCustodianAccount, '|')[i]})
 	SET h.pledgedQuantities = h.pledgedQuantities - toFloat(SPLIT(pl.settledQuantities, '|')[i])

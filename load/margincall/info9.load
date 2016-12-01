@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/info3.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/info9.csv' 
 AS line
 
 MATCH (pmc {id:line.CallId})-[:DIRECTED_TO]->(c:Client)
