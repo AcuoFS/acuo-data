@@ -34,3 +34,5 @@ UNWIND(len) as i
 	MATCH (a:Asset {id:SPLIT(pl.assetsSettled, '|')[i]})<-[h:HOLDS]-(:CustodianAccount {id:SPLIT(pl.settledCustodianAccount, '|')[i]})
 	SET h.pledgedQuantities = h.pledgedQuantities - toFloat(SPLIT(pl.settledQuantities, '|')[i])
 	SET h.settledQuantities = h.settledQuantities + toFloat(SPLIT(pl.settledQuantities, '|')[i])
+
+// No change in available quantities since these assets had already been pledged

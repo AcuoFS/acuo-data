@@ -4,20 +4,19 @@ AS line
 MATCH (a:Agreement {id:line.AgreementId})
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:SIGNS]->(a)
 
-MERGE (mc:MarginCall {id:line.CallId,
-                      valuationDate:line.ValuationDate,
-                      callDate:line.CallDate,
-                      callType:line.CallType,
-                      currency:line.Currency,
-                      callAmount:toFloat(line.TotalCallAmount),
-                      returnAmount:toFloat(line.ReturnAmount),
-                      deliverAmount:toFloat(line.DeliverAmount),
-                      collateralValue:toFloat(line.CollateralValue),
-                      pendingCollateral:toFloat(line.PendingCollateral),
-                      exposure:toFloat(line.Exposure),
-                      IMRole:line.IMRole,
-                      belowMTA:0,
-                      parentRank:1})
+MERGE (mc:MarginCall {callDate:line.CallDate,
+                      callType:line.CallType})
+SET id:line.CallId,
+    receivedValuationDate:line.ValuationDate,
+    receivedCurrency:line.Currency,
+    receivedCallAmount:toFloat(line.TotalCallAmount),
+    receivedReturnAmount:toFloat(line.ReturnAmount),
+    receivedDeliverAmount:toFloat(line.DeliverAmount),
+    receivedCollateralValue:toFloat(line.CollateralValue),
+    receivedPendingCollateral:toFloat(line.PendingCollateral),
+    receivedExposure:toFloat(line.Exposure),
+    receivedIMRole:line.IMRole,
+    parentRank:1
 
 MERGE (mc)-[:STEMS_FROM]->(a)
 MERGE (mc)-[:DIRECTED_TO]->(c)
@@ -30,11 +29,9 @@ SET mc.notificationTime = mc.callDate + ' ' + a.notificationTime
 WITH *
 
 WHERE NOT a.type = 'cleared'
-SET mc.roundedReturnAmount=floor(toFloat(line.ReturnAmount)/s.rounding)*s.rounding, mc.roundedDeliverAmount=ceil(toFloat(line.DeliverAmount)/s.rounding)*s.rounding
+SET mc.roundedReturnAmount=floor(toFloat(line.ReturnAmount)/s.rounding)*s.rounding, mc.roundedDeliverAmount=ceil(toFloat(line.DeliverAmount)/s.rounding)*s.rounding, belowMTA:0
 
 WITH *
 
 WHERE mc.totalCallAmount < s.MTA
 SET mc.belowMTA=1
-
-
