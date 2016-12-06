@@ -3,27 +3,27 @@ AS line
 WITH line, SPLIT(line.callType,'|') AS callTypes
 
 MATCH (ag:Agreement {id:line.agreementId})
-MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency})
-WITH line,a,ag, callTypes
-
-MERGE (a)-[is:IS_ELIGIBLE_UNDER {callType: callTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
+FOREACH(ignoreMe IN CASE WHEN trim(line.maturityLb)<>"" THEN [1]
+	ELSE [] END| 
+	MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency,
+	maturityLb:TOFLOAT(line.maturityLb),maturityUp:TOFLOAT(line.maturityUp)})
+	MERGE (a)-[is:IS_ELIGIBLE_UNDER {callType: callTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
 	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate),FXRate:TOFLOAT(line.FXRate)}]->(ag)
-WITH line,is,a,ag
+)
 
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityLb)<>"" THEN [1] 
-	ELSE [] END | SET a.maturityLb=TOFLOAT(line.maturityLb))
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.maturityUp)<>"" THEN [1] 
-	ELSE [] END | SET a.maturityUp=TOFLOAT(line.maturityUp))
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
-	ELSE [] END | SET a.ticker=line.ticker)
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.limits)<>"" THEN [1] 
-	ELSE [] END | SET is.limits=TOFLOAT(line.limits))
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.typeLimits)<>"" THEN [1] 
-	ELSE [] END | SET is.typeLimits=TOFLOAT(line.typeLimits))
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.FXLimits)<>"" THEN [1] 
-	ELSE [] END | SET is.FXLimits=TOFLOAT(line.FXLimits))
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.debtLimits)<>"" THEN [1] 
-	ELSE [] END | SET is.debtLimits=TOFLOAT(line.debtLimits))
+FOREACH(ignoreMe IN CASE WHEN trim(line.ticker)<>"" THEN [1]
+	ELSE [] END| MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency,
+	ticker:line.ticker})
+	MERGE (a)-[is:IS_ELIGIBLE_UNDER {callType: callTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
+	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate),FXRate:TOFLOAT(line.FXRate)}]->(ag)
+)
+
+FOREACH(ignoreMe IN CASE WHEN line.type="CASH" THEN [1]
+	ELSE [] END| MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency})
+	MERGE (a)-[is:IS_ELIGIBLE_UNDER {callType: callTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
+	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate),FXRate:TOFLOAT(line.FXRate)}]->(ag)
+)
+
 
 // Use only one relationship and the property 'callTypes' for the eligibility
 // In the case that the haircut/cost/limit for IM/VM are different,
