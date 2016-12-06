@@ -1,4 +1,4 @@
-clientId,id,idType,name,currency,type,ICADCode,ACUOCategory,ticker,issueDate,maturityDate,price,yield,fitchRating,parValue ,minUnit ,minUnitValue ,amount,quantities,availableQuantities,deployedQuantities,departingQuantities,arrivingQuantities,earmarkedQuantities,internalCost,opptCost
+clientId,id,idType,name,currency,type,ICADCode,ACUOCategory,ticker,issueDate,maturityDate,price,yield,fitchRating,parValue,minUnit,minUnitValue,amount,quantities,availableQuantities,deployedQuantities,departingQuantities,arrivingQuantities,earmarkedQuantities,internalCost,opptCost
 c1,US912796HW25,ISIN,TREASURY BILL,USD,TBILL,US-TBILL,MM Instruments,,12/10/2015,06/09/2016,0.29,0.00298,AAA,100,10,1000,1000000,10000,1000,0,0,0,0,0.002,0.002
 c1,US912796JE09,ISIN,TREASURY BILL,USD,TBILL,US-TBILL,MM Instruments,,03/03/2016,03/02/2017,0.6,0.00614,AAA,100,10,1000,1000000,10000,1000,0,0,0,0,0.002,0.002
 c1,DE0001137461,ISIN,BUNDESSCHATZANWEISUNGEN,EUR,TNOTE,DE-NOTE2,MM Instruments,,5/16/2014,06/10/2016,100.158,-0.00478,AAA,0.01,100000,1000,1000000,100000000,1000,0,0,0,0,0.002,0.002
