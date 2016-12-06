@@ -20,3 +20,7 @@ WITH pmc, n, line
 
 OPTIONAL MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m {step:line.PrevStatus})
 FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
+
+// This is a 'Received' node but we still check for safety's sake
+
+

@@ -13,9 +13,7 @@ MERGE (fra:Trade {id:line.TradeId,
 		currency:line.Currency,
 		fixedRate:toFloat(line.AgreedRate),
 		index:line.Index,
-		indexTenor:line.IndexTenor, 
-		markToMarketT:toFloat(line.MarkToMarketT),
-		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
+		indexTenor:line.IndexTenor})
 SET fra:FRA
 
 MERGE (acc)-[:POSITIONS_ON]->(fra)

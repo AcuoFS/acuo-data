@@ -13,9 +13,7 @@ MERGE (f:Trade {id:line.TradeId,
 		nearRate:toFloat(line.NearRate),
 		forwardPoints:toFloat(line.ForwardPoints),
 		nearDate:line.NearDate,
-		farDate:line.FarDate, 
-		markToMarketT:toFloat(line.MarkToMarketT),
-		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
+		farDate:line.FarDate})
 SET f:FXSW
 
 MERGE (acc)-[:POSITIONS_ON]->(f)

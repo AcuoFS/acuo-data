@@ -2,23 +2,26 @@ LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/m
 AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
+MATCH (ms:MarginStatement {id:line.StatementId})
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:SIGNS]->(a)
 
-MERGE (mc:MarginCall {id:line.CallId,
-                      valuationDate:line.ValuationDate,
-                      callDate:line.CallDate,
-                      callType:line.CallType,
-                      currency:line.Currency,
-                      callAmount:toFloat(line.TotalCallAmount),
-                      returnAmount:toFloat(line.ReturnAmount),
-                      deliverAmount:toFloat(line.DeliverAmount),
-                      collateralValue:toFloat(line.CollateralValue),
-                      pendingCollateral:toFloat(line.PendingCollateral),
-                      exposure:toFloat(line.Exposure),
-                      IMRole:line.IMRole,
-                      belowMTA:0,
-                      parentRank:1})
+MERGE (mc:MarginCall {callDate:line.CallDate,
+                      callType:line.CallType, 
+                      agreementId:line.AgreementId})
+SET mc.id=line.CallId,
+    mc.receivedValuationDate=line.ValuationDate,
+    mc.receivedCurrency=line.Currency,
+    mc.receivedCallAmount=toFloat(line.TotalCallAmount),
+    mc.receivedReturnAmount=toFloat(line.ReturnAmount),
+    mc.receivedDeliverAmount=toFloat(line.DeliverAmount),
+    mc.receivedCollateralValue=toFloat(line.CollateralValue),
+    mc.receivedPendingCollateral=toFloat(line.PendingCollateral),
+    mc.receivedExposure=toFloat(line.Exposure),
+    mc.receivedIMRole=line.IMRole,
+    mc.parentRank=1
+    ms.totalAmount = ms.totalAmount + mc.totalCallAmount
 
+MERGE (mc)-[:PART_OF]->(ms)
 MERGE (mc)-[:STEMS_FROM]->(a)
 MERGE (mc)-[:DIRECTED_TO]->(c)
 
@@ -30,11 +33,9 @@ SET mc.notificationTime = mc.callDate + ' ' + a.notificationTime
 WITH *
 
 WHERE NOT a.type = 'cleared'
-SET mc.roundedReturnAmount=floor(toFloat(line.ReturnAmount)/s.rounding)*s.rounding, mc.roundedDeliverAmount=ceil(toFloat(line.DeliverAmount)/s.rounding)*s.rounding
+SET mc.roundedReturnAmount=floor(toFloat(line.ReturnAmount)/s.rounding)*s.rounding, mc.roundedDeliverAmount=ceil(toFloat(line.DeliverAmount)/s.rounding)*s.rounding, mc.belowMTA=0
 
 WITH *
 
 WHERE mc.totalCallAmount < s.MTA
 SET mc.belowMTA=1
-
-

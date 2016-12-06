@@ -1,6 +1,6 @@
-ClearingDate,Expiry,LongShort,Type,SwapBeginning,SwapMaturity,LegPay,Notional,Currency,FixedRate,PaymentFrequencyFixed,Index,MarkToMarketT,MarkToMarketTm1,IndexTenor,ResetFreq,PaymentFrequencyFloating,TradeId,AccountId,AgreementId
-13/11/12,13/02/12,Long,European,15/02/12,15/02/14,Fixed,20001,USD,1,6M,USD-LIBOR-BBA,20001,-15000,3M,3M,1T,swopt1,acc1,a51
-14/11/12,14/02/12,Short,American,16/02/12,16/02/14,Floating,20002,EUR,2,6M,USD-LIBOR-BBA,20002,-20000,3M,3M,6M,swopt2,acc2,a52
-15/11/12,15/02/12,Long,European,17/02/12,17/02/14,Fixed,20003,GBP,3,6M,USD-LIBOR-BBA,20003,50000,3M,3M,6M,swopt3,acc3,a53
-16/11/12,16/02/12,Short,American,18/02/12,18/02/14,Floating,20004,SGD,4,3M,USD-LIBOR-BBA,20004,75000,3M,3M,6M,swopt4,acc4,a54
-17/11/12,17/02/12,Long,European,19/02/12,19/02/14,Fixed,20005,CAD,5,1T,USD-LIBOR-BBA,20005,-5000,3M,3M,3M,swopt5,acc5,a55
+ClearingDate,Expiry,LongShort,Type,SwapBeginning,SwapMaturity,LegPay,Notional,Currency,FixedRate,PaymentFrequencyFixed,Index,IndexTenor,ResetFreq,PaymentFrequencyFloating,TradeId,AccountId,AgreementId
+13/11/12,13/02/12,Long,European,15/02/12,15/02/14,Fixed,20001,USD,1,6M,USD-LIBOR-BBA,3M,3M,1T,swopt1,acc1,a51
+14/11/12,14/02/12,Short,American,16/02/12,16/02/14,Floating,20002,EUR,2,6M,USD-LIBOR-BBA,3M,3M,6M,swopt2,acc2,a52
+15/11/12,15/02/12,Long,European,17/02/12,17/02/14,Fixed,20003,GBP,3,6M,USD-LIBOR-BBA,3M,3M,6M,swopt3,acc3,a53
+16/11/12,16/02/12,Short,American,18/02/12,18/02/14,Floating,20004,SGD,4,3M,USD-LIBOR-BBA,3M,3M,6M,swopt4,acc4,a54
+17/11/12,17/02/12,Long,European,19/02/12,19/02/14,Fixed,20005,CAD,5,1T,USD-LIBOR-BBA,3M,3M,3M,swopt5,acc5,a55

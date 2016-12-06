@@ -1,0 +1,42 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/irs.csv' 
+AS line
+
+MATCH (acc:Account {id:line.AccountId})
+MATCH (a:Agreement {id:line.AgreementId})
+MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[:HAS]->(acc)
+
+MERGE (irs:Trade {id:line.TradeId, clearingDate:line.ClearingDate, maturity:line.Maturity})
+SET irs:IRS
+
+WITH *,
+		CASE WHEN line.TypePay = 'Fixed' THEN [1] ELSE []
+		END
+	as dirPayFixed
+
+FOREACH (i in dirPayFixed | MERGE (irs)-[:PAYS]->(l:Leg {id:line.IdLegPay, type:line.TypePay, notional:toFloat(line.NotionalPay), paymentFrequency:line.PaymentFrequencyPay, payStart:line.PayStartPay, payEnd:line.PayEndPay, businessDayConvention:line.BusinessDayConventionPay, refCalendar:line.RefCalendarPay, nextCouponPaymentDate:line.NextCouponPaymentDatePay, fixedRate:toFloat(line.RateValuePay), dayCount:line.DayCountPay, currency:line.CurrencyPay}))
+
+WITH *,
+		CASE WHEN line.TypePay = 'Floating' THEN [1] ELSE []
+		END
+	as dirPayFloat
+
+FOREACH (i in dirPayFloat | MERGE (irs)-[:PAYS]->(l:Leg {id:line.IdLegPay, type:line.TypePay, notional:toFloat(line.NotionalPay), paymentFrequency:line.PaymentFrequencyPay, payStart:line.PayStartPay, payEnd:line.PayEndPay, businessDayConvention:line.BusinessDayConventionPay, refCalendar:line.RefCalendarPay, nextCouponPaymentDate:line.NextCouponPaymentDatePay, index:line.IndexPay, indexTenor:line.IndexTenorPay, resetFrequency:line.ResetFrequencyPay, dayCount:line.DayCountPay, currency:line.CurrencyPay}))
+
+WITH *,
+		CASE WHEN line.TypeReceive = 'Fixed' THEN [1] ELSE []
+		END
+	as dirReceiveFixed
+
+FOREACH (i in dirReceiveFixed | MERGE (irs)-[:RECEIVE]->(l:Leg {id:line.IdLegReceive, type:line.TypeReceive, notional:toFloat(line.NotionalReceive), paymentFrequency:line.PaymentFrequencyReceive, payStart:line.PayStartReceive, payEnd:line.PayEndReceive, businessDayConvention:line.BusinessDayConventionReceive, refCalendar:line.RefCalendarReceive, nextCouponPaymentDate:line.NextCouponPaymentDateReceive, fixedRate:toFloat(line.RateValueReceive), dayCount:line.DayCountReceive, currency:line.CurrencyReceive}))
+
+WITH *,
+		CASE WHEN line.TypeReceive = 'Floating' THEN [1] ELSE []
+		END
+	as dirReceiveFloat
+
+FOREACH (i in dirReceiveFloat | MERGE (irs)-[:RECEIVE]->(l:Leg {id:line.IdLegReceive, type:line.TypeReceive, notional:toFloat(line.NotionalReceive), paymentFrequency:line.PaymentFrequencyReceive, payStart:line.PayStartReceive, payEnd:line.PayEndReceive, businessDayConvention:line.BusinessDayConventionReceive, refCalendar:line.RefCalendarReceive, nextCouponPaymentDate:line.NextCouponPaymentDateReceive, index:line.IndexReceive, indexTenor:line.IndexTenorReceive, resetFrequency:line.ResetFrequencyReceive, dayCount:line.DayCountReceive, currency:line.CurrencyReceive}))
+
+MERGE (acc)-[:POSITIONS_ON]->(irs)
+MERGE (irs)-[:FOLLOWS]->(a)
+MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
+MERGE (e)-[:SIGNS]->(a)

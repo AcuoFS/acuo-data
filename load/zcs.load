@@ -15,9 +15,7 @@ MERGE (zcs:Trade {id:line.TradeId,
 		indexName:line.IndexName,
 		indexTenor:line.IndexTenor,
 		initialIndex:toFloat(line.InitialIndex),
-		finalIndex:toFloat(line.FinalIndex),
-		markToMarketT:toFloat(line.MarkToMarketT),
-		markToMarketTm1:toFloat(line.MarkToMarketTm1)})
+		finalIndex:toFloat(line.FinalIndex)})
 SET zcs:ZCS
 
 MERGE (acc)-[:POSITIONS_ON]->(zcs)
