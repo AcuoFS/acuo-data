@@ -6,13 +6,17 @@ MERGE (custac)-[h:HOLDS {businessTimeFrom:line.businessTimeFrom, businessTimeTo:
 ON CREATE SET
 	h.quantities=TOFLOAT(line.quantities),
 	h.availableQuantities=TOFLOAT(line.availableQuantities),
-	h.pledgedQuantities=TOFLOAT(line.pledgedQuantities),
-	h.settledQuantities=TOFLOAT(line.settledQuantities)
+	h.deployedQuantities=TOFLOAT(line.deployedQuantities),
+	h.departingQuantities=TOFLOAT(line.departingQuantities),
+	h.arrivingQuantities =TOFLOAT(line.arrivingQuantities),
+	h.earmarkedQuantities=TOFLOAT(line.earmarkedQuantities)
 ON MATCH SET
 	h.quantities=TOFLOAT(line.quantities),
 	h.availableQuantities=TOFLOAT(line.availableQuantities),
-	h.pledgedQuantities=TOFLOAT(line.pledgedQuantities),
-	h.settledQuantities=TOFLOAT(line.settledQuantities)
+	h.deployedQuantities=TOFLOAT(line.deployedQuantities),
+	h.departingQuantities=TOFLOAT(line.departingQuantities),
+	h.arrivingQuantities =TOFLOAT(line.arrivingQuantities),
+	h.earmarkedQuantities=TOFLOAT(line.earmarkedQuantities)
 
 WITH custac,a
 MATCH (ac)-[ie:IS_ELIGIBLE_UNDER]->(ag:Agreement)<-[:SIGNS]-(e:LegalEntity)-[:HAS]->(acc:Account)-[:ACCESSES]->(custac)-[:HOLDS]->(a)
@@ -24,9 +28,12 @@ WITH DISTINCT a
 
 MATCH path1 = (custac:CustodianAccount)-[h:HOLDS]->(a)<-[p:POSSESSES]-(c:Client)
 WHERE (c)-[*3]->(custac)
-WITH DISTINCT p, SUM(h.quantities) AS hQ, SUM(h.availableQuantities) AS hAQ, SUM(p.pledgedQuantities) AS hPQ, SUM(h.settledQuantities) AS hSQ
+WITH DISTINCT p, SUM(h.quantities) AS hQ, SUM(h.availableQuantities) AS hAQ, SUM(p.deployedQuantities) AS hDQ, SUM(h.departingQuantities) AS hDPQ,
+	SUM(h.arrivingQuantities) AS hARQ, SUM(h.earmarkedQuantities) AS hEQ
 SET p.quantities = hQ,
 	p.availableQuantities = hAQ,
-    p.pledgedQuantities = hPQ,
-    p.settledQuantities = hSQ
+    p.deployedQuantities = hDQ,
+    p.departingQuantities = hDPQ,
+    p.arrivingQuantities = hARQ,
+    p.earmarkedQuantities = hEQ
 
