@@ -2,6 +2,7 @@ LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/m
 AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
+MATCH (ms:MarginStatement {id:line.StatementId})
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:SIGNS]->(a)
 
 MERGE (mc:MarginCall {callDate:line.CallDate,
@@ -18,7 +19,9 @@ SET mc.id=line.CallId,
     mc.receivedExposure=toFloat(line.Exposure),
     mc.receivedIMRole=line.IMRole,
     mc.parentRank=1
+    ms.totalAmount = ms.totalAmount + mc.totalCallAmount
 
+MERGE (mc)-[:PART_OF]->(ms)
 MERGE (mc)-[:STEMS_FROM]->(a)
 MERGE (mc)-[:DIRECTED_TO]->(c)
 
