@@ -1,17 +1,16 @@
 library('RNeo4j')
-
+                              
 readLoad <- function(path) {
   query = paste(readLines(path), collapse="\n")
   return (query)
-}
+  }
 
 buildDataBase = function() {
-
-#  graph = startGraph("http://neo4j:7474/db/data")
+#  graph = startGraph("http://neo4j.acuo.com:7474/db/data/")
   graph = startGraph("http://localhost:7474/db/data/")
-  
+               
   clear(graph,input=FALSE)
-  
+
   load.name <- c('/load/client.load',
                  '/load/legalentity.load',
                  '/load/account.load',
@@ -32,12 +31,13 @@ buildDataBase = function() {
                  '/load/custodian.load',
                  '/load/custodianAccount.load',
                  '/load/custodianAsset.load',
+                 '/load/margincall/mstatement.load',
                  '/load/margincall/initmc.load')
-
+                              
   for (i in 1:10) {
     load.name <- c(load.name, paste('/load/margincall/info', toString(i), '.load', sep=''))
   }
-  
+                                
   load.constr <- c('/loadconstraint/account.load', 
                    '/loadconstraint/agreement.load',
                    '/loadconstraint/asset.load',
@@ -47,20 +47,20 @@ buildDataBase = function() {
                    '/loadconstraint/custodianAccount.load',
                    '/loadconstraint/margincall.load',
                    '/loadconstraint/trade.load')
-
+                              
   load.name <- c(load.constr,load.name)
-  
+                                
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master'
-  
+                                
   load.url<-paste(load.preurl,sep='',load.name)
-  
+                                
   load.query<-list()
-  
+
   for(i in 1:length(load.name)){
     load.query[i] <- readLoad(load.url[i])
-    cypher(graph,load.query[[i]])
+#    print(load.url[i])
+  cypher(graph,load.query[[i]])
   }
-  
   return(graph)
 }
 
