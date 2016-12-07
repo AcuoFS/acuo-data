@@ -1,10 +1,10 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/initialmc.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/initialmcexp.csv' 
 AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:SIGNS]->(a)
 
-MERGE (mc:MarginCall {callDate:line.CallDate,
+MERGE (mc:ExpectedMarginCall {callDate:line.CallDate,
                       callType:line.CallType, 
                       agreementId:line.AgreementId})
 
@@ -18,10 +18,9 @@ SET mc.id=line.CallId,
     mc.pendingCollateral=toFloat(line.PendingCollateral),
     mc.exposure=toFloat(line.Exposure),
     mc.IMRole=line.IMRole,
-    mc.parentRank=1, 
-    mc.status=line.Status
+    mc.parentRank=1
 
-MERGE (ms:MarginStatement {id:line.StatementId})
+MERGE (ms:ExpectedMarginStatement {id:line.StatementId})
 ON MATCH SET ms.totalAmount = ms.totalAmount + toFloat(line.totalCallAmount)
 ON CREATE SET ms.totalAmount = toFloat(line.totalCallAmount)
 
@@ -31,7 +30,7 @@ MERGE (mc)-[:DIRECTED_TO]->(c)
 
 WITH *
 
-MATCH (mc:MarginCall {id:line.CallId})-[:STEMS_FROM]->(a:Agreement)
+MATCH (mc:ExpectedMarginCall {id:line.CallId})-[:STEMS_FROM]->(a:Agreement)
 SET mc.notificationTime = mc.callDate + ' ' + a.notificationTime
 
 WITH *
