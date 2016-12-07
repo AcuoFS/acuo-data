@@ -18,7 +18,8 @@ SET mc.id=line.CallId,
     mc.pendingCollateral=toFloat(line.PendingCollateral),
     mc.exposure=toFloat(line.Exposure),
     mc.IMRole=line.IMRole,
-    mc.parentRank=1
+    mc.parentRank=1, 
+    mc.status=line.Status
 
 MERGE (ms:MarginStatement {id:line.StatementId})
 ON MATCH SET ms.totalAmount = ms.totalAmount + toFloat(line.totalCallAmount)
