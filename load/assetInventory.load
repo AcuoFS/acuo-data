@@ -6,7 +6,7 @@ WHERE line.clientId IS NOT NULL
 MATCH (c:Client {id:line.clientId})
 MERGE (a:Asset {id: line.id,idType: line.idType, name:line.name,currency:line.currency, amount:TOFLOAT(line.amount),
 	yield: TOFLOAT(line.yield),type:line.type,ICADCode:line.ICADCode,ACUOCategory:line.ACUOCategory,
-	price:TOFLOAT(line.price),minUnit:TOFLOAT(line.minUnit),minUnitValue:TOFLOAT(line.minUnitValue)})
+	price:TOFLOAT(line.price),parValue:TOFLOAT(parValue),minUnit:TOFLOAT(line.minUnit),minUnitValue:TOFLOAT(line.minUnitValue)})
 MERGE (c)-[p:POSSESSES]->(a)
 ON CREATE SET
 	p.quantities=0,
