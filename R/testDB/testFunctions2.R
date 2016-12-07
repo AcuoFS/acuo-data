@@ -1,9 +1,10 @@
 library("RUnit")
 library("RNeo4j")
 
+if(0){
 # I want to test whether the correct amount of nodes was created:
 
-test.node.num = function(){
+test.node.num.old = function(){
   nodenum.query1 = "match (n:Asset) return count(n) AS c"
   checkEquals(cypher(graph,nodenum.query1)$c,8)
   
@@ -21,7 +22,7 @@ test.node.num = function(){
 }
 
 # I want to test whether the relationships I created are correct:
-test.rel.num =function(){
+test.rel.num.old =function(){
   relnum.query1 = "match (a)-[r:IS_IN]->(b) return count(r) as c"
   checkEquals(cypher(graph,relnum.query1)$c,8)
   
@@ -47,7 +48,7 @@ test.rel.num =function(){
   checkEquals(cypher(graph,relnum.query7)$c,17)
 }
 
-test.rel.type = function(){
+test.rel.type.old = function(){
   
   rel.query1 = "match (ac:AssetCategory)-[r]->(ag:Agreement {id:'a1'}) 
   where ac.name='U.S. Treasury Bills' and ac.currency='USD' and ac.maturityLb=0 and ac.maturityUp=1
@@ -106,7 +107,7 @@ test.rel.type = function(){
 
 # I want to test whether the nodes I created have the appropriate properties:
 
-test.node.prop = function(){
+test.node.prop.old = function(){
   prop.query1 = "match (a:Asset) where a.id='46625H100' return a.ticker as t"
   checkEquals(cypher(graph,prop.query1)$t, 'JPM')  
   
@@ -145,7 +146,7 @@ test.node.prop = function(){
 
 # I want to test whether the relationships I created have the appropriate properties:
 
-test.rel.prop = function(){ 
+test.rel.prop.old = function(){ 
   prop.query1.1 = "match (c:Client {id:'c1'})-[p:POSSESSES]->(a:Asset) where a.id='46625H100' return all(x in collect(p) where exists(x.quantities)) as q"
   checkEquals(cypher(graph,prop.query1.1)$q, TRUE)
   
@@ -195,5 +196,5 @@ test.rel.prop = function(){
 }
 
 
-
+}
 
