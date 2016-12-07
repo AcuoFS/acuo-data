@@ -2,24 +2,27 @@ LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/m
 AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
-MATCH (ms:MarginStatement {id:line.StatementId})
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:SIGNS]->(a)
 
 MERGE (mc:MarginCall {callDate:line.CallDate,
                       callType:line.CallType, 
                       agreementId:line.AgreementId})
+
 SET mc.id=line.CallId,
-    mc.receivedValuationDate=line.ValuationDate,
-    mc.receivedCurrency=line.Currency,
-    mc.receivedCallAmount=toFloat(line.TotalCallAmount),
-    mc.receivedReturnAmount=toFloat(line.ReturnAmount),
-    mc.receivedDeliverAmount=toFloat(line.DeliverAmount),
-    mc.receivedCollateralValue=toFloat(line.CollateralValue),
-    mc.receivedPendingCollateral=toFloat(line.PendingCollateral),
-    mc.receivedExposure=toFloat(line.Exposure),
-    mc.receivedIMRole=line.IMRole,
-    mc.parentRank=1,
-    ms.totalAmount = ms.totalAmount + mc.totalCallAmount
+    mc.valuationDate=line.ValuationDate,
+    mc.currency=line.Currency,
+    mc.callAmount=toFloat(line.TotalCallAmount),
+    mc.returnAmount=toFloat(line.ReturnAmount),
+    mc.deliverAmount=toFloat(line.DeliverAmount),
+    mc.collateralValue=toFloat(line.CollateralValue),
+    mc.pendingCollateral=toFloat(line.PendingCollateral),
+    mc.exposure=toFloat(line.Exposure),
+    mc.IMRole=line.IMRole,
+    mc.parentRank=1
+
+MERGE (ms:MarginStatement {id:line.StatementId})
+ON MATCH SET ms.totalAmount = ms.totalAmount + toFloat(line.totalCallAmount)
+ON CREATE SET ms.totalAmount = toFloat(line.totalCallAmount)
 
 MERGE (mc)-[:PART_OF]->(ms)
 MERGE (mc)-[:STEMS_FROM]->(a)
