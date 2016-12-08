@@ -1,6 +1,6 @@
 ValuationDate,CallDate,CallType,Status,Currency,TotalCallAmount,ReturnAmount,DeliverAmount,CollateralValue,PendingCollateral,Exposure,IMRole,AgreementId,CallId,StatementId
 24/10/16,25/10/16,Variation,Received,USD,1000250,0,1000250,9000000,0,-10000000,Pledgor,a1,mc1,ms1
-24/10/16,25/10/16,Variation,Received,SGD,1510000,0,1510000,8500000,0,-10000000,Pledgor,a2,mc2,ms2
+24/10/16,25/10/16,Variation,Received,SGD,1600000,0,1510000,8500000,0,-10000000,Pledgor,a2,mc2,ms2
 24/10/16,25/10/16,Variation,Received,EUR,2000000,0,2000000,7990000,10000,-10000000,Pledgor,a3,mc3,ms3
 24/10/16,25/10/16,Variation,Received,GBP,250,0,250,9999750,0,-10000000,Pledgor,a4,mc4,ms4
 24/10/16,25/10/16,Variation,Received,CHF,3000000,0,3000000,7000000,0,-10000000,Pledgor,a5,mc5,ms5
@@ -10,7 +10,7 @@ ValuationDate,CallDate,CallType,Status,Currency,TotalCallAmount,ReturnAmount,Del
 09/11/16,10/11/16,Variation,Received,USD,1000000,0,1000000,9000000,0,-10000000,Pledgor,a14,mc11,ms9
 24/10/16,25/10/16,Initial,Received,USD,500000,0,500000,50000000,0,-10000000,Pledgor,a1,mc12,ms1
 24/10/16,25/10/16,Initial,Received,SGD,700000,0,700000,50000000,0,-10000000,Pledgor,a2,mc13,ms2
-24/10/16,25/10/16,Initial,Received,EUR,900000,0,900000,50000000,0,-10000000,Pledgor,a3,mc14,ms3
+24/10/16,25/10/16,Initial,Received,EUR,1000000,0,1000000,50000000,0,-10000000,Pledgor,a3,mc14,ms3
 24/10/16,25/10/16,Initial,Received,GBP,950000,0,950000,50000000,0,-10000000,Pledgor,a4,mc15,ms4
 24/10/16,25/10/16,Initial,Received,CHF,1000000,0,1000000,50000000,0,-10000000,Pledgor,a5,mc16,ms5
 24/10/16,25/10/16,Initial,Received,AUD,1150000,0,1150000,50000000,0,-10000000,Pledgor,a11,mc17,ms6
