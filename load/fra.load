@@ -19,4 +19,3 @@ SET fra:FRA
 MERGE (acc)-[:POSITIONS_ON]->(fra)
 MERGE (fra)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
-MERGE (e)-[:SIGNS]->(a)

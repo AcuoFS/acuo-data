@@ -6,9 +6,7 @@ MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:SIGNS]->(a)
 
 MERGE (mc:ExpectedMarginCall {callDate:line.CallDate,
                       callType:line.CallType, 
-                      agreementId:line.AgreementId,
-		      direction:line.Direction,
-		      legalEntityId:line.EntityId})
+                      agreementId:line.AgreementId})
 
 SET mc.id=line.CallId,
     mc.valuationDate=line.ValuationDate,

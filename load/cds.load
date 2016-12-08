@@ -21,4 +21,3 @@ SET cds:CDS
 MERGE (acc)-[:POSITIONS_ON]->(cds)
 MERGE (cds)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
-MERGE (e)-[:SIGNS]->(a)

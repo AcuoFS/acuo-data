@@ -3,7 +3,7 @@ AS line
 
 MATCH (ms:MarginStatement {id:line.StatementId, date:line.Date})-[:STEMS_FROM]->(a:Agreement)<-[:STEMS_FROM]-(mse:ExpectedMarginStatement {date:line.Date})
 
-MERGE (ms)-[:FIRST]->(s:Step {status:'Pre-reconcilied'})
+MERGE (ms)-[:FIRST]->(s:Step {status:'pre-reconcilied'})
 
 WITH *, toFloat(line.Tolerance) as tolerance
 

@@ -3,7 +3,7 @@ AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
 
-MERGE (ms:ExpectedMarginStatement {id:line.StatementId, date:line.StatementDate, interestPayment:toFloat(line.InterestPayment), productCashFlows:toFloat(line.ProductsCashFlows), PAI:toFloat(line.PAI), feesCommissions:toFloat(line.FeesCommissions), pendingCash:toFloat(line.PendingCash), pendingNonCash:toFloat(line.PendingNonCash), status:line.Status})
+MERGE (ms:ExpectedMarginStatement {id:line.StatementId, date:line.StatementDate, interestPayment:toFloat(line.InterestPayment), productCashFlows:toFloat(line.ProductsCashFlows), PAI:toFloat(line.PAI), feesCommissions:toFloat(line.FeesCommissions), pendingCash:toFloat(line.PendingCash), pendingNonCash:toFloat(line.PendingNonCash), status:line.Status, direction:line.Direction, legalEntityId:line.EntityId})
 ON CREATE SET ms.totalAmount=toFloat(line.TotalAmount)
 ON MATCH SET ms.totalAmount=ms.totalAmount + toFloat(line.TotalAmount)
 

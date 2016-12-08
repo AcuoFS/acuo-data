@@ -21,4 +21,3 @@ SET zcs:ZCS
 MERGE (acc)-[:POSITIONS_ON]->(zcs)
 MERGE (zcs)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
-MERGE (e)-[:SIGNS]->(a)
