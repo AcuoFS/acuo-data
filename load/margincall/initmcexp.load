@@ -4,11 +4,10 @@ AS line
 MATCH (a:Agreement {id:line.AgreementId})
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:CLIENT_SIGNS]->(a)
 
-MERGE (mc:MarginCall {callDate:line.CallDate,
-                      callType:line.CallType, 
-                      agreementId:line.AgreementId,
-		      direction:line.Direction,
-		      legalEntityId:line.EntityId})
+MERGE (mc:MarginCall {id:line.CallId,
+		      callDate:line.CallDate,
+                      callType:line.CallType,
+		      direction:line.Direction})
 
 SET mc.id=line.CallId,
     mc.valuationDate=line.ValuationDate,
