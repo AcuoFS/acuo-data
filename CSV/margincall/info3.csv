@@ -1,5 +1,5 @@
 PrevStatus,NewStatus,Assets,Quantities,CustodianAccount,Time,CallId
-Presented,Pledged,US912796HW25|GBP,50|5000,custac1|custac2,26/10/16 10:41,mc1
-Presented,Pledged,46625H100|US912796HW25,100|85,custac4|custac1,26/10/16 10:41,mc2
+Post-reconcilied,Pledged,US912796HW25|GBP,50|5000,custac1|custac2,26/10/16 10:41,mc1
+Post-reconcilied,Pledged,46625H100|US912796HW25,100|85,custac4|custac1,26/10/16 10:41,mc2
 PartialDispute,Pledged,37833100|GBP,100|4300,custac3|custac1,26/10/16 10:41,mc6
-Presented,Pledged,46625H100|GBP|US912796HW25,100|500|30,custac4|custac2|custac1,26/10/16 10:41,mc8
+Post-reconcilied,Pledged,46625H100|GBP|US912796HW25,100|500|30,custac4|custac2|custac1,26/10/16 10:41,mc8

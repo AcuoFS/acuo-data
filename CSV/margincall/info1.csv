@@ -1,9 +1,9 @@
 PrevStatus,NewStatus,Time,CallId
-NULL,Presented,25/10/16 08:40,mc1
-NULL,Presented,25/10/16 08:40,mc2
-NULL,Presented,25/10/16 08:40,mc3
-NULL,Presented,25/10/16 08:40,mc4
-NULL,Presented,25/10/16 08:40,mc5
-NULL,Presented,25/10/16 08:40,mc8
-NULL,Presented,10/11/16 11:00,mc9
-NULL,Presented,10/11/16 13:00,mc10
+Pre-reconcilied,Post-reconcilied,25/10/16 08:40,mc1
+Pre-reconcilied,Post-reconcilied,25/10/16 08:40,mc2
+Pre-reconcilied,Post-reconcilied,25/10/16 08:40,mc3
+Pre-reconcilied,Post-reconcilied,25/10/16 08:40,mc4
+Pre-reconcilied,Post-reconcilied,25/10/16 08:40,mc5
+Pre-reconcilied,Post-reconcilied,25/10/16 08:40,mc8
+Pre-reconcilied,Post-reconcilied,10/11/16 11:00,mc9
+Pre-reconcilied,Post-reconcilied,10/11/16 13:00,mc10
