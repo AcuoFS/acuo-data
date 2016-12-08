@@ -14,17 +14,17 @@ WITH line, pmc, c,
 
 FOREACH (i IN partdispute | 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
-                                                                    receivedCallAmount:toFloat(line.AgreedAmount), 
-                                                                    receivedMarkToMarketClient:toFloat(line.MarkToMarket),
-                                                                    receivedCollateralBalanceClient:toFloat(line.CollateralBalance),
+                                                                    callAmount:toFloat(line.AgreedAmount), 
+                                                                    markToMarketClient:toFloat(line.MarkToMarket),
+                                                                    collateralBalanceClient:toFloat(line.CollateralBalance),
                                                                     disputeReasonCode:line.DisputeReasonCode, 
                                                                     parentRank:pmc.parentRank+1
 	})-[:DIRECTED_TO]->(c) 
 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
-                                                                    receivedCallAmount:pmc.receivedCallAmount-toFloat(line.AgreedAmount),
-                                                                    receivedMarkToMarketClient:toFloat(line.MarkToMarket),
-                                                                    receivedCollateralBalanceClient:toFloat(line.CollateralBalance),
+                                                                    callAmount:pmc.callAmount-toFloat(line.AgreedAmount),
+                                                                    markToMarketClient:toFloat(line.MarkToMarket),
+                                                                    collateralBalanceClient:toFloat(line.CollateralBalance),
                                                                     disputeReasonCode:line.DisputeReasonCode, 
                                                                     parentRank:pmc.parentRank+1
 	})-[:DIRECTED_TO]->(c)
