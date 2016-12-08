@@ -1,0 +1,13 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/prerecon.csv'
+AS line
+
+MATCH (ms:MarginStatement {id:line.StatementId, date:line.Date})-[STEMS_FROM]->(a:Agreement)<-[STEMS_FROM]-(mse:ExpectedMarginStatement {date:line.Date})
+
+MERGE (ms)-[:FIRST]->(s:Step {status:'pre-recon'})
+
+WITH *, toFloat(line.Tolerance) as tolerance
+
+SET s.totalAmount = CASE WHEN (1-tolerance)*ms.TotalAmount <= mse.TotalAmount <= (1+tolerance)*ms.TotalAmount THEN 0 ELSE 1 END
+    s.interestPayment = CASE WHEN (1-tolerance)*ms.interestPayment <= mse.interestPayment <= (1+tolerance)*ms.interestPayment THEN 0 ELSE 1 END
+    s.overallAmount = CASE WHEN (1-tolerance)*ms.TotalAmount <= mse.TotalAmount <= (1+tolerance)*ms.TotalAmount THEN 0 ELSE 1 END
+    s.overallAmount = CASE WHEN (1-tolerance)*ms.TotalAmount <= mse.TotalAmount <= (1+tolerance)*ms.TotalAmount THEN 0 ELSE 1 END
