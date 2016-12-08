@@ -1,7 +1,8 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/prerecon.csv'
 AS line
 
-MATCH (ms:MarginStatement {id:line.StatementId, date:line.Date})-[STEMS_FROM]->(a:Agreement)<-[STEMS_FROM]-(mse:ExpectedMarginStatement {date:line.Date})
+MATCH (ms:MarginStatement {id:line.StatementId, date:line.Date})-[STEMS_FROM]->(a:Agreement)
+MATCH (a)<-[STEMS_FROM]-(mse:ExpectedMarginStatement {date:line.Date})
 
 MERGE (ms)-[:FIRST]->(s:Step {status:'pre-recon'})
 
