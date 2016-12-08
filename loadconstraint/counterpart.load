@@ -1,0 +1,2 @@
+CREATE CONSTRAINT ON (n:CounterpartFirm)
+ASSERT n.id IS UNIQUE
