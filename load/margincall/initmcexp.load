@@ -3,7 +3,7 @@ AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:CLIENT_SIGNS]->(a)
-MATCH (ms:MarginStatement {id:StatementId})
+MATCH (ms:MarginStatement {id:line.StatementId})
 
 MERGE (mc:MarginCall {id:line.CallId,
 		      callDate:line.CallDate,
