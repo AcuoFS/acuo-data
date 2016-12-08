@@ -4,6 +4,8 @@ AS line
 MATCH (l1:LegalEntity {id:line.Party1})
 MATCH (l2:LegalEntity {id:line.Party2})
 
+MERGE (l1)-[:PREFERENCES {tolerance:toFloat(line.Tolerance)}]->(l2)
+
 MERGE (a:Agreement {id:line.AgreementId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, notificationTime:line.NotificationTime, currency:line.Currency})
 
 WITH *,
