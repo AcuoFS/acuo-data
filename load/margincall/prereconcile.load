@@ -7,7 +7,7 @@ MERGE (ms)-[:FIRST]->(s:Step {status:'pre-recon'})
 
 WITH *, toFloat(line.Tolerance) as tolerance
 
-SET s.totalAmount = CASE WHEN (1-tolerance)*ms.TotalAmount <= mse.TotalAmount <= (1+tolerance)*ms.TotalAmount THEN 0 ELSE 1 END
-    s.interestPayment = CASE WHEN (1-tolerance)*ms.interestPayment <= mse.interestPayment <= (1+tolerance)*ms.interestPayment THEN 0 ELSE 1 END
-    s.overallAmount = CASE WHEN (1-tolerance)*ms.TotalAmount <= mse.TotalAmount <= (1+tolerance)*ms.TotalAmount THEN 0 ELSE 1 END
-    s.overallAmount = CASE WHEN (1-tolerance)*ms.TotalAmount <= mse.TotalAmount <= (1+tolerance)*ms.TotalAmount THEN 0 ELSE 1 END
+SET s.totalAmount = CASE WHEN (1-tolerance)*mse.TotalAmount <= ms.TotalAmount <= (1+tolerance)*mse.TotalAmount THEN 0 ELSE 1 END,
+    s.interestPayment = CASE WHEN (1-tolerance)*mse.interestPayment <= ms.interestPayment <= (1+tolerance)*mse.interestPayment THEN 0 ELSE 1 END,
+    s.overallAmount = CASE WHEN (1-tolerance)*mse.TotalAmount <= ms.TotalAmount <= (1+tolerance)*mse.TotalAmount THEN 0 ELSE 1 END,
+    s.overallAmount = CASE WHEN (1-tolerance)*mse.TotalAmount <= ms.TotalAmount <= (1+tolerance)*mse.TotalAmount THEN 0 ELSE 1 END
