@@ -14,7 +14,7 @@ test.node.num = function(){
   checkEquals(cypher(graph,nodenum.query3)$c,2)
   
   nodenum.query4 = "match (n:CustodianAccount) return count(n) AS c"
-  checkEquals(cypher(graph,nodenum.query4)$c,12)
+  checkEquals(cypher(graph,nodenum.query4)$c,11)
   
   nodenum.query5 = "match (n:Account) return count(n) AS c"
   checkEquals(cypher(graph,nodenum.query5)$c,10)
@@ -26,10 +26,10 @@ test.rel.num =function(){
   checkEquals(cypher(graph,relnum.query1)$c,37)
   
   relnum.query2 = "match (a)-[r:IS_ELIGIBLE_UNDER]->(b) return count(r) as c"
-  checkEquals(cypher(graph,relnum.query2)$c,468)
+  checkEquals(cypher(graph,relnum.query2)$c,546)
   
   relnum.query3.1 = "match (a)-[r:IS_AVAILABLE_FOR]->(b)<--(e:LegalEntity)<--(c:Client {id:'c1'}) return count(r) as c"
-  checkEquals(cypher(graph,relnum.query3.1)$c,233)
+  checkEquals(cypher(graph,relnum.query3.1)$c,285)
   
   relnum.query3.2 = "match (a)-[r:IS_AVAILABLE_FOR]->(b)<--(e:LegalEntity)<--(c:Client {id:'c2'}) return count(r) as c"
   checkEquals(cypher(graph,relnum.query3.2)$c,0)
@@ -38,13 +38,13 @@ test.rel.num =function(){
   checkEquals(cypher(graph,relnum.query4)$c,75)
   
   relnum.query5 = "match (a)-[r:ACCESSES]->(b) return count(r) as c"
-  checkEquals(cypher(graph,relnum.query5)$c,36)
+  checkEquals(cypher(graph,relnum.query5)$c,32)
   
   relnum.query6 = "match (a)-[r:HOLDS]->(b) return count(r) as c"
   checkEquals(cypher(graph,relnum.query6)$c,75)
   
   relnum.query7 = "match (a)-[r:MANAGES]->(b) return count(r) as c"
-  checkEquals(cypher(graph,relnum.query7)$c,17)
+  checkEquals(cypher(graph,relnum.query7)$c,16)
 }
 
 test.path.num = function(){
@@ -60,9 +60,8 @@ test.path.num = function(){
   pathnum.query4 = "MATCH (as:Asset)-[i:IS_IN]->()-[r:IS_ELIGIBLE_UNDER]->(a{id:'a1'}) WHERE as.ACUOCategory IN ['MM Instruments','Sovereign Bonds'] RETURN count(i) as c"
   checkEquals(cypher(graph,pathnum.query3)$c,23)
   
-  
-  
 }
+
 
 test.rel.type = function(){
   
@@ -155,7 +154,7 @@ test.node.prop = function(){
   checkEquals(cypher(graph,prop.query10)$n, 'region101')
   
   prop.query11 = "match (c:CustodianAccount) where c.id='custac8' return c.region as n"
-  checkEquals(cypher(graph,prop.query11)$n, 'region101')
+  checkEquals(cypher(graph,prop.query11)$n, 'region103')
   
 }
 
