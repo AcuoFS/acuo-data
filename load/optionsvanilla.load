@@ -20,4 +20,3 @@ SET opt:Opt
 MERGE (acc)-[:POSITIONS_ON]->(opt)
 MERGE (opt)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
-MERGE (e)-[:SIGNS]->(a)

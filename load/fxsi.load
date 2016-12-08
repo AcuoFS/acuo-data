@@ -18,4 +18,3 @@ SET f:FXSI
 MERGE (acc)-[:POSITIONS_ON]->(f)
 MERGE (f)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
-MERGE (e)-[:SIGNS]->(a)

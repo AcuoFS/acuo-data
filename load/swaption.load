@@ -27,4 +27,3 @@ SET swopt:Swopt
 MERGE (acc)-[:POSITIONS_ON]->(swopt)
 MERGE (swopt)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
-MERGE (e)-[:SIGNS]->(a)

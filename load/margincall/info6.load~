@@ -1,0 +1,36 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/info6.csv' 
+AS line
+
+MATCH (pmc {id:line.CallId})-[:DIRECTED_TO]->(c:Client)
+
+WITH line, pmc, c
+
+MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
+
+WITH pmc, n, line, c,
+		CASE WHEN NOT ((pmc)-[:FIRST]->()) THEN [1] ELSE []
+		END
+	AS firstnode
+
+FOREACH (i IN firstnode | MERGE (pmc)-[:FIRST {time:line.Time}]->(n))
+
+WITH pmc, n, line, c
+
+// We delete the previous [:LAST] relationship and add a [:NEXT] relationship
+
+OPTIONAL MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m {step:line.PrevStatus})
+FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
+
+// This can be either a rejection or a pledge canceled node. We still check for safety's sake. 
+
+WITH line, c
+
+MATCH (pl:MarginCall {id:line.CallId})
+WHERE line.NewStatus = 'Rejected' OR line.NewStatus = 'PledgeCanceled'
+WITH line, pl, RANGE(0, SIZE(SPLIT(pl.assetsPledged, '|'))-1) as len
+UNWIND(len) as i
+	MATCH (c)-[p:POSSESSES]->(a:Asset {id:SPLIT(pl.assetsPledged, '|')[i]})<-[h:HOLDS]-(:CustodianAccount {id:SPLIT(pl.pledgedCustodianAccount, '|')[i]})
+	SET h.pledgedQuantities = h.pledgedQuantities - toFloat(SPLIT(pl.pledgedQuantities, '|')[i]),
+            p.pledgedQuantities = p.pledgedQuantities - toFloat(SPLIT(pl.pledgedQuantities, '|')[i]),
+            h.availableQuantities = h.availableQuantities + toFloat(SPLIT(pl.pledgedQuantities, '|')[i]),
+            p.availableQuantities = p.availableQuantities + toFloat(SPLIT(pl.pledgedQuantities, '|')[i])

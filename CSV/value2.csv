@@ -1,56 +1,56 @@
 Date,Value,TradeId,Source
-27/11/16,23010000,irsvt1,Client
-27/11/16,21020000,irsvt2,Client
-27/11/16,7530000,irsvt3,Client
-27/11/16,5040000,irsvt4,Client
-27/11/16,1050000,irsvt5,Client
-27/11/16,22990000,irsft1,Client
-27/11/16,2098000,irsft2,Client
-27/11/16,7470000,irsft3,Client
-27/11/16,4960000,irsft4,Client
-27/11/16,950000,irsft5,Client
-27/11/16,9000000,cdst1,Client
-27/11/16,15000000,cdst2,Client
-27/11/16,9000002,cdst3,Client
-27/11/16,15000001,cdst4,Client
-27/11/16,9000004,cdst5,Client
-27/11/16,30500,ndft1,Client
-27/11/16,30501,ndft2,Client
-27/11/16,30502,ndft3,Client
-27/11/16,30503,ndft4,Client
-27/11/16,30504,ndft5,Client
-27/11/16,-5000,fxsi1,Client
-27/11/16,-4999,fxsi2,Client
-27/11/16,-4998,fxsi3,Client
-27/11/16,-4997,fxsi4,Client
-27/11/16,-4996,fxsi5,Client
-27/11/16,-150000,fxsw1,Client
-27/11/16,-250000,fxsw2,Client
-27/11/16,-170000,fxsw3,Client
-27/11/16,-230000,fxsw4,Client
-27/11/16,0,fxsw5,Client
-27/11/16,30500,optv1,Client
-27/11/16,30501,optv2,Client
-27/11/16,30502,optv3,Client
-27/11/16,30503,optv4,Client
-27/11/16,30504,optv5,Client
-27/11/16,30500,optb1,Client
-27/11/16,30501,optb2,Client
-27/11/16,30502,optb3,Client
-27/11/16,30503,optb4,Client
-27/11/16,30504,optb5,Client
-27/11/16,-15000,fra1,Client
-27/11/16,-14999,fra2,Client
-27/11/16,-14998,fra3,Client
-27/11/16,-14997,fra4,Client
-27/11/16,-14996,fra5,Client
-27/11/16,0,zcs1,Client
-27/11/16,0,zcs2,Client
-27/11/16,0,zcs3,Client
-27/11/16,0,zcs4,Client
-27/11/16,0,zcs5,Client
-27/11/16,-15000,swopt1,Client
-27/11/16,-20000,swopt2,Client
-27/11/16,50000,swopt3,Client
-27/11/16,75000,swopt4,Client
-27/11/16,-5000,swopt5,Client
+27/11/16 12:00:00,23010000,irsvt1,Client
+27/11/16 12:00:00,21020000,irsvt2,Client
+27/11/16 12:00:00,7530000,irsvt3,Client
+27/11/16 12:00:00,5040000,irsvt4,Client
+27/11/16 12:00:00,1050000,irsvt5,Client
+27/11/16 12:00:00,22990000,irsft1,Client
+27/11/16 12:00:00,2098000,irsft2,Client
+27/11/16 12:00:00,7470000,irsft3,Client
+27/11/16 12:00:00,4960000,irsft4,Client
+27/11/16 12:00:00,950000,irsft5,Client
+27/11/16 12:00:00,9000000,cdst1,Client
+27/11/16 12:00:00,15000000,cdst2,Client
+27/11/16 12:00:00,9000002,cdst3,Client
+27/11/16 12:00:00,15000001,cdst4,Client
+27/11/16 12:00:00,9000004,cdst5,Client
+27/11/16 12:00:00,30500,ndft1,Client
+27/11/16 12:00:00,30501,ndft2,Client
+27/11/16 12:00:00,30502,ndft3,Client
+27/11/16 12:00:00,30503,ndft4,Client
+27/11/16 12:00:00,30504,ndft5,Client
+27/11/16 12:00:00,-5000,fxsi1,Client
+27/11/16 12:00:00,-4999,fxsi2,Client
+27/11/16 12:00:00,-4998,fxsi3,Client
+27/11/16 12:00:00,-4997,fxsi4,Client
+27/11/16 12:00:00,-4996,fxsi5,Client
+27/11/16 12:00:00,-150000,fxsw1,Client
+27/11/16 12:00:00,-250000,fxsw2,Client
+27/11/16 12:00:00,-170000,fxsw3,Client
+27/11/16 12:00:00,-230000,fxsw4,Client
+27/11/16 12:00:00,0,fxsw5,Client
+27/11/16 12:00:00,30500,optv1,Client
+27/11/16 12:00:00,30501,optv2,Client
+27/11/16 12:00:00,30502,optv3,Client
+27/11/16 12:00:00,30503,optv4,Client
+27/11/16 12:00:00,30504,optv5,Client
+27/11/16 12:00:00,30500,optb1,Client
+27/11/16 12:00:00,30501,optb2,Client
+27/11/16 12:00:00,30502,optb3,Client
+27/11/16 12:00:00,30503,optb4,Client
+27/11/16 12:00:00,30504,optb5,Client
+27/11/16 12:00:00,-15000,fra1,Client
+27/11/16 12:00:00,-14999,fra2,Client
+27/11/16 12:00:00,-14998,fra3,Client
+27/11/16 12:00:00,-14997,fra4,Client
+27/11/16 12:00:00,-14996,fra5,Client
+27/11/16 12:00:00,0,zcs1,Client
+27/11/16 12:00:00,0,zcs2,Client
+27/11/16 12:00:00,0,zcs3,Client
+27/11/16 12:00:00,0,zcs4,Client
+27/11/16 12:00:00,0,zcs5,Client
+27/11/16 12:00:00,-15000,swopt1,Client
+27/11/16 12:00:00,-20000,swopt2,Client
+27/11/16 12:00:00,50000,swopt3,Client
+27/11/16 12:00:00,75000,swopt4,Client
+27/11/16 12:00:00,-5000,swopt5,Client

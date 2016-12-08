@@ -1,0 +1,33 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/{value}.csv' 
+AS line
+
+// CALL apoc.date.parse(line.Date, 'd', 'dd/MM/yy') YIELD value as dbDate
+
+WITH *
+
+MATCH (t:Trade {id:line.TradeId})
+
+MERGE (t)-[:VALUATED]->(v:Valuation {date:SPLIT(line.Date, ' ')[1]})
+
+MERGE (v)-[:VALUE]->(nv:NewValuation {source:line.Source})
+
+SET v.time = SPLIT(line.Date, ' ')[2], v.date = SPLIT(line.Date, ' ')[1], v.value:toFloat(value:line.Value)
+
+WITH *
+
+OPTIONAL MATCH (t)-[psl:SECOND_TO_LAST]->(v1:Valuation)
+CALL apoc.date.parse(v1.date, 'd', 'dd/MM/yy') YIELD value as stlDate
+WITH *
+WHERE dbDate-stlDate >= 2
+DELETE psl
+
+WITH *
+
+OPTIONAL MATCH (t)-[pl:LAST]->(v2:Valuation)
+CALL apoc.date.parse(v2.date, 'd', 'dd/MM/yy') YIELD value as lDate
+WITH *
+WHERE dbDate-stlDate >= 1
+DELETE pl
+MERGE (t)-[:SECOND_TO_LAST]->(v2)
+MERGE (t)-[:LAST]->(v)
+

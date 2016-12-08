@@ -39,4 +39,3 @@ FOREACH (i in dirReceiveFloat | MERGE (irs)-[:RECEIVE]->(l:Leg {id:line.IdLegRec
 MERGE (acc)-[:POSITIONS_ON]->(irs)
 MERGE (irs)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
-MERGE (e)-[:SIGNS]->(a)
