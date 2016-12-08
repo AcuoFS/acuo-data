@@ -8,5 +8,3 @@ ON CREATE SET ms.totalAmount=toFloat(line.TotalAmount)
 ON MATCH SET ms.totalAmount=ms.totalAmount + toFloat(line.TotalAmount)
 
 MERGE (ms)-[:STEMS_FROM]->(a)
-
-MERGE (ms)-[:FIRST]->(s:Step {Status:'Pre-reconcilied'})

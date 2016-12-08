@@ -1,0 +1,17 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/prerecon.csv'
+AS line
+
+MATCH (ms:MarginStatement {id:line.StatementId, date:line.Date})-[STEMS_FROM]->(a:Agreement)
+MATCH (a)<-[STEMS_FROM]-(mse:ExpectedMarginStatement {date:line.Date})
+
+MERGE (ms)-[:FIRST]->(s:Step {status:'pre-reconcilied'})
+
+WITH *, toFloat(line.Tolerance) as tolerance
+
+SET s.totalAmount = CASE WHEN (1-tolerance)*mse.TotalAmount <= ms.TotalAmount <= (1+tolerance)*mse.TotalAmount THEN 0 ELSE 1 END,
+    s.interestPayment = CASE WHEN (1-tolerance)*mse.interestPayment <= ms.interestPayment <= (1+tolerance)*mse.interestPayment THEN 0 ELSE 1 END,
+    s.productCashFlows = CASE WHEN (1-tolerance)*mse.productCashFlows <= ms.productCashFlows <= (1+tolerance)*mse.productCashFlows THEN 0 ELSE 1 END,
+    s.PAI = CASE WHEN (1-tolerance)*mse.PAI <= ms.PAI <= (1+tolerance)*mse.PAI THEN 0 ELSE 1 END,
+    s.feesCommissions = CASE WHEN (1-tolerance)*mse.feesCommissions <= ms.feesCommissions <= (1+tolerance)*mse.feesCommissions THEN 0 ELSE 1 END,
+    s.pendingCash = CASE WHEN (1-tolerance)*mse.pendingCash <= ms.pendingCash <= (1+tolerance)*mse.pendingCash THEN 0 ELSE 1 END,
+    s.pendingNonCash = CASE WHEN (1-tolerance)*mse.pendingNonCash <= ms.pendingNonCash <= (1+tolerance)*mse.pendingNonCash THEN 0 ELSE 1 END
