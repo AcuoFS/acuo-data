@@ -8,32 +8,34 @@ test.propirs = function() {
   checkEquals(cypher(graph, propquery1)$d, '29/07/15')
   propquery2 = "MATCH (t:IRS {id:'irsft2'}) return t.maturity as e"
   checkEquals(cypher(graph, propquery2)$e, '16/12/20')
-  propquery3 = "MATCH (t:IRS {id:'irsvt3'}) return t.legPay as f"
-  checkEquals(cypher(graph, propquery3)$f, 'Fixed')
-  propquery4 = "MATCH (t:IRS {id:'irsvt4'}) return t.notional as g"
-  checkEquals(cypher(graph, propquery4)$g, 5000000)
-  propquery6 = "MATCH (t:IRS {id:'irsft1'}) return t.currency as i"
-  checkEquals(cypher(graph, propquery6)$i, 'USD')
-  propquery8 = "MATCH (t:IRS {id:'irsvt3'}) return t.fixedRate as k"
-  checkEquals(cypher(graph, propquery8)$k, 2.5)
-  propquery9 = "MATCH (t:IRS {id:'irsvt4'}) return t.index as l"
-  checkEquals(cypher(graph, propquery9)$l, 'USD-LIBOR-BBA')
-  propquery10 = "MATCH (t:IRS {id:'irsvt5'}) return t.indexTenor as m"
-  checkEquals(cypher(graph, propquery10)$m, '3M')
-  propquery11 = "MATCH (t:IRS {id:'irsvt1'}) return t.resetFreq as n"
-  checkEquals(cypher(graph, propquery11)$n, '3M')
-  propquery12 = "MATCH (t:IRS {id:'irsvt2'}) return t.payFreqReceive as o"
-  checkEquals(cypher(graph, propquery12)$o, '6M')
-  propquery13 = "MATCH (t:IRS {id:'irsft3'}) return t.payFreqPay as p"
-  checkEquals(cypher(graph, propquery13)$p, '3M')
-  propquery14 = "MATCH (t:IRS {id:'irsft4'}) return t.indexPay as q"
-  checkEquals(cypher(graph, propquery14)$q, 'USD-LIBOR-BBA')
-  propquery15 = "MATCH (t:IRS {id:'irsft5'}) return t.indexTenorReceive as r"
-  checkEquals(cypher(graph, propquery15)$r, '3M')
-  propquery16 = "MATCH (t:IRS {id:'irsft1'}) return t.resetFreqPay as s"
-  checkEquals(cypher(graph, propquery16)$s, '3M')
-  propquery18 = "MATCH (t:IRS {id:'irsft3'}) return t.nextCouponPaymentDate as u"
-  checkEquals(cypher(graph, propquery18)$u, '21/12/16')
+  propquery3 = "MATCH (:IRS {id:'irsvt3'})-[:PAYS]->(l:Leg) return l.notional as f"
+  checkEquals(cypher(graph, propquery3)$f, 7500000)
+  propquery4 = "MATCH (:IRS {id:'irsvt4'})-[:RECEIVE]->(l:Leg) return l.currency as f"
+  checkEquals(cypher(graph, propquery4)$f, 'USD')
+  propquery5 = "MATCH (:IRS {id:'irsvt5'})-[:PAYS]->(l:Leg) return l.type as f"
+  checkEquals(cypher(graph, propquery5)$f, 'Floating')
+  propquery6 = "MATCH (:IRS {id:'irsft1'})-[:RECEIVE]->(l:Leg) return l.index as f"
+  checkEquals(cypher(graph, propquery6)$f, 'USD-LIBOR-BBA')
+  propquery7 = "MATCH (:IRS {id:'irsft2'})-[:PAYS]->(l:Leg) return l.indexTenor as f"
+  checkEquals(cypher(graph, propquery7)$f, '6M')
+  propquery8 = "MATCH (:IRS {id:'irsft3'})-[:RECEIVE]->(l:Leg) return l.resetFrequency as f"
+  checkEquals(cypher(graph, propquery8)$f, '3M')
+  propquery9 = "MATCH (:IRS {id:'irsft4'})-[:PAYS]->(l:Leg) return l.paymentFrequency as f"
+  checkEquals(cypher(graph, propquery9)$f, '3M')
+  propquery10 = "MATCH (:IRS {id:'irsft5'})-[:RECEIVE]->(l:Leg) return l.payStart as f"
+  checkEquals(cypher(graph, propquery10)$f, '08/01/16')
+  propquery11 = "MATCH (:IRS {id:'irsvt1'})-[:PAYS]->(l:Leg) return l.payEnd as f"
+  checkEquals(cypher(graph, propquery11)$f, '20/09/23')
+  propquery12 = "MATCH (:IRS {id:'irsvt2'})-[:RECEIVE]->(l:Leg) return l.businessDayConvention as f"
+  checkEquals(cypher(graph, propquery12)$f, 'MODFOLLOWING')
+  propquery13 = "MATCH (:IRS {id:'irsvt3'})-[:PAYS]->(l:Leg) return l.refCalendar as f"
+  checkEquals(cypher(graph, propquery13)$f, 'NY')
+  propquery14 = "MATCH (:IRS {id:'irsvt4'})-[:PAYS]->(l:Leg) return l.fixedRate as f"
+  checkEquals(cypher(graph, propquery14)$f, 1.75)
+  propquery15 = "MATCH (:IRS {id:'irsvt5'})-[:RECEIVE]->(l:Leg) return l.nextCouponPaymentDate as f"
+  checkEquals(cypher(graph, propquery15)$f, '08/01/16')
+  propquery16 = "MATCH (:IRS {id:'irsft1'})-[:PAYS]->(l:Leg) return l.dayCount as f"
+  checkEquals(cypher(graph, propquery16)$f, 'ACT/360')
 }
 
 # I want to check that my CDS have the correct properties:
@@ -94,9 +96,9 @@ test.propfxsi = function() {
   propquery3 = "MATCH (t:FXSI {id:'fxsi3'}) return t.counterCurrency as c"
   checkEquals(cypher(graph, propquery3)$c, 'GBP')
   propquery4 = "MATCH (t:FXSI {id:'fxsi4'}) return t.baseCurrencyAmount as d"
-  checkEquals(cypher(graph, propquery4)$d, 1000)
+  checkEquals(cypher(graph, propquery4)$d, 1000000)
   propquery5 = "MATCH (t:FXSI {id:'fxsi5'}) return t.counterCurrencyAmount as e"
-  checkEquals(cypher(graph, propquery5)$e, 149)
+  checkEquals(cypher(graph, propquery5)$e, 149000)
   propquery6 = "MATCH (t:FXSI {id:'fxsi1'}) return t.paymentDate as f"
   checkEquals(cypher(graph, propquery6)$f, "18/05/13")
 }
@@ -111,7 +113,7 @@ test.propfxsw = function() {
   propquery3 = "MATCH (t:FXSW {id:'fxsw3'}) return t.counterCurrency as c"
   checkEquals(cypher(graph, propquery3)$c, 'GBP')
   propquery4 = "MATCH (t:FXSW {id:'fxsw4'}) return t.notionalBaseCurrency as d"
-  checkEquals(cypher(graph, propquery4)$d, 10003)
+  checkEquals(cypher(graph, propquery4)$d, 10000003)
   propquery5 = "MATCH (t:FXSW {id:'fxsw5'}) return t.nearRate as e"
   checkEquals(cypher(graph, propquery5)$e, 0.15)
   propquery6 = "MATCH (t:FXSW {id:'fxsw1'}) return t.forwardPoints as f"
