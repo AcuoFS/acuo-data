@@ -14,7 +14,7 @@ ON MATCH SET
 	h.quantities=TOFLOAT(line.quantities),
 	h.availableQuantities=TOFLOAT(line.availableQuantities),
 	h.deployedQuantities=TOFLOAT(line.deployedQuantities),
-	h.departingQuantities=TOFLOAT(line.departingQuantities),
+	h.departedQuantities=TOFLOAT(line.departedQuantities),
 	h.arrivingQuantities =TOFLOAT(line.arrivingQuantities),
 	h.earmarkedQuantities=TOFLOAT(line.earmarkedQuantities)
 
@@ -28,12 +28,12 @@ WITH DISTINCT custac
 
 MATCH path1 = (custac)-[h:HOLDS]->(a:Asset)<-[p:POSSESSES]-(c:Client)
 WHERE (c)-[*3]->(custac)
-WITH DISTINCT p, SUM(h.quantities) AS hQ, SUM(h.availableQuantities) AS hAQ, SUM(p.deployedQuantities) AS hDQ, SUM(h.departingQuantities) AS hDPQ,
+WITH DISTINCT p, SUM(h.quantities) AS hQ, SUM(h.availableQuantities) AS hAQ, SUM(p.deployedQuantities) AS hDQ, SUM(h.departedQuantities) AS hDPQ,
 	SUM(h.arrivingQuantities) AS hARQ, SUM(h.earmarkedQuantities) AS hEQ
 SET p.quantities = hQ,
 	p.availableQuantities = hAQ,
     p.deployedQuantities = hDQ,
-    p.departingQuantities = hDPQ,
+    p.departedQuantities = hDPQ,
     p.arrivingQuantities = hARQ,
     p.earmarkedQuantities = hEQ
 

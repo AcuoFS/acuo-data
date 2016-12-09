@@ -1,4 +1,4 @@
-accountId,assetId,quantities,availableQuantities,deployedQuantities,departingQuantities,arrivingQuantities,earmarkedQuantities,businessTimeFrom,businessTimeTo
+accountId,assetId,quantities,availableQuantities,deployedQuantities,departedQuantities,arrivingQuantities,earmarkedQuantities,businessTimeFrom,businessTimeTo
 custac1,US912796HW25,10000,10000,0,0,0,0,08:00,20:00
 custac1,US912796JE09,10000,10000,0,0,0,0,08:01,20:01
 custac1,DE0001137461,100000000,100000000,0,0,0,0,08:02,20:02
