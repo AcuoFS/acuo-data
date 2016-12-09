@@ -31,7 +31,7 @@ SET pl.assetsPledged = line.Assets, pl.pledgedQuantities = line.Quantities, pl.p
 WITH line, pl, c, RANGE(0, SIZE(SPLIT(line.Assets, '|'))-1) as len
 UNWIND(len) as i
 	MATCH (c)-[p:POSSESSES]->(a:Asset {id:SPLIT(line.Assets, '|')[i]})<-[h:HOLDS]-(:CustodianAccount {id:SPLIT(line.CustodianAccount, '|')[i]})
-	SET h.pledgedQuantities = h.pledgedQuantities + toFloat(SPLIT(line.Quantities, '|')[i]),
+	SET h.departingQuantities = h.departingQuantities + toFloat(SPLIT(line.Quantities, '|')[i]),
             h.availableQuantities = h.availableQuantities - toFloat(SPLIT(line.Quantities, '|')[i]),
-            p.pledgedQuantities = p.pledgedQuantities + toFloat(SPLIT(line.Quantities, '|')[i]),
+            p.departingQuantities = p.departingQuantities + toFloat(SPLIT(line.Quantities, '|')[i]),
             p.availableQuantities = p.availableQuantities - toFloat(SPLIT(line.Quantities, '|')[i])

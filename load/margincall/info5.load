@@ -20,21 +20,3 @@ WITH pmc, n, line, c
 
 OPTIONAL MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m {step:line.PrevStatus})
 FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
-
-// This is an acception node. We still check for safety's sake. 
-
-WITH line, c
-
-MATCH (pl:MarginCall {id:line.CallId})
-WHERE line.NewStatus = 'Accepted'
-SET pl.assetsSettled=pl.assetsPledged, pl.settledQuantities=pl.pledgedQuantities, pl.settledCustodianAccount=pl.pledgedCustodianAccount
-REMOVE pl.assetsPledged, pl.pledgedQuantities, pl.pledgedCustodianAccount
-WITH line, c, pl, RANGE(0, SIZE(SPLIT(pl.assetsSettled, '|'))-1) as len
-UNWIND(len) as i
-	MATCH (c)-[p:POSSESSES]->(a:Asset {id:SPLIT(pl.assetsSettled, '|')[i]})<-[h:HOLDS]-(:CustodianAccount {id:SPLIT(pl.settledCustodianAccount, '|')[i]})
-	SET h.pledgedQuantities = h.pledgedQuantities - toFloat(SPLIT(pl.settledQuantities, '|')[i])
-	SET h.settledQuantities = h.settledQuantities + toFloat(SPLIT(pl.settledQuantities, '|')[i])
-	SET p.pledgedQuantities = p.pledgedQuantities - toFloat(SPLIT(pl.settledQuantities, '|')[i])
-	SET p.settledQuantities = p.settledQuantities + toFloat(SPLIT(pl.settledQuantities, '|')[i])
-
-// No change in available quantities since these assets had already been pledged
