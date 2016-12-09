@@ -2,11 +2,13 @@ LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/m
 AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
-MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:SIGNS]->(a)
+MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:CLIENT_SIGNS]->(a)
+MATCH (ms:MarginStatement {id:StatementId})
 
-MERGE (mc:MarginCall {callDate:line.CallDate,
+MERGE (mc:MarginCall {id:line.CallId, 
+		      callDate:line.CallDate,
                       callType:line.CallType, 
-                      agreementId:line.AgreementId})
+                      direction:line.Direction})
 
 SET mc.id=line.CallId,
     mc.valuationDate=line.ValuationDate,
@@ -18,13 +20,10 @@ SET mc.id=line.CallId,
     mc.pendingCollateral=toFloat(line.PendingCollateral),
     mc.exposure=toFloat(line.Exposure),
     mc.IMRole=line.IMRole,
-    mc.parentRank=1
+    mc.parentRank=1, 
+    mc.status=line.Status
 
-MERGE (ms:MarginStatement {id:line.StatementId})
-ON MATCH SET ms.totalAmount = ms.totalAmount + toFloat(line.totalCallAmount)
-ON CREATE SET ms.totalAmount = toFloat(line.totalCallAmount)
-
-MERGE (mc)-[:PART_OF]->(ms)
+MERGE (mc)-[:IS_RECEIVED_IN]->(ms)
 MERGE (mc)-[:STEMS_FROM]->(a)
 MERGE (mc)-[:DIRECTED_TO]->(c)
 

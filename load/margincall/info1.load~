@@ -7,13 +7,6 @@ WITH line, pmc
 
 MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
 
-WITH pmc, n, line,
-		CASE WHEN NOT ((pmc)-[:FIRST]->()) THEN [1] ELSE []
-		END
-	AS firstnode
-
-FOREACH (i IN firstnode | MERGE (pmc)-[:FIRST {time:line.Time}]->(n))
-
 WITH pmc, n, line
 
 // We delete the previous [:LAST] relationship and add a [:NEXT] relationship
