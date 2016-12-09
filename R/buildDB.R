@@ -6,13 +6,15 @@ readLoad <- function(path) {
   }
 
 buildDataBase = function() {
-#  graph = startGraph("http://neo4j.acuo.com:7474/db/data/")
-  graph = startGraph("http://localhost:7474/db/data/")
+  graph = startGraph("http://neo4j.acuo.com:7474/db/data/")
+#  graph = startGraph("http://localhost:7474/db/data/")
                
   clear(graph,input=FALSE)
 
   load.name <- c('/load/client.load',
+                 '/load/counterpart.load',
                  '/load/legalentity.load',
+                 '/load/counterpartEntity.load',
                  '/load/account.load',
                  '/load/agreement.load',
                  '/load/cds.load',  
@@ -32,8 +34,9 @@ buildDataBase = function() {
                  '/load/custodianAccount.load',
                  '/load/custodianAsset.load',
                  '/load/margincall/mstatement.load',
+                 '/load/margincall/initmcexp.load',
                  '/load/margincall/initmc.load')
-                              
+
   for (i in 1:10) {
     load.name <- c(load.name, paste('/load/margincall/info', toString(i), '.load', sep=''))
   }
