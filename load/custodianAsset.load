@@ -19,14 +19,14 @@ ON MATCH SET
 	h.earmarkedQuantities=TOFLOAT(line.earmarkedQuantities)
 
 WITH custac,a
-MATCH (ac)-[ie:IS_ELIGIBLE_UNDER]->(ag:Agreement)<-[:SIGNS]-(e:LegalEntity)-[:HAS]->(acc:Account)-[:ACCESSES]->(custac)-[:HOLDS]->(a)
+MATCH (ac)-[ie:IS_ELIGIBLE_UNDER]->(ag:Agreement)<-[:CLIENT_SIGNS]-(e:LegalEntity)-[:HAS]->(acc:Account)-[:ACCESSES]->(custac)-[:HOLDS]->(a)
 WHERE (a)-[:IS_IN]->(ac)
 MERGE (a)-[:IS_AVAILABLE_FOR {haircut:ie.haircut,FXHaircut:ie.FXHaircut,interestRate:ie.interestRate,
 	externalCost:ie.externalCost,FXRate: ie.FXRate, callType:ie.callType}]-(ag)
 
 WITH DISTINCT custac
 
-MATCH path1 = (custac)-[h:HOLDS]->(a)<-[p:POSSESSES]-(c:Client)
+MATCH path1 = (custac)-[h:HOLDS]->(a:Asset)<-[p:POSSESSES]-(c:Client)
 WHERE (c)-[*3]->(custac)
 WITH DISTINCT p, SUM(h.quantities) AS hQ, SUM(h.availableQuantities) AS hAQ, SUM(p.deployedQuantities) AS hDQ, SUM(h.departingQuantities) AS hDPQ,
 	SUM(h.arrivingQuantities) AS hARQ, SUM(h.earmarkedQuantities) AS hEQ
