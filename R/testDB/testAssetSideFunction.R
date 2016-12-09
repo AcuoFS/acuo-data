@@ -43,8 +43,6 @@ test.rel.num =function(){
   relnum.query6 = "match (a)-[r:HOLDS]->(b) return count(r) as c"
   checkEquals(cypher(graph,relnum.query6)$c,75)
   
-  relnum.query7 = "match (a)-[r:MANAGES]->(b) return count(r) as c"
-  checkEquals(cypher(graph,relnum.query7)$c,16)
 }
 
 test.path.num = function(){
@@ -192,19 +190,19 @@ test.rel.prop = function(){
   prop.query7 = "match (c:CustodianAccount {id:'custac5'})-[ac:HOLDS]->(a:Asset {id:'CAD'}) return ac.businessTimeTo as t"
   checkEquals(cypher(graph,prop.query7)$t, '21:14')
   
-  prop.query8 = "match (e:LegalEntity {id:'e1'})-[s:SIGNS]->(ag:Agreement {id:'a1'}) return s.recipientAddress as add"
+  prop.query8 = "match (e:LegalEntity {id:'e1'})-[s:CLIENT_SIGNS]->(ag:Agreement {id:'a1'}) return s.recipientAddress as add"
   checkEquals(cypher(graph,prop.query8)$add, 'address1')
   
-  prop.query9 = "match (e:LegalEntity {id:'e5'})-[s:SIGNS]->(ag:Agreement {id:'a10'}) return s.recipientRegion as r"
+  prop.query9 = "match (e:LegalEntity {id:'e5'})-[s:CLIENT_SIGNS]->(ag:Agreement {id:'a10'}) return s.recipientRegion as r"
   checkEquals(cypher(graph,prop.query9)$r, 'region10')  
   
-  prop.query10 = "match (e:LegalEntity {id:'e2'})-[s:SIGNS]->(ag:Agreement {id:'a13'}) return s.businessTimeFrom as t"
+  prop.query10 = "match (e:LegalEntity {id:'e2'})-[s:CLIENT_SIGNS]->(ag:Agreement {id:'a13'}) return s.businessTimeFrom as t"
   checkEquals(cypher(graph,prop.query10)$t, '08:12')  
   
-  prop.query11 = "match (e:LegalEntity {id:'e3'})-[s:SIGNS]->(ag:Agreement {id:'a55'}) return s.businessTimeTo as t"
+  prop.query11 = "match (e:LegalEntity {id:'e3'})-[s:CLIENT_SIGNS]->(ag:Agreement {id:'a55'}) return s.businessTimeTo as t"
   checkEquals(cypher(graph,prop.query11)$t, '18:54')
   
-  prop.query12 = "match (e:LegalEntity {id:'e2'})-[s:SIGNS]->(ag:Agreement {id:'a33'}) return s.recipientId as r"
+  prop.query12 = "match (e:LegalEntity {id:'e2'})-[s:CLIENT_SIGNS]->(ag:Agreement {id:'a33'}) return s.recipientId as r"
   checkEquals(cypher(graph,prop.query12)$r, 'recp33')  
   
   
