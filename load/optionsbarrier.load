@@ -20,6 +20,8 @@ MERGE (opt:Trade {id:line.TradeId,
 		barrierLevel:toFloat(line.BarrierLevel)})
 SET opt:Opt
 
+MERGE (p:Portfolio {id:line.PortfolioId})
+MERGE (opt)-[:BELONGS_TO]->(p)
 MERGE (acc)-[:POSITIONS_ON]->(opt)
 MERGE (opt)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)

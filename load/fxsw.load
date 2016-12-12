@@ -16,6 +16,8 @@ MERGE (f:Trade {id:line.TradeId,
 		farDate:line.FarDate})
 SET f:FXSW
 
+MERGE (p:Portfolio {id:line.PortfolioId})
+MERGE (f)-[:BELONGS_TO]->(p)
 MERGE (acc)-[:POSITIONS_ON]->(f)
 MERGE (f)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)

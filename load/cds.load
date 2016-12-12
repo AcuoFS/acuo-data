@@ -18,6 +18,8 @@ MERGE (cds:Trade {id:line.TradeId,
 		seniority:line.Seniority})
 SET cds:CDS
 
+MERGE (p:Portfolio {id:line.PortfolioId})
+MERGE (cds)-[:BELONGS_TO]->(p)
 MERGE (acc)-[:POSITIONS_ON]->(cds)
 MERGE (cds)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
