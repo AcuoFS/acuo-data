@@ -1,33 +1,20 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/{value}.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/value1.csv' 
 AS line
 
-// CALL apoc.date.parse(line.Date, 'd', 'dd/MM/yy') YIELD value as dbDate
+WITH *
+
+MATCH (t:Trade {id:line.TradeId})-[:BELONGS_TO]->(p:Portfolio)
+
+MERGE (t)-[:VALUATED]->(v1:Valuation {date:line.Date})
+
+MERGE (v1)-[:VALUE {time:line.creationTime}]->(nv1:Value {source:line.Source, currency:line.Currency})
+
+SET nv1.PV = toFloat(line.PV)
 
 WITH *
 
-MATCH (t:Trade {id:line.TradeId})
+MERGE (p)-[:VALUATED]->(v2:Valuation {date:line.Date})
 
-MERGE (t)-[:VALUATED]->(v:Valuation {date:SPLIT(line.Date, ' ')[1]})
-
-MERGE (v)-[:VALUE]->(nv:NewValuation {source:line.Source})
-
-SET v.time = SPLIT(line.Date, ' ')[2], v.date = SPLIT(line.Date, ' ')[1], v.value:toFloat(value:line.Value)
-
-WITH *
-
-OPTIONAL MATCH (t)-[psl:SECOND_TO_LAST]->(v1:Valuation)
-CALL apoc.date.parse(v1.date, 'd', 'dd/MM/yy') YIELD value as stlDate
-WITH *
-WHERE dbDate-stlDate >= 2
-DELETE psl
-
-WITH *
-
-OPTIONAL MATCH (t)-[pl:LAST]->(v2:Valuation)
-CALL apoc.date.parse(v2.date, 'd', 'dd/MM/yy') YIELD value as lDate
-WITH *
-WHERE dbDate-stlDate >= 1
-DELETE pl
-MERGE (t)-[:SECOND_TO_LAST]->(v2)
-MERGE (t)-[:LAST]->(v)
-
+MERGE (v2)-[vr:VALUE]->(nv2:Value {source:line.Source, currency:line.Currency})
+ON CREATE SET vr.time = line.creationTime, vr.lastUpdate=line.creationTime, nv2.PV = toFloat(line.PV)
+ON MATCH SET vr.lastUpdate=line.creationTime, nv2.PV = nv2.PV + toFloat(line.PV)

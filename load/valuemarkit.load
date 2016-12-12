@@ -7,7 +7,7 @@ MATCH (t:Trade {id:line.TradeId})-[:BELONGS_TO]->(p:Portfolio)
 
 MERGE (t)-[:VALUATED]->(v1:Valuation {date:line.Date})
 
-MERGE (v1)-[:VALUE {time:line.creationTime}]->(nv1:NewValuation {source:line.Source, currency:line.Currency})
+MERGE (v1)-[:VALUE {time:line.creationTime}]->(nv1:Value {source:line.Source, currency:line.Currency})
 
 SET nv1.PV = toFloat(line.PV)
 
@@ -17,6 +17,6 @@ WITH *
 
 MERGE (p)-[:VALUATED]->(v2:Valuation {date:line.Date})
 
-MERGE (v2)-[vr:VALUE]->(nv2:NewValuation {source:line.Source, currency:line.Currency})
+MERGE (v2)-[vr:VALUE]->(nv2:Value {source:line.Source, currency:line.Currency})
 ON CREATE SET vr.time = line.creationTime, vr.lastUpdate=line.creationTime, nv2.PV = toFloat(line.PV)
 ON MATCH SET vr.lastUpdate=line.creationTime, nv2.PV = nv2.PV + toFloat(line.PV)
