@@ -1,4 +1,4 @@
-Date,creationTime,Value,Currency,TradeId,Source
+Date,creationTime,PV,Currency,TradeId,Source
 27/11/16,12:00:00,23010000,USD,irsvt1,Markit
 27/11/16,12:00:00,21020000,USD,irsvt2,Markit
 27/11/16,12:00:00,7530000,USD,irsvt3,Markit
