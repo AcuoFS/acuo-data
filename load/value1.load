@@ -16,5 +16,5 @@ WITH *
 MERGE (p)-[:VALUATED]->(v2:Valuation {date:line.Date})
 
 MERGE (v2)-[vr:VALUE]->(nv2:Value {source:line.Source, currency:line.Currency})
-ON CREATE SET vr.time = line.creationTime, vr.lastUpdate=line.creationTime, nv2.PV = toFloat(line.PV)
-ON MATCH SET vr.lastUpdate=line.creationTime, nv2.PV = nv2.PV + toFloat(line.PV)
+ON CREATE SET vr.time = line.creationTime, vr.lastUpdate=line.creationTime
+ON MATCH SET vr.lastUpdate=line.creationTime
