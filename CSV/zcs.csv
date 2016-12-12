@@ -1,6 +1,6 @@
-ClearingDate,Maturity,Notional,Currency,LegPay,RateValue,IndexName,IndexTenor,InitialIndex,FinalIndex,TradeId,AccountId,AgreementId
-10/11/12,10/11/14,230000,USD,Floating,1.16,USD-LIBOR-BBA,3M,9995,10995,zcs1,acc6,a46
-11/11/12,11/11/14,210000,USD,Fixed,2.3,USD-LIBOR-BBA,3M,9996,10996,zcs2,acc7,a47
-12/11/12,12/11/14,75000,USD,Floating,1.8,USD-LIBOR-BBA,3M,9997,10997,zcs3,acc8,a48
-13/11/12,13/11/14,50000,USD,Fixed,1.53,USD-LIBOR-BBA,3M,9998,10998,zcs4,acc9,a49
-14/11/12,14/11/14,10000,USD,Floating,0.9,USD-LIBOR-BBA,3M,9999,10999,zcs5,acc10,a50
+ClearingDate,Maturity,Notional,Currency,LegPay,RateValue,IndexName,IndexTenor,InitialIndex,FinalIndex,TradeId,AccountId,AgreementId,PortfolioId
+10/11/12,10/11/14,230000,USD,Floating,1.16,USD-LIBOR-BBA,3M,9995,10995,zcs1,acc6,a6,p6
+11/11/12,11/11/14,210000,USD,Fixed,2.3,USD-LIBOR-BBA,3M,9996,10996,zcs2,acc7,a7,p7
+12/11/12,12/11/14,75000,USD,Floating,1.8,USD-LIBOR-BBA,3M,9997,10997,zcs3,acc8,a8,p8
+13/11/12,13/11/14,50000,USD,Fixed,1.53,USD-LIBOR-BBA,3M,9998,10998,zcs4,acc9,a9,p9
+14/11/12,14/11/14,10000,USD,Floating,0.9,USD-LIBOR-BBA,3M,9999,10999,zcs5,acc10,a10,p10
