@@ -30,11 +30,12 @@ MERGE (mc)-[:DIRECTED_TO]->(c)
 OPTIONAL MATCH (mce:MarginCall {callDate:line.CallDate, callType:line.CallType, status:'Expected'})-[:IS_EXPECTED_IN]->(ms)
 
 WITH *,
-		CASE WHEN NOT mce.id = NA THEN [1] ELSE []
+		CASE WHEN exists((:MarginCall {callDate:line.CallDate, callType:line.CallType, status:'Expected'})-[:IS_EXPECTED_IN]->(ms)) THEN [1] ELSE []
 		END
 	as existsExpected
 
-FOREACH (i in existsExpected | MERGE (mc)-[:MATCHED_TO_EXPECTED]->(mce))
+FOREACH (i in existsExpected | MERGE (mce:MarginCall {callDate:line.CallDate, callType:line.CallType, status:'Expected'})-[:IS_EXPECTED_IN]->(ms) 
+MERGE (mc)-[:MATCHED_TO_EXPECTED]->(mce))
 
 WITH *
 
