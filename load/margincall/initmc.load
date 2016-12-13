@@ -27,6 +27,8 @@ MERGE (mc)-[:IS_RECEIVED_IN]->(ms)
 MERGE (mc)-[:STEMS_FROM]->(a)
 MERGE (mc)-[:DIRECTED_TO]->(c)
 
+WITH *
+
 OPTIONAL MATCH (mce:MarginCall {callDate:line.CallDate, callType:line.CallType, status:'Expected'})-[:IS_EXPECTED_IN]->(ms)
 
 WITH *,
