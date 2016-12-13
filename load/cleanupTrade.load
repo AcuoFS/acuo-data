@@ -1,0 +1,5 @@
+MATCH (t:Trade) DETACH DELETE t
+
+MATCH (v1:Valuation) DETACH DELETE v1
+
+MATCH (v2:Value) DETACH DELETE v2
