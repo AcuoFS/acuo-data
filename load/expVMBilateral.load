@@ -1,7 +1,8 @@
 MATCH (a:Agreement)
 WHERE a.type = 'regulatoryOTC' OR a.type = 'bilateralOTC'
 
-WITH a, timestamp()/1000 AS today
+//WITH a, timestamp()/1000 AS today
+WITH a, 1480319702 AS today
 
 CALL apoc.date.format(today-86400,'s', 'dd/MM/yy') YIELD value as ystdFormatted
 CALL apoc.date.format(today,'s', 'dd/MM/yy') YIELD value as todayFormatted
@@ -13,11 +14,9 @@ WITH *
 
 MATCH (:Client)-[:MANAGES]->(e1:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t:Trade)-[:FOLLOWS]->(a)
 MATCH (t)-[:BELONGS_TO]->(p)
-MATCH (nv1:Value)<-[:LEAD_VALUE]-(v1:Valuation {date:todayFormatted})<-[:VALUATION]-(p)-[:VALUATION]->(v2:Valuation {date:ystdFormatted})-[:LEAD_VALUE]->(nv2:Value)
-MATCH (e1)-[s1:CLIENT_SIGNS]->(a)<-[s2:SIGNS]-(e2:LegalEntity)
+MATCH (nv1:Value)<-[:LEAD_VALUE]-(v1:Valuation {date:todayFormatted})<-[:VALUATED]-(p)-[:VALUATED]->(v2:Valuation {date:ystdFormatted})-[:LEAD_VALUE]->(nv2:Value)
+MATCH (e1)-[s1:CLIENT_SIGNS]->(a)<-[s2:COUNTERPARTY_SIGNS]-(e2:LegalEntity)
 WHERE e2.id <> e1.id // Fetch party, counterparty and SIGNS relationship
-
-// Is MtM updated every day ? If so, can we just fetch it ?
 
 WITH todayFormatted, tmrFormatted, a, e1, e2, s1, s2, nv1.PV as expT, nv2.PV as expTm1
 
@@ -74,7 +73,7 @@ WITH *,
 
 SET mc.returnAmount = retValue, mc.deliveryAmount = mc.callAmount - mc.returnAmount, mc.collateralValue = -mc.balanceTransferor, mc.exposure = abs(expT), mc.notificationTime = mc.callDate + ' ' + a.notificationTime
 
-SET mc.returnAmount = floor(mc.returnAmount/mc.roundingTransferor)*mc.roundingTransferor, mc.deliverAmount = ceil(mc.deliverAmount/mc.roundingTransferor)*mc.roundingTransferor
+SET mc.returnAmount = floor(mc.returnAmount/mc.roundingTransferor)*mc.roundingTransferor, mc.deliverAmount = ceil(mc.deliverAmount/mc.roundingTransferor)*mc.roundingTransferor, mc.callAmount = mc.returnAmount+mc.deliverAmount
 
 MERGE (mc)-[:STEMS_FROM]->(a)
 

@@ -4,9 +4,10 @@ library(RUnit)
 # Relationships
 
 test.relvmb = function() {
-  today = format(as.POSIXlt(Sys.time(), tz="GMT"), "%d/%m/%y")
+#  today = format(as.POSIXlt(Sys.time(), tz="GMT"), "%d/%m/%y")
+  today = '28/11/16'
   query1 = paste("MATCH (mc:MarginCall {id:'", today, "-a2-Variation'})-[:STEMS_FROM]->(a:Agreement) RETURN a.id as r", sep='')
-  checkEquals(cypher(graph, query1)$r, 'a1')
+  checkEquals(cypher(graph, query1)$r, 'a2')
   query2 = paste("MATCH (mc:MarginCall {id:'", today, "-a3-Variation'})-[:DIRECTED_TO]->(e:LegalEntity) RETURN e.id as r", sep='')
   checkEquals(cypher(graph, query2)$r, 'e2')
   query3 = paste("MATCH (mc:MarginCall {id:'", today, "-a6-Variation'})-[:SENT_FROM]->(e:LegalEntity) RETURN e.id as r", sep='')
@@ -19,6 +20,7 @@ test.propvmb = function() {
   today = format(as.POSIXlt(Sys.time(), tz="GMT"), "%d/%m/%y")
   tomorrow = format(as.POSIXlt(Sys.time()+3600*24, tz="GMT"), "%d/%m/%y")
   query1 = paste("MATCH (mc:MarginCall {id:'", today, "-a7-Variation'}) RETURN mc.valuationDate as r", sep='')
+  print(query1)
   checkEquals(cypher(graph, query1)$r, today)
   query2 = paste("MATCH (mc:MarginCall {id:'", today, "-a10-Variation'}) RETURN mc.callDate as r", sep='')
   checkEquals(cypher(graph, query2)$r, tomorrow)
