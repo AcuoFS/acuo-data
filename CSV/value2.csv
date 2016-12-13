@@ -1,0 +1,4 @@
+Date,creationTime,IM,VM,Currency,PortfolioId,Source
+28/11/16,12:00:00,300000,-150000,USD,p1,Client
+28/11/16,12:00:00,-150000,660000,USD,p8,Client
+28/11/16,12:00:00,-210000,-280000,USD,p9,Client
