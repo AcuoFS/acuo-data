@@ -20,3 +20,10 @@ MERGE (p)-[:VALUATED]->(v2:Valuation {date:line.Date})
 MERGE (v2)-[vr:VALUE]->(nv2:Value {source:line.Source, currency:line.Currency})
 ON CREATE SET vr.time = line.creationTime, vr.lastUpdate=line.creationTime
 ON MATCH SET vr.lastUpdate=line.creationTime
+
+WITH *,
+		CASE WHEN NOT exists((v2)-[:LEAD_VALUE]->(:Value)) THEN [1] ELSE []
+		END
+	as noLead
+
+FOREACH (i in noLead | MERGE (v2)-[:LEAD_VALUE]->(nv2))
