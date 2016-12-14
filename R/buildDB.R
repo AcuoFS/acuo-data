@@ -39,7 +39,8 @@ buildDataBase = function() {
                  '/load/valueClientCleared.load', 
                  '/load/valueClientBil.load', 
                  '/load/valueclarus.load', 
-                 '/load/valuemarkit.load')
+                 '/load/valuemarkit.load', 
+                 '/load/portvalue.load')
   
   for (i in 1:10) {
     load.name <- c(load.name, paste('/load/margincall/info', toString(i), '.load', sep=''))
@@ -68,7 +69,7 @@ buildDataBase = function() {
   
   for(i in 1:length(load.name)){
     load.query[i] <- readLoad(load.url[i])
-    print(load.url[i])
+#    print(load.url[i])
     cypher(graph,load.query[[i]])
   }
   return(graph)
