@@ -39,7 +39,7 @@ FOREACH (i in oppMarginCall | MERGE (:ExpectedMarginCall {id:todayFormatted + '-
                                                   balanceTransferor:s2.variationMarginBalance,
                                                   roundingTransferor:s2.rounding,
                                                   direction:'OUT', 
-                                                  currency=nv1.currency})
+                                                  currency:nv1.currency})
 )
 
 WITH *, 
@@ -59,7 +59,7 @@ FOREACH (i in selfMarginCall | MERGE (:ExpectedMarginCall {id:todayFormatted + '
                                                   balanceTransferor:s1.variationMarginBalance,
                                                   roundingTransferor:s1.rounding,
                                                   direction:'IN', 
-                                                  currency=nv1.currency})
+                                                  currency:nv1.currency})
 )
 
 WITH *
