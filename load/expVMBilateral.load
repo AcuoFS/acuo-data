@@ -18,7 +18,7 @@ MATCH (nv1:Value)<-[:LEAD_VALUE]-(v1:Valuation {date:todayFormatted})<-[:VALUATE
 MATCH (e1)-[s1:CLIENT_SIGNS]->(a)<-[s2:COUNTERPARTY_SIGNS]-(e2:LegalEntity)
 WHERE e2.id <> e1.id // Fetch party, counterparty and SIGNS relationship
 
-WITH todayFormatted, tmrFormatted, a, e1, e2, s1, s2, nv1.PV as expT, nv2.PV as expTm1
+WITH nv1, todayFormatted, tmrFormatted, a, e1, e2, s1, s2, nv1.PV as expT, nv2.PV as expTm1
 
 WITH *, expT - expTm1 as diff
 
