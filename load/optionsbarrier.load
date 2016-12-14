@@ -21,6 +21,8 @@ MERGE (opt:Trade {id:line.TradeId,
 SET opt:Opt
 
 MERGE (p:Portfolio {id:line.PortfolioId})
+ON CREATE SET p.type = a.type
+MERGE (p)-[:FOLLOWS]->(a)
 MERGE (opt)-[:BELONGS_TO]->(p)
 MERGE (acc)-[:POSITIONS_ON]->(opt)
 MERGE (opt)-[:FOLLOWS]->(a)
