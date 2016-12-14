@@ -37,7 +37,8 @@ FOREACH (i in oppMarginCall | MERGE (:ExpectedMarginCall {id:todayFormatted + '-
                                                   transfereeId:e1.id, 
                                                   callAmount:abs(diff),
                                                   balanceTransferor:s2.variationMarginBalance,
-                                                  roundingTransferor:s2.rounding})
+                                                  roundingTransferor:s2.rounding,
+                                                  direction:'OUT'})
 )
 
 WITH *, 
@@ -55,7 +56,8 @@ FOREACH (i in selfMarginCall | MERGE (:ExpectedMarginCall {id:todayFormatted + '
                                                   transfereeId:e2.id, 
                                                   callAmount:abs(diff),
                                                   balanceTransferor:s1.variationMarginBalance,
-                                                  roundingTransferor:s1.rounding})
+                                                  roundingTransferor:s1.rounding,
+                                                  direction:'IN'})
 )
 
 WITH *
