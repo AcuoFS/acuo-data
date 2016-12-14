@@ -18,9 +18,9 @@ MATCH (p)-[:VALUATED]->(v:Valuation {date:todayFormatted})-[:LEAD_VALUE]->(nv:Va
 WITH *, CASE WHEN nv.IM > 0 THEN [1] ELSE [] END as posIM
 
 FOREACH (i in posIM | MERGE (mc:ExpectedMarginCall {callDate:tmrFormatted, 
-                                                    id:todayFormatted + '-' + a.id + '-' + p.id + '-' + 'Variation', 
+                                                    id:todayFormatted + '-' + a.id + '-' + p.id + '-' + 'Initial', 
                                                     valuationDate:todayFormatted,
-                                                    callType:'Variation',
+                                                    callType:'Initial',
                                                     status:'Expected',
                                                     callAmount:abs(nv.IM), 
                                                     direction:'IN', 
@@ -33,9 +33,9 @@ FOREACH (i in posIM | MERGE (mc:ExpectedMarginCall {callDate:tmrFormatted,
 WITH *, CASE WHEN nv.IM < 0 THEN [1] ELSE [] END as negIM
 
 FOREACH (i in negIM | MERGE (mc:ExpectedMarginCall {callDate:tmrFormatted, 
-                                                    id:todayFormatted + '-' + a.id + '-' + p.id + '-' + 'Variation', 
+                                                    id:todayFormatted + '-' + a.id + '-' + p.id + '-' + 'Initial', 
                                                     valuationDate:todayFormatted,
-                                                    callType:'Variation',
+                                                    callType:'Initial',
                                                     status:'Expected',
                                                     callAmount:abs(nv.IM), 
                                                     direction:'OUT', 
@@ -47,5 +47,5 @@ FOREACH (i in negIM | MERGE (mc:ExpectedMarginCall {callDate:tmrFormatted,
 
 WITH *
 
-MATCH (mc:ExpectedMarginCall {id:todayFormatted + '-' + a.id + '-' + p.id + '-' + 'Variation'})
+MATCH (mc:ExpectedMarginCall {id:todayFormatted + '-' + a.id + '-' + p.id + '-' + 'Initial'})
 SET mc:MarginCall
