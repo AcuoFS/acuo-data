@@ -12,7 +12,7 @@ test.relvmb = function() {
   checkEquals(cypher(graph, query2)$r, 'fcm2')
   query3 = paste("MATCH (mc:MarginCall {id:'", today, "-a5-p5-Variation'})-[:SENT_FROM]->(e:LegalEntity) RETURN e.id as r", sep='')
   checkEquals(cypher(graph, query3)$r, 'fcm3')
-  query1 = paste("MATCH (mc:MarginCall {id:'", today, "-a8-p8-Variation'})-[:RELATED_TO]->(a:Agreement) RETURN a.id as r", sep='')
+  query1 = paste("MATCH (mc:MarginCall {id:'", today, "-a8-p8-Variation'})-[:RELATED_TO]->(p:Portfolio) RETURN p.id as r", sep='')
   checkEquals(cypher(graph, query1)$r, 'p8')
 }
 
@@ -32,7 +32,7 @@ test.propvmb = function() {
   query5 = paste("MATCH (mc:MarginCall {id:'", today, "-a8-p8-Variation'}) RETURN mc.direction as r", sep='')
   checkEquals(cypher(graph, query5)$r, 'IN')
   query6 = paste("MATCH (mc:MarginCall {id:'", today, "-a9-p9-Variation'}) RETURN mc.callAmount as r", sep='')
-  checkEquals(cypher(graph, query6)$r, -285000)
+  checkEquals(cypher(graph, query6)$r, 285000)
   query7 = paste("MATCH (mc:MarginCall {id:'", today, "-a9-p9-Variation'}) RETURN mc.currency as r", sep='')
   checkEquals(cypher(graph, query7)$r, 'USD')
 }
