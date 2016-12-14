@@ -18,7 +18,7 @@ MATCH (p)-[:VALUATED]->(v:Valuation {date:todayFormatted})-[:LEAD_VALUE]->(nv:Va
 WITH *, CASE WHEN nv.VM > 0 THEN [1] ELSE [] END as posVM
 
 FOREACH (i in posVM | MERGE (mc:ExpectedMarginCall {callDate:tmrFormatted, 
-                                                    id:todayFormatted + '-' + a.id + p.id + '-' + 'Variation', 
+                                                    id:todayFormatted + '-' + a.id + '-' + p.id + '-' + 'Variation', 
                                                     valuationDate:todayFormatted,
                                                     callType:'Variation',
                                                     status:'Expected',
