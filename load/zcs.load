@@ -19,6 +19,8 @@ MERGE (zcs:Trade {id:line.TradeId,
 SET zcs:ZCS
 
 MERGE (p:Portfolio {id:line.PortfolioId})
+ON CREATE SET p.type = a.type
+MERGE (p)-[:FOLLOWS]->(a)
 MERGE (zcs)-[:BELONGS_TO]->(p)
 MERGE (acc)-[:POSITIONS_ON]->(zcs)
 MERGE (zcs)-[:FOLLOWS]->(a)

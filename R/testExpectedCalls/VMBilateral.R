@@ -37,6 +37,10 @@ test.propvmb = function() {
   checkEquals(cypher(graph, query7)$r, -950000)
   query8 = paste("MATCH (mc:MarginCall {id:'", today, "-a2-Variation'}) RETURN mc.exposure as r", sep='')
   checkEquals(cypher(graph, query8)$r, 36010503)
+  query9 = paste("MATCH (mc:MarginCall {id:'", today, "-a3-Variation'}) RETURN mc.direction as r", sep='')
+  checkEquals(cypher(graph, query9)$r, 'IN')
+  query10 = paste("MATCH (mc:MarginCall {id:'", today, "-a3-Variation'}) RETURN mc.currency as r", sep='')
+  checkEquals(cypher(graph, query10)$r, 'USD')
 }
 
 

@@ -1,0 +1,2 @@
+CREATE CONSTRAINT ON (n:Portfolio)
+ASSERT n.id IS UNIQUE

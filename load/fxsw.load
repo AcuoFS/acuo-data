@@ -17,6 +17,8 @@ MERGE (f:Trade {id:line.TradeId,
 SET f:FXSW
 
 MERGE (p:Portfolio {id:line.PortfolioId})
+ON CREATE SET p.type = a.type
+MERGE (p)-[:FOLLOWS]->(a)
 MERGE (f)-[:BELONGS_TO]->(p)
 MERGE (acc)-[:POSITIONS_ON]->(f)
 MERGE (f)-[:FOLLOWS]->(a)

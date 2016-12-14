@@ -18,6 +18,8 @@ MERGE (ndf:Trade {id:line.Id,
 SET ndf:NDF
 
 MERGE (p:Portfolio {id:line.PortfolioId})
+ON CREATE SET p.type = a.type
+MERGE (p)-[:FOLLOWS]->(a)
 MERGE (ndf)-[:BELONGS_TO]->(p)
 MERGE (acc)-[:POSITIONS_ON]->(ndf)
 MERGE (ndf)-[:FOLLOWS]->(a)

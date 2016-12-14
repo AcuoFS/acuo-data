@@ -19,6 +19,8 @@ MERGE (cds:Trade {id:line.TradeId,
 SET cds:CDS
 
 MERGE (p:Portfolio {id:line.PortfolioId})
+ON CREATE SET p.type = a.type
+MERGE (p)-[:FOLLOWS]->(a)
 MERGE (cds)-[:BELONGS_TO]->(p)
 MERGE (acc)-[:POSITIONS_ON]->(cds)
 MERGE (cds)-[:FOLLOWS]->(a)
