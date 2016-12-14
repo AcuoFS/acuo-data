@@ -8,7 +8,7 @@ MATCH (p:Portfolio {id:line.PortfolioId})
 MERGE (p)-[:VALUATED]->(v2:Valuation {date:line.Date})
 
 MERGE (v2)-[vr:VALUE]->(nv2:Value {source:line.Source, currency:line.Currency})
-SET vr.time = line.creationTime, nv2.IM = line.IM, nv2.VM = line.VM
+SET vr.time = line.creationTime, nv2.IM = toFloat(line.IM), nv2.VM = toFloat(line.VM)
 
 WITH *,
 		CASE WHEN exists((v2)-[:LEAD_VALUE]->(:Value)) THEN [1] ELSE []

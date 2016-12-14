@@ -2,7 +2,7 @@ MATCH (p:Portfolio)
 WHERE p.type = 'cleared'
 
 //WITH a, timestamp()/1000 AS today
-WITH a, 1480319702 AS today
+WITH p, 1480319702 AS today
 
 CALL apoc.date.format(today,'s', 'dd/MM/yy') YIELD value as todayFormatted
 CALL apoc.date.format(today+86400,'s', 'dd/MM/yy') YIELD value as tmrFormatted
