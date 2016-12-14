@@ -1,0 +1,27 @@
+MATCH (p:Portfolio)
+WHERE p.type = 'cleared'
+
+//WITH a, timestamp()/1000 AS today
+WITH a, 1480319702 AS today
+
+CALL apoc.date.format(today,'s', 'dd/MM/yy') YIELD value as todayFormatted
+CALL apoc.date.format(today+86400,'s', 'dd/MM/yy') YIELD value as tmrFormatted
+
+// (Function to figure out whether this is a working day)
+
+WITH *
+
+MATCH (e:LegalEntity)-[:CLIENT_SIGNS]->(a:Agreement)<-[:FOLLOWS]-(p)
+MATCH (p)-[:VALUATED]->(v:Valuation {date:todayFormatted})-[:LEAD_VALUE]->(nv:Value)
+
+WITH *, CASE WHEN nv.VM > 0 THEN [1] ELSE [] END as posVM
+
+FOREACH (i in posVM | MERGE (mc:ExpectedMarginCall {callDate:tmrFormatted, 
+                                                    id:todayFormatted + '-' + a.id + '-' + 'Variation', 
+                                                    valuationDate:todayFormatted,
+                                                    callType:'Variation',
+                                                    status:'Expected',
+                                                    callAmount:nv.VM})
+                      MERGE (mc)-[:STEMS_FROM]->(a)
+                      MERGE (mc)-[:RELATED_TO]->(p)
+                      MERGE (mc)-[:DIRECTED_TO]->(e))
