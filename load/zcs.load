@@ -18,6 +18,8 @@ MERGE (zcs:Trade {id:line.TradeId,
 		finalIndex:toFloat(line.FinalIndex)})
 SET zcs:ZCS
 
+MERGE (p:Portfolio {id:line.PortfolioId})
+MERGE (zcs)-[:BELONGS_TO]->(p)
 MERGE (acc)-[:POSITIONS_ON]->(zcs)
 MERGE (zcs)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)

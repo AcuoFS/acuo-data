@@ -36,6 +36,8 @@ WITH *,
 
 FOREACH (i in dirReceiveFloat | MERGE (irs)-[:RECEIVE]->(l:Leg {id:line.IdLegReceive, type:line.TypeReceive, notional:toFloat(line.NotionalReceive), paymentFrequency:line.PaymentFrequencyReceive, payStart:line.PayStartReceive, payEnd:line.PayEndReceive, businessDayConvention:line.BusinessDayConventionReceive, refCalendar:line.RefCalendarReceive, nextCouponPaymentDate:line.NextCouponPaymentDateReceive, index:line.IndexReceive, indexTenor:line.IndexTenorReceive, resetFrequency:line.ResetFrequencyReceive, dayCount:line.DayCountReceive, currency:line.CurrencyReceive}))
 
+MERGE (p:Portfolio {id:line.PortfolioId})
+MERGE (irs)-[:BELONGS_TO]->(p)
 MERGE (acc)-[:POSITIONS_ON]->(irs)
 MERGE (irs)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)

@@ -1,0 +1,5 @@
+MATCH (va1:Value)<-[:VALUE]-(v1:Valuation)<-[:VALUATED]-(t:Trade)-[:BELONGS_TO]->(p:Portfolio)
+MATCH (p)-[:VALUATED]->(v2:Valuation)-[:VALUE]->(va2:Value)
+WHERE v2.date = v1.date and va2.source = va1.source and va2.currency = va1.currency
+WITH va2, p, SUM(va1.PV) as sum
+SET va2.PV = sum

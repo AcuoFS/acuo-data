@@ -1,0 +1,18 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/valuemarkit.csv' 
+AS line
+
+WITH *
+
+MERGE (p:Portfolio {id:line.PortfolioId})-[:VALUATED]->(v2:Valuation {date:line.Date})
+
+MERGE (v2)-[vr:VALUE]->(nv2:Value {source:line.Source, currency:line.Currency})
+SET vr.time = line.creationTime, nv2.IM = line.IM, nv2.VM = line.VM
+
+WITH *,
+		CASE WHEN exists((v2)-[:LEAD_VALUE]->(:Value)) THEN [1] ELSE []
+		END
+	as noLead
+
+FOREACH (i in noLead | MERGE (v2)-[r:LEAD_VALUE]->(:Value) DELETE r)
+
+MERGE (v2)-[:LEAD_VALUE]->(nv2)

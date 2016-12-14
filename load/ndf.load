@@ -17,6 +17,8 @@ MERGE (ndf:Trade {id:line.Id,
 		cashSettlement:toFloat(line.CashSettlement)})
 SET ndf:NDF
 
+MERGE (p:Portfolio {id:line.PortfolioId})
+MERGE (ndf)-[:BELONGS_TO]->(p)
 MERGE (acc)-[:POSITIONS_ON]->(ndf)
 MERGE (ndf)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)

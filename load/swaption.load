@@ -24,6 +24,8 @@ MERGE (swopt:Trade {id:line.TradeId,
 
 SET swopt:Swopt
 
+MERGE (p:Portfolio {id:line.PortfolioId})
+MERGE (swopt)-[:BELONGS_TO]->(p)
 MERGE (acc)-[:POSITIONS_ON]->(swopt)
 MERGE (swopt)-[:FOLLOWS]->(a)
 MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)
