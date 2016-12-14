@@ -47,5 +47,5 @@ FOREACH (i in negVM | MERGE (mc:ExpectedMarginCall {callDate:tmrFormatted,
 
 WITH *
 
-MATCH (mc:ExpectedMarginCall {id:todayFormatted + '-' + a.id + p.id + '-' + 'Variation'})
+MATCH (mc:ExpectedMarginCall {id:todayFormatted + '-' + a.id + '-' + p.id + '-' + 'Variation'})
 SET mc:MarginCall
