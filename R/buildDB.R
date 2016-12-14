@@ -49,10 +49,13 @@ buildDataBase = function() {
                    '/loadconstraint/agreement.load',
                    '/loadconstraint/asset.load',
                    '/loadconstraint/client.load',
+                   '/loadconstraint/counterpart.load', 
                    '/loadconstraint/legalentity.load',
                    '/loadconstraint/custodian.load',
                    '/loadconstraint/custodianAccount.load',
                    '/loadconstraint/margincall.load',
+                   '/loadconstraint/marginstatement.load',
+                   '/loadconstraint/portfolio.load',
                    '/loadconstraint/trade.load')
   
   load.name <- c(load.constr,load.name)
