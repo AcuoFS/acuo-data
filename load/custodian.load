@@ -1,4 +1,12 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/custodian.csv' 
 AS line
 
-MERGE (cust: Custodian {id:line.custodianId,name:line.custodianName})
+MERGE (cust: Custodian {id:line.custodianId})
+ON MATCH SET
+	cust.name = line.custodianName,
+	cust.country = line.country,
+	cust.countryShortName = line.countryShortName
+ON CREATE SET
+	cust.name = line.custodianName,
+	cust.country = line.country,
+	cust.countryShortName = line.countryShortName
