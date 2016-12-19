@@ -90,10 +90,10 @@ test.rel.type = function(){
   rel.query7 = "match (e:LegalEntity {id:'e1'})-[r]->(a:Account {id:'acc1'}) return type(r) as rel7"
   checkEquals(cypher(graph,rel.query7)$rel7, 'HAS')
   
-  rel.query8 = "match (acc:Account {id:'acc2'})-[r]->(ca:CustodianAccount)  where ca.id='custac1'  return type(r) as rel8"
+  rel.query8 = "match (acc:Account {id:'acc2'})-[r]->(ca:CustodianAccount)  where ca.id='CustodianAccount1'  return type(r) as rel8"
   checkEquals(cypher(graph,rel.query8)$rel8, 'ACCESSES')
   
-  rel.query9 = "match (acc:Account {id:'acc3'})-[r]->(ca:CustodianAccount)  where ca.id='custac2'   return type(r) as rel9"
+  rel.query9 = "match (acc:Account {id:'acc3'})-[r]->(ca:CustodianAccount)  where ca.id='CustodianAccount2'   return type(r) as rel9"
   checkEquals(cypher(graph,rel.query9)$rel9, NULL)
   
   rel.query10 = "match (a:Asset)-[r]->(ag:Agreement {id:'a8'})  where UPPER(a.type)='GOLD'   return type(r) as rel10"
@@ -102,19 +102,19 @@ test.rel.type = function(){
   rel.query11 = "match (a:Asset)-[r]->(ag:Agreement {id:'a8'})  where UPPER(a.ticker)='JPM'   return type(r) as rel11"
   checkEquals(cypher(graph,rel.query11)$rel11, NULL)
   
-  rel.query12 = "match (ca:CustodianAccount {id:'custac1'})-[r]->(a:Asset)  where a.id='DE0001104636'   return type(r) as rel12"
+  rel.query12 = "match (ca:CustodianAccount {id:'CustodianAccount1'})-[r]->(a:Asset)  where a.id='DE0001104636'   return type(r) as rel12"
   checkEquals(cypher(graph,rel.query12)$rel12, 'HOLDS')
   
-  rel.query13 = "match (ca:CustodianAccount {id:'custac3'})-[r]->(a:Asset)  where a.id='HK0000191137'   return type(r) as rel13"
+  rel.query13 = "match (ca:CustodianAccount {id:'CustodianAccount3'})-[r]->(a:Asset)  where a.id='HK0000191137'   return type(r) as rel13"
   checkEquals(cypher(graph,rel.query13)$rel13, NULL)
   
-  rel.query14 = "match (c:Custodian {id:'cust1'})-[r]->(ca:CustodianAccount {id:'custac1'})   return type(r) as rel14"
+  rel.query14 = "match (c:Custodian {id:'Custodian1'})-[r]->(ca:CustodianAccount {id:'CustodianAccount1'})   return type(r) as rel14"
   checkEquals(cypher(graph,rel.query14)$rel14, 'MANAGES')
   
-  rel.query15 = "match (c:Custodian {id:'cust1'})-[r]->(ca:CustodianAccount {id:'custac4'})   return type(r) as rel15"
+  rel.query15 = "match (c:Custodian {id:'Custodian1'})-[r]->(ca:CustodianAccount {id:'CustodianAccount4'})   return type(r) as rel15"
   checkEquals(cypher(graph,rel.query15)$rel15, 'MANAGES')
   
-  rel.query16 = "match (c:Custodian {id:'cust2'})-[r]->(ca:CustodianAccount {id:'custac3'})   return type(r) as rel16"
+  rel.query16 = "match (c:Custodian {id:'Custodian2'})-[r]->(ca:CustodianAccount {id:'CustodianAccount3'})   return type(r) as rel16"
   checkEquals(cypher(graph,rel.query16)$rel16, NULL)
 }
 
@@ -142,16 +142,16 @@ test.node.prop = function(){
   prop.query7 = "match (a:Asset) where a.id='GBP' and a.type='CASH' return a.name as n"
   checkEquals(cypher(graph,prop.query7)$n, 'British Pound')
   
-  prop.query8 = "match (c:Custodian) where c.id='cust1' return c.name as n"
-  checkEquals(cypher(graph,prop.query8)$n, 'custodian1')
+  prop.query8 = "match (c:Custodian) where c.id='Custodian1' return c.name as n"
+  checkEquals(cypher(graph,prop.query8)$n, 'Custodian1')
   
-  prop.query9 = "match (c:CustodianAccount) where c.id='custac1' return c.name as n"
-  checkEquals(cypher(graph,prop.query9)$n, 'custac1')
+  prop.query9 = "match (c:CustodianAccount) where c.id='CustodianAccount1' return c.name as n"
+  checkEquals(cypher(graph,prop.query9)$n, 'CustodianAccount1')
   
-  prop.query10 = "match (c:CustodianAccount) where c.id='custac2' return c.region as n"
+  prop.query10 = "match (c:CustodianAccount) where c.id='CustodianAccount2' return c.region as n"
   checkEquals(cypher(graph,prop.query10)$n, 'region101')
   
-  prop.query11 = "match (c:CustodianAccount) where c.id='custac8' return c.region as n"
+  prop.query11 = "match (c:CustodianAccount) where c.id='CustodianAccount8' return c.region as n"
   checkEquals(cypher(graph,prop.query11)$n, 'region103')
   
 }
@@ -181,13 +181,13 @@ test.rel.prop = function(){
   #  prop.query4 = "match (ac:AssetCategory)-[is:IS_ELIGIBLE_UNDER]->(a:Agreement {id:'a1'}) where ac.ticker='JPM' return is.FXHaircut as h"
   #  checkEquals(cypher(graph,prop.query4)$h, 0)
   
-  #  prop.query5 = "match (c:CustodianAccount {id:'custac5'})-[ac:HOLDS]->(a:Asset {id:'USD'}) return ac.quantities as q"
+  #  prop.query5 = "match (c:CustodianAccount {id:'CustodianAccount5'})-[ac:HOLDS]->(a:Asset {id:'USD'}) return ac.quantities as q"
   #  checkEquals(cypher(graph,prop.query5)$q, 20000000)
   
-  prop.query6 = "match (c:CustodianAccount {id:'custac4'})-[ac:HOLDS]->(a:Asset {id:'JPY'}) return ac.businessTimeFrom as t"
+  prop.query6 = "match (c:CustodianAccount {id:'CustodianAccount4'})-[ac:HOLDS]->(a:Asset {id:'JPY'}) return ac.businessTimeFrom as t"
   checkEquals(cypher(graph,prop.query6)$t, '09:07')
   
-  prop.query7 = "match (c:CustodianAccount {id:'custac5'})-[ac:HOLDS]->(a:Asset {id:'CAD'}) return ac.businessTimeTo as t"
+  prop.query7 = "match (c:CustodianAccount {id:'CustodianAccount5'})-[ac:HOLDS]->(a:Asset {id:'CAD'}) return ac.businessTimeTo as t"
   checkEquals(cypher(graph,prop.query7)$t, '21:14')
   
   prop.query8 = "match (e:LegalEntity {id:'e1'})-[s:CLIENT_SIGNS]->(ag:Agreement {id:'a1'}) return s.recipientAddress as add"
