@@ -1,0 +1,2 @@
+CREATE CONSTRAINT ON (n:TradingAccount)
+ASSERT n.id IS UNIQUE
