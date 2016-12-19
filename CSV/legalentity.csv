@@ -1,6 +1,4 @@
-EntityName,EntityId,ClientId,HolidayZone
-legalentity1,e1,c1,London
-legalentity2,e2,c1,London
-legalentity3,e3,c1,New-York
-legalentity4,e4,c2,London
-legalentity5,e5,c2,New-York
+EntityName,EntityShortName,EntityId,ClientId,HolidayZone
+ACUO SG Pte Ltd,ACUO SG,720400TGFLH2QZV80T,999,Singapore
+ACUO US LLC,ACUO US,104399UHGKI1RAW91U,999,New-York
+ACUO UK PLC,ACUO UK,928581SHELI3PYW91M,999,London

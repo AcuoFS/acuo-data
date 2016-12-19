@@ -1,9 +1,5 @@
-EntityName,EntityId,CounterpartId,HolidayZone
-legalentity6,e6,ctpy1,Singapore
-legalentity7,e7,ctpy1,Singapore
-legalentity8,e8,ctpy2,Paris
-legalentity9,e9,ctpy2,London
-fcm1,fcm1,ctpy3,London
-fcm2,fcm2,ctpy3,London
-fcm3,fcm3,ctpy4,London
-fcm4,fcm4,ctpy4,London
+EntityName,EntityShortName,EntityId,CounterpartId,HolidayZone
+Counterparty A1,Counterparty A1,222105IP581HO777LM30,ctpyA,Singapore
+Counterparty A2,Counterparty A2,5493OOS20A8EOTNL3L19,ctpyA,Singapore
+Counterparty B1,Counterparty B1,549300SPVJCY3NPIPQ48,ctpyB,Paris
+Counterparty B2,Counterparty B2,5493008I8OABDX7R9S42,ctpyB,London
