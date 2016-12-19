@@ -1,0 +1,25 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/fra.csv' 
+AS line
+
+MATCH (acc:TradingAccount {id:line.AccountId})
+MATCH (a:Agreement {id:line.AgreementId})
+MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[:HAS]->(acc)
+
+MERGE (fra:Trade {id:line.TradeId,
+		clearingDate:line.ClearingDate,
+		maturity:line.Maturity,
+		legPay:line.LegPay,
+		notional:toFloat(line.Notional),
+		currency:line.Currency,
+		fixedRate:toFloat(line.AgreedRate),
+		index:line.Index,
+		indexTenor:line.IndexTenor})
+SET fra:FRA
+
+MERGE (p:Portfolio {id:line.PortfolioId})
+ON CREATE SET p.type = a.type
+MERGE (p)-[:FOLLOWS]->(a)
+MERGE (fra)-[:BELONGS_TO]->(p)
+MERGE (acc)-[:POSITIONS_ON]->(fra)
+MERGE (fra)-[:FOLLOWS]->(a)
+MERGE (c)-[:DELIVERS_MARGIN_ACC_TO]->(a)

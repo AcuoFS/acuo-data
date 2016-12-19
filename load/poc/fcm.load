@@ -1,0 +1,8 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/fcm.csv' 
+AS line
+
+MATCH (ch:ClearingHouse {id:line.ClearingHouseId})
+
+MERGE (fcm:FCM {id:line.FCMId, name:line.FCMName, jurisdiction:line.Jurisdiction, shortName:line.FCMShortName})
+
+MERGE (fcm)-[:MEMBER_OF]->(ch);
