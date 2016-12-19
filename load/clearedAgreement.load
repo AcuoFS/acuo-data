@@ -1,0 +1,14 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/clearedAgreement.csv' 
+AS line
+
+MATCH (l:LegalEntity {id:line.LegalEntityId})
+MATCH (fcm:FCM {id:line.FCMId})
+MATCH (ch:ClearingHouse {id:line.ClearingHouseId})
+
+MERGE (l)-[:PREFERENCES {tolerance:toFloat(line.Tolerance)}]->(fcm)
+
+MERGE (a:Agreement {id:line.AgreementId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, currency:line.Currency})
+
+MERGE (l)-[s1:CLIENT_SIGNS {initialBalance:line.InitialBalance, variationBalance:line.VariationBalance]->(a)
+MERGE (fcm)-[s2:COUNTERPARTY_SIGNS]->(a)
+MERGE (a)-[:IN_CH]->(ch)

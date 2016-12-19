@@ -1,0 +1,4 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/clearingHouse.csv' 
+AS line
+
+MERGE (ch:ClearingHouse {id:line.ClearingHouseId, name:line.ClearingHouseName, shortName:line.ClearingHouseShortName, jurisdiction:ClearingHouseJurisdiction})

@@ -3,6 +3,6 @@ AS line
 
 MATCH (c:Client {id:line.ClientId})
 
-MERGE (e:LegalEntity {id:line.EntityId, name:line.EntityName, holidayZone:line.HolidayZone, shortName:line.EntityShortName})
+MERGE (e:LegalEntity {id:line.EntityId, name:line.EntityName, holidayZone:line.HolidayZone})
 
 MERGE (c)-[:MANAGES]->(e);

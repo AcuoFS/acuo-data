@@ -1,0 +1,7 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/custodian.csv' 
+AS line
+
+MERGE (cust: Custodian {id:line.custodianId})
+SET cust.name = line.custodianName,
+    cust.country = line.country,
+    cust.countryShortName = line.countryShortName

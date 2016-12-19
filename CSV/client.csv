@@ -1,3 +1,2 @@
-ClientName,ClientId
-client1,c1
-client2,c2
+ClientName,ClientShortname,ClientId
+ACUO,ACUO,999
