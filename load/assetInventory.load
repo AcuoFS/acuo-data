@@ -14,7 +14,6 @@ ON CREATE SET
 	p.deployedQuantities=0,
 	p.departedQuantities=0,
 	p.arrivingQuantities=0,
-	p.earmarkedQuantities=0,
 	p.internalCost=TOFLOAT(line.internalCost),
 	p.opptCost=TOFLOAT(line.opptCost)
 ON MATCH SET
@@ -23,7 +22,6 @@ ON MATCH SET
 	p.deployedQuantities=0,
 	p.departedQuantities=0,
 	p.arrivingQuantities=0,
-	p.earmarkedQuantities=0,
 	p.internalCost=TOFLOAT(line.internalCost),
 	p.opptCost=TOFLOAT(line.opptCost)
 
@@ -43,7 +41,7 @@ SET a.timeToMaturityDays = CASE WHEN futureDays>todayDays THEN TOFLOAT(futureDay
 
 WITH a
 
-MATCH (a)<--(c:Client)-->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
+MATCH (a)<--(c:Client)-[:MANAGES]->(e)-[:CLIENT_SIGNS]->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
 WHERE a.ICADCode=ac.name
 AND a.currency=ac.currency
 
