@@ -17,7 +17,7 @@ buildDataBase = function() {
                  '/load/counterpartEntity.load',
                  '/load/fcm.load',
                  '/load/clearingHouse.load',
-                 '/load/account.load',
+                 '/load/tradingAccount.load',
                  '/load/bilateralAgreement.load',
                  '/load/clearedAgreement.load',
 #                 '/load/cds.load',  
