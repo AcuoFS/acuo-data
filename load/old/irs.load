@@ -1,7 +1,7 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/irs.csv' 
 AS line
 
-MATCH (acc:TradingAccount {id:line.AccountId})
+MATCH (acc:Account {id:line.AccountId})
 MATCH (a:Agreement {id:line.AgreementId})
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[:HAS]->(acc)
 
