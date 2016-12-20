@@ -3,7 +3,7 @@ library(RUnit)
 
 test.statementProperties = function () {
   prop1 = "MATCH (m:MarginStatement {id:'ms1'}) RETURN m.date as r"
-  checkEquals(cypher(graph, prop1)$r, '25/10/2016 12:00:00')
+  checkEquals(cypher(graph, prop1)$r, '25/10/16 12:00')
   prop2 = "MATCH (m:MarginStatement {id:'ms2'}) RETURN m.interestPayment as r"
   checkEquals(cypher(graph, prop2)$r, 7501)
   prop3 = "MATCH (m:MarginStatement {id:'ms3'}) RETURN m.productCashFlows as r"
