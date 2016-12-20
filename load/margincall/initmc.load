@@ -26,10 +26,10 @@ SET mc.id=line.CallId,
 MERGE (mc)-[:IS_RECEIVED_IN]->(ms)
 MERGE (mc)-[:STEMS_FROM]->(a)
 
-WITH *, CASE WHEN line.direction = 'IN' THEN [1] ELSE [] END as inbound
+WITH *, CASE WHEN line.Direction = 'IN' THEN [1] ELSE [] END as inbound
 FOREACH (i in inbound | MERGE (mc)-[:DIRECTED_TO]->(e) MERGE (mc)-[:SENT_FROM]->(ce))
 
-WITH *, CASE WHEN line.direction = 'OUT' THEN [1] ELSE [] END as outbound
+WITH *, CASE WHEN line.Direction = 'OUT' THEN [1] ELSE [] END as outbound
 FOREACH (i in outbound | MERGE (mc)-[:DIRECTED_TO]->(ce) MERGE (mc)-[:SENT_FROM]->(e))
 
 WITH *,
