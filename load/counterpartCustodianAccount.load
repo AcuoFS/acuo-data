@@ -1,13 +1,13 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/counterpartCustodianAccount.csv' 
 AS line 
-WITH line, SPLIT(line.CounterEntityId,'|') AS Accounts
+WITH line, SPLIT(line.CounterEntityId,'|') AS Entities
 
 MERGE (custac: CustodianAccount {id:line.CounterEntityId,name:line.accountName,region:line.accountRegion})
-WITH custac,line,Accounts
+WITH custac,line,Entities
 MATCH (cust:Custodian {id:line.custodianId})
 MERGE (custac)<-[:MANAGES]-(cust)
 
-WITH Accounts,custac
-UNWIND Accounts AS Account
-MATCH (l:LegalEntity {id:Account})
-MERGE (custac)<-[:ACCESSES]-(acc)
+WITH Entities,custac
+UNWIND Entities AS Entity
+MATCH (l:LegalEntity {id:Entity})
+MERGE (custac)<-[:ACCESSES]-(l)
