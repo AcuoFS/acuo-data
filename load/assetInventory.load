@@ -11,17 +11,19 @@ MERGE (c)-[p:POSSESSES]->(a)
 ON CREATE SET
 	p.quantities=0,
 	p.availableQuantities=0,
-	p.deployedQuantities=0,
-	p.departedQuantities=0,
-	p.arrivingQuantities=0,
+	p.earmarkedQuantities=0,
+//	p.deployedQuantities=0,
+//	p.departedQuantities=0,
+//	p.arrivingQuantities=0,
 	p.internalCost=TOFLOAT(line.internalCost),
 	p.opptCost=TOFLOAT(line.opptCost)
 ON MATCH SET
 	p.quantities=0,
 	p.availableQuantities=0,
-	p.deployedQuantities=0,
-	p.departedQuantities=0,
-	p.arrivingQuantities=0,
+	p.earmarkedQuantities=0,
+//	p.deployedQuantities=0,
+//	p.departedQuantities=0,
+//	p.arrivingQuantities=0,
 	p.internalCost=TOFLOAT(line.internalCost),
 	p.opptCost=TOFLOAT(line.opptCost)
 
