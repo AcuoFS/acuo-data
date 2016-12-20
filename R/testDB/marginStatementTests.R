@@ -18,6 +18,18 @@ test.statementProperties = function () {
   checkEquals(cypher(graph, prop7)$r, 0)
   prop8 = "MATCH (m:MarginStatement {id:'ms8'}) RETURN m.direction as r"
   checkEquals(cypher(graph, prop8)$r, 'IN')
+  prop9 = "MATCH (m:MarginStatement {id:'ms9'}) RETURN m.unreconCount as r"
+  checkEquals(cypher(graph, prop9)$r, 1)
+  prop10 = "MATCH (m:MarginStatement {id:'ms10'}) RETURN m.expectedCount as r"
+  checkEquals(cypher(graph, prop10)$r, 1)
+  prop11 = "MATCH (m:MarginStatement {id:'ms11'}) RETURN m.totalCount as r"
+  checkEquals(cypher(graph, prop11)$r, 1)
+  prop12 = "MATCH (m:MarginStatement {id:'ms12'}) RETURN m.reconcileCount as r"
+  checkEquals(cypher(graph, prop12)$r, 0)
+  prop13 = "MATCH (m:MarginStatement {id:'ms13'}) RETURN m.disputeCount as r"
+  checkEquals(cypher(graph, prop13)$r, 0)
+  prop14 = "MATCH (m:MarginStatement {id:'ms14'}) RETURN m.pledgeCount as r"
+  checkEquals(cypher(graph, prop14)$r, 0)
 }
 
 test.statementRelationships = function () {
