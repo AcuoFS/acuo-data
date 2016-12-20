@@ -9,11 +9,11 @@ MATCH (custac1:CustodianAccount {id:line.clientCustodianAccountId}),
 
 MERGE (a:AssetSegment {id:line.id})
 ON CREATE SET
-	a.quantities = line.quantities,
+	a.quantities = TOFLOAT(line.quantities),
 	a.assetId = line.assetId,
 	a.status = line.status
 ON MATCH SET
-	a.quantities = line.quantities,
+	a.quantities = TOFLOAT(line.quantities),
 	a.assetId = line.assetId,
 	a.status = line.status
 
@@ -28,7 +28,7 @@ FOREACH (ignoreMe IN CASE
 	ELSE [] END| MERGE (custac1)-[:RECEIVES]->(a)-[:FROM]-(custac2)
 				 MERGE (a)-[:FROM_CALLING]-(mc)
 				 SET a.subStatus=line.subStatus,
-				 	 a.earmarkedQuantities=line.earmarkedQuantities)
+				 	 a.earmarkedQuantities=TOFLOAT(line.earmarkedQuantities))
 
 FOREACH (ignoreMe IN CASE 
 	WHEN line.status = 'Deployed' THEN [1]
