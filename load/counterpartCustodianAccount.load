@@ -2,7 +2,7 @@ LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/m
 AS line 
 WITH line, SPLIT(line.CounterEntityId,'|') AS Entities
 
-MERGE (custac: CustodianAccount {id:line.CounterEntityId,name:line.accountName,region:line.accountRegion})
+MERGE (custac: CustodianAccount {id:line.accountId,name:line.accountName,region:line.accountRegion})
 WITH custac,line,Entities
 MATCH (cust:Custodian {id:line.custodianId})
 MERGE (custac)<-[:MANAGES]-(cust)
