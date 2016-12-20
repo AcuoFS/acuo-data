@@ -1,13 +1,13 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/custodianAccount.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/counterpartCustodianAccount.csv' 
 AS line 
-WITH line, SPLIT(line.tradingAccountId,'|') AS Accounts
+WITH line, SPLIT(line.CounterEntityId,'|') AS Accounts
 
-MERGE (custac: CustodianAccount {id:line.accountId,name:line.accountName,region:line.accountRegion})
+MERGE (custac: CustodianAccount {id:line.CounterEntityId,name:line.accountName,region:line.accountRegion})
 WITH custac,line,Accounts
 MATCH (cust:Custodian {id:line.custodianId})
 MERGE (custac)<-[:MANAGES]-(cust)
 
 WITH Accounts,custac
 UNWIND Accounts AS Account
-MATCH (acc:Account {id:Account})
+MATCH (l:LegalEntity {id:Account})
 MERGE (custac)<-[:ACCESSES]-(acc)

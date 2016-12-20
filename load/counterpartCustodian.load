@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/custodian.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/counterpartCustodian.csv' 
 AS line
 
 MERGE (cust: Custodian {id:line.custodianId})
