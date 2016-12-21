@@ -1,7 +1,7 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/mstatement.csv'
 AS line
 
-MATCH  (c:Client)-[:MANAGES]->(:LegalEntity)-[:CLIENT_SIGNS]->(a:Agreement {id:line.AgreementId})
+MATCH (l:LegalEntity)-[:CLIENT_SIGNS]->(a:Agreement {id:line.AgreementId})
 
 MERGE (ms:MarginStatement {id:line.StatementId, date:line.StatementDate, interestPayment:toFloat(line.InterestPayment), productCashFlows:toFloat(line.ProductsCashFlows), PAI:toFloat(line.PAI), feesCommissions:toFloat(line.FeesCommissions), pendingCash:toFloat(line.PendingCash), pendingNonCash:toFloat(line.PendingNonCash), direction:line.Direction, legalEntityId:line.EntityId, reconcileCount:0, pledgeCount:0, disputeCount:0})
 ON CREATE SET ms.totalAmount=toFloat(line.TotalAmount)
@@ -10,4 +10,4 @@ SET ms.expectedCount = CASE WHEN line.Status = 'Expected' THEN 1 ELSE 0 END,
     ms.unreconCount = CASE WHEN line.Status = 'Unrecon' THEN 1 ELSE 0 END
 
 MERGE (ms)-[:STEMS_FROM]->(a)
-MERGE (ms)-[:DIRECTED_TO]->(c)
+MERGE (ms)-[:DIRECTED_TO]->(l)

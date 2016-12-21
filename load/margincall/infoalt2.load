@@ -6,22 +6,23 @@ AS line
 MATCH (ms:MarginStatement {id:line.StatementId})
 
 SET ms.unreconCount = ms.reconCount -1,
-    ms.reconcileCount = ms.reconcileCount +1
+    ms.reconcileCount = ms.reconcileCount +1,
+    ms.disputeCount = CASE WHEN ms.direction = 'OUT' THEN ms.disputeCount ELSE ms.disputeCount +1 END
 
 // This is a partial dispute node. We still check for safety's sake.
 
-WITH line 
+WITH line, ms
 
 UNWIND(SPLIT(line.CallId, '|')) as callId
 
 MATCH (pmc {id:callId})-[:DIRECTED_TO]->(l:LegalEntity)
 
 WITH *,
-		CASE WHEN (line.NewStatus = 'Partial Dispute') THEN [1] ELSE []
+		CASE WHEN line.NewStatus = 'Partial Dispute' and ms.direction = 'OUT' THEN [1] ELSE []
 		END
-	AS partdispute
+	AS partDisputeWait
 
-FOREACH (i IN partdispute | 
+FOREACH (i IN partdisputeWait | 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
                                                                     callAmount:toFloat(line.AgreedAmount)
 	})-[:DIRECTED_TO]->(l)
@@ -31,7 +32,26 @@ FOREACH (i IN partdispute |
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
                                                                     callAmount:pmc.callAmount-toFloat(line.AgreedAmount)
 	})-[:DIRECTED_TO]->(l)
-        MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'Dispute'})
+        MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'waitDispute'})
+        MERGE (cmcr)-[:LAST {time:line.Time}]->(s2)
+)
+
+WITH *,
+		CASE WHEN line.NewStatus = 'Partial Dispute' and ms.direction = 'IN' THEN [1] ELSE []
+		END
+	AS partDisputeWait
+
+FOREACH (i IN partdisputeWait | 
+	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
+                                                                    callAmount:toFloat(line.AgreedAmount)
+	})-[:DIRECTED_TO]->(l)
+        MERGE (cmca)-[:FIRST {time:line.Time}]->(s1:Step {status:'Reconciled'})
+        MERGE (cmca)-[:LAST {time:line.Time}]->(s1)
+
+	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
+                                                                    callAmount:pmc.callAmount-toFloat(line.AgreedAmount)
+	})-[:DIRECTED_TO]->(l)
+        MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'actionDispute'})
         MERGE (cmcr)-[:LAST {time:line.Time}]->(s2)
 )
 
