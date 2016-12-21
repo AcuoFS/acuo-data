@@ -1,8 +1,7 @@
 PrevStatus,NewStatus,Time,CallId,StatementId
-Reconciled,Pledge,25/10/16 12:35,mc5,ms5
-Reconciled,Pledge,25/10/16 12:35,mc6,ms6
-Reconciled,Pledge,25/10/16 12:35,mc7,ms7
-Reconciled,Pledge,25/10/16 12:35,mc8,ms8
-Reconciled,Pledge,25/10/16 12:35,mc9,ms9
-Reconciled,Pledge,25/10/16 12:35,mc10,ms1
-Reconciled,Pledge,25/10/16 12:35,mc49,ms1
+Reconciled,Pledge,25/10/16 12:35,mc7|mc16,ms7
+Reconciled,Pledge,25/10/16 12:35,mc8|mc17,ms8
+Reconciled,Pledge,25/10/16 12:35,mc9|mc18,ms9
+Reconciled,Pledge,26/10/16 12:35,mc43|mc52,ms34
+Reconciled,Pledge,26/10/16 12:35,mc44|mc51,ms35
+Reconciled,Pledge,26/10/16 12:35,mc45|mc54,ms36
