@@ -47,11 +47,11 @@ buildDataBase = function() {
                  '/load/valuemarkit.load', 
                  '/load/portvalue.load')
   
-  for (i in 1:10) {
-    load.name <- c(load.name, paste('/load/margincall/info', toString(i), '.load', sep=''))
+  for (i in 1:5) {
+    load.name <- c(load.name, paste('/load/margincall/infoalt', toString(i), '.load', sep=''))
   }
   
-  load.constr <- c('/loadconstraint/account.load', 
+  load.constr <- c('/loadconstraint/tradingAccount.load', 
                    '/loadconstraint/agreement.load',
                    '/loadconstraint/asset.load',
                    '/loadconstraint/client.load',

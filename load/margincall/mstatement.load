@@ -7,8 +7,7 @@ MERGE (ms:MarginStatement {id:line.StatementId, date:line.StatementDate, interes
 ON CREATE SET ms.totalAmount=toFloat(line.TotalAmount)
 ON MATCH SET ms.totalAmount=ms.totalAmount + toFloat(line.TotalAmount)
 SET ms.expectedCount = CASE WHEN line.Status = 'Expected' THEN 1 ELSE 0 END, 
-    ms.unreconCount = CASE WHEN line.Status = 'Unrecon' THEN 1 ELSE 0 END, 
-    ms.totalCount = ms.reconcileCount + ms.pledgeCount + ms.disputeCount + ms.expectedCount + ms.unreconCount
+    ms.unreconCount = CASE WHEN line.Status = 'Unrecon' THEN 1 ELSE 0 END
 
 MERGE (ms)-[:STEMS_FROM]->(a)
 MERGE (ms)-[:DIRECTED_TO]->(c)
