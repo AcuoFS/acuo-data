@@ -5,7 +5,7 @@ AS line
 
 MATCH (pmc {id:line.CallId})-[:DIRECTED_TO]->(l:LegalEntity)
 
-WITH line, pmc, c,
+WITH *,
 		CASE WHEN (line.NewStatus = 'PartialDispute') THEN [1] ELSE []
 		END
 	AS partdispute
