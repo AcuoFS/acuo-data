@@ -1,0 +1,48 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/infoalt2.csv' 
+AS line
+
+// This is a partial dispute node. We still check for safety's sake. 
+
+MATCH (pmc {id:line.CallId})-[:DIRECTED_TO]->(l:LegalEntity)
+
+WITH line, pmc, c,
+		CASE WHEN (line.NewStatus = 'PartialDispute') THEN [1] ELSE []
+		END
+	AS partdispute
+
+FOREACH (i IN partdispute | 
+	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
+                                                                    callAmount:toFloat(line.AgreedAmount), 
+	})-[:DIRECTED_TO]->(l)
+        MERGE (cmca)-[:FIRST {time:line.Time}]->(s:Step {status:'Reconciled'})
+        MERGE (cmca)-[:LAST {time:line.Time}]->(s)
+
+	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
+                                                                    callAmount:pmc.callAmount-toFloat(line.AgreedAmount),
+	})-[:DIRECTED_TO]->(l)
+        MERGE (cmcr)-[:FIRST {time:line.Time}]->(s:Step {status:'Dispute'})
+        MERGE (cmcr)-[:LAST {time:line.Time}]->(s)
+)
+
+// Let's update the margin statement counts. (You can only get there from Unrecon so fairly straightforward). Recon leads to action, dispute leads to none. 
+
+WITH *
+
+MATCH (ms:MarginStatement)<-[:IS_RECEIVED_IN]-(pmc)
+
+SET ms.unreconCount = ms.reconCount -1,
+    ms.reconcileCount = ms.reconcileCount +1
+
+// Back to the general background: creating the node and a LAST relationship
+
+WITH line, pmc
+
+MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
+
+WITH pmc, n, line
+
+// We delete the previous [:LAST] relationship and add a [:NEXT] relationship
+
+OPTIONAL MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m {step:line.PrevStatus})
+FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
+

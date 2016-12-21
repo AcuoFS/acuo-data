@@ -1,0 +1,10 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/infoalt1.csv' 
+AS line
+
+MATCH (pmc {id:line.CallId})
+
+WITH line, pmc
+
+MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
+
+MERGE (pmc)-[:FIRST {time:line.Time}]->(n)

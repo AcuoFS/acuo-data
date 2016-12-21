@@ -1,0 +1,4 @@
+PrevStatus,NewStatus,AgreedAmount,Time,AgreedCallId,DisputeCallId,CallId
+Unrecon,Partial Dispute,50000,25/10/16 12:15,mc46,mc49,mc1
+Unrecon,Partial Dispute,20000,25/10/16 12:15,mc47,mc50,mc2
+Unrecon,Partial Dispute,150000,25/10/16 12:15,mc48,mc51,mc3
