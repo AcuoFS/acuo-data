@@ -12,7 +12,7 @@ MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
 WITH *
 
 MATCH (ms:MarginStatement)<-[:IS_RECEIVED_IN]-(pmc)
-SET ms.reconcileCount = ms.reconcileCount - 1
+SET ms.reconcileCount = ms.reconcileCount - 1,
     ms.pledgeCount = ms.pledgeCount+1
 
 WITH pmc, n, line
