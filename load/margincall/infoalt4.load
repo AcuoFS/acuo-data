@@ -1,19 +1,23 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/infoalt4.csv' 
 AS line
 
-MATCH (pmc {id:line.CallId})
-
-WITH line, pmc
-
-MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
-
 // We update the margin statement counts. This can only come from either unrecon or dispute. Recon calls for one action. 
 
 WITH *
 
-MATCH (ms:MarginStatement)<-[:IS_RECEIVED_IN]-(pmc)
+MATCH (ms:MarginStatement {id:line.StatementId})
 SET ms.unreconCount = CASE WHEN line.PrevStatus = 'Unrecon' THEN ms.unreconCount-1 ELSE ms.unreconCount END,
     ms.reconcileCount = ms.reconcileCount + 1
+
+WITH line 
+
+UNWIND(SPLIT(line.CallId, '|')) as callId
+
+MATCH (pmc {id:callId})
+
+WITH line, pmc
+
+MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
 
 WITH pmc, n, line
 
