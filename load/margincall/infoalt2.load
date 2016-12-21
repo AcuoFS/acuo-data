@@ -14,14 +14,14 @@ FOREACH (i IN partdispute |
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
                                                                     callAmount:toFloat(line.AgreedAmount)
 	})-[:DIRECTED_TO]->(l)
-        MERGE (cmca)-[:FIRST {time:line.Time}]->(s:Step {status:'Reconciled'})
-        MERGE (cmca)-[:LAST {time:line.Time}]->(s)
+        MERGE (cmca)-[:FIRST {time:line.Time}]->(s1:Step {status:'Reconciled'})
+        MERGE (cmca)-[:LAST {time:line.Time}]->(s1)
 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
                                                                     callAmount:pmc.callAmount-toFloat(line.AgreedAmount)
 	})-[:DIRECTED_TO]->(l)
-        MERGE (cmcr)-[:FIRST {time:line.Time}]->(s:Step {status:'Dispute'})
-        MERGE (cmcr)-[:LAST {time:line.Time}]->(s)
+        MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'Dispute'})
+        MERGE (cmcr)-[:LAST {time:line.Time}]->(s2)
 )
 
 // Let's update the margin statement counts. (You can only get there from Unrecon so fairly straightforward). Recon leads to action, dispute leads to none. 
