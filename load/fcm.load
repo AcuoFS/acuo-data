@@ -4,6 +4,6 @@ AS line
 MATCH (ch:ClearingHouse {id:line.ClearingHouseId})
 
 MERGE (fcm:FCM {id:line.FCMId})
-ON CREATE SET fcm.name=line.FCMName, fcm.jurisdiction=line.Jurisdiction, fcm.shortName:line=FCMShortName
+ON CREATE SET fcm.name=line.FCMName, fcm.jurisdiction=line.Jurisdiction, fcm.shortName=line.FCMShortName
 
 MERGE (fcm)-[:MEMBER_OF]->(ch);
