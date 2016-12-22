@@ -8,7 +8,7 @@ WITH *
 MATCH (ms:MarginStatement {id:line.StatementId})
 SET ms.unreconCount = CASE WHEN line.PrevStatus = 'Unrecon' THEN ms.unreconCount-1 ELSE ms.unreconCount END,
     ms.reconcileCount = ms.reconcileCount + 1, 
-    ms.disputeCount = CASE WHEN ms.direction = 'IN' and line.PrevStatus = 'Dispute' THEN disputeCount -1 ELSE disputeCount END
+    ms.disputeCount = CASE WHEN ms.direction = 'IN' and line.PrevStatus = 'Dispute' THEN ms.disputeCount -1 ELSE ms.disputeCount END
 
 WITH line 
 
