@@ -22,7 +22,7 @@ WITH *,
 		END
 	AS partDisputeWait
 
-FOREACH (i IN partdisputeWait | 
+FOREACH (i IN partDisputeWait | 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
                                                                     callAmount:toFloat(line.AgreedAmount)
 	})-[:DIRECTED_TO]->(l)
@@ -39,9 +39,9 @@ FOREACH (i IN partdisputeWait |
 WITH *,
 		CASE WHEN line.NewStatus = 'Partial Dispute' and ms.direction = 'IN' THEN [1] ELSE []
 		END
-	AS partDisputeWait
+	AS partDisputeAct
 
-FOREACH (i IN partdisputeWait | 
+FOREACH (i IN partdisputeAct | 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
                                                                     callAmount:toFloat(line.AgreedAmount)
 	})-[:DIRECTED_TO]->(l)
