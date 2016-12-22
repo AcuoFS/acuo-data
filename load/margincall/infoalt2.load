@@ -41,7 +41,7 @@ WITH *,
 		END
 	AS partDisputeAct
 
-FOREACH (i IN partdisputeAct | 
+FOREACH (i IN partDisputeAct | 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
                                                                     callAmount:toFloat(line.AgreedAmount)
 	})-[:DIRECTED_TO]->(l)
