@@ -6,7 +6,7 @@ AS line
 MATCH (ms:MarginStatement {id:line.StatementId})
 
 SET ms.unreconCount = ms.unreconCount-1, 
-    ms.disputeCount = CASE WHEN ms.direction = 'OUT' THEN ms.disputeCount ELSE ms.disputeCount +1 END n
+    ms.disputeCount = CASE WHEN ms.direction = 'OUT' THEN ms.disputeCount ELSE ms.disputeCount +1 END
 
 WITH line 
 
