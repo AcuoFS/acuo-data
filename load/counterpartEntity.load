@@ -1,7 +1,7 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/counterpartEntity.csv' 
 AS line
 
-MATCH (c:CounterpartFirm {id:line.CounterpartId})
+MATCH (c:Counterpart {id:line.CounterpartId})
 
 MERGE (e:LegalEntity {id:line.EntityId, name:line.EntityName, shortName:line.EntityShortName, holidayZone:line.HolidayZone})
 
