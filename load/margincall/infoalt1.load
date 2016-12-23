@@ -7,6 +7,6 @@ MATCH (pmc {id:callId})
 
 WITH line, pmc
 
-MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
+MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {status:line.NewStatus})
 
 MERGE (pmc)-[:FIRST {time:line.Time}]->(n)

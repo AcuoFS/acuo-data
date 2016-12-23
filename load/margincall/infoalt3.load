@@ -16,11 +16,11 @@ MATCH (pmc {id:callId})
 
 WITH line, pmc
 
-MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
+MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {status:line.NewStatus})
 
 WITH pmc, n, line
 
 // We delete the previous [:LAST] relationship and add a [:NEXT] relationship
 
-MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m {step:line.PrevStatus})
+MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m {status:line.PrevStatus})
 FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
