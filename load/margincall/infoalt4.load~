@@ -15,7 +15,5 @@ WITH pmc, n, line
 
 MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m:Step {status:line.PrevStatus})
 
-DELETE delRel 
-
-MERGE (m)-[:NEXT {time:line.Time}]->(n)
+FOREACH(y IN CASE WHEN exists((n)<-[:LAST]-(pmc)-[delRel:LAST]->(:Step {status:line.PrevStatus})) THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
 
