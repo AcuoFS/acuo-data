@@ -1,14 +1,6 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/infoalt6.csv' 
 AS line
 
-// We update the margin statement counts. This comes from dispute. 
-
-MATCH (ms:MarginStatement {id:line.StatementId})
-
-SET ms.disputeCount = CASE WHEN line.PrevStatus = 'actionDispute' THEN ms.disputeCount -1 ELSE ms.disputeCount +1 END
-
-WITH line 
-
 UNWIND(SPLIT(line.CallId, '|')) as callId
 
 MATCH (pmc {id:callId})

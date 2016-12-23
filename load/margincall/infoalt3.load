@@ -1,15 +1,6 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/infoalt3.csv' 
 AS line
 
-// We update the margin statement counts. This can only come from unrecon. 
-
-MATCH (ms:MarginStatement {id:line.StatementId})
-
-SET ms.unreconCount = ms.unreconCount-1, 
-    ms.disputeCount = CASE WHEN ms.direction = 'OUT' THEN ms.disputeCount ELSE ms.disputeCount +1 END
-
-WITH line 
-
 UNWIND(SPLIT(line.CallId, '|')) as callId
 
 MATCH (pmc {id:callId})

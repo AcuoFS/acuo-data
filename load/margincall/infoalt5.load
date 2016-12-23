@@ -1,16 +1,6 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/infoalt5.csv' 
 AS line
 
-// We update the margin statement counts. This can only come from reconcile only.
-
-WITH *
-
-MATCH (ms:MarginStatement {id:line.StatementId})
-SET ms.reconcileCount = ms.reconcileCount - 1,
-    ms.pledgeCount = ms.pledgeCount+1
-
-WITH line 
-
 UNWIND(SPLIT(line.CallId, '|')) as callId
 
 MATCH (pmc {id:callId})
