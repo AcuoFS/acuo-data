@@ -59,6 +59,7 @@ WITH pmc, n, line
 
 // We delete the previous [:LAST] relationship and add a [:NEXT] relationship
 
-OPTIONAL MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m {status:line.PrevStatus})
-FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
+MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m:Step {status:line.PrevStatus})
+
+FOREACH(y IN CASE WHEN exists((n)<-[:LAST]-(pmc)-[delRel:LAST]->(:Step {status:line.PrevStatus})) THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
 
