@@ -41,13 +41,17 @@ WITH *,
 
 FOREACH (i IN partDisputeAct | 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
-                                                                    callAmount:toFloat(line.AgreedAmount)
+                                                                    excessAmount:toFloat(line.AgreedAmount), 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    notificationTime:pmc.notificationTime
 	})-[:DIRECTED_TO]->(l)
         MERGE (cmca)-[:FIRST {time:line.Time}]->(s1:Step {status:'Reconciled'})
         MERGE (cmca)-[:LAST {time:line.Time}]->(s1)
 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
-                                                                    callAmount:pmc.callAmount-toFloat(line.AgreedAmount)
+                                                                    excessAmount:pmc.excessAmount-toFloat(line.AgreedAmount), 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    notificationTime:pmc.notificationTime
 	})-[:DIRECTED_TO]->(l)
         MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'actionDispute'})
         MERGE (cmcr)-[:LAST {time:line.Time}]->(s2)
