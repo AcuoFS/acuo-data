@@ -11,12 +11,11 @@ buildDataBase = function() {
   
   clear(graph,input=FALSE)
   
-  load.name <- c('/load/client.load',
-                 '/load/counterpart.load',
+  load.name <- c('/load/firm.load',
                  '/load/legalentity.load',
                  '/load/counterpartEntity.load',
-                 '/load/fcm.load',
                  '/load/clearingHouse.load',
+                 '/load/fcm.load',
                  '/load/tradingAccount.load',
                  '/load/bilateralAgreement.load',
                  '/load/clearedAgreement.load',
@@ -47,7 +46,7 @@ buildDataBase = function() {
                  '/load/valuemarkit.load', 
                  '/load/portvalue.load')
   
-  for (i in 1:5) {
+  for (i in 1:6) {
     load.name <- c(load.name, paste('/load/margincall/infoalt', toString(i), '.load', sep=''))
   }
   
@@ -62,6 +61,8 @@ buildDataBase = function() {
                    '/loadconstraint/margincall.load',
                    '/loadconstraint/marginstatement.load',
                    '/loadconstraint/portfolio.load',
+                   '/loadconstraint/clearingHouse.load',
+                   '/loadconstraint/fcm.load',
                    '/loadconstraint/trade.load')
   
   load.name <- c(load.constr,load.name)
