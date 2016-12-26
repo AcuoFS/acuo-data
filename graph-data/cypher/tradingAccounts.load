@@ -3,6 +3,6 @@ AS line
 
 MATCH (e:LegalEntity {id:line.EntityId})
 
-MERGE (acc:TradingAccount {id:line.AccountId, name:line.AccountName, shortName:line.AccountShortName})
+MERGE (acc:TradingAccount {accountId:line.AccountId, name:line.AccountName, shortName:line.AccountShortName})
 
 MERGE (e)-[:HAS]->(acc);
