@@ -1,0 +1,6 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/clearingHouses.csv' AS line
+
+MERGE (ch:ClearingHouse {id:line.ClearingHouseId,
+                        name:line.ClearingHouseName,
+                        shortName:line.ClearingHouseShortName,
+                        jurisdiction:line.ClearingHouseJurisdiction})

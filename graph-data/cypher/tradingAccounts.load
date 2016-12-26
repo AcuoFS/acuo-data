@@ -1,0 +1,8 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/tradingAccounts.csv'
+AS line
+
+MATCH (e:LegalEntity {id:line.EntityId})
+
+MERGE (acc:TradingAccount {id:line.AccountId, name:line.AccountName, shortName:line.AccountShortName})
+
+MERGE (e)-[:HAS]->(acc);
