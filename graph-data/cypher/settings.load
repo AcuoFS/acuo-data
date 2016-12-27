@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/CSV/settings.csv' 
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/settings.csv' 
 AS line
 
 MERGE (s:Settings {name:line.Name})
