@@ -1,0 +1,8 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/settings.csv' 
+AS line
+
+MATCH (c:Client {id:line.ClientId})
+
+MERGE (s:Settings {name:line.Name, rating:line.Rating})
+
+MERGE (c)-[:HAS]->(s);
