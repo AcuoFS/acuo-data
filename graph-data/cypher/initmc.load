@@ -1,21 +1,28 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/initialmc.csv' AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
-MATCH (c:Firm)-[:MANAGES]->(e:LegalEntity)-[s:CLIENT_SIGNS]->(a)<-[:COUNTERPARTY_SIGNS]-(ce:LegalEntity)
+MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:CLIENT_SIGNS]->(a)<-[:COUNTERPARTY_SIGNS]-(ce:LegalEntity)
 MATCH (ms:MarginStatement {id:line.StatementId})
 
-MERGE (mc:MarginCall {id:line.CallId,
-		      callDate:line.CallDate,
-                      callType:line.CallType,
-                      direction:line.Direction})
+MERGE (mc:MarginCall {id:line.CallId, 
+                    callDate:line.CallDate,
+                    callType:line.CallType,
+                    direction:line.Direction})
+
+WITH *
+
+MERGE (mc)-[:FIRST]->(step:Step {status:line.Status})
+MERGE (mc)-[:LAST]->(step)
+
+WITH *
 
 SET mc.id=line.CallId,
     mc.valuationDate=line.ValuationDate,
     mc.currency=line.Currency,
-    mc.callAmount=toFloat(line.TotalCallAmount),
+    mc.excessAmount=toFloat(line.TotalCallAmount),
     mc.returnAmount=toFloat(line.ReturnAmount),
     mc.deliverAmount=toFloat(line.DeliverAmount),
-    mc.collateralValue=toFloat(line.CollateralValue),
+    mc.balanceAmount=toFloat(line.CollateralValue),
     mc.pendingCollateral=toFloat(line.PendingCollateral),
     mc.exposure=toFloat(line.Exposure),
     mc.IMRole=line.IMRole,

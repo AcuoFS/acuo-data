@@ -1,14 +1,20 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/initialmcexp.csv' 
-AS line
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/initialmcexp.csv' AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:CLIENT_SIGNS]->(a)
 MATCH (ms:MarginStatement {id:line.StatementId})
 
 MERGE (mc:MarginCall {id:line.CallId,
-		      callDate:line.CallDate,
-                      callType:line.CallType,
-		      direction:line.Direction})
+                    callDate:line.CallDate,
+                    callType:line.CallType,
+                    direction:line.Direction})
+
+WITH *
+
+MERGE (mc)-[:FIRST]->(step:Step {status:line.Status})
+MERGE (mc)-[:LAST]->(step)
+
+WITH *
 
 SET mc.id=line.CallId,
     mc.valuationDate=line.ValuationDate,
