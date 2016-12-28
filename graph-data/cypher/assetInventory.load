@@ -1,0 +1,56 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/assetInventory.csv' 
+AS line
+WITH line
+WHERE line.clientId IS NOT NULL
+
+MATCH (c:Client {id:line.clientId})
+MERGE (a:Asset {id: line.id,idType: line.idType, name:line.name,currency:line.currency,
+	yield: TOFLOAT(line.yield),type:line.type,ICADCode:line.ICADCode,ACUOCategory:line.ACUOCategory,
+	price:TOFLOAT(line.price),parValue:TOFLOAT(line.parValue),minUnit:TOFLOAT(line.minUnit),minUnitValue:TOFLOAT(line.minUnitValue)})
+MERGE (c)-[p:POSSESSES]->(a)
+ON CREATE SET
+	p.quantities=0,
+	p.availableQuantities=0,
+	p.earmarkedQuantities=0,
+//	p.deployedQuantities=0,
+//	p.departedQuantities=0,
+//	p.arrivingQuantities=0,
+	p.internalCost=TOFLOAT(line.internalCost),
+	p.opptCost=TOFLOAT(line.opptCost)
+ON MATCH SET
+	p.quantities=0,
+	p.availableQuantities=0,
+	p.earmarkedQuantities=0,
+//	p.deployedQuantities=0,
+//	p.departedQuantities=0,
+//	p.arrivingQuantities=0,
+	p.internalCost=TOFLOAT(line.internalCost),
+	p.opptCost=TOFLOAT(line.opptCost)
+
+WITH line,a, timestamp()/1000/60/60/24 AS todayDays
+
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
+	ELSE [] END | SET a.ticker=line.ticker)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityDate)<>"" THEN [1] 
+	ELSE [] END | SET a.issueDate=line.issueDate, a.maturityDate=line.maturityDate)
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.fitchRating)<>"" THEN [1] 
+	ELSE [] END | SET a.rating=line.fitchRating)
+WITH a,todayDays
+CALL apoc.date.parse(a.maturityDate,'d','MM/dd/yyyy') YIELD value AS futureDays
+SET a.timeToMaturityDays = CASE WHEN futureDays>todayDays THEN TOFLOAT(futureDays-todayDays)
+                                ELSE 0 END,
+    a.timeToMaturityYears = a.timeToMaturityDays/365
+
+WITH a
+
+MATCH (a)<--(c:Client)-[:MANAGES]->(e)-[:CLIENT_SIGNS]->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
+WHERE a.ICADCode=ac.name
+AND a.currency=ac.currency
+
+FOREACH (ignoreMe IN CASE 
+	WHEN a.ticker=ac.ticker THEN 1
+	WHEN UPPER(a.type)='CASH' THEN 1
+	WHEN UPPER(a.type)='GOLD' THEN 1
+	WHEN a.timeToMaturityYears<ac.maturityUp AND  a.timeToMaturityYears>ac.maturityLb THEN 1
+	ELSE [] END | MERGE (a)-[i:IS_IN]->(ac))
+

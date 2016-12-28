@@ -1,0 +1,13 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/counterpartCustodianAccounts.csv' 
+AS line 
+WITH line, SPLIT(line.CounterEntityId,'|') AS Entities
+
+MERGE (custac: CustodianAccount {id:line.accountId,name:line.accountName,region:line.accountRegion})
+WITH custac,line,Entities
+MATCH (cust:Custodian {id:line.custodianId})
+MERGE (custac)<-[:MANAGES]-(cust)
+
+WITH Entities,custac
+UNWIND Entities AS Entity
+MATCH (l:LegalEntity {id:Entity})
+MERGE (custac)<-[:ACCESSES]-(l)

@@ -1,0 +1,13 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/custodianAccounts.csv' 
+AS line 
+WITH line, SPLIT(line.tradingAccountId,'|') AS TradingAccounts
+
+MERGE (custac: CustodianAccount {id:line.accountId,name:line.accountName,region:line.accountRegion})
+WITH custac,line,TradingAccounts
+MATCH (cust:Custodian {id:line.custodianId})
+MERGE (custac)<-[:MANAGES]-(cust)
+
+WITH TradingAccounts,custac
+UNWIND TradingAccounts AS account
+MATCH (acc:TradingAccount {id:account})
+MERGE (custac)<-[:ACCESSES]-(acc)
