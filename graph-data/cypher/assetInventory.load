@@ -36,8 +36,7 @@ FOREACH (ignoreMe IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityD
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.fitchRating)<>"" THEN [1] 
 	ELSE [] END | SET a.rating=line.fitchRating)
 WITH a,todayDays
-CALL apoc.date.parse(a.maturityDate,'d','MM/dd/yyyy') YIELD value AS futureDays
-SET a.timeToMaturityDays = CASE WHEN futureDays>todayDays THEN TOFLOAT(futureDays-todayDays)
+SET a.timeToMaturityDays = CASE WHEN futureDays>todayDays THEN TOFLOAT(line.futureDays-todayDays)
                                 ELSE 0 END,
     a.timeToMaturityYears = a.timeToMaturityDays/365
 
