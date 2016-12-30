@@ -35,7 +35,7 @@ FOREACH (ignoreMe IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityD
 	ELSE [] END | SET a.issueDate=line.issueDate, a.maturityDate=line.maturityDate)
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.fitchRating)<>"" THEN [1] 
 	ELSE [] END | SET a.rating=line.fitchRating)
-WITH a,todayDays, line.futureDays futureDays
+WITH a,todayDays, line.futureDays AS futureDays
 SET a.timeToMaturityDays = CASE WHEN futureDays>todayDays THEN TOFLOAT(futureDays-todayDays)
                                 ELSE 0 END,
     a.timeToMaturityYears = a.timeToMaturityDays/365
