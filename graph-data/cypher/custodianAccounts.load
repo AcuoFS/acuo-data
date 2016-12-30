@@ -8,6 +8,6 @@ MATCH (cust:Custodian {id:line.custodianId})
 MERGE (custac)<-[:MANAGES]-(cust)
 
 WITH TradingAccounts,custac
-UNWIND TradingAccounts AS account
-MATCH (acc:TradingAccount {id:account})
+UNWIND TradingAccounts AS accountId
+MATCH (acc:TradingAccount {accountId:accountId})
 MERGE (custac)<-[:ACCESSES]-(acc)
