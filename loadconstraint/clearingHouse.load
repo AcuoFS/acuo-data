@@ -1,0 +1,2 @@
+CREATE CONSTRAINT ON (n:clearingHouse)
+ASSERT n.id IS UNIQUE

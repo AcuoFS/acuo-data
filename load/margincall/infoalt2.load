@@ -1,37 +1,59 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/infoalt2.csv' 
 AS line
 
-// Let's update the margin statement counts. (You can only get there from Unrecon so fairly straightforward). Recon leads to action, dispute leads to none. 
-
 MATCH (ms:MarginStatement {id:line.StatementId})
-
-SET ms.unreconCount = ms.reconCount -1,
-    ms.reconcileCount = ms.reconcileCount +1
 
 // This is a partial dispute node. We still check for safety's sake.
 
-WITH line 
+WITH line, ms
 
 UNWIND(SPLIT(line.CallId, '|')) as callId
 
 MATCH (pmc {id:callId})-[:DIRECTED_TO]->(l:LegalEntity)
 
 WITH *,
-		CASE WHEN (line.NewStatus = 'Partial Dispute') THEN [1] ELSE []
+		CASE WHEN line.NewStatus = 'Partial Dispute' and ms.direction = 'OUT' THEN [1] ELSE []
 		END
-	AS partdispute
+	AS partDisputeWait
 
-FOREACH (i IN partdispute | 
+FOREACH (i IN partDisputeWait | 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
-                                                                    callAmount:toFloat(line.AgreedAmount)
+                                                                    excessAmount:toFloat(line.AgreedAmount), 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    notificationTime:pmc.notificationTime
 	})-[:DIRECTED_TO]->(l)
         MERGE (cmca)-[:FIRST {time:line.Time}]->(s1:Step {status:'Reconciled'})
         MERGE (cmca)-[:LAST {time:line.Time}]->(s1)
 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
-                                                                    callAmount:pmc.callAmount-toFloat(line.AgreedAmount)
+                                                                    excessAmount:pmc.excessAmount-toFloat(line.AgreedAmount), 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    notificationTime:pmc.notificationTime
 	})-[:DIRECTED_TO]->(l)
-        MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'Dispute'})
+        MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'waitDispute'})
+        MERGE (cmcr)-[:LAST {time:line.Time}]->(s2)
+)
+
+WITH *,
+		CASE WHEN line.NewStatus = 'Partial Dispute' and ms.direction = 'IN' THEN [1] ELSE []
+		END
+	AS partDisputeAct
+
+FOREACH (i IN partDisputeAct | 
+	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
+                                                                    excessAmount:toFloat(line.AgreedAmount), 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    notificationTime:pmc.notificationTime
+	})-[:DIRECTED_TO]->(l)
+        MERGE (cmca)-[:FIRST {time:line.Time}]->(s1:Step {status:'Reconciled'})
+        MERGE (cmca)-[:LAST {time:line.Time}]->(s1)
+
+	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
+                                                                    excessAmount:pmc.excessAmount-toFloat(line.AgreedAmount), 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    notificationTime:pmc.notificationTime
+	})-[:DIRECTED_TO]->(l)
+        MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'actionDispute'})
         MERGE (cmcr)-[:LAST {time:line.Time}]->(s2)
 )
 
@@ -39,12 +61,15 @@ FOREACH (i IN partdispute |
 
 WITH line, pmc
 
-MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
+MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {status:line.NewStatus})
 
 WITH pmc, n, line
 
 // We delete the previous [:LAST] relationship and add a [:NEXT] relationship
 
-OPTIONAL MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m {step:line.PrevStatus})
-FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
+MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m:Step {status:line.PrevStatus})
+
+DELETE delRel 
+
+MERGE (m)-[:NEXT {time:line.Time}]->(n)
 

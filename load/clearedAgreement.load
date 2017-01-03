@@ -9,6 +9,6 @@ MERGE (l)-[:PREFERENCES {tolerance:toFloat(line.Tolerance)}]->(fcm)
 
 MERGE (a:Agreement {id:line.AgreementId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, currency:line.Currency})
 
-MERGE (l)-[s1:CLIENT_SIGNS {initialBalance:line.InitialBalance, variationBalance:line.VariationBalance}]->(a)
+MERGE (l)-[s1:CLIENT_SIGNS {initialBalance:line.InitialBalance, variationBalance:line.VariationBalance, pendingInitialCollateral:toFloat(line.pendingInitialCollateral), pendingVariationCollateral:toFloat(line.pendingVariationCollateral)}]->(a)
 MERGE (fcm)-[s2:COUNTERPARTY_SIGNS]->(a)
 MERGE (a)-[:IN_CH]->(ch)

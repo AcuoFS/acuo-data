@@ -1,4 +1,0 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/counterpart.csv' 
-AS line
-
-MERGE (c:CounterpartFirm {id:line.CounterpartId, name:line.CounterpartName, shortName:line.CounterpartShortName})

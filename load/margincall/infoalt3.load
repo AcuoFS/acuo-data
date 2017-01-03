@@ -1,25 +1,20 @@
 LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/infoalt3.csv' 
 AS line
 
-// We update the margin statement counts. This can only come from unrecon. Dispute leads to no action. 
-
-MATCH (ms:MarginStatement {id:line.StatementId})
-
-SET ms.unreconCount = ms.unreconCount-1
-
-WITH line 
-
 UNWIND(SPLIT(line.CallId, '|')) as callId
 
 MATCH (pmc {id:callId})
 
 WITH line, pmc
 
-MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {step:line.NewStatus})
+MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {status:line.NewStatus})
 
 WITH pmc, n, line
 
 // We delete the previous [:LAST] relationship and add a [:NEXT] relationship
 
-MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m {step:line.PrevStatus})
-FOREACH(y IN CASE WHEN m IS NOT NULL THEN [1] ELSE [] END | DELETE delRel MERGE (m)-[:NEXT {time:line.Time}]->(n))
+MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m:Step {status:line.PrevStatus})
+
+DELETE delRel 
+
+MERGE (m)-[:NEXT {time:line.Time}]->(n)
