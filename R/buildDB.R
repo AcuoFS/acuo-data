@@ -41,6 +41,7 @@ buildDataBase = function() {
                  '/load/margincall/mstatement.load',
                  '/load/margincall/initmcexp.load',
                  '/load/margincall/initmc.load', 
+                 '/load/assetSegmentStatus.load',
                  '/load/valueClientCleared.load', 
                  '/load/valueClientBil.load',
                  '/load/valueclarus.load', 
@@ -61,6 +62,7 @@ buildDataBase = function() {
                    '/loadconstraint/custodianAccount.load',
                    '/loadconstraint/margincall.load',
                    '/loadconstraint/marginstatement.load',
+                   '/loadconstraint/assetSegmentStatus.load',
                    '/loadconstraint/portfolio.load',
                    '/loadconstraint/trade.load')
   
