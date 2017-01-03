@@ -7,7 +7,7 @@ MATCH (custac1:CustodianAccount {id:line.clientCustodianAccountId}),
 	  (custac2:CustodianAccount {id:line.counterpartyCustodianAccountId}),
 	  (mc:MarginCall {id:line.callId})
 
-MERGE (a:AssetSegment {id:line.id})
+MERGE (a:AssetTransfer {id:line.id})
 ON CREATE SET
 	a.quantities = TOFLOAT(line.quantities),
 	a.assetId = line.assetId,

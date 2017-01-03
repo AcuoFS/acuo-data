@@ -1,2 +1,0 @@
-CREATE CONSTRAINT ON (n:AssetSegment)
-ASSERT n.id IS UNIQUE
