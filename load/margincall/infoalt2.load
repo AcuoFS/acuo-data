@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/CSV/margincall/infoalt2.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/CSV/margincall/infoalt2.csv' 
 AS line
 
 MATCH (ms:MarginStatement {id:line.StatementId})
@@ -20,6 +20,7 @@ FOREACH (i IN partDisputeWait |
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
                                                                     excessAmount:toFloat(line.AgreedAmount), 
                                                                     balanceAmount:pmc.balanceAmount, 
+                                                                    currency:pmc.currency, 
                                                                     notificationTime:pmc.notificationTime, 
                                                                     callDate:pmc.callDate, 
                                                                     callType:pmc.callType, 
@@ -32,6 +33,7 @@ FOREACH (i IN partDisputeWait |
 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
                                                                     excessAmount:pmc.excessAmount-toFloat(line.AgreedAmount), 
+                                                                    currency:pmc.currency,
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     notificationTime:pmc.notificationTime,
                                                                     callDate:pmc.callDate, 
@@ -51,7 +53,8 @@ WITH *,
 
 FOREACH (i IN partDisputeAct | 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
-                                                                    excessAmount:toFloat(line.AgreedAmount), 
+                                                                    excessAmount:toFloat(line.AgreedAmount),
+                                                                    currency:pmc.currency, 
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     notificationTime:pmc.notificationTime,
                                                                     callDate:pmc.callDate, 
@@ -65,6 +68,7 @@ FOREACH (i IN partDisputeAct |
 
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
                                                                     excessAmount:pmc.excessAmount-toFloat(line.AgreedAmount), 
+                                                                    currency:pmc.currency,
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     notificationTime:pmc.notificationTime,
                                                                     callDate:pmc.callDate, 
