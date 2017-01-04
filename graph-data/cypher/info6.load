@@ -1,4 +1,4 @@
-LLOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/info6.csv' 
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/info6.csv' 
 AS line
 
 UNWIND(SPLIT(line.CallId, '|')) as callId
