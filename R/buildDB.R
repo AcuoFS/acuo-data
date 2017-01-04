@@ -69,7 +69,7 @@ buildDataBase = function() {
   
   load.name <- c(load.constr,load.name)
   
-  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master'
+  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop'
   
   load.url<-paste(load.preurl,sep='',load.name)
   
