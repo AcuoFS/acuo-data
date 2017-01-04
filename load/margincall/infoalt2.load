@@ -33,7 +33,7 @@ FOREACH (i IN partDisputeWait |
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
                                                                     excessAmount:pmc.excessAmount-toFloat(line.AgreedAmount), 
                                                                     balanceAmount:pmc.balanceAmount, 
-                                                                    notificationTime:pmc.notificationTime
+                                                                    notificationTime:pmc.notificationTime,
                                                                     callDate:pmc.callDate, 
                                                                     callType:pmc.callType, 
                                                                     balanceAmount:pmc.balanceAmount, 
@@ -53,7 +53,7 @@ FOREACH (i IN partDisputeAct |
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
                                                                     excessAmount:toFloat(line.AgreedAmount), 
                                                                     balanceAmount:pmc.balanceAmount, 
-                                                                    notificationTime:pmc.notificationTime
+                                                                    notificationTime:pmc.notificationTime,
                                                                     callDate:pmc.callDate, 
                                                                     callType:pmc.callType, 
                                                                     balanceAmount:pmc.balanceAmount, 
@@ -66,7 +66,7 @@ FOREACH (i IN partDisputeAct |
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
                                                                     excessAmount:pmc.excessAmount-toFloat(line.AgreedAmount), 
                                                                     balanceAmount:pmc.balanceAmount, 
-                                                                    notificationTime:pmc.notificationTime
+                                                                    notificationTime:pmc.notificationTime,
                                                                     callDate:pmc.callDate, 
                                                                     callType:pmc.callType, 
                                                                     balanceAmount:pmc.balanceAmount, 
