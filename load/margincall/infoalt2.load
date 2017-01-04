@@ -20,7 +20,12 @@ FOREACH (i IN partDisputeWait |
 	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
                                                                     excessAmount:toFloat(line.AgreedAmount), 
                                                                     balanceAmount:pmc.balanceAmount, 
-                                                                    notificationTime:pmc.notificationTime
+                                                                    notificationTime:pmc.notificationTime, 
+                                                                    callDate:pmc.callDate, 
+                                                                    callType:pmc.callType, 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    pendingCollateral:pmc.pendingCollateral, 
+                                                                    direction:pmc.direction
 	})-[:DIRECTED_TO]->(l)
         MERGE (cmca)-[:FIRST {time:line.Time}]->(s1:Step {status:'Reconciled'})
         MERGE (cmca)-[:LAST {time:line.Time}]->(s1)
@@ -29,6 +34,11 @@ FOREACH (i IN partDisputeWait |
                                                                     excessAmount:pmc.excessAmount-toFloat(line.AgreedAmount), 
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     notificationTime:pmc.notificationTime
+                                                                    callDate:pmc.callDate, 
+                                                                    callType:pmc.callType, 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    pendingCollateral:pmc.pendingCollateral, 
+                                                                    direction:pmc.direction
 	})-[:DIRECTED_TO]->(l)
         MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'waitDispute'})
         MERGE (cmcr)-[:LAST {time:line.Time}]->(s2)
@@ -44,6 +54,11 @@ FOREACH (i IN partDisputeAct |
                                                                     excessAmount:toFloat(line.AgreedAmount), 
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     notificationTime:pmc.notificationTime
+                                                                    callDate:pmc.callDate, 
+                                                                    callType:pmc.callType, 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    pendingCollateral:pmc.pendingCollateral, 
+                                                                    direction:pmc.direction
 	})-[:DIRECTED_TO]->(l)
         MERGE (cmca)-[:FIRST {time:line.Time}]->(s1:Step {status:'Reconciled'})
         MERGE (cmca)-[:LAST {time:line.Time}]->(s1)
@@ -52,6 +67,11 @@ FOREACH (i IN partDisputeAct |
                                                                     excessAmount:pmc.excessAmount-toFloat(line.AgreedAmount), 
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     notificationTime:pmc.notificationTime
+                                                                    callDate:pmc.callDate, 
+                                                                    callType:pmc.callType, 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    pendingCollateral:pmc.pendingCollateral, 
+                                                                    direction:pmc.direction
 	})-[:DIRECTED_TO]->(l)
         MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'actionDispute'})
         MERGE (cmcr)-[:LAST {time:line.Time}]->(s2)
