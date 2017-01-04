@@ -1,0 +1,99 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/info2.csv' 
+AS line
+
+MATCH (ms:MarginStatement {id:line.StatementId})
+
+// This is a partial dispute node. We still check for safety's sake.
+
+WITH line, ms
+
+UNWIND(SPLIT(line.CallId, '|')) as callId
+
+MATCH (pmc {id:callId})-[:DIRECTED_TO]->(l:LegalEntity)
+
+WITH *,
+		CASE WHEN line.NewStatus = 'Partial Dispute' and ms.direction = 'OUT' THEN [1] ELSE []
+		END
+	AS partDisputeWait
+
+FOREACH (i IN partDisputeWait | 
+	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
+                                                                    excessAmount:toFloat(line.AgreedAmount), 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    currency:pmc.currency, 
+                                                                    notificationTime:pmc.notificationTime, 
+                                                                    callDate:pmc.callDate, 
+                                                                    callType:pmc.callType, 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    pendingCollateral:pmc.pendingCollateral, 
+                                                                    direction:pmc.direction
+	})-[:DIRECTED_TO]->(l)
+        MERGE (cmca)-[:FIRST {time:line.Time}]->(s1:Step {status:'Reconciled'})
+        MERGE (cmca)-[:LAST {time:line.Time}]->(s1)
+
+	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
+                                                                    excessAmount:pmc.excessAmount-toFloat(line.AgreedAmount), 
+                                                                    currency:pmc.currency,
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    notificationTime:pmc.notificationTime,
+                                                                    callDate:pmc.callDate, 
+                                                                    callType:pmc.callType, 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    pendingCollateral:pmc.pendingCollateral, 
+                                                                    direction:pmc.direction
+	})-[:DIRECTED_TO]->(l)
+        MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'waitDispute'})
+        MERGE (cmcr)-[:LAST {time:line.Time}]->(s2)
+)
+
+WITH *,
+		CASE WHEN line.NewStatus = 'Partial Dispute' and ms.direction = 'IN' THEN [1] ELSE []
+		END
+	AS partDisputeAct
+
+FOREACH (i IN partDisputeAct | 
+	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmca:MarginCall {id:line.AgreedCallId, 
+                                                                    excessAmount:toFloat(line.AgreedAmount),
+                                                                    currency:pmc.currency, 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    notificationTime:pmc.notificationTime,
+                                                                    callDate:pmc.callDate, 
+                                                                    callType:pmc.callType, 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    pendingCollateral:pmc.pendingCollateral, 
+                                                                    direction:pmc.direction
+	})-[:DIRECTED_TO]->(l)
+        MERGE (cmca)-[:FIRST {time:line.Time}]->(s1:Step {status:'Reconciled'})
+        MERGE (cmca)-[:LAST {time:line.Time}]->(s1)
+
+	MERGE (pmc)<-[:CHILD_OF {time:line.Time}]-(cmcr:MarginCall {id:line.DisputeCallId, 
+                                                                    excessAmount:pmc.excessAmount-toFloat(line.AgreedAmount), 
+                                                                    currency:pmc.currency,
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    notificationTime:pmc.notificationTime,
+                                                                    callDate:pmc.callDate, 
+                                                                    callType:pmc.callType, 
+                                                                    balanceAmount:pmc.balanceAmount, 
+                                                                    pendingCollateral:pmc.pendingCollateral, 
+                                                                    direction:pmc.direction
+	})-[:DIRECTED_TO]->(l)
+        MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'actionDispute'})
+        MERGE (cmcr)-[:LAST {time:line.Time}]->(s2)
+)
+
+// Back to the general background: creating the node and a LAST relationship
+
+WITH line, pmc
+
+MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {status:line.NewStatus})
+
+WITH pmc, n, line
+
+// We delete the previous [:LAST] relationship and add a [:NEXT] relationship
+
+MATCH (n)<-[:LAST]-(pmc)-[delRel:LAST]->(m:Step {status:line.PrevStatus})
+
+DELETE delRel 
+
+MERGE (m)-[:NEXT {time:line.Time}]->(n)
+
