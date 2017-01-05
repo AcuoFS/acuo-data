@@ -11,65 +11,30 @@ buildDataBase = function() {
   
   clear(graph,input=FALSE)
   
-  load.name <- c('/load/firm.load',
-                 '/load/legalentity.load',
-                 '/load/counterpartEntity.load',
-                 '/load/clearingHouse.load',
-                 '/load/fcm.load',
-                 '/load/tradingAccount.load',
-                 '/load/bilateralAgreement.load',
-                 '/load/clearedAgreement.load',
-#                 '/load/cds.load',  
-                 '/load/irs.load', 
-#                 '/load/ndf.load', 
-#                 '/load/fxsi.load', 
-#                 '/load/fxsw.load',
-#                 '/load/optionsvanilla.load', 
-#                 '/load/optionsbarrier.load', 
-                 '/load/fra.load',
-#                 '/load/zcs.load', 
-#                 '/load/swaption.load',
-                 '/load/recipientInfo.load',
-                 '/load/assetCategory.load',
-                 '/load/assetInventory.load', 
-                 '/load/custodian.load',
-                 '/load/custodianAccount.load',
-                 '/load/counterpartCustodian.load',
-                 '/load/counterpartCustodianAccount.load',
-                 '/load/custodianAsset.load',
-                 '/load/margincall/mstatement.load',
-                 '/load/margincall/initmcexp.load',
-                 '/load/margincall/initmc.load', 
-                 '/load/assetTransfer.load',
-                 '/load/valueClientCleared.load', 
-                 '/load/valueClientBil.load',
-                 '/load/valueclarus.load', 
-                 '/load/valuemarkit.load', 
-                 '/load/portvalue.load')
+  load.name <- c('cypher/firms.load',
+                 'cypher/legalentities.load',
+                 'cypher/clearingHouses.load',
+                 'cypher/fcms.load',
+                 'cypher/tradingAccounts.load',
+                 'cypher/bilateralAgreements.load',
+                 'cypher/clearedAgreements.load',
+                 'cypher/assetCategories.load',
+                 'cypher/assetInventory.load', 
+                 'cypher/custodians.load',
+                 'cypher/custodianAccounts.load',
+                 'cypher/counterpartCustodianAccounts.load',
+                 'cypher/custodianAssets.load',
+                 'cypher/mstatements.load',
+                 'cypher/initmcexp.load',
+                 'cypher/initmc.load',
+                 'cypher/settings.load',
+                 'cypher/assetTransfer.load')
   
-  for (i in 1:6) {
-    load.name <- c(load.name, paste('/load/margincall/infoalt', toString(i), '.load', sep=''))
-  }
+  for (i in 2:6) {
+      load.name <- c(load.name, paste('/cypher/info', toString(i), '.load', sep=''))
+    }
   
-  load.constr <- c('/loadconstraint/tradingAccount.load', 
-                   '/loadconstraint/agreement.load',
-                   '/loadconstraint/asset.load',
-                   '/loadconstraint/client.load',
-                   '/loadconstraint/counterpart.load', 
-                   '/loadconstraint/legalentity.load',
-                   '/loadconstraint/custodian.load',
-                   '/loadconstraint/custodianAccount.load',
-                   '/loadconstraint/margincall.load',
-                   '/loadconstraint/marginstatement.load',
-                   '/loadconstraint/assetTransfer.load',
-                   '/loadconstraint/portfolio.load',
-                   '/loadconstraint/clearingHouse.load',
-                   '/loadconstraint/fcm.load',
-                   '/loadconstraint/trade.load')
-  
-  load.name <- c(load.constr,load.name)
-  
-  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop'
+  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data/'
   
   load.url<-paste(load.preurl,sep='',load.name)
   
@@ -77,7 +42,8 @@ buildDataBase = function() {
   
   for(i in 1:length(load.name)) {
     load.query[i] <- readLoad(load.url[i])
-#    print(load.url[i])
+    load.query[i] <- gsub('%dataImportLink%', load.preurl, load.query[i])
+#    print(load.name[i])
     cypher(graph,load.query[[i]])
   }
   return(graph)
