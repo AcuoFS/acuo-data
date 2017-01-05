@@ -2,7 +2,7 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/fcms.csv' AS line
 
 MATCH (ch:ClearingHouse {id:line.ClearingHouseId})
 
-MERGE (fcm:FCM {id:line.FCMId}
+MERGE (fcm:FCM {id:line.FCMId})
 
 ON CREATE SET fcm.name=line.FCMName, fcm.jurisdiction=line.Jurisdiction, fcm.shortName=line.FCMShortName)
 
