@@ -26,7 +26,7 @@ MERGE (a)-[:IS_AVAILABLE_FOR {haircut:ie.haircut,FXHaircut:ie.FXHaircut,interest
 
 WITH DISTINCT custac
 
-MATCH path1 = (custac)-[h:HOLDS]->(a:Asset)<-[p:POSSESSES]-(c:Client)
+MATCH path1 = (custac)-[h:HOLDS]->(a:Asset)<-[p:POSSESSES]-(ca:ClientAsset)<-[:CLIENT_ASSET]-(c:Client)
 WHERE (c)-[*3]->(custac)
 WITH DISTINCT p, SUM(h.quantities) AS hQ, SUM(h.availableQuantities) AS hAQ, SUM(h.reservedQuantities) AS hEQ
                  //SUM(p.deployedQuantities) AS hDQ, SUM(h.departedQuantities) AS hDPQ, SUM(h.arrivingQuantities) AS hARQ, 
