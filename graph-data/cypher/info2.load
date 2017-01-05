@@ -12,7 +12,7 @@ UNWIND(SPLIT(line.CallId, '|')) as callId
 MATCH (pmc {id:callId})-[:DIRECTED_TO]->(l:LegalEntity)
 
 WITH *,
-		CASE WHEN line.NewStatus = 'Partial Dispute' and ms.direction = 'OUT' THEN [1] ELSE []
+		CASE WHEN line.NewStatus = 'PartialDispute' and ms.direction = 'OUT' THEN [1] ELSE []
 		END
 	AS partDisputeWait
 
@@ -47,7 +47,7 @@ FOREACH (i IN partDisputeWait |
 )
 
 WITH *,
-		CASE WHEN line.NewStatus = 'Partial Dispute' and ms.direction = 'IN' THEN [1] ELSE []
+		CASE WHEN line.NewStatus = 'PartialDispute' and ms.direction = 'IN' THEN [1] ELSE []
 		END
 	AS partDisputeAct
 
