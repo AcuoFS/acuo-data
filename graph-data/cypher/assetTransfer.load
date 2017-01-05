@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/AssetTransfer.csv' 
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/assetTransfer.csv' 
 AS line
 WITH line
 WHERE line.id IS NOT NULL
