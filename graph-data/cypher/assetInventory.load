@@ -40,9 +40,9 @@ FOREACH (ignoreMe IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityD
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.fitchRating)<>"" THEN [1] 
 	ELSE [] END | SET a.rating=line.fitchRating)
 WITH a,todayDays, TOINT(line.futureDays) AS futureDays
-SET a.timeToMaturityDays = CASE WHEN futureDays>todayDays THEN TOINT(futureDays-todayDays)
+SET a.timeToMaturityDays = CASE WHEN futureDays>todayDays THEN TOFLOAT(futureDays-todayDays)
                                 ELSE 0 END,
-    a.timeToMaturityYears = a.timeToMaturityDays/365
+    a.timeToMaturityYears = TOFLOAT(a.timeToMaturityDays/365)
 
 WITH a
 
