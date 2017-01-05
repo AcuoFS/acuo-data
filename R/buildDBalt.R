@@ -11,8 +11,7 @@ buildDataBase = function() {
   
   clear(graph,input=FALSE)
   
-  load.name <- c('cypher/constraints.cql',
-                 'cypher/firms.load',
+  load.name <- c('cypher/firms.load',
                  'cypher/legalentities.load',
                  'cypher/clearingHouses.load',
                  'cypher/fcms.load',
@@ -45,7 +44,7 @@ buildDataBase = function() {
   for(i in 1:length(load.name)) {
     load.query[i] <- readLoad(load.url[i])
     load.query[i] <- gsub('%dataImportLink%', load.preurl, load.query[i])
-#    print(load.query[i])
+    print(load.name[i])
     cypher(graph,load.query[[i]])
   }
   return(graph)
