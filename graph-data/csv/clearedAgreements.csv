@@ -1,4 +1,4 @@
-AgreementName,AgreementId,AgreementDate,Currency,Type,LegalEntityId,ClearingHouseId,FCMId,InitialBalance,VariationBalance,Tolerance,
+AgreementName,AgreementId,AgreementDate,Currency,Type,LegalEntityId,ClearingHouseId,FCMId,InitialBalance,VariationBalance,Tolerance,FCMCustodianId
 ACUO SG Pte Ltd v J.P. Morgan Securities Australia Limited at ASX,a13,29/07/11,USD,cleared,720400TGFLH2QZV80T,549300VE86SBRUX48D51,549300E4W9O1NF0UOP45,15000,15000,0.2,CustodianAccount5A
 ACUO US LLC v J.P. Morgan Securities Australia Limited at ASX,a14,29/07/11,USD,cleared,104399UHGKI1RAW91U,549300VE86SBRUX48D51,549300E4W9O1NF0UOP45,15001,15001,0.2,CustodianAccount5A
 ACUO UK PLC v J.P. Morgan Securities PLC at EUREX_Clearing ,a15,29/07/11,USD,cleared,928581SHELI3PYW91M,549300M28VLPFIT1EI11,549300DTC77NY5NDUDI2,15002,15002,0.2,CustodianAccount5A
