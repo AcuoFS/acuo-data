@@ -1,5 +1,5 @@
 PrevStatus,NewStatus,Time,CallId,StatementId
-waitDispute,actionDispute,25/10/16 12:39,mc62,ms2
-waitDispute,actionDispute,25/10/16 12:39,mc4,ms4
-actionDispute,waitDispute,26/10/16 12:39,mc65,ms29
-actionDispute,waitDispute,26/10/16 12:39,mc40,ms31
+WaitDispute,ActionDispute,25/10/16 12:39,mc62,ms2
+WaitDispute,ActionDispute,25/10/16 12:39,mc4,ms4
+ActionDispute,WaitDispute,26/10/16 12:39,mc65,ms29
+ActionDispute,WaitDispute,26/10/16 12:39,mc40,ms31

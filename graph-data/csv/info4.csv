@@ -13,7 +13,7 @@ Unrecon,Reconciled,25/10/16 12:23,mc10,ms1
 Unrecon,Reconciled,31/10/16 12:23,mc11,ms2
 Unrecon,Reconciled,25/10/16 12:26,mc12,ms3
 Unrecon,Reconciled,25/10/16 12:26,mc13,ms4
-waitDispute,Reconciled,25/10/16 12:26,mc61,ms1
+WaitDispute,Reconciled,25/10/16 12:26,mc61,ms1
 Unrecon,Reconciled,26/10/16 12:23,mc41,ms32
 Unrecon,Reconciled,26/10/16 12:23,mc42,ms33
 Unrecon,Reconciled,26/10/16 12:23,mc43,ms34
@@ -28,4 +28,4 @@ Unrecon,Reconciled,26/10/16 12:23,mc46,ms28
 Unrecon,Reconciled,26/10/16 12:23,mc47,ms29
 Unrecon,Reconciled,26/10/16 12:23,mc48,ms30
 Unrecon,Reconciled,26/10/16 12:23,mc49,ms31
-actionDispute,Reconciled,26/10/16 12:23,mc64,ms28
+ActionDispute,Reconciled,26/10/16 12:23,mc64,ms28
