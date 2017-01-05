@@ -1,8 +1,8 @@
 id,clientCustodianAccountId,counterpartyCustodianAccountId,assetId,callId,quantities,reservedQuantities,status,subStatus
 DE0001104636-CustodianAccount1A-CustodianAccount3B-mc1,CustodianAccount1A,CustodianAccount3B,DE0001104636,mc1,1000000,,Departed,Delayed
 GBP-CustodianAccount1D-CustodianAccount3B-mc1,CustodianAccount1D,CustodianAccount3B,GBP,mc1,500000,,Departed,Cancelled
-CAD-CustodianAccount1E-CustodianAccount3B-mc1,CustodianAccount1E,CustodianAccount3B,CAD,mc1,200000,,Departed,In-Flight
+CAD-CustodianAccount1E-CustodianAccount3B-mc1,CustodianAccount1E,CustodianAccount3B,CAD,mc1,200000,,Departed,InFlight
 JP1103121AC2-CustodianAccount1A-CustodianAccount3A-mc39,CustodianAccount1A,CustodianAccount3A,JP1103121AC2,mc39,10000000,0,Arriving,Delayed
 CHF-CustodianAccount1E-CustodianAccount3A-mc39,CustodianAccount1E,CustodianAccount3A,CHF,mc39,300000,0,Arriving,Cancelled
-DE0001141604-CustodianAccount1A-CustodianAccount3A-mc39,CustodianAccount1A,CustodianAccount3A,DE0001141604,mc39,2000000,2500,Arriving,In-Flight
+DE0001141604-CustodianAccount1A-CustodianAccount3A-mc39,CustodianAccount1A,CustodianAccount3A,DE0001141604,mc39,2000000,2500,Arriving,InFlight
 USD-CustodianAccount1D-CustodianAccount3C-mc2,CustodianAccount1D,CustodianAccount3C,USD,mc2,1500000,,Deployed,
