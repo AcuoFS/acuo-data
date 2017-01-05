@@ -1,6 +1,6 @@
-accountId,assetId,quantities,availableQuantities,deployedQuantities,departedQuantities,arrivingQuantities,earmarkedQuantities,businessTimeFrom,businessTimeTo
+accountId,assetId,quantities,availableQuantities,deployedQuantities,departedQuantities,arrivingQuantities,reservedQuantities,businessTimeFrom,businessTimeTo
 CustodianAccount1A,US912796HW25,10000,10000,0,0,0,0,08:00,20:00
-CustodianAccount1A,US912796JE09,10000,10000,0,0,0,0,08:01,20:01
+CustodianAccount1A,US912796JE09,10000,10000,0,0,0,500,08:01,20:01
 CustodianAccount1A,DE0001137461,100000000,100000000,0,0,0,0,08:02,20:02
 CustodianAccount1A,DE0001104636,100000000,100000000,0,0,0,0,08:03,20:03
 CustodianAccount1A,DE0001141737,100000000,100000000,0,0,0,0,08:04,20:04
@@ -65,7 +65,7 @@ CustodianAccount1C,GB00BYXK6398,1000,1000,0,0,0,0,09:02,21:02
 CustodianAccount1C,SG1V61937297,1000,1000,0,0,0,0,09:03,21:03
 CustodianAccount1C,SG1W45939194,1000,1000,0,0,0,0,09:04,21:04
 CustodianAccount1C,SG1L01001701,1000,1000,0,0,0,0,09:05,21:05
-CustodianAccount1D,SGD,5000000,5000000,0,0,0,0,09:06,21:06
+CustodianAccount1D,SGD,5000000,5000000,0,0,0,10000,09:06,21:06
 CustodianAccount1D,JPY,5000000,5000000,0,0,0,0,09:07,21:07
 CustodianAccount1D,USD,5000000,5000000,0,0,0,0,09:08,21:08
 CustodianAccount1D,GBP,5000000,5000000,0,0,0,0,09:09,21:09

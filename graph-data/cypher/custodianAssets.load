@@ -9,14 +9,14 @@ ON CREATE SET
 //	h.deployedQuantities=TOFLOAT(line.deployedQuantities),
 //	h.departingQuantities=TOFLOAT(line.departingQuantities),
 //	h.arrivingQuantities =TOFLOAT(line.arrivingQuantities),
-	h.earmarkedQuantities=TOFLOAT(line.earmarkedQuantities)
+	h.reservedQuantities=TOFLOAT(line.reservedQuantities)
 ON MATCH SET
 	h.quantities=TOFLOAT(line.quantities),
 	h.availableQuantities=TOFLOAT(line.availableQuantities),
 //	h.deployedQuantities=TOFLOAT(line.deployedQuantities),
 //	h.departedQuantities=TOFLOAT(line.departedQuantities),
 //	h.arrivingQuantities =TOFLOAT(line.arrivingQuantities),
-	h.earmarkedQuantities=TOFLOAT(line.earmarkedQuantities)
+	h.reservedQuantities=TOFLOAT(line.reservedQuantities)
 
 WITH custac,a
 MATCH (ac)-[ie:IS_ELIGIBLE_UNDER]->(ag:Agreement)<-[:CLIENT_SIGNS]-(e:LegalEntity)-[:HAS]->(acc:TradingAccount)-[:ACCESSES]->(custac)-[:HOLDS]->(a)
@@ -28,13 +28,13 @@ WITH DISTINCT custac
 
 MATCH path1 = (custac)-[h:HOLDS]->(a:Asset)<-[p:POSSESSES]-(c:Client)
 WHERE (c)-[*3]->(custac)
-WITH DISTINCT p, SUM(h.quantities) AS hQ, SUM(h.availableQuantities) AS hAQ, SUM(h.earmarkedQuantities) AS hEQ
+WITH DISTINCT p, SUM(h.quantities) AS hQ, SUM(h.availableQuantities) AS hAQ, SUM(h.reservedQuantities) AS hEQ
                  //SUM(p.deployedQuantities) AS hDQ, SUM(h.departedQuantities) AS hDPQ, SUM(h.arrivingQuantities) AS hARQ, 
 SET p.quantities = hQ,
 	p.availableQuantities = hAQ,
 //	p.deployedQuantities = hDQ,
 //	p.departedQuantities = hDPQ,
 //	p.arrivingQuantities = hARQ,
-	p.earmarkedQuantities=hEQ
+	p.reservedQuantities=hEQ
 
 

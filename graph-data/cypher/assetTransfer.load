@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/assetTransfer.csv' 
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/AssetTransfer.csv' 
 AS line
 WITH line
 WHERE line.id IS NOT NULL
@@ -7,7 +7,7 @@ MATCH (custac1:CustodianAccount {id:line.clientCustodianAccountId}),
 	  (custac2:CustodianAccount {id:line.counterpartyCustodianAccountId}),
 	  (mc:MarginCall {id:line.callId})
 
-MERGE (a:AssetSegment {id:line.id})
+MERGE (a:AssetTransfer {id:line.id})
 ON CREATE SET
 	a.quantities = TOFLOAT(line.quantities),
 	a.assetId = line.assetId,
@@ -28,7 +28,7 @@ FOREACH (ignoreMe IN CASE
 	ELSE [] END| MERGE (custac1)-[:RECEIVES]->(a)-[:FROM]-(custac2)
 				 MERGE (a)-[:FROM_CALLING]-(mc)
 				 SET a.subStatus=line.subStatus,
-				 	 a.earmarkedQuantities=TOFLOAT(line.earmarkedQuantities))
+				 	 a.reservedQuantities=TOFLOAT(line.reservedQuantities))
 
 FOREACH (ignoreMe IN CASE 
 	WHEN line.status = 'Deployed' THEN [1]

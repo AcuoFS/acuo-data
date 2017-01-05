@@ -11,7 +11,7 @@ MERGE (c)-[p:POSSESSES]->(a)
 ON CREATE SET
 	p.quantities=0,
 	p.availableQuantities=0,
-	p.earmarkedQuantities=0,
+	p.reservedQuantities=0,
 //	p.deployedQuantities=0,
 //	p.departedQuantities=0,
 //	p.arrivingQuantities=0,
@@ -20,7 +20,7 @@ ON CREATE SET
 ON MATCH SET
 	p.quantities=0,
 	p.availableQuantities=0,
-	p.earmarkedQuantities=0,
+	p.reservedQuantities=0,
 //	p.deployedQuantities=0,
 //	p.departedQuantities=0,
 //	p.arrivingQuantities=0,
