@@ -29,7 +29,7 @@ SET mc.id=line.CallId,
     mc.parentRank=1,
     mc.status=line.Status
 
-MERGE (mc)-[:IS_RECEIVED_IN]->(ms)
+MERGE (mc)-[:PART_OF]->(ms)
 MERGE (mc)-[:STEMS_FROM]->(a)
 
 WITH *, CASE WHEN line.Direction = 'IN' THEN [1] ELSE [] END as inbound
@@ -39,11 +39,11 @@ WITH *, CASE WHEN line.Direction = 'OUT' THEN [1] ELSE [] END as outbound
 FOREACH (i in outbound | MERGE (mc)-[:DIRECTED_TO]->(ce) MERGE (mc)-[:SENT_FROM]->(e))
 
 WITH *,
-		CASE WHEN exists((:MarginCall {callDate:line.CallDate, callType:line.CallType, status:'Expected'})-[:IS_EXPECTED_IN]->(ms)) THEN [1] ELSE []
+		CASE WHEN exists((:MarginCall {callDate:line.CallDate, callType:line.CallType, status:'Expected'})-[:PART_OF]->(ms)) THEN [1] ELSE []
 		END
 	as existsExpected
 
-FOREACH (i in existsExpected | MERGE (mce:MarginCall {callDate:line.CallDate, callType:line.CallType, status:'Expected'})-[:IS_EXPECTED_IN]->(ms)
+FOREACH (i in existsExpected | MERGE (mce:MarginCall {callDate:line.CallDate, callType:line.CallType, status:'Expected'})-[:PART_OF]->(ms)
 MERGE (mc)-[:MATCHED_TO_EXPECTED]->(mce))
 
 WITH *
