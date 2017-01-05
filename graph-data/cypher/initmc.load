@@ -1,7 +1,7 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/initialmc.csv' AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
-MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:CLIENT_SIGNS]->(a)<-[:COUNTERPARTY_SIGNS]-(ce:LegalEntity)
+MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:CLIENT_SIGNS]->(a)<-[:COUNTERPARTY_SIGNS]-(ce)
 MATCH (ms:MarginStatement {id:line.StatementId})
 
 MERGE (mc:MarginCall {id:line.CallId, 
