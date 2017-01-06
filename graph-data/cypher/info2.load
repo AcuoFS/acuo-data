@@ -23,7 +23,7 @@ FOREACH (i IN partDisputeWait |
                                                                     currency:pmc.currency, 
                                                                     notificationTime:pmc.notificationTime, 
                                                                     callDate:pmc.callDate, 
-                                                                    callType:pmc.callType, 
+                                                                    marginType:pmc.marginType, 
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     pendingCollateral:pmc.pendingCollateral, 
                                                                     direction:pmc.direction
@@ -38,7 +38,7 @@ FOREACH (i IN partDisputeWait |
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     notificationTime:pmc.notificationTime,
                                                                     callDate:pmc.callDate, 
-                                                                    callType:pmc.callType, 
+                                                                    marginType:pmc.marginType, 
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     pendingCollateral:pmc.pendingCollateral, 
                                                                     direction:pmc.direction
@@ -60,7 +60,7 @@ FOREACH (i IN partDisputeAct |
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     notificationTime:pmc.notificationTime,
                                                                     callDate:pmc.callDate, 
-                                                                    callType:pmc.callType, 
+                                                                    marginType:pmc.marginType, 
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     pendingCollateral:pmc.pendingCollateral, 
                                                                     direction:pmc.direction
@@ -75,7 +75,7 @@ FOREACH (i IN partDisputeAct |
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     notificationTime:pmc.notificationTime,
                                                                     callDate:pmc.callDate, 
-                                                                    callType:pmc.callType, 
+                                                                    marginType:pmc.marginType, 
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     pendingCollateral:pmc.pendingCollateral, 
                                                                     direction:pmc.direction
