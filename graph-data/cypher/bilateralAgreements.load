@@ -7,6 +7,6 @@ MERGE (l1)-[:PREFERENCES {tolerance:toFloat(line.Tolerance)}]->(l2)
 
 MERGE (a:Agreement {id:line.AgreementId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, notificationTime:line.NotificationTime, currency:line.Currency, counterpartCustodian:line.CounterpartCustodianId})
 
-MERGE (l1)-[s1:CLIENT_SIGNS {MTA:toFloat(line.MTA1), initialMarginBalance:toFloat(line.InitialBalance1), variationMarginBalance:toFloat(line.VariationBalance1), rounding:toFloat(line.Rounding1)}]->(a)
+MERGE (l1)-[s1:CLIENT_SIGNS {MTA:toFloat(line.MTA1), initialMarginBalance:toFloat(line.InitialBalance1), variationMarginBalance:toFloat(line.VariationBalance1), rounding:toFloat(line.Rounding1), initialPending:toFloat(line.InitialPending1), variationPending:toFloat(line.VariationPending1)}]->(a)
 
-MERGE (l2)-[s2:COUNTERPARTY_SIGNS {MTA:toFloat(line.MTA2), initialMarginBalance:toFloat(line.InitialBalance2), variationMarginBalance:toFloat(line.VariationBalance2), rounding:toFloat(line.Rounding2)}]->(a)
+MERGE (l2)-[s2:COUNTERPARTY_SIGNS {MTA:toFloat(line.MTA2), initialMarginBalance:toFloat(line.InitialBalance2), variationMarginBalance:toFloat(line.VariationBalance2), rounding:toFloat(line.Rounding2), initialPending:toFloat(line.InitialPending2), variationPending:toFloat(line.VariationPending2)}]->(a)
