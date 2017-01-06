@@ -1,7 +1,7 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/clearedAgreements.csv' AS line
 
 MATCH (l:LegalEntity {id:line.LegalEntityId})
-MATCH (fcm:FCM {id:line.FCMId})
+MATCH (fcm:LegalEntity {id:line.FCMId})
 MATCH (ch:ClearingHouse {id:line.ClearingHouseId})
 
 MERGE (l)-[:PREFERENCES {tolerance:toFloat(line.Tolerance)}]->(fcm)
