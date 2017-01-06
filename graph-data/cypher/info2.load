@@ -9,7 +9,7 @@ WITH line, ms
 
 UNWIND(SPLIT(line.CallId, '|')) as callId
 
-MATCH (pmc {id:callId})-[:DIRECTED_TO]->(l:LegalEntity)
+MATCH (a:Agreement)<-[:STEMS_FROM]-(pmc {id:callId})-[:DIRECTED_TO]->(l:LegalEntity)
 
 WITH *,
 		CASE WHEN line.NewStatus = 'PartialDispute' and ms.direction = 'OUT' THEN [1] ELSE []
@@ -28,6 +28,7 @@ FOREACH (i IN partDisputeWait |
                                                                     pendingCollateral:pmc.pendingCollateral, 
                                                                     direction:pmc.direction
 	})-[:DIRECTED_TO]->(l)
+        MERGE (cmca)-[:STEMS_FROM]->(a)
         MERGE (cmca)-[:FIRST {time:line.Time}]->(s1:Step {status:'Reconciled'})
         MERGE (cmca)-[:LAST {time:line.Time}]->(s1)
 
@@ -42,6 +43,7 @@ FOREACH (i IN partDisputeWait |
                                                                     pendingCollateral:pmc.pendingCollateral, 
                                                                     direction:pmc.direction
 	})-[:DIRECTED_TO]->(l)
+        MERGE (cmcr)-[:STEMS_FROM]->(a)
         MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'WaitDispute'})
         MERGE (cmcr)-[:LAST {time:line.Time}]->(s2)
 )
@@ -63,6 +65,7 @@ FOREACH (i IN partDisputeAct |
                                                                     pendingCollateral:pmc.pendingCollateral, 
                                                                     direction:pmc.direction
 	})-[:DIRECTED_TO]->(l)
+        MERGE (cmca)-[:STEMS_FROM]->(a)
         MERGE (cmca)-[:FIRST {time:line.Time}]->(s1:Step {status:'Reconciled'})
         MERGE (cmca)-[:LAST {time:line.Time}]->(s1)
 
@@ -77,6 +80,7 @@ FOREACH (i IN partDisputeAct |
                                                                     pendingCollateral:pmc.pendingCollateral, 
                                                                     direction:pmc.direction
 	})-[:DIRECTED_TO]->(l)
+        MERGE (cmcr)-[:STEMS_FROM]->(a)
         MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'ActionDispute'})
         MERGE (cmcr)-[:LAST {time:line.Time}]->(s2)
 )
