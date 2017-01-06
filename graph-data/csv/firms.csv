@@ -2,3 +2,8 @@ ClientName,ClientShortName,ClientId,Type
 ACUO,ACUO,999,Client
 Counterpart A,Counterpart A,111,Counterpart
 Counterpart B,Counterpart B,222,Counterpart
+J.P. Morgan,JPM,333,Counterpart
+Goldman Sachs,Goldman Sachs,444,Counterpart
+Morgan Stanley,Morgan Stanley,555,Counterpart
+Citibank,Citibank,666,Counterpart
+DBS,DBS,777,Counterpart
