@@ -1,31 +1,31 @@
 PrevStatus,NewStatus,Time,CallId,StatementId
-Unrecon,Reconciled,25/10/16 12:23,mc5,ms5
-Unrecon,Reconciled,25/10/16 12:23,mc6,ms6
-Unrecon,Reconciled,25/10/16 12:23,mc7,ms7
-Unrecon,Reconciled,25/10/16 12:20,mc8,ms8
-Unrecon,Reconciled,25/10/16 12:20,mc9,ms9
-Unrecon,Reconciled,25/10/16 12:23,mc14,ms5
-Unrecon,Reconciled,25/10/16 12:23,mc15,ms6
-Unrecon,Reconciled,25/10/16 12:23,mc16,ms7
-Unrecon,Reconciled,25/10/16 12:20,mc17,ms8
-Unrecon,Reconciled,25/10/16 12:20,mc18,ms9
-Unrecon,Reconciled,25/10/16 12:23,mc10,ms1
-Unrecon,Reconciled,31/10/16 12:23,mc11,ms2
-Unrecon,Reconciled,25/10/16 12:26,mc12,ms3
-Unrecon,Reconciled,25/10/16 12:26,mc13,ms4
-WaitDispute,Reconciled,25/10/16 12:26,mc61,ms1
-Unrecon,Reconciled,26/10/16 12:23,mc41,ms32
-Unrecon,Reconciled,26/10/16 12:23,mc42,ms33
-Unrecon,Reconciled,26/10/16 12:23,mc43,ms34
-Unrecon,Reconciled,26/10/16 12:23,mc44,ms35
-Unrecon,Reconciled,26/10/16 12:23,mc45,ms36
-Unrecon,Reconciled,26/10/16 12:23,mc50,ms32
-Unrecon,Reconciled,26/10/16 12:23,mc51,ms33
-Unrecon,Reconciled,26/10/16 12:23,mc52,ms34
-Unrecon,Reconciled,26/10/16 12:23,mc53,ms35
-Unrecon,Reconciled,26/10/16 12:23,mc54,ms36
-Unrecon,Reconciled,26/10/16 12:23,mc46,ms28
-Unrecon,Reconciled,26/10/16 12:23,mc47,ms29
-Unrecon,Reconciled,26/10/16 12:23,mc48,ms30
-Unrecon,Reconciled,26/10/16 12:23,mc49,ms31
-ActionDispute,Reconciled,26/10/16 12:23,mc64,ms28
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc5,ms5
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc6,ms6
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc7,ms7
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc8,ms8
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc9,ms9
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc14,ms5
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc15,ms6
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc16,ms7
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc17,ms8
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc18,ms9
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc10,ms1
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc11,ms2
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc12,ms3
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc13,ms4
+WaitDispute,Reconciled,25/10/2016T12:00:23.000,mc61,ms1
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc41,ms32
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc42,ms33
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc43,ms34
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc44,ms35
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc45,ms36
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc50,ms32
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc51,ms33
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc52,ms34
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc53,ms35
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc54,ms36
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc46,ms28
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc47,ms29
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc48,ms30
+Unrecon,Reconciled,25/10/2016T12:00:23.000,mc49,ms31
+ActionDispute,Reconciled,25/10/2016T12:00:23.000,mc64,ms28
