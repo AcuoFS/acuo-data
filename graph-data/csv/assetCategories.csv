@@ -1,4 +1,4 @@
-name,type,currency,externalCost,interestRate,FXRate,ticker,maturityLb,maturityUp,haircut,FXHaircut,agreementId,callType
+name,type,currency,externalCost,interestRate,FXRate,ticker,maturityLb,maturityUp,haircut,FXHaircut,agreementId,marginType
 SG-CASH,CASH,SGD,0.003,0.002,1.42,,,,0,0.05,a1,Initial|Variation
 JP-CASH,CASH,JPY,0.005,0,113.9,,,,0,0.05,a1,Initial|Variation
 US-CASH,CASH,USD,0.002,0.004,1,,,,0,0,a1,Initial|Variation
