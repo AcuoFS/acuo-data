@@ -6,7 +6,7 @@ MATCH (ms:MarginStatement {id:line.StatementId})
 
 MERGE (mc:MarginCall {id:line.CallId, 
                     callDate:line.CallDate,
-                    callType:line.CallType,
+                    marginType:line.MarginType,
                     direction:line.Direction})
 
 WITH *
@@ -39,11 +39,11 @@ WITH *, CASE WHEN line.Direction = 'OUT' THEN [1] ELSE [] END as outbound
 FOREACH (i in outbound | MERGE (mc)-[:DIRECTED_TO]->(ce) MERGE (mc)-[:SENT_FROM]->(e))
 
 WITH *,
-		CASE WHEN exists((:MarginCall {callDate:line.CallDate, callType:line.CallType, status:'Expected'})-[:PART_OF]->(ms)) THEN [1] ELSE []
+		CASE WHEN exists((:MarginCall {callDate:line.CallDate, marginType:line.MarginType, status:'Expected'})-[:PART_OF]->(ms)) THEN [1] ELSE []
 		END
 	as existsExpected
 
-FOREACH (i in existsExpected | MERGE (mce:MarginCall {callDate:line.CallDate, callType:line.CallType, status:'Expected'})-[:PART_OF]->(ms)
+FOREACH (i in existsExpected | MERGE (mce:MarginCall {callDate:line.CallDate, marginType:line.MarginType, status:'Expected'})-[:PART_OF]->(ms)
 MERGE (mc)-[:MATCHED_TO_EXPECTED]->(mce))
 
 WITH *

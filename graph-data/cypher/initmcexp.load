@@ -6,7 +6,7 @@ MATCH (ms:MarginStatement {id:line.StatementId})
 
 MERGE (mc:MarginCall {id:line.CallId,
                     callDate:line.CallDate,
-                    callType:line.CallType,
+                    marginType:line.MarginType,
                     direction:line.Direction})
 
 WITH *
