@@ -49,7 +49,7 @@ MERGE (mc)-[:MATCHED_TO_EXPECTED]->(mce))
 WITH *
 
 MATCH (mc)-[:STEMS_FROM]->(a:Agreement)
-SET mc.notificationTime = mc.callDate + ' ' + a.notificationTime
+SET mc.notificationTime = mc.callDate + 'T' + a.notificationTime
 
 WITH *
 
