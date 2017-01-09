@@ -4,9 +4,9 @@ WHERE a.type = 'regulatoryOTC' OR a.type = 'bilateralOTC'
 //WITH a, timestamp()/1000 AS today
 WITH a, 1480319702 AS today
 
-CALL apoc.date.format(today-86400,'s', 'dd/MM/yy') YIELD value as ystdFormatted
-CALL apoc.date.format(today,'s', 'dd/MM/yy') YIELD value as todayFormatted
-CALL apoc.date.format(today+86400,'s', 'dd/MM/yy') YIELD value as tmrFormatted
+CALL apoc.date.format(today-86400,'s', 'yyyy/MM/dd') YIELD value as ystdFormatted
+CALL apoc.date.format(today,'s', 'yyyy/MM/dd') YIELD value as todayFormatted
+CALL apoc.date.format(today+86400,'s', 'yyyy/MM/dd') YIELD value as tmrFormatted
 
 // Function to figure out whether this is a working day in both locations (we probably need to match the LegalEntity as well as the Counterpart). Directly in Neo4j ? (Where would we store this data ?) Java layer ? R 'Holidays' or 'timeDate' package ? 
 
@@ -14,13 +14,13 @@ WITH *
 
 MATCH (:Client)-[:MANAGES]->(e1:LegalEntity)-[:HAS]->(:Account)-[:POSITIONS_ON]->(t:Trade)-[:FOLLOWS]->(a)
 MATCH (t)-[:BELONGS_TO]->(p)
-MATCH (nv1:Value)<-[:LEAD_VALUE]-(v1:Valuation {date:todayFormatted})<-[:VALUATED]-(p)-[:VALUATED]->(v2:Valuation {date:ystdFormatted})-[:LEAD_VALUE]->(nv2:Value)
+MATCH (nv1:Value)<-[:LEAD_VALUE]-(v1:Valuation {date:todayFormatted})<-[:VALUATED]-(p)-[:VALUATED]
 MATCH (e1)-[s1:CLIENT_SIGNS]->(a)<-[s2:COUNTERPARTY_SIGNS]-(e2:LegalEntity)
 WHERE e2.id <> e1.id // Fetch party, counterparty and SIGNS relationship
 
-WITH nv1, todayFormatted, tmrFormatted, a, e1, e2, s1, s2, nv1.PV as expT, nv2.PV as expTm1
+WITH nv1, todayFormatted, tmrFormatted, a, e1, e2, s1, s2, nv1.PV as expT, e1.variationBalance as balance, e1.variationPending as pending
 
-WITH *, expT - expTm1 as diff
+WITH *, expT - balance - pending as diff
 
 WITH *, 
 		CASE WHEN diff >= s2.MTA >= 0 THEN [1] ELSE [] // My exposure increased -> the counterpart gets a margin call. 
@@ -30,7 +30,7 @@ WITH *,
 FOREACH (i in oppMarginCall | MERGE (:ExpectedMarginCall {id:todayFormatted + '-' + a.id + '-' + 'Variation',
                                                   valuationDate:todayFormatted,
                                                   callDate:tmrFormatted,
-                                                  callType:'Variation',
+                                                  marginType:'Variation',
                                                   agreementId:a.id,
                                                   status:'Expected',
                                                   transferorId:e2.id, 
@@ -50,7 +50,7 @@ WITH *,
 FOREACH (i in selfMarginCall | MERGE (:ExpectedMarginCall {id:todayFormatted + '-' + a.id + '-' + 'Variation',
                                                   valuationDate:todayFormatted,
                                                   callDate:tmrFormatted,
-                                                  callType:'Variation',
+                                                  marginType:'Variation',
                                                   agreementId:a.id,
                                                   status:'Expected',
                                                   transferorId:e1.id, 
@@ -64,7 +64,7 @@ FOREACH (i in selfMarginCall | MERGE (:ExpectedMarginCall {id:todayFormatted + '
 
 WITH *
 
-MATCH (mc:ExpectedMarginCall {valuationDate:todayFormatted, callType:'Variation', status:'Expected', agreementId:a.id})
+MATCH (mc:ExpectedMarginCall {valuationDate:todayFormatted, marginType:'Variation', status:'Expected', agreementId:a.id})
 
 SET mc:MarginCall
 
@@ -75,22 +75,36 @@ WITH *,
 		END
 	AS retValue
  
-SET mc.returnAmount = retValue, mc.deliveryAmount = mc.callAmount - mc.returnAmount, mc.collateralValue = -mc.balanceTransferor, mc.exposure = abs(expT), mc.notificationTime = mc.callDate + ' ' + a.notificationTime
+SET mc.returnAmount = retValue, mc.deliveryAmount = mc.callAmount - mc.returnAmount, mc.balanceAmount = e1.variationBalance, mc.exposure = expT, 
+    mc.notificationTime = mc.callDate + ' ' + a.notificationTime, mc.pendingCollateral = e1.variationPending
 
 SET mc.returnAmount = floor(mc.returnAmount/mc.roundingTransferor)*mc.roundingTransferor, mc.deliveryAmount = ceil(mc.deliveryAmount/mc.roundingTransferor)*mc.roundingTransferor
 
-SET mc.callAmount = mc.returnAmount+mc.deliveryAmount
+SET mc.excessAmount = mc.returnAmount+mc.deliveryAmount
 
 MERGE (mc)-[:STEMS_FROM]->(a)
+
+// Create workflow
+
+WITH *
+
+CALL apoc.date.format(today*1000,'ms', 'yyyy/MM/dd hh:mm:ss.ms') YIELD value as dateTimeToday
+WITH *, replace(dateTimeToday, ' ', 'T') as dateTimeAdjusted
+
+MERGE (mc)-[:FIRST {time:dateTimeAdjusted}]->(s:Step {status:'Expected'})
+MERGE (mc)-[:LAST {time:dateTimeAdjusted}]->(s)
+
+// Create margin statement
+
+MERGE (ms:MarginStatement {id:todayFormatted + '-' + a.id})
+
+MERGE (mc)-[:PART_OF]->(ms)
 
 WITH *
 
 MATCH (tor:LegalEntity {id:mc.transferorId})
-MERGE (mc)-[:DIRECTED_TO]->(tor)
-
-WITH * 
-
 MATCH (tee:LegalEntity {id:mc.transfereeId})
-MERGE (mc)-[:SENT_FROM]->(tee)
+MERGE (ms)-[:DIRECTED_TO]->(tor)
+MERGE (ms)-[:SENT_FROM]->(tee)
 
-REMOVE mc.agreementId, mc.transferorId, mc.tranfereeId, mc.balanceTransferor, mc.roundingTransferor
+REMOVE mc.agreementId, mc.transferorId, mc.tranfereeId, mc.balanceTransferor, mc.roundingTransferor, mc.callAmount
