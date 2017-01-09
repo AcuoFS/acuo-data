@@ -4,46 +4,56 @@ WHERE p.type = 'cleared'
 //WITH a, timestamp()/1000 AS today
 WITH p, 1480319702 AS today
 
-CALL apoc.date.format(today,'s', 'dd/MM/yy') YIELD value as todayFormatted
-CALL apoc.date.format(today+86400,'s', 'dd/MM/yy') YIELD value as tmrFormatted
+CALL apoc.date.format(today,'s', 'yyyy/MM/dd') YIELD value as todayFormatted
+CALL apoc.date.format(today+86400,'s', 'yyyy/MM/dd') YIELD value as tmrFormatted
 
 // (Function to figure out whether this is a working day)
 
 WITH *
 
-MATCH (e:LegalEntity)-[:CLIENT_SIGNS]->(a:Agreement)<-[:FOLLOWS]-(p)
+MATCH (e:LegalEntity)-[ar:CLIENT_SIGNS]->(a:Agreement)<-[:FOLLOWS]-(p)
 MATCH (fcm:LegalEntity)-[:COUNTERPARTY_SIGNS]->(a)
 MATCH (p)-[:VALUATED]->(v:Valuation {date:todayFormatted})-[:LEAD_VALUE]->(nv:Value)
 
-WITH *, CASE WHEN nv.IM > 0 THEN [1] ELSE [] END as posIM
+// Currencies ???
+
+// Create/match margin statement
+
+MERGE (ms:MarginStatement {id:todayFormatted + '-' + a.id + '-' + p.id})
+
+WITH *, CASE WHEN nv.IM-(ar.initialBalance + ar.initialPending) > 0 THEN [1] ELSE [] END as posIM
 
 FOREACH (i in posIM | MERGE (mc:ExpectedMarginCall {callDate:tmrFormatted, 
                                                     id:todayFormatted + '-' + a.id + '-' + p.id + '-' + 'Initial', 
                                                     valuationDate:todayFormatted,
-                                                    callType:'Initial',
+                                                    marginType:'Initial',
                                                     status:'Expected',
-                                                    callAmount:abs(nv.IM), 
-                                                    direction:'IN', 
-                                                    currency:nv.currency})
-                      MERGE (mc)-[:STEMS_FROM]->(a)
-                      MERGE (mc)-[:RELATED_TO]->(p)
-                      MERGE (mc)-[:SENT_FROM]->(fcm)
-                      MERGE (mc)-[:DIRECTED_TO]->(e))
-
-WITH *, CASE WHEN nv.IM < 0 THEN [1] ELSE [] END as negIM
-
-FOREACH (i in negIM | MERGE (mc:ExpectedMarginCall {callDate:tmrFormatted, 
-                                                    id:todayFormatted + '-' + a.id + '-' + p.id + '-' + 'Initial', 
-                                                    valuationDate:todayFormatted,
-                                                    callType:'Initial',
-                                                    status:'Expected',
-                                                    callAmount:abs(nv.IM), 
+                                                    excessAmount:abs(nv.IM-ar.initialBalance-ar.initialPending),
+                                                    balanceAmount:ar.initialBalance,
+                                                    pendingCollateral:ar.initialPending,
                                                     direction:'OUT', 
                                                     currency:nv.currency})
                       MERGE (mc)-[:STEMS_FROM]->(a)
                       MERGE (mc)-[:RELATED_TO]->(p)
-                      MERGE (mc)-[:SENT_FROM]->(e)
-                      MERGE (mc)-[:DIRECTED_TO]->(fcm))
+                      MERGE (ms)-[:SENT_FROM]->(fcm)
+                      MERGE (ms)-[:DIRECTED_TO]->(e))
+
+WITH *, CASE WHEN nv.IM > 0 AND nv.IM-(ar.initialBalance + ar.initialPending) < 0 THEN [1] ELSE [] END as negIM
+
+FOREACH (i in negIM | MERGE (mc:ExpectedMarginCall {callDate:tmrFormatted, 
+                                                    id:todayFormatted + '-' + a.id + '-' + p.id + '-' + 'Initial', 
+                                                    valuationDate:todayFormatted,
+                                                    marginType:'Initial',
+                                                    status:'Expected',
+                                                    callAmount:abs(nv.IM-ar.initialBalance-ar.initialPending), 
+                                                    balanceAmount:ar.initialBalance,
+                                                    pendingCollateral:ar.initialPending,
+                                                    direction:'IN', 
+                                                    currency:nv.currency})
+                      MERGE (mc)-[:STEMS_FROM]->(a)
+                      MERGE (mc)-[:RELATED_TO]->(p)
+                      MERGE (ms)-[:SENT_FROM]->(e)
+                      MERGE (ms)-[:DIRECTED_TO]->(fcm))
 
 WITH *
 
