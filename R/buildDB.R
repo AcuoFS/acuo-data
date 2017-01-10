@@ -35,7 +35,7 @@ buildDataBase = function() {
         load.name <- c(load.name, paste('/cypher/info', toString(i), '.load', sep=''))
       }
   
-  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data/'
+  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop-temp/graph-data/'
   
   load.url<-paste(load.preurl,sep='',load.name)
   
