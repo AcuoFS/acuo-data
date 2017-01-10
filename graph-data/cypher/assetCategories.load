@@ -1,8 +1,9 @@
-LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/assetCategories.csv' 
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/assetCategories.csv'
 AS line
-WITH line, SPLIT(line.marginType,'|') AS marginTypes
+WITH line, SPLIT(line.marginType,'|') AS marginTypes, SPLIT(line.agreementId,'|') AS agreementIds
 
-MATCH (ag:Agreement {id:line.agreementId})
+UNWIND agreementIds AS agreementId
+MATCH (ag:Agreement {id:agreementId})
 FOREACH(ignoreMe IN CASE WHEN trim(line.maturityLb)<>"" THEN [1]
 	ELSE [] END| 
 	MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency,
