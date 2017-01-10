@@ -18,6 +18,7 @@ buildDataBase = function() {
                  'cypher/tradingAccounts.load',
                  'cypher/bilateralAgreements.load',
                  'cypher/clearedAgreements.load',
+                 'cypher/portfolios.load',
                  'cypher/assetCategories.load',
                  'cypher/assetInventory.load', 
                  'cypher/custodians.load',
@@ -30,9 +31,9 @@ buildDataBase = function() {
                  'cypher/settings.load',
                  'cypher/assetTransfer.load')
   
-  for (i in 2:6) {
-      load.name <- c(load.name, paste('/cypher/info', toString(i), '.load', sep=''))
-    }
+  for (i in 1:6) {
+        load.name <- c(load.name, paste('/cypher/info', toString(i), '.load', sep=''))
+      }
   
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data/'
   
