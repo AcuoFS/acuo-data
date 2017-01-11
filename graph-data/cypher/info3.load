@@ -4,6 +4,7 @@ AS line
 UNWIND(SPLIT(line.CallId, '|')) as callId
 
 MATCH (pmc {id:callId})
+SET pmc.comment = line.Comment, pmc:reasonCode = line.ReasonCode
 
 WITH line, pmc
 
