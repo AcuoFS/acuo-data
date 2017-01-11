@@ -10,7 +10,7 @@ WITH line, ms
 UNWIND(SPLIT(line.CallId, '|')) as callId
 
 MATCH (a:Agreement)<-[:STEMS_FROM]-(pmc {id:callId})
-SET pmc.comment = line.Comment, pmc:reasonCode = line.ReasonCode
+SET pmc.comment = line.Comment, pmc.reasonCode = line.ReasonCode
 
 WITH *,
 		CASE WHEN line.NewStatus = 'PartialDispute' and ms.direction = 'OUT' THEN [1] ELSE []
