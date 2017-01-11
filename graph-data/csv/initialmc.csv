@@ -1,4 +1,4 @@
-CallId,ValuationDate,CallDate,MarginType,Status,Currency,TotalCallAmount,ReturnAmount,DeliverAmount,CollateralValue,PendingCollateral,Exposure,IMRole,Direction,AgreementId,StatementId
+CallId,ValuationDate,CallDate,CallType,Status,Currency,TotalCallAmount,ReturnAmount,DeliverAmount,CollateralValue,PendingCollateral,Exposure,IMRole,Direction,AgreementId,StatementId
 mc1,2016/10/24,2016/10/25,Variation,Unrecon,USD,1000000,0,1000000,9000000,0,-10000000,Pledgor,OUT,a1,ms1
 mc2,2016/10/24,2016/10/25,Variation,Unrecon,SGD,1500000,0,1500000,8500000,0,-10000000,Pledgor,OUT,a2,ms2
 mc3,2016/10/24,2016/10/25,Variation,Unrecon,EUR,2000000,0,2000000,7990000,10000,-10000000,Pledgor,OUT,a3,ms3

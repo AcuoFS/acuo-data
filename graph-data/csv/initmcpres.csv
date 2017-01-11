@@ -1,4 +1,4 @@
-CallId,ValuationDate,CallDate,MarginType,Status,Currency,TotalCallAmount,ReturnAmount,DeliverAmount,CollateralValue,PendingCollateral,Exposure,IMRole,Direction,AgreementId,StatementId
+CallId,ValuationDate,CallDate,CallType,Status,Currency,TotalCallAmount,ReturnAmount,DeliverAmount,CollateralValue,PendingCollateral,Exposure,IMRole,Direction,AgreementId,StatementId
 mcp1,12/01/2017,13/01/2017,Variation,Unrecon,USD,18500,0,18500,30427053,0,30445309,Pledgor,OUT,a1,msp1
 mcp2,12/01/2017,13/01/2017,Variation,Unrecon,USD,43500,0,43500,28944542,0,28987958,Pledgor,OUT,a2,msp2
 mcp3,12/01/2017,13/01/2017,Variation,Unrecon,USD,8000,0,8000,-6254114,0,-6261619,Pledgor,IN,a3,msp3
