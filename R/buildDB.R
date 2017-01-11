@@ -27,6 +27,9 @@ buildDataBase = function() {
                  'cypher/mstatements.load',
                  'cypher/initmcexp.load',
                  'cypher/initmc.load',
+                 'cypher/mstatementspres.load',
+                 'cypher/initmcexppres.load',
+                 'cypher/initmcpres.load',
                  'cypher/settings.load',
                  'cypher/assetTransfer.load')
   
