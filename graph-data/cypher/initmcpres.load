@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/initialmcpres.csv' AS line
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/initmcpres.csv' AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
 MATCH (:LegalEntity)-[s:CLIENT_SIGNS]->(a)<-[:COUNTERPARTY_SIGNS]-(ce)
