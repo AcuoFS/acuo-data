@@ -24,16 +24,16 @@ buildDataBase = function() {
                  '/cypher/custodianAccounts.load',
                  '/cypher/counterpartCustodianAccounts.load',
                  '/cypher/custodianAssets.load',
-#                 '/cypher/mstatements.load',
-#                 '/cypher/initmcexp.load',
-#                 '/cypher/initmc.load',
+                 '/cypher/mstatements.load',
+                 '/cypher/initmcexp.load',
+                 '/cypher/initmc.load',
                  '/cypher/mstatementspres.load',
                  '/cypher/initmcexppres.load',
                  '/cypher/initmcpres.load',
                  '/cypher/settings.load',
                  '/cypher/assetTransfer.load')
   
-  for (i in 2:6) {
+  for (i in 1:6) {
       load.name <- c(load.name, paste('/cypher/info', toString(i), '.load', sep=''))
     }
   
@@ -46,7 +46,7 @@ buildDataBase = function() {
   for(i in 1:length(load.name)) {
     load.query[i] <- readLoad(load.url[i])
     load.query[i] <- gsub('%dataImportLink%', load.preurl, load.query[i])
-#    print(load.name[i])
+    print(load.name[i])
     cypher(graph,load.query[[i]])
   }
   return(graph)
