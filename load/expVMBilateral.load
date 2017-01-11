@@ -94,7 +94,7 @@ WITH *, replace(dateTimeToday, ' ', 'T') as dateTimeAdjusted
 MERGE (mc)-[:FIRST {time:dateTimeAdjusted}]->(s:Step {status:'Expected'})
 MERGE (mc)-[:LAST {time:dateTimeAdjusted}]->(s)
 
-// Create margin statement
+// Create margin statement (CAUTION WHEN SEVERAL STATEMENTS: OUT VS IN)
 
 MERGE (ms:MarginStatement {id:todayFormatted + '-' + a.id})
 
