@@ -10,7 +10,6 @@ WITH line, ms
 UNWIND(SPLIT(line.CallId, '|')) as callId
 
 MATCH (a:Agreement)<-[:STEMS_FROM]-(pmc {id:callId})
-SET pmc.comment = line.Comment, pmc.reasonCode = line.ReasonCode
 
 WITH *,
 		CASE WHEN line.NewStatus = 'PartialDispute' and ms.direction = 'OUT' THEN [1] ELSE []
@@ -27,7 +26,9 @@ FOREACH (i IN partDisputeWait |
                                                                     marginType:pmc.marginType, 
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     pendingCollateral:pmc.pendingCollateral, 
-                                                                    direction:pmc.direction
+                                                                    direction:pmc.direction,  
+                                                                    reasonCode:line.ReasonCode, 
+                                                                    comment:line.Comment
 	})
         MERGE (cmca)-[:STEMS_FROM]->(a)
         MERGE (cmca)-[:FIRST {time:line.Time}]->(s1:Step {status:'Reconciled'})
@@ -42,7 +43,9 @@ FOREACH (i IN partDisputeWait |
                                                                     marginType:pmc.marginType, 
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     pendingCollateral:pmc.pendingCollateral, 
-                                                                    direction:pmc.direction
+                                                                    direction:pmc.direction,  
+                                                                    reasonCode:line.ReasonCode, 
+                                                                    comment:line.Comment
 	})
         MERGE (cmcr)-[:STEMS_FROM]->(a)
         MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'WaitDispute'})
@@ -64,7 +67,9 @@ FOREACH (i IN partDisputeAct |
                                                                     marginType:pmc.marginType, 
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     pendingCollateral:pmc.pendingCollateral, 
-                                                                    direction:pmc.direction
+                                                                    direction:pmc.direction,  
+                                                                    reasonCode:line.ReasonCode, 
+                                                                    comment:line.Comment
 	})
         MERGE (cmca)-[:STEMS_FROM]->(a)
         MERGE (cmca)-[:FIRST {time:line.Time}]->(s1:Step {status:'Reconciled'})
@@ -79,7 +84,9 @@ FOREACH (i IN partDisputeAct |
                                                                     marginType:pmc.marginType, 
                                                                     balanceAmount:pmc.balanceAmount, 
                                                                     pendingCollateral:pmc.pendingCollateral, 
-                                                                    direction:pmc.direction
+                                                                    direction:pmc.direction,  
+                                                                    reasonCode:line.ReasonCode, 
+                                                                    comment:line.Comment
 	})
         MERGE (cmcr)-[:STEMS_FROM]->(a)
         MERGE (cmcr)-[:FIRST {time:line.Time}]->(s2:Step {status:'ActionDispute'})
