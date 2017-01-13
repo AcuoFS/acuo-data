@@ -1,0 +1,9 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/currencies.csv'
+AS line
+
+MERGE (c1:Currency {id:line.CurrencyCode, name:line.CurrencyName})
+
+MATCH (c2:Currency {id:'USD'})
+
+MERGE (c1)-[:CURRENCY_VALUE]->(c2)
+
