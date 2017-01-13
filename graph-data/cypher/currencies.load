@@ -7,5 +7,5 @@ WITH *
 
 MATCH (c2:Currency {id:'USD'})
 
-MERGE (c1)-[:FX_RATE {fxRate:line.ValueToUSD}]->(c2)
+MERGE (c1)-[:FX_RATE {fxRate:toFloat(line.ValueToUSD)}]->(c2)
 
