@@ -1,5 +1,5 @@
 MATCH (a:Agreement)
-WHERE a.type = 'regulatoryOTC' OR a.type = 'bilateralOTC'
+WHERE a.type = 'legacy' OR a.type = 'bilateral'
 
 //WITH a, timestamp()/1000 AS today
 WITH a, 1480319702 AS today
