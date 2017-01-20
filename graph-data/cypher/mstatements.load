@@ -8,8 +8,8 @@ ON MATCH SET ms.totalAmount=ms.totalAmount + toFloat(line.TotalAmount)
 
 MERGE (ms)-[:STEMS_FROM]->(a)
 
-WITH *, CASE WHEN line.Direction = 'IN' THEN [1] ELSE [] END as inbound
+WITH *, CASE WHEN line.Direction = 'IN' THEN [1] ELSE [] END as moneyIn
 FOREACH (i in moneyIn | MERGE (mc)-[:DIRECTED_TO]->(ce) MERGE (mc)-[:SENT_FROM]->(e))
 
-WITH *, CASE WHEN line.Direction = 'OUT' THEN [1] ELSE [] END as outbound
+WITH *, CASE WHEN line.Direction = 'OUT' THEN [1] ELSE [] END as moneyOut
 FOREACH (i in moneyOut | MERGE (mc)-[:DIRECTED_TO]->(e) MERGE (mc)-[:SENT_FROM]->(ce))
