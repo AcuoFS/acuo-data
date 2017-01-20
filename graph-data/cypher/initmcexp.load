@@ -31,7 +31,6 @@ SET mc.id=line.CallId,
 
 MERGE (mc)-[:PART_OF]->(ms)
 MERGE (mc)-[:STEMS_FROM]->(a)
-MERGE (mc)-[:DIRECTED_TO]->(e)
 
 WITH *
 

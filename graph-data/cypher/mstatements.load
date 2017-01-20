@@ -1,10 +1,15 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/mstatements.csv' AS line
 
-MATCH (l:LegalEntity)-[:CLIENT_SIGNS]->(a:Agreement {id:line.AgreementId})
+MATCH (c:LegalEntity)-[:CLIENT_SIGNS]->(a:Agreement {id:line.AgreementId})<-[:COUNTERPARTY_SIGNS]-(ce:LegalEntity)
 
 MERGE (ms:MarginStatement {id:line.StatementId, date:line.StatementDate, interestPayment:toFloat(line.InterestPayment), productCashFlows:toFloat(line.ProductsCashFlows), PAI:toFloat(line.PAI), feesCommissions:toFloat(line.FeesCommissions), pendingCash:toFloat(line.PendingCash), pendingNonCash:toFloat(line.PendingNonCash), direction:line.Direction, currency:line.Currency, legalEntityId:'1'})
 ON CREATE SET ms.totalAmount=toFloat(line.TotalAmount)
 ON MATCH SET ms.totalAmount=ms.totalAmount + toFloat(line.TotalAmount)
 
 MERGE (ms)-[:STEMS_FROM]->(a)
-MERGE (ms)-[:DIRECTED_TO]->(l)
+
+WITH *, CASE WHEN line.Direction = 'IN' THEN [1] ELSE [] END as inbound
+FOREACH (i in moneyIn | MERGE (mc)-[:DIRECTED_TO]->(ce) MERGE (mc)-[:SENT_FROM]->(e))
+
+WITH *, CASE WHEN line.Direction = 'OUT' THEN [1] ELSE [] END as outbound
+FOREACH (i in moneyOut | MERGE (mc)-[:DIRECTED_TO]->(e) MERGE (mc)-[:SENT_FROM]->(ce))
