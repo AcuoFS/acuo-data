@@ -1,6 +1,6 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/mstatements.csv' AS line
 
-xMATCH (c:LegalEntity)-[:CLIENT_SIGNS]->(a:Agreement {id:line.AgreementId})<-[:COUNTERPARTY_SIGNS]-(ce:LegalEntity)
+xMATCH (e:LegalEntity)-[:CLIENT_SIGNS]->(a:Agreement {id:line.AgreementId})<-[:COUNTERPARTY_SIGNS]-(ce:LegalEntity)
 
 MERGE (ms:MarginStatement {id:line.StatementId, date:line.StatementDate, interestPayment:toFloat(line.InterestPayment), productCashFlows:toFloat(line.ProductsCashFlows), PAI:toFloat(line.PAI), feesCommissions:toFloat(line.FeesCommissions), pendingCash:toFloat(line.PendingCash), pendingNonCash:toFloat(line.PendingNonCash), direction:line.Direction, currency:line.Currency, legalEntityId:'1'})
 ON CREATE SET ms.totalAmount=toFloat(line.TotalAmount)
