@@ -27,16 +27,10 @@ buildDataBase = function() {
                  '/cypher/mstatements.load',
                  '/cypher/initmcexp.load',
                  '/cypher/initmc.load',
-                 '/cypher/mstatementspres.load',
-                 '/cypher/initmcexppres.load',
-                 '/cypher/initmcpres.load',
+                 '/cypher/infopres.load',
                  '/cypher/settings.load',
                  '/cypher/assetTransfer.load')
-  
-  for (i in 1:6) {
-      load.name <- c(load.name, paste('/cypher/info', toString(i), '.load', sep=''))
-    }
-  
+
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data'
   
   load.url<-paste(load.preurl,sep='',load.name)
@@ -46,7 +40,7 @@ buildDataBase = function() {
   for(i in 1:length(load.name)) {
     load.query[i] <- readLoad(load.url[i])
     load.query[i] <- gsub('%dataImportLink%', load.preurl, load.query[i])
-    print(load.name[i])
+#    print(load.name[i])
     cypher(graph,load.query[[i]])
   }
   return(graph)
