@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM https://raw.githubusercontent.com/AcuoFS/acuo-data/master/graph-data/csv/infopres.csv' 
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/graph-data/csv/infopres.csv' 
 AS line
 
 MATCH (pmc {id:line.CallId})
