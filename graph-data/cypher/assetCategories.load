@@ -1,31 +1,32 @@
-LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/assetCategories.csv' 
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/assetCategories.csv'
 AS line
-WITH line, SPLIT(line.callType,'|') AS callTypes
+WITH line, SPLIT(line.marginType,'|') AS marginTypes, SPLIT(line.agreementId,'|') AS agreementIds
 
-MATCH (ag:Agreement {id:line.agreementId})
+UNWIND agreementIds AS agreementId
+MATCH (ag:Agreement {id:agreementId})
 FOREACH(ignoreMe IN CASE WHEN trim(line.maturityLb)<>"" THEN [1]
 	ELSE [] END| 
 	MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency,
 	maturityLb:TOFLOAT(line.maturityLb),maturityUp:TOFLOAT(line.maturityUp)})
-	MERGE (a)-[is:IS_ELIGIBLE_UNDER {callType: callTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
+	MERGE (a)-[is:IS_ELIGIBLE_UNDER {marginType: marginTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
 	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate),FXRate:TOFLOAT(line.FXRate)}]->(ag)
 )
 
 FOREACH(ignoreMe IN CASE WHEN trim(line.ticker)<>"" THEN [1]
 	ELSE [] END| MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency,
 	ticker:line.ticker})
-	MERGE (a)-[is:IS_ELIGIBLE_UNDER {callType: callTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
+	MERGE (a)-[is:IS_ELIGIBLE_UNDER {marginType: marginTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
 	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate),FXRate:TOFLOAT(line.FXRate)}]->(ag)
 )
 
 FOREACH(ignoreMe IN CASE WHEN line.type="CASH" THEN [1]
 	ELSE [] END| MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency})
-	MERGE (a)-[is:IS_ELIGIBLE_UNDER {callType: callTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
+	MERGE (a)-[is:IS_ELIGIBLE_UNDER {marginType: marginTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
 	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate),FXRate:TOFLOAT(line.FXRate)}]->(ag)
 )
 
 
-// Use only one relationship and the property 'callTypes' for the eligibility
+// Use only one relationship and the property 'marginTypes' for the eligibility
 // In the case that the haircut/cost/limit for IM/VM are different,
 // we cannot use only onw relationship, 
 // Refer to the other load file: assetCategory.load

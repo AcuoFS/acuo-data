@@ -11,31 +11,27 @@ buildDataBase = function() {
   
   clear(graph,input=FALSE)
   
-  load.name <- c('cypher/firms.load',
-                 'cypher/legalentities.load',
-                 'cypher/clearingHouses.load',
-                 'cypher/fcms.load',
-                 'cypher/tradingAccounts.load',
-                 'cypher/bilateralAgreements.load',
-                 'cypher/clearedAgreements.load',
-                 'cypher/portfolios.load',
-                 'cypher/assetCategories.load',
-                 'cypher/assetInventory.load', 
-                 'cypher/custodians.load',
-                 'cypher/custodianAccounts.load',
-                 'cypher/counterpartCustodianAccounts.load',
-                 'cypher/custodianAssets.load',
-                 'cypher/mstatements.load',
-                 'cypher/initmcexp.load',
-                 'cypher/initmc.load',
-                 'cypher/settings.load',
-                 'cypher/assetTransfer.load')
-  
-  for (i in 1:6) {
-        load.name <- c(load.name, paste('/cypher/info', toString(i), '.load', sep=''))
-      }
-  
-  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop-temp/graph-data/'
+  load.name <- c('/cypher/firms.load',
+                 '/cypher/legalentities.load',
+                 '/cypher/clearingHouses.load',
+                 '/cypher/fcms.load',
+                 '/cypher/tradingAccounts.load',
+                 '/cypher/bilateralAgreements.load',
+                 '/cypher/clearedAgreements.load',
+                 '/cypher/assetCategories.load',
+                 '/cypher/assetInventory.load', 
+                 '/cypher/custodians.load',
+                 '/cypher/custodianAccounts.load',
+                 '/cypher/counterpartCustodianAccounts.load',
+                 '/cypher/custodianAssets.load',
+                 '/cypher/mstatements.load',
+                 '/cypher/initmcexp.load',
+                 '/cypher/initmc.load',
+                 '/cypher/infopres.load',
+                 '/cypher/settings.load',
+                 '/cypher/assetTransfer.load')
+
+  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data'
   
   load.url<-paste(load.preurl,sep='',load.name)
   

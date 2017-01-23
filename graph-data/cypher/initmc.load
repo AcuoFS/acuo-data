@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/initialmc.csv' AS line
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/initmc.csv' AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
 MATCH (c:Client)-[:MANAGES]->(e:LegalEntity)-[s:CLIENT_SIGNS]->(a)<-[:COUNTERPARTY_SIGNS]-(ce)
@@ -6,7 +6,7 @@ MATCH (ms:MarginStatement {id:line.StatementId})
 
 MERGE (mc:MarginCall {id:line.CallId, 
                     callDate:line.CallDate,
-                    callType:line.CallType,
+                    marginType:line.MarginType,
                     direction:line.Direction})
 
 WITH *
@@ -32,18 +32,12 @@ SET mc.id=line.CallId,
 MERGE (mc)-[:PART_OF]->(ms)
 MERGE (mc)-[:STEMS_FROM]->(a)
 
-WITH *, CASE WHEN line.Direction = 'IN' THEN [1] ELSE [] END as inbound
-FOREACH (i in inbound | MERGE (mc)-[:DIRECTED_TO]->(e) MERGE (mc)-[:SENT_FROM]->(ce))
-
-WITH *, CASE WHEN line.Direction = 'OUT' THEN [1] ELSE [] END as outbound
-FOREACH (i in outbound | MERGE (mc)-[:DIRECTED_TO]->(ce) MERGE (mc)-[:SENT_FROM]->(e))
-
 WITH *,
-		CASE WHEN exists((:MarginCall {callDate:line.CallDate, callType:line.CallType, status:'Expected'})-[:PART_OF]->(ms)) THEN [1] ELSE []
+		CASE WHEN exists((:MarginCall {callDate:line.CallDate, marginType:line.MarginType, status:'Expected'})-[:PART_OF]->(ms)) THEN [1] ELSE []
 		END
 	as existsExpected
 
-FOREACH (i in existsExpected | MERGE (mce:MarginCall {callDate:line.CallDate, callType:line.CallType, status:'Expected'})-[:PART_OF]->(ms)
+FOREACH (i in existsExpected | MERGE (mce:MarginCall {callDate:line.CallDate, marginType:line.MarginType, status:'Expected'})-[:PART_OF]->(ms)
 MERGE (mc)-[:MATCHED_TO_EXPECTED]->(mce))
 
 WITH *

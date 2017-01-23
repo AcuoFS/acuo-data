@@ -5,3 +5,4 @@ MATCH (c:Firm {id:line.ClientId})
 MERGE (e:LegalEntity {id:line.EntityId, name:line.EntityName, holidayZone:line.HolidayZone, shortName:line.EntityShortName})
 
 MERGE (c)-[:MANAGES]->(e);
+

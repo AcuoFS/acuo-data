@@ -11,11 +11,13 @@ MERGE (a:AssetTransfer {id:line.id})
 ON CREATE SET
 	a.quantities = TOFLOAT(line.quantities),
 	a.assetId = line.assetId,
-	a.status = line.status
+	a.status = line.status,
+	a.deliveryTime = line.deliveryTime
 ON MATCH SET
 	a.quantities = TOFLOAT(line.quantities),
 	a.assetId = line.assetId,
-	a.status = line.status
+	a.status = line.status,
+	a.deliveryTime = line.deliveryTime
 
 FOREACH (ignoreMe IN CASE 
 	WHEN line.status = 'Departed' THEN [1]

@@ -1,0 +1,162 @@
+CurrencyISO,CurrencyName,ValueToUSD
+AED,UAE Dirham,1
+AFN,Afghani,1
+ALL,Albanian Lek,1
+AMD,Armenian Dram,1
+ANG,Netherlands Antillian Guilder,1
+AOA,Angolan kwanza,1
+ARS,Argentine peso,1
+AUD,Australian dollar,1.34
+AWG,Aruban guilder,1
+AZN,Azerbaijani manat,1
+BAM,Bosnia-Herzegovina convertible mark,1
+BBD,Barbadian dollar,1
+BDT,Bangladeshi taka,1
+BGN,Bulgarian lev,1
+BHD,Bahraini dinar,1
+BIF,Burundi franc,1
+BMD,Bermuda dollar,1
+BND,Brunei dollar,1
+BOB,Bolivian boliviano,1
+BOV,Bolivian Mvdol,1
+BRL,Brazilian real,1
+BSD,Bahamian Dollar,1
+BTN,Bhutan ngultrum,1
+BWP,Botswana pula,1
+BYR,Belarussian Ruble,1
+BZD,Belize Dollar,1
+CAD,Canadian dollar,1.33
+CDF,Congolese franc,1
+CHF,Swiss franc,1
+CLF,Chilean Unidades de fomento,1
+CLP,Chilean peso,1
+CNY,Yuan renminbi,1
+COP,Colombian peso,1
+COU,Colombian unidad de valor real,1
+CRC,Costa Rican colon,1
+CUP,Cuban peso,1
+CVE,Cape Verde escudo,1
+CZK,Czech koruna,1
+DJF,Djibouti franc,1
+DKK,Danish krone,1
+DOP,Dominican peso,1
+DZD,Algerian Dinar,1
+EGP,Egyptian pound,1
+ERN,Eritrea nakfa,1
+ETB,Ethiopian birr,1
+EUR,EU euro,0.93
+FJD,Fijian dollar,1
+FKP,Falkland Islands pound,1
+GBP,Pound sterling,0.78
+GEL,Georgian lari,1
+GHS,Ghana cedi,1
+GIP,Gibraltar pound,1
+GMD,Gambian dalasi,1
+GNF,Guinea franc,1
+GTQ,Guatemalan quetzal,1
+GYD,Guyanese dollar,1
+HKD,Hong Kong dollar,7.76
+HNL,Honduran lempira,1
+HRK,Croatia Kuna,1
+HTG,Haitian gourde,1
+HUF,Hungarian forint,1
+IDR,Indonesian rupiah,1
+ILS,New Israeli shekel,1
+INR,Indian rupee,1
+IQD,Iraqi dinar,1
+IRR,Iranian Rial,1
+ISK,Icelandic krona,1
+JMD,Jamaican dollar,1
+JOD,Jordanian dinar,1
+JPY,Japanese yen,113.9
+KES,Kenyan shilling,1
+KGS,Kyrgyzstan som,1
+KHR,Cambodian Riel,1
+KMF,Comoro Franc,1
+KPW,North Korean won,1
+KRW,South Korean won,1
+KWD,Kuwaiti dinar,1
+KYD,Cayman Island Dollar,1
+KZT,Kazakhstan tenge,1
+LAK,Lao kip,1
+LBP,Lebanese pound,1
+LKR,Sri Lankan rupee,1
+LRD,Liberian dollar,1
+LSL,Lesotho loti,1
+LYD,Libyan dinar,1
+MAD,Moroccan dirham,1
+MDL,Moldovan leu,1
+MGA,Malagasy ariary,1
+MKD,Macedonian denar,1
+MMK,Myanmar kyat,1
+MNT,Mongolian tugrik,1
+MOP,Macau pataca,1
+MRO,Mauritanian ouguiya,1
+MUR,Mauritius rupee,1
+MVR,Maldives rufiyaa,1
+MWK,Malawi kwacha,1
+MXN,Mexican peso,1
+MXV,Mexican Unidad de Inversion,1
+MYR,Malaysian ringgit,1
+MZN,Mozambique metical,1
+NAD,Namibian dollar,1
+NGN,Nigerian naira,1
+NIO,Nicaraguan cordoba,1
+NOK,Norwegian krone,1
+NPR,Nepalese rupee,1
+NZD,New Zealand dollar,1
+OMR,Omani rial,1
+PAB,Panamanian balboa,1
+PEN,Peruvian nuevo sol,1
+PGK,Papua New Guinea kina,1
+PHP,Philippine peso,1
+PKR,Pakistani rupee,1
+PLN,Polish zloty,1
+PYG,Paraguayan guaran?,1
+QAR,Qatari rial,1
+RON,Romanian New leu,1
+RSD,Serbian dinar,1
+RUB,Russian ruble,1
+RWF,Rwandan franc,1
+SAR,Saudi Arabian riyal,1
+SBD,Solomon Islands dollar,1
+SCR,Seychelles rupee,1
+SDG,Sudanese Pound,1
+SEK,Swedish krona,1
+SGD,Singapore dollar,1.42
+SHP,Saint Helena pound,1
+SLL,Sierra Leonean leone,1
+SOS,Somali shilling,1
+SRD,Suriname dollar,1
+SSP,South Sudanese pound,1
+STD,Sao Tomean dobra,1
+SVC,El Salvador Colon,1
+SYP,Syrian pound,1
+SZL,Swaziland lilangeni,1
+THB,Thai baht,1
+TJS,Tajikistani somoni,1
+TMT,Turkmenistan New Manat,1
+TND,Tunisian dinar,1
+TOP,Tongan Pa'anga,1
+TRY,New Turkish lira,1
+TTD,Trinidad and Tobago dollar,1
+TWD,New Taiwan dollar,1
+TZS,Tanzanian shilling,1
+UAH,Ukrainian hryvnia,1
+UGX,Ugandan shilling,1
+USD,United States dollar,1
+UYI,Uruguayan Peso debt,1
+UYU,Uruguayan peso,1
+UZS,Uzbekistani som,1
+VEF,Venezuelan bolivar,1
+VND,Vietnamese dong,1
+VUV,Vanuatu vatu,1
+WST,Samoa Tala,1
+XAF,CFA Franc BEAC,1
+XCD,East Caribbean dollar,1
+XOF,CFA franc BCEAO,1
+XPF,CFP franc,1
+YER,Yemeni rial,1
+ZAR,South African rand,1
+ZMW,Zambian kwacha,1
+ZWL,Zimbabwe Dollar,1
