@@ -7,7 +7,7 @@ MATCH (from:CustodianAccount {id:line.clientCustodianAccountId}),
 	  (mc:MarginCall {id:line.callId}),
 	  (asset:Asset {id:line.assetId})
 
-MERGE (mc)-[:GENERATED]->(transfer:AssetTransfer {id:line.id})-[:OF]->(asset)
+MERGE (mc)<-[:GENERATED_BY]-(transfer:AssetTransfer {id:line.id})-[:OF]->(asset)
 ON CREATE SET
 	transfer.quantities = TOFLOAT(line.quantities),	
 	transfer.status = line.status,
