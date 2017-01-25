@@ -2,21 +2,22 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/assetTransfer.csv'
 AS line
 WITH line WHERE line.id IS NOT NULL
 
-MATCH (custac1:CustodianAccount {id:line.clientCustodianAccountId}),
-	  (custac2:CustodianAccount {id:line.counterpartyCustodianAccountId}),
-	  (mc:MarginCall {id:line.callId})
+MATCH (from:CustodianAccount {id:line.clientCustodianAccountId}),
+	  (to:CustodianAccount {id:line.counterpartyCustodianAccountId}),
+	  (mc:MarginCall {id:line.callId}),
+	  (asset:Asset {id:line.assetId})
 
-MERGE (mc)-[:GENERATED]->(a:AssetTransfer {id:line.id})-[:OF]->(:Asset {id:line.assetId})
+MERGE (mc)-[:GENERATED]->(transfer:AssetTransfer {id:line.id})-[:OF]->(asset)
 ON CREATE SET
-	a.quantities = TOFLOAT(line.quantities),	
-	a.status = line.status,
-	a.subStatus = line.subStatus,
-	a.deliveryTime = line.deliveryTime
+	transfer.quantities = TOFLOAT(line.quantities),	
+	transfer.status = line.status,
+	transfer.subStatus = line.subStatus,
+	transfer.deliveryTime = line.deliveryTime
 ON MATCH SET
-	a.quantities = TOFLOAT(line.quantities),	
-	a.status = line.status,
-	a.subStatus = line.subStatus,
-	a.deliveryTime = line.deliveryTime
+	transfer.quantities = TOFLOAT(line.quantities),	
+	transfer.status = line.status,
+	transfer.subStatus = line.subStatus,
+	transfer.deliveryTime = line.deliveryTime
 
-MERGE (a)-[:FROM]->(custac1)
-MERGE (a)-[:TO]->(custac2)
+MERGE (transfer)-[:FROM]->(from)
+MERGE (transfer)-[:TO]->(to)
