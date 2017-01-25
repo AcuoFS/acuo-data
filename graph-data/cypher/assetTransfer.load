@@ -1,38 +1,11 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/assetTransfer.csv' 
 AS line
-WITH line
-WHERE line.id IS NOT NULL
+WITH line WHERE line.id IS NOT NULL
 
 MATCH (custac1:CustodianAccount {id:line.clientCustodianAccountId}),
 	  (custac2:CustodianAccount {id:line.counterpartyCustodianAccountId}),
 	  (mc:MarginCall {id:line.callId})
 
-MERGE (a:AssetTransfer {id:line.id})
-ON CREATE SET
-	a.quantities = TOFLOAT(line.quantities),
-	a.assetId = line.assetId,
-	a.status = line.status,
-	a.deliveryTime = line.deliveryTime
-ON MATCH SET
-	a.quantities = TOFLOAT(line.quantities),
-	a.assetId = line.assetId,
-	a.status = line.status,
-	a.deliveryTime = line.deliveryTime
-
-FOREACH (ignoreMe IN CASE 
-	WHEN line.status = 'Departed' THEN [1]
-	ELSE [] END| MERGE (custac1)-[:SENDS]->(a)-[:TO]-(custac2)
-				 MERGE (a)-[:TO_FULFILL]-(mc)
-				 SET a.subStatus=line.subStatus)
-
-FOREACH (ignoreMe IN CASE 
-	WHEN line.status = 'Arriving' THEN [1]
-	ELSE [] END| MERGE (custac1)-[:RECEIVES]->(a)-[:FROM]-(custac2)
-				 MERGE (a)-[:FROM_CALLING]-(mc)
-				 SET a.subStatus=line.subStatus,
-				 	 a.reservedQuantities=TOFLOAT(line.reservedQuantities))
-
-FOREACH (ignoreMe IN CASE 
-	WHEN line.status = 'Deployed' THEN [1]
-	ELSE [] END| MERGE (custac1)-[:SENDS]->(a)-[:TO]-(custac2)
-				 MERGE (a)-[:TO_FULFILL]-(mc))
+MERGE (mc)-[:GENERATED]->(a:AssetTransfer {id:line.id, quantities:TOFLOAT(line.quantities), status:line.status, subStatus:line.subStatus, deliveryTime: line.deliveryTime })-[:OF]->(:Asset {id:line.asset})
+MERGE (a)-[:FROM]->(custac1)
+MERGE (a)-[:TO]->(custac2)
