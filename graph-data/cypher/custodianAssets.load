@@ -8,7 +8,6 @@ MERGE (custac)-[h:HOLDS {businessTimeFrom:line.businessTimeFrom, businessTimeTo:
 	price:TOFLOAT(line.price),parValue:TOFLOAT(line.parValue),minUnit:TOFLOAT(line.minUnit),minUnitValue:TOFLOAT(line.minUnitValue)})
 
 ON CREATE SET
-h.quantity=TOFLOAT(line.quantity),
 h.availableQuantity=TOFLOAT(line.availableQuantity),
 //	h.deployedQuantity=TOFLOAT(line.deployedQuantity),
 //	h.departingQuantity=TOFLOAT(line.departingQuantity),
@@ -18,7 +17,6 @@ h.internalCost=TOFLOAT(line.internalCost),
 h.opptCost=TOFLOAT(line.opptCost)
 
 ON MATCH SET
-h.quantity=TOFLOAT(line.quantity),
 h.availableQuantity=TOFLOAT(line.availableQuantity),
 //	h.deployedQuantity=TOFLOAT(line.deployedQuantity),
 //	h.departedQuantity=TOFLOAT(line.departedQuantity),
