@@ -1,6 +1,4 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/custodianAssets.csv' 
-
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data/csv/custodianAssets.csv'
 AS line 
 
 MATCH (custac:CustodianAccount {id:line.accountId})
