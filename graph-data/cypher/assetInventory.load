@@ -5,7 +5,7 @@ WHERE line.clientId IS NOT NULL
 
 MATCH (c:Client {id:line.clientId})
 MERGE (ca:ClientAsset {id:line.clientId})
-MERGE (a:Asset {id: line.id,idType: line.idType,ISIN: line.ISIN, name:line.name,currency:line.currency,
+MERGE (a:Asset {id: line.id,idType: line.idType, name:line.name,currency:line.currency,
 	yield: TOFLOAT(line.yield),type:line.type,ICADCode:line.ICADCode,ACUOCategory:line.ACUOCategory,
 	price:TOFLOAT(line.price),parValue:TOFLOAT(line.parValue),minUnit:TOFLOAT(line.minUnit),minUnitValue:TOFLOAT(line.minUnitValue)})
 
@@ -33,6 +33,8 @@ ON MATCH SET
 
 WITH line,a, timestamp()/1000/60/60/24 AS todayDays
 
+FOREACH (ignoreMe IN CASE 	WHEN trim(line.ISIN)<>"" THEN [1] 
+	ELSE [] END | SET a.ISIN=line.ISIN)
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
 	ELSE [] END | SET a.ticker=line.ticker)
 FOREACH (ignoreMe IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityDate)<>"" THEN [1] 
