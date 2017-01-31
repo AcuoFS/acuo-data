@@ -19,7 +19,6 @@ buildDataBase = function() {
                  '/cypher/bilateralAgreements.load',
                  '/cypher/clearedAgreements.load',
                  '/cypher/assetCategories.load',
-                 '/cypher/assetInventory.load', 
                  '/cypher/custodians.load',
                  '/cypher/custodianAccounts.load',
                  '/cypher/counterpartCustodianAccounts.load',
@@ -29,7 +28,9 @@ buildDataBase = function() {
                  '/cypher/initmc.load',
                  '/cypher/infopres.load',
                  '/cypher/settings.load',
-                 '/cypher/assetTransfer.load')
+                 '/cypher/assetTransfer.load',
+                 '/cypher/currencies.load', 
+                 '/cypher/portfolios.load')
 
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data'
   
@@ -40,7 +41,7 @@ buildDataBase = function() {
   for(i in 1:length(load.name)) {
     load.query[i] <- readLoad(load.url[i])
     load.query[i] <- gsub('%dataImportLink%', load.preurl, load.query[i])
-#    print(load.name[i])
+    print(load.name[i])
     cypher(graph,load.query[[i]])
   }
   return(graph)
