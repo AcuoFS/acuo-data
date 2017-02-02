@@ -6,7 +6,7 @@ MATCH (ch:ClearingHouse {id:line.ClearingHouseId})
 
 MERGE (l)-[:PREFERENCES {tolerance:toFloat(line.Tolerance)}]->(fcm)
 
-MERGE (a:Agreement {id:line.AgreementId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, currency:line.Currency, FCMCustodian:line.FCMCustodianId, notificationTime:line.NotificationTime})
+MERGE (a:Agreement {id:line.AgreementId, ampId:line.AmpId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, currency:line.Currency, FCMCustodian:line.FCMCustodianId, notificationTime:line.NotificationTime})
 
 MERGE (l)-[s1:CLIENT_SIGNS {initialBalance:toFloat(line.InitialBalance), variationBalance:toFloat(line.VariationBalance), initialPending:toFloat(line.InitialPending), variationPending:toFloat(line.VariationPending)}]->(a)
 MERGE (fcm)-[s2:COUNTERPARTY_SIGNS]->(a)
