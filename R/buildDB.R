@@ -18,6 +18,7 @@ buildDataBase = function() {
                  '/cypher/tradingAccounts.load',
                  '/cypher/bilateralAgreements.load',
                  '/cypher/clearedAgreements.load',
+                 '/cypher/ratingScores.load',
                  '/cypher/assetCategories.load',
                  '/cypher/custodians.load',
                  '/cypher/custodianAccounts.load',
