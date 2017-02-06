@@ -1,0 +1,11 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/ratingScores.csv'
+AS line
+
+MERGE (fr:FitchRating {rating:line.fitchRating,source:'Fitch'})
+
+ON CREATE SET
+fr.score=TOINT(line.score)
+
+ON MATCH SET
+fr.score=TOINT(line.score)
+

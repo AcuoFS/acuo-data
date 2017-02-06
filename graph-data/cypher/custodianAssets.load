@@ -27,13 +27,13 @@ h.opptCost=TOFLOAT(line.opptCost)
 
 WITH line,a,custac, timestamp()/1000/60/60/24 AS todayDays
 
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.ISIN)<>"" THEN [1] 
+FOREACH (i IN CASE 	WHEN trim(line.ISIN)<>"" THEN [1] 
 	ELSE [] END | SET a.ISIN=line.ISIN)
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
+FOREACH (i IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
 	ELSE [] END | SET a.ticker=line.ticker)
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityDate)<>"" THEN [1] 
+FOREACH (i IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityDate)<>"" THEN [1] 
 	ELSE [] END | SET a.issueDate=line.issueDate, a.maturityDate=line.maturityDate)
-FOREACH (ignoreMe IN CASE 	WHEN trim(line.fitchRating)<>"" THEN [1] 
+FOREACH (i IN CASE 	WHEN trim(line.fitchRating)<>"" THEN [1] 
 	ELSE [] END | SET a.rating=line.fitchRating)
 
 WITH a,custac,todayDays, TOINT(line.futureDays) AS futureDays
@@ -42,17 +42,26 @@ SET a.timeToMaturityDays = CASE WHEN futureDays>todayDays THEN TOFLOAT(futureDay
     a.timeToMaturityYears = TOFLOAT(a.timeToMaturityDays/365)
 
 WITH custac,a
+MATCH (security:Asset {id:a.id})
+
+WITH custac, a, security
+MATCH (fr:FitchRating {rating:security.rating})
+WHERE NOT security.rating IS NULL
+SET security.ratingScore= fr.score
+
+WITH custac,a
 
 MATCH (a)<--(custac)<-[:HAS]-(c:Client)-[:MANAGES]->(e)-[:CLIENT_SIGNS]->(ag:Agreement)<-[:IS_ELIGIBLE_UNDER]-(ac:AssetCategory)
 WHERE a.ICADCode=ac.name
 AND a.currency=ac.currency
 
-FOREACH (ignoreMe IN CASE 
+FOREACH (i IN CASE 
 	WHEN a.ticker=ac.ticker THEN 1
 	WHEN UPPER(a.type)='CASH' THEN 1
 	WHEN UPPER(a.type)='GOLD' THEN 1
-	WHEN a.timeToMaturityYears<ac.maturityUp AND  a.timeToMaturityYears>ac.maturityLb THEN 1
-	ELSE [] END | MERGE (a)-[i:IS_IN]->(ac))
+	WHEN a.timeToMaturityYears<=ac.maturityUp AND  a.timeToMaturityYears>ac.maturityLb THEN 1
+	WHEN a.ratingScore<= ac.ratingScoreUp AND a.ratingScore>= ac.ratingScoreLb THEN 1
+	ELSE [] END | MERGE (a)-[:IS_IN]->(ac))
 
 WITH DISTINCT a, custac
 
