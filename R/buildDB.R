@@ -24,6 +24,7 @@ buildDataBase = function() {
                  '/cypher/custodianAccounts.load',
                  '/cypher/counterpartCustodianAccounts.load',
                  '/cypher/custodianAssets.load',
+                 '/cypher/buildEligibility.load',
                  '/cypher/mstatements.load',
                  '/cypher/initmcexp.load',
                  '/cypher/initmc.load',
