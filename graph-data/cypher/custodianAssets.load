@@ -25,7 +25,7 @@ h.reservedQuantity=TOFLOAT(line.reservedQuantity),
 h.internalCost=TOFLOAT(line.internalCost),
 h.opptCost=TOFLOAT(line.opptCost)
 
-WITH line,a,custac, timestamp()/1000/60/60/24 AS todayDays
+WITH line,a,custac, timestamp()/1000/60/60/24 AS todayDays, TOINT(line.futureDays) AS futureDays
 
 FOREACH (i IN CASE 	WHEN trim(line.ISIN)<>"" THEN [1] 
 	ELSE [] END | SET a.ISIN=line.ISIN)
@@ -33,16 +33,14 @@ FOREACH (i IN CASE 	WHEN trim(line.ticker)<>"" THEN [1]
 	ELSE [] END | SET a.ticker=line.ticker)
 FOREACH (i IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityDate)<>"" THEN [1] 
 	ELSE [] END | SET a.issueDate=line.issueDate, a.maturityDate=line.maturityDate)
+FOREACH (i IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityDate)<>"" AND futureDays>todayDays THEN [1] 
+	ELSE [] END | SET a.timeToMaturityDays=TOFLOAT(futureDays-todayDays), a.timeToMaturityYears = TOFLOAT(a.timeToMaturityDays/365))
 FOREACH (i IN CASE 	WHEN trim(line.fitchRating)<>"" THEN [1] 
 	ELSE [] END | SET a.rating=line.fitchRating)
 
-WITH a,custac,todayDays, TOINT(line.futureDays) AS futureDays
-SET a.timeToMaturityDays = CASE WHEN futureDays>todayDays THEN TOFLOAT(futureDays-todayDays)
-                                ELSE 0 END,
-    a.timeToMaturityYears = TOFLOAT(a.timeToMaturityDays/365)
 
-WITH custac,a
-MATCH (security:Asset {id:a.id})
+WITH line,custac,a
+MATCH (security:Asset {id:line.assetId})
 
 WITH custac, a, security
 MATCH (fr:FitchRating {rating:security.rating})
