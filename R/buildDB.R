@@ -6,8 +6,8 @@ readLoad <- function(path) {
 }
 
 buildDataBase = function() {
-  #  graph = startGraph("http://neo4j.acuo.com:7474/db/data/")
-  graph = startGraph("http://localhost:7474/db/data/")
+  graph = startGraph("http://margin.acuo.com:7474/db/data/")
+#  graph = startGraph("http://localhost:7474/db/data/")
   
   clear(graph,input=FALSE)
   
