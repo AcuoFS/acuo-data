@@ -7,7 +7,7 @@ readLoad <- function(path) {
 
 buildDataBase = function() {
   graph = startGraph("http://margin.acuo.com:7474/db/data/")
-#  graph = startGraph("http://localhost:7474/db/data/")
+  #  graph = startGraph("http://localhost:7474/db/data/")
   
   clear(graph,input=FALSE)
   
@@ -18,13 +18,11 @@ buildDataBase = function() {
                  '/cypher/tradingAccounts.load',
                  '/cypher/bilateralAgreements.load',
                  '/cypher/clearedAgreements.load',
-                 '/cypher/ratingScores.load',
                  '/cypher/assetCategories.load',
                  '/cypher/custodians.load',
                  '/cypher/custodianAccounts.load',
                  '/cypher/counterpartCustodianAccounts.load',
                  '/cypher/custodianAssets.load',
-                 '/cypher/buildEligibility.load',
                  '/cypher/mstatements.load',
                  '/cypher/initmcexp.load',
                  '/cypher/initmc.load',
@@ -33,7 +31,7 @@ buildDataBase = function() {
                  '/cypher/assetTransfer.load',
                  '/cypher/currencies.load', 
                  '/cypher/portfolios.load')
-
+  
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data'
   
   load.url<-paste(load.preurl,sep='',load.name)
@@ -49,4 +47,10 @@ buildDataBase = function() {
   return(graph)
 }
 
-graph <- buildDataBase()
+
+for (i in 1:10000) {
+  graph <- buildDataBase()
+  print(Sys.time())
+  x = runif(1,0.5,2.0)
+  Sys.sleep(x)
+}
