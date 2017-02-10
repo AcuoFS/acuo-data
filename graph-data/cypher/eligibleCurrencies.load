@@ -3,7 +3,7 @@ AS line
 
 MATCH (ag:Agreement {id:line.agreementId})-[:DIFINES]->(fxh:FXHaircut)
 
-MERGE (ag)-[:DIFINES {interestRate:line.interestRate,dayCount:dayCount}]->(ec:eligibleCurrency {currency:line.currency})
+MERGE (ag)-[:DIFINES {interestRate:line.interestRate,dayCount:line.dayCount}]->(ec:eligibleCurrency {currency:line.currency})
 
 MERGE (ec)-[:IN]->(ecl:EligibleCurrencyList {agreementId:ag.id})
 
