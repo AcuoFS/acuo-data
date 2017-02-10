@@ -9,20 +9,20 @@ FOREACH(ignoreMe IN CASE WHEN trim(line.maturityLb)<>"" THEN [1]
 	MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency, ratingLb:line.ratingLb, ratingUp:line.ratingUp,
 	maturityLb:TOFLOAT(line.maturityLb),maturityUp:TOFLOAT(line.maturityUp)})
 	MERGE (a)-[is:IS_ELIGIBLE_UNDER {marginType: marginTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
-	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate),FXRate:TOFLOAT(line.FXRate)}]->(ag)
+	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate)}]->(ag)
 )
 
 FOREACH(ignoreMe IN CASE WHEN trim(line.ticker)<>"" THEN [1]
 	ELSE [] END| MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency,
 	ticker:line.ticker})
 	MERGE (a)-[is:IS_ELIGIBLE_UNDER {marginType: marginTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
-	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate),FXRate:TOFLOAT(line.FXRate)}]->(ag)
+	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate)}]->(ag)
 )
 
 FOREACH(ignoreMe IN CASE WHEN line.type="CASH" THEN [1]
 	ELSE [] END| MERGE (a:AssetCategory {name: line.name, type: line.type, currency:line.currency})
 	MERGE (a)-[is:IS_ELIGIBLE_UNDER {marginType: marginTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
-	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate),FXRate:TOFLOAT(line.FXRate)}]->(ag)
+	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate)}]->(ag)
 )
 
 WITH DISTINCT(1) AS temp
