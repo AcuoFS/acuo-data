@@ -11,4 +11,4 @@ MERGE (l1)-[s1:CLIENT_SIGNS {MTA:toFloat(line.MTA1), initialMarginBalance:toFloa
 
 MERGE (l2)-[s2:COUNTERPARTY_SIGNS {MTA:toFloat(line.MTA2), initialMarginBalance:toFloat(line.InitialBalance2), variationMarginBalance:toFloat(line.VariationBalance2), rounding:toFloat(line.Rounding2), initialPending:toFloat(line.InitialPending2), variationPending:toFloat(line.VariationPending2)}]->(a)
 
-MERGE (a)-[:DEFINES]->(:FXHaircut {agreementId:a.id})
+MERGE (a)-[:DEFINES]->(:FXHaircut {agreementId:a.id,FXHaircut:line.FXHaircut})
