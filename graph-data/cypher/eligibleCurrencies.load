@@ -1,17 +1,19 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/eligibleCurrencies.csv'
 AS line
 
-MATCH (ag:Agreement {id:line.agreementId})-[:DIFINES]->(fxh:FXHaircut)
+MATCH (ag:Agreement {id:line.agreementId})-[:DEFINES]->(fxh:FXHaircut)
 
-MERGE (ag)-[:DIFINES {interestRate:line.interestRate,dayCount:line.dayCount}]->(ec:eligibleCurrency {currency:line.currency})
+MERGE (ecl:EligibleCurrencyList {agreementId:ag.id})
 
-MERGE (ec)-[:IN]->(ecl:EligibleCurrencyList {agreementId:ag.id})
+MERGE (ag)-[:DIFINES {interestRate:line.interestRate,dayCount:line.dayCount}]->(ec:EligibleCurrency {currency:line.currency})
 
-MERGE (c:Cash {type:'Cash'})-[:APPLY {FXHaircut:0}]->(fx)
+MERGE (ec)-[:IN]->(ecl)
+
+MERGE (c:Cash {type:'Cash'})-[:APPLY {FXHaircut:0}]->(fxh)
 
 MERGE (c)-[:ELSEIF]->(n:NonCash)-[:AND]->(ecl)
 
-MERGE (ecl)-[:THEN_APPLY {FXHaircut:0}]->(fx)
-MERGE (ecl)-[:ELSE_APPLY {FXHaircut:fxh.FXHaircut}]->(fx)
+MERGE (ecl)-[:THEN_APPLY {FXHaircut:0}]->(fxh)
+MERGE (ecl)-[:ELSE_APPLY {FXHaircut:fxh.FXHaircut}]->(fxh)
 
 
