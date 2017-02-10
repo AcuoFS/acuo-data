@@ -1,5 +1,7 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/eligibleCurrencies.csv'
-AS line
+AS line, SPLIT(line.agreementId,'|') AS agreementIds
+
+UNWIND agreementIds AS agreementId
 
 MATCH (ag:Agreement {id:line.agreementId})-[:DEFINES]->(fxh:FXHaircut)
 
