@@ -1,0 +1,4 @@
+agreementId,currency,interestRate,dayCount
+a1,USD,USD LIBOR OVERNIGHT,30/360
+a1,EUR,EUR LIBOR 1 W,A/360
+a1,GBP,GBP LIBOR OVERNIGHT,A/365
