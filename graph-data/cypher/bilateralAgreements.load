@@ -5,7 +5,8 @@ MATCH (l2:LegalEntity {id:line.Party2})
 
 MERGE (l1)-[:PREFERENCES {tolerance:toFloat(line.Tolerance)}]->(l2)
 
-MERGE (a:Agreement {id:line.AgreementId, ampId:line.AmpId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, notificationTime:line.NotificationTime, currency:line.Currency, counterpartCustodian:line.CounterpartCustodianId, threshold:line.Threshold, baseCurrency:line.BaseCurrency,law:line.Law})
+MERGE (a:Agreement {id:line.AgreementId, ampId:line.AmpId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, notificationTime:line.NotificationTime, currency:line.Currency, counterpartCustodian:line.CounterpartCustodianId, threshold:line.Threshold, baseCurrency:line.BaseCurrency,law:line.Law,
+	interestTransfer:line.interestTransfer,interestPaymentNetting:line.interestPaymentNetting,interestAdjustment:line.interestAdjustment,negativeInterest:line.negativeInterest,dailyInterestCompounding:line.dailyInterestCompounding})
 
 MERGE (l1)-[s1:CLIENT_SIGNS {MTA:toFloat(line.MTA1), initialMarginBalance:toFloat(line.InitialBalance1), variationMarginBalance:toFloat(line.VariationBalance1), rounding:toFloat(line.Rounding1), initialPending:toFloat(line.InitialPending1), variationPending:toFloat(line.VariationPending1)}]->(a)
 
