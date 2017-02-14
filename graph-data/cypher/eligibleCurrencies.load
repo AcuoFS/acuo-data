@@ -1,7 +1,10 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/eligibleCurrencies.csv'
 AS line
+WITH line,SPLIT(line.agreementId,'|') AS agreementIds
 
-MATCH (ag:Agreement {id:line.agreementId})-[:DEFINES]->(fxh:FXHaircut)
+UNWIND agreementIds AS agreementId
+
+MATCH (ag:Agreement {id:agreementId})-[:DEFINES]->(fxh:FXHaircut)
 
 MERGE (ecl:EligibleCurrencyList {agreementId:ag.id})
 
@@ -15,5 +18,4 @@ MERGE (c)-[:ELSEIF]->(n:NonCash)-[:AND]->(ecl)
 
 MERGE (ecl)-[:THEN_APPLY {FXHaircut:0}]->(fxh)
 MERGE (ecl)-[:ELSE_APPLY {FXHaircut:fxh.FXHaircut}]->(fxh)
-
 
