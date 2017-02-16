@@ -2,7 +2,7 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/mstatements.csv' AS line
 
 MATCH (e:LegalEntity)-[:CLIENT_SIGNS]->(a:Agreement {id:line.AgreementId})<-[:COUNTERPARTY_SIGNS]-(ce:LegalEntity)
 
-MERGE (ms:MarginStatement {id:line.StatementId, date:line.StatementDate, pendingCash:toFloat(line.PendingCash), pendingNonCash:toFloat(line.PendingNonCash), direction:line.Direction, currency:line.Currency, legalEntityId:'1', PAI:toFloat(line.PAI), feesCommissions:toFloat(line.FeesComm)})
+MERGE (ms:MarginStatement {id:line.StatementId, date:line.StatementDate, pendingCash:toFloat(line.PendingCash), pendingNonCash:toFloat(line.PendingNonCash), direction:line.Direction, currency:line.Currency, legalEntityId:'1'})
 ON CREATE SET ms.totalAmount=toFloat(line.TotalAmount)
 ON MATCH SET ms.totalAmount=ms.totalAmount + toFloat(line.TotalAmount)
 
