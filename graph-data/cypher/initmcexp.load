@@ -4,45 +4,32 @@ MATCH (a:Agreement {id:line.AgreementId})
 MATCH (e:LegalEntity)-[s:CLIENT_SIGNS]->(a)
 MATCH (ms:MarginStatement {id:line.StatementId})
 
-MERGE (mc:MarginCall {id:line.CallId,
-                    callDate:line.CallDate,
-                    marginType:line.MarginType,
-                    direction:line.Direction})
+WITH *, CASE WHEN line.MarginType = 'Initial' THEN [1] ELSE [] END as initial
+WITH *, CASE WHEN line.MarginType = 'Variation' THEN [1] ELSE [] END as variation
+WITH *, CASE WHEN line.MarginType = 'InterestPayment' THEN [1] ELSE [] END as IP
+WITH *, CASE WHEN line.MarginType = 'ProductCashFlow' THEN [1] ELSE [] END as PCF
+WITH *, CASE WHEN line.MarginType = 'PAI' THEN [1] ELSE [] END as PAI
+WITH *, CASE WHEN line.MarginType = 'FeesAndComms' THEN [1] ELSE [] END as FC
+
+FOREACH (i in initial | MERGE (mc:InitialMargin:StatementItem:MarginCall {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, status:line.Status, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1, excessAmount:toFloat(line.TotalCallAmount), marginAmount:toFloat(line.TotalCallAmount), returnAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.DeliverAmount), balanceAmount:toFloat(line.BalanceAmount), pendingCollateral:toFloat(line.PendingCollateral), exposure:toFloat(line.Exposure), IMRole:line.IMRole, exchangeRequirement:line.ExchangeRequirement, brokerRequirement:line.BrokerRequirement}))
+
+FOREACH (i in variation | MERGE (mc:VariationMargin:StatementItem:MarginCall {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, status:line.Status, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1, excessAmount:toFloat(line.TotalCallAmount), marginAmount:toFloat(line.TotalCallAmount), returnAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.DeliverAmount), balanceAmount:toFloat(line.BalanceAmount), pendingCollateral:toFloat(line.PendingCollateral), exposure:toFloat(line.Exposure)}))
+
+FOREACH (i in IP | MERGE (mc:InterestPayment:StatementItem {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, status:line.Status, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1}))
+
+FOREACH (i in PCF | MERGE (mc:ProductCashFlow:StatementItem {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, status:line.Status, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1, totalCouponPayment:line.TotalCouponPayment, upfrontFee:line.UpfrontFee, premiumPayment:line.PremiumPayment, CDSCreditEven:line.CDSCreditEven, NDFCashSettlement:line.NDFCashSettlement}))
+
+FOREACH (i in PAI | MERGE (mc:PAI:StatementItem {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, status:line.Status, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1}))
+
+FOREACH (i in FC | MERGE (mc:FeesAndComms:StatementItem {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, status:line.Status, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1, clearingFee:line.ClearingFee, brokerFee:line.BrokerFee}))
 
 WITH *
+
+MATCH (mc:StatementItem {id:line.CallId})
+
+SET mc.notificationTime = mc.callDate + 'T' + a.notificationTime
 
 MERGE (mc)-[:FIRST]->(step:Step {status:line.Status})
 MERGE (mc)-[:LAST]->(step)
 
-WITH *
-
-SET mc.id=line.CallId,
-    mc.valuationDate=line.ValuationDate,
-    mc.currency=line.Currency,
-    mc.excessAmount=toFloat(line.TotalCallAmount),
-    mc.balanceAmount=toFloat(line.CollateralValue),
-    mc.deliverAmount=toFloat(line.DeliverAmount),
-    mc.returnAmount=toFloat(line.ReturnAmount),
-    mc.pendingCollateral=toFloat(line.PendingCollateral),
-    mc.exposure=toFloat(line.Exposure),
-    mc.IMRole=line.IMRole,
-    mc.parentRank=1,
-    mc.status=line.Status
-
 MERGE (mc)-[:PART_OF]->(ms)
-MERGE (mc)-[:STEMS_FROM]->(a)
-
-WITH *
-
-MATCH (mc:MarginCall {id:line.CallId})-[:STEMS_FROM]->(a:Agreement)
-SET mc.notificationTime = mc.callDate + 'T' + a.notificationTime
-
-WITH *
-
-WHERE NOT a.type = 'cleared'
-SET mc.roundedReturnAmount=floor(toFloat(line.ReturnAmount)/s.rounding)*s.rounding, mc.roundedDeliverAmount=ceil(toFloat(line.DeliverAmount)/s.rounding)*s.rounding, mc.belowMTA=0
-
-WITH *
-
-WHERE mc.totalCallAmount < s.MTA
-SET mc.belowMTA=1
