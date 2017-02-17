@@ -3,13 +3,11 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/bilateralAgreements.csv' AS lin
 MATCH (l1:LegalEntity {id:line.Party1})
 MATCH (l2:LegalEntity {id:line.Party2})
 
-MERGE (l1)-[:PREFERENCES {tolerance:toFloat(line.Tolerance)}]->(l2)
-
-MERGE (a:Agreement {id:line.AgreementId, ampId:line.AmpId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, notificationTime:line.NotificationTime, currency:line.Currency, counterpartCustodian:line.CounterpartCustodianId, threshold:line.Threshold, baseCurrency:line.BaseCurrency,law:line.Law,
+MERGE (a:Agreement {id:line.AgreementId, ampId:line.AmpId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, notificationTime:line.NotificationTime, currency:line.Currency, counterpartCustodian:line.CounterpartCustodianId, threshold:line.Threshold, baseCurrency:line.BaseCurrency,law:line.Law, tolerance:toFloat(line.Tolerance),
 	interestTransfer:line.interestTransfer,interestPaymentNetting:line.interestPaymentNetting,interestAdjustment:line.interestAdjustment,negativeInterest:line.negativeInterest,dailyInterestCompounding:line.dailyInterestCompounding})
 
-MERGE (l1)-[s1:CLIENT_SIGNS {MTA:toFloat(line.MTA1), initialMarginBalance:toFloat(line.InitialBalance1), variationMarginBalance:toFloat(line.VariationBalance1), rounding:toFloat(line.Rounding1), initialPending:toFloat(line.InitialPending1), variationPending:toFloat(line.VariationPending1)}]->(a)
+MERGE (l1)-[s1:CLIENT_SIGNS {MTA:toFloat(line.MTA1), rounding:toFloat(line.Rounding1), initialBalance:toFloat(line.InitialBalance1), variationBalance:toFloat(line.VariationBalance1), initialPending:toFloat(line.InitialPending1), variationPending:toFloat(line.VariationPending1), initialBalanceCash:toFloat(line.InitialBalanceCash1), variationBalanceCash:toFloat(line.VariationBalanceCash1), initialPendingCash:toFloat(line.InitialPendingCash1), variationPendingCash:toFloat(line.VariationPendingCash1), initialBalanceNonCash:toFloat(line.InitialBalanceNonCash1), variationBalanceNonCash:toFloat(line.VariationBalanceNonCash1), initialPendingNonCash:toFloat(line.InitialPendingNonCash1), variationPendingNonCash:toFloat(line.VariationPendingNonCash1)}]->(a)
 
-MERGE (l2)-[s2:COUNTERPARTY_SIGNS {MTA:toFloat(line.MTA2), initialMarginBalance:toFloat(line.InitialBalance2), variationMarginBalance:toFloat(line.VariationBalance2), rounding:toFloat(line.Rounding2), initialPending:toFloat(line.InitialPending2), variationPending:toFloat(line.VariationPending2)}]->(a)
+MERGE (l2)-[s2:COUNTERPARTY_SIGNS {MTA:toFloat(line.MTA2), rounding:toFloat(line.Rounding2), initialBalance:toFloat(line.InitialBalance2), variationBalance:toFloat(line.VariationBalance2), initialPending:toFloat(line.InitialPending2), variationPending:toFloat(line.VariationPending2), initialBalanceCash:toFloat(line.InitialBalanceCash2), variationBalanceCash:toFloat(line.VariationBalanceCash2), initialPendingCash:toFloat(line.InitialPendingCash2), variationPendingCash:toFloat(line.VariationPendingCash2), initialBalanceNonCash:toFloat(line.InitialBalanceNonCash2), variationBalanceNonCash:toFloat(line.VariationBalanceNonCash2), initialPendingNonCash:toFloat(line.InitialPendingNonCash2), variationPendingNonCash:toFloat(line.VariationPendingNonCash2)}]->(a)
 
 MERGE (a)-[:DEFINES]->(:FXHaircut {agreementId:a.id,FXHaircut:toFloat(line.FXHaircut)})
