@@ -42,6 +42,6 @@ MATCH (step2:Step {status:'Expected'})<-[r:LAST]-(mce:StatementItem {callDate:li
 
 DELETE r
 
-MERGE (step2)-[:NEXT]->(:Step {status:'MatchedToReconciled'})<-[:LAST]-(mce)
+MERGE (step2)-[:NEXT]->(:Step {status:'MatchedToReceived'})<-[:LAST]-(mce)
 
 MERGE (mce)<-[:MATCHED_TO_EXPECTED]-(mc)
