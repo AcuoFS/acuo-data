@@ -1,0 +1,8 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/CoveredTransactions.csv'
+AS line
+WITH line,SPLIT(line.name,'|') AS names, SPLIT(line.shortName,'|') AS shortNames
+MATCH (ag:Agreement {id:line.agreementId})
+MERGE (ag)-[:DEFINES]->(c1:CoveredTransaction {agreementId:line.agreementId,type:line.type,productName:names,productShortName:shortNames})
+FOREACH(i in CASE WHEN line.type='Swap' THEN [1] ELSE [] END | SET c1:Swap)
+FOREACH(i in CASE WHEN line.type='Security-Based Swap' THEN [1] ELSE [] END | SET c1:SecurityBasedSwap)
+FOREACH(i in CASE WHEN line.type='OTC Derivative' THEN [1] ELSE [] END | SET c1:OTCDerivative)
