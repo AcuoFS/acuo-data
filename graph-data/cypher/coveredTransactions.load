@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/CoveredTransactions.csv'
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/coveredTransactions.csv'
 AS line
 WITH line,SPLIT(line.name,'|') AS names, SPLIT(line.shortName,'|') AS shortNames
 MATCH (ag:Agreement {id:line.agreementId})
