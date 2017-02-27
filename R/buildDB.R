@@ -33,7 +33,8 @@ buildDataBase = function() {
                  '/cypher/settings.load',
                  '/cypher/assetTransfer.load',
                  '/cypher/currencies.load', 
-                 '/cypher/portfolios.load')
+                 '/cypher/portfolios.load', 
+                 '/cypher/books.load')
 
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data'
   
