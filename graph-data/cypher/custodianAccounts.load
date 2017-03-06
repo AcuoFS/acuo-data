@@ -10,5 +10,5 @@ MERGE (custac)<-[:MANAGES]-(cust)
 
 WITH TradingAccounts,custac
 UNWIND TradingAccounts AS accountId
-MATCH (acc:TradingAccount {accountId:accountId})
+MATCH (acc:TradingAccount {id:accountId})
 MERGE (custac)<-[:ACCESSES]-(acc)
