@@ -11,3 +11,6 @@ MERGE (l1)-[s1:CLIENT_SIGNS {MTA:toFloat(line.MTA1), rounding:toFloat(line.Round
 MERGE (l2)-[s2:COUNTERPARTY_SIGNS {MTA:toFloat(line.MTA2), rounding:toFloat(line.Rounding2), initialBalance:toFloat(line.InitialBalance2), variationBalance:toFloat(line.VariationBalance2), initialPending:toFloat(line.InitialPending2), variationPending:toFloat(line.VariationPending2), initialBalanceCash:toFloat(line.InitialBalanceCash2), variationBalanceCash:toFloat(line.VariationBalanceCash2), initialPendingCash:toFloat(line.InitialPendingCash2), variationPendingCash:toFloat(line.VariationPendingCash2), initialBalanceNonCash:toFloat(line.InitialBalanceNonCash2), variationBalanceNonCash:toFloat(line.VariationBalanceNonCash2), initialPendingNonCash:toFloat(line.InitialPendingNonCash2), variationPendingNonCash:toFloat(line.VariationPendingNonCash2)}]->(a)
 
 MERGE (a)-[:DEFINES]->(:FXHaircut {agreementId:a.id,FXHaircut:toFloat(line.FXHaircut)})
+
+MERGE (a)-[:FIRST]->(s:Step {status:'Active'})
+MERGE (a)-[:LAST]->(s)
