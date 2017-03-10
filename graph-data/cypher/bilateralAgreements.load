@@ -12,5 +12,5 @@ MERGE (l2)-[s2:COUNTERPARTY_SIGNS {MTA:toFloat(line.MTA2), rounding:toFloat(line
 
 MERGE (a)-[:DEFINES]->(:FXHaircut {agreementId:a.id,FXHaircut:toFloat(line.FXHaircut)})
 
-MERGE (a)-[:FIRST]->(s:Step {status:'Active'})
-MERGE (a)-[:LAST]->(s)
+//MERGE (a)-[:FIRST]->(s:Step {status:'Active'})
+//MERGE (a)-[:LAST]->(s)
