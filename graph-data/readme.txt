@@ -1,0 +1,25 @@
+Description of each file (alphabetical order):
+
+- assetCategories : create categories based on asset properties and used to assess eligibility
+- assetTransfer : generates examples of asset transfers after either party has pledged
+- bilateralAgreement : creates bilateral agreements (regulatory and legacy)
+- books : create books grouping trades
+- clearedAgreement : creates cleared "agreements"
+- clearingHouses : generates clearing house nodes
+- counterpartCustodian : creates custodian accounts for counterpartys
+- currencies : creates the system used to assess FX
+- custodianAccounts : creates custodian accounts for the client
+- custodianAssets : populates client custodian accounts with assets
+- custodians : creates custodians
+- eligibleCurrencies : sets eligible currencies and connects them to the relevant agreements
+- fcms : create FCM nodes
+- legalentities : creates all legal entities (client and counterparties)
+- infopres : sets margin calls to the correct status
+- initmc : creates static received margin calls (counterpartyAssets)
+- initmcexp : creates static expected margin calls (clientAssets)
+- mstatements : creates static margin statements
+- portfolios : create portfolios where trades are stored
+- ratingScores : sets ratings and their respective scores
+- reconEverything : a file used to recon every single static margin call (to test pledge json for instance)
+- settings.csv : sets client preferences for optimisation
+- tradingAccount : creates tradingAccounts

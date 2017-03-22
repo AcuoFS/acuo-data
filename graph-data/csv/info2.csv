@@ -1,7 +1,0 @@
-PrevStatus,NewStatus,AgreedAmount,ReasonCode,Comment,Time,AgreedCallId,DisputeCallId,CallId,StatementId
-Unrecon,PartialDispute,50000,9999,Comment,2016/10/25T12:00:15.000,mc55,mc61,mc1,ms1
-Unrecon,PartialDispute,20000,9999,Comment,2016/10/25T12:00:15.000,mc56,mc62,mc2,ms2
-Unrecon,PartialDispute,150000,9999,Comment,2016/10/25T12:00:15.000,mc57,mc63,mc3,ms3
-Unrecon,PartialDispute,50000,9999,Comment,2016/10/25T12:00:15.000,mc58,mc64,mc37,ms28
-Unrecon,PartialDispute,20000,9999,Comment,2016/10/25T12:00:15.000,mc59,mc65,mc38,ms29
-Unrecon,PartialDispute,150000,9999,Comment,2016/10/25T12:00:15.000,mc60,mc66,mc39,ms30
