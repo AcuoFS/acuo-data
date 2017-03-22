@@ -1,5 +1,9 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/custodianAccounts.csv' 
 AS line 
+
+MERGE (cust: Custodian {id:line.custodianId})
+SET cust.name = line.custodianName, cust.country = line.country, cust.countryShortName = line.countryShortName
+
 WITH line, SPLIT(line.tradingAccountId,'|') AS TradingAccounts
 
 MATCH (client:Client {id:line.clientId})
