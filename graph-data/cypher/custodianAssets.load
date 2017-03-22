@@ -25,6 +25,10 @@ h.reservedQuantity=TOFLOAT(line.reservedQuantity),
 h.internalCost=TOFLOAT(line.internalCost),
 h.opptCost=TOFLOAT(line.opptCost)
 
+WITH *
+
+MERGE (a)-[:PREFERRED_SOURCE]->(:Source {name:line.PreferredSource})
+
 WITH line,a,custac, timestamp()/1000/60/60/24 AS todayDays, TOINT(line.futureDays) AS futureDays
 
 FOREACH (i IN CASE 	WHEN trim(line.ISIN)<>"" THEN [1] 
