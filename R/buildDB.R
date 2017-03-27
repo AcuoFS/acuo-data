@@ -6,9 +6,9 @@ readLoad <- function(path) {
 }
 
 buildDataBase = function() {
-  graph = startGraph("http://margin.acuo.com:7474/db/data/")
+#  graph = startGraph("http://margin.acuo.com:7474/db/data/")
 #  graph = startGraph("http://qa.acuo.com:7474/db/data/")
-#  graph = startGraph("http://localhost:7474/db/data/")
+  graph = startGraph("http://localhost:7474/db/data/")
   
   clear(graph,input=FALSE)
   
@@ -37,7 +37,7 @@ buildDataBase = function() {
                  '/cypher/portfolios.load', 
                  '/cypher/books.load')
 
-  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data'
+  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/feature/dispute/graph-data'
   
   load.url<-paste(load.preurl,sep='',load.name)
   

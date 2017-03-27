@@ -3,7 +3,11 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/infopres.csv' AS line
 
 MATCH (pmc {id:line.CallId})
 
-WITH line, pmc
+WITH line, pmc, 
+
+CASE WHEN line.NewStatus = 'ActionDispute' THEN [1] ELSE [] END as dispute
+
+FOREACH (i in dispute | SET pmc.comment = line.Comment, pmc.disputeCode = line.DisputeCode, pmc.agreedAmount = line.AgreedAmout, pmc.agreedExposure = line.AgreedExposure, pmc.agreedCollateralBalance = line.AgreedCollateralBalance)
 
 MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {status:line.NewStatus})
 
