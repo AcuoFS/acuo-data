@@ -7,7 +7,7 @@ WITH line, pmc,
 
 CASE WHEN line.NewStatus = 'ActionDispute' THEN [1] ELSE [] END as dispute
 
-FOREACH (i in dispute | SET pmc.comment = line.Comment, pmc.disputeCode = line.DisputeCode, pmc.agreedAmount = line.AgreedAmout, pmc.agreedExposure = line.AgreedExposure, pmc.agreedCollateralBalance = line.AgreedCollateralBalance)
+FOREACH (i in dispute | SET pmc.comment = line.Comment, pmc.disputeCode = line.DisputeCode, pmc.agreedAmount = line.AgreedAmount, pmc.agreedExposure = line.AgreedExposure, pmc.agreedCollateralBalance = line.AgreedCollateralBalance)
 
 MERGE (pmc)-[:LAST {time:line.Time}]->(n:Step {status:line.NewStatus})
 
