@@ -1,11 +1,11 @@
-PrevStatus,NewStatus,Time,CallId
-Unrecon,ActionDispute,2017/01/13T12:00:00.000,mcp14
-Unrecon,ActionDispute,2017/01/13T12:00:00.000,mcp15
-Unrecon,ActionDispute,2017/01/13T12:00:00.000,mcp16
-Unrecon,Reconciled,2017/01/13T12:00:00.000,mcp1
-Unrecon,Reconciled,2017/01/13T12:00:00.000,mcp31
-Unrecon,Reconciled,2017/01/13T12:00:00.000,mcp43
-Unrecon,Reconciled,2017/01/13T12:00:00.000,pcf1
-Unrecon,Reconciled,2017/01/13T12:00:00.000,pcf31
-Unrecon,Reconciled,2017/01/13T12:00:00.000,ip31
-Unrecon,Reconciled,2017/01/13T12:00:00.000,pai31
+PrevStatus,NewStatus,Time,CallId,DisputeCode,Comment,AgreedAmount,AgreedExposure,AgreedCollateralBalance
+Unrecon,ActionDispute,2017/01/13T12:00:00.000,mcp14,9001,Portfolio Discrepancy,37500,-28982169,-28944500
+Unrecon,ActionDispute,2017/01/13T12:00:00.000,mcp15,9006,Unknown error in margin computation,-7500,6254500,6247235
+Unrecon,ActionDispute,2017/01/13T12:00:00.000,mcp16,9003,Wrong collateral value,-4500,-44017156,-44012500
+Unrecon,Reconciled,2017/01/13T12:00:00.000,mcp1,,,,,
+Unrecon,Reconciled,2017/01/13T12:00:00.000,mcp31,,,,,
+Unrecon,Reconciled,2017/01/13T12:00:00.000,mcp43,,,,,
+Unrecon,Reconciled,2017/01/13T12:00:00.000,pcf1,,,,,
+Unrecon,Reconciled,2017/01/13T12:00:00.000,pcf31,,,,,
+Unrecon,Reconciled,2017/01/13T12:00:00.000,ip31,,,,,
+Unrecon,Reconciled,2017/01/13T12:00:00.000,pai31,,,,,
