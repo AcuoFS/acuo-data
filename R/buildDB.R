@@ -6,9 +6,9 @@ readLoad <- function(path) {
 }
 
 buildDataBase = function() {
-  graph = startGraph("http://margin.acuo.com:7474/db/data/")
+#  graph = startGraph("http://margin.acuo.com:7474/db/data/")
 #  graph = startGraph("http://qa.acuo.com:7474/db/data/")
-#  graph = startGraph("http://localhost:7474/db/data/")
+  graph = startGraph("http://localhost:7474/db/data/")
   
   clear(graph,input=FALSE)
   

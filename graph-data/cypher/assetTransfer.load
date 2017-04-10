@@ -10,12 +10,14 @@ MATCH (from:CustodianAccount {id:line.clientCustodianAccountId}),
 MERGE (mc)<-[:GENERATED_BY]-(transfer:AssetTransfer {id:line.id})-[:OF]->(asset)
 ON CREATE SET
 	transfer.quantities = TOFLOAT(line.quantities),	
+	transfer.value = TOFLOAT(line.value),	
 	transfer.status = line.status,
 	transfer.subStatus = line.subStatus,
 	transfer.deliveryTime = line.deliveryTime
 	transfer.pledgeTime = line.pledgeTime
 ON MATCH SET
 	transfer.quantities = TOFLOAT(line.quantities),	
+	transfer.value = TOFLOAT(line.value),	
 	transfer.status = line.status,
 	transfer.subStatus = line.subStatus,
 	transfer.deliveryTime = line.deliveryTime

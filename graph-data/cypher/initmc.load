@@ -29,7 +29,7 @@ MATCH (mc:StatementItem {id:line.CallId})
 
 SET mc.notificationTime = mc.callDate + 'T' + a.notificationTime
 
-MERGE (mc)-[:FIRST]->(step1:Step {status:line.Status})
+MERGE (mc)-[:FIRST]->(step1:Step {status:'Unrecon'})
 MERGE (mc)-[:LAST]->(step1)
 
 MERGE (mc)-[:PART_OF]->(ms)

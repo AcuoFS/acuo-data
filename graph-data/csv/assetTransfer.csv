@@ -1,8 +1,8 @@
-id,clientCustodianAccountId,counterpartyCustodianAccountId,assetId,callId,quantities,reservedQuantities,status,subStatus,deliveryTime,pledgeTime
-DE0001104636-CustodianAccount1A-CustodianAccount3B-mcp1,CustodianAccount1A,CustodianAccount3B,DE0001104636,mcp1,1000000,,Departed,Delayed,t+1,12:00:00
-GBP-CustodianAccount1D-CustodianAccount3B-mcp1,CustodianAccount1D,CustodianAccount3B,GBP,mcp1,500000,,Departed,Cancelled,,12:00:00
-CAD-CustodianAccount1E-CustodianAccount3B-mcp1,CustodianAccount1E,CustodianAccount3B,CAD,mcp1,200000,,Departed,InFlight,t+0,12:00:00
-JP1103121AC2-CustodianAccount1A-CustodianAccount3A-mcp52,CustodianAccount1A,CustodianAccount3A,JP1103121AC2,mcp52,10000000,0,Arriving,Delayed,t+1,
-CHF-CustodianAccount1E-CustodianAccount3A-mcp52,CustodianAccount1E,CustodianAccount3A,CHF,mcp52,300000,0,Arriving,Cancelled,,
-DE0001141604-CustodianAccount1A-CustodianAccount3A-mcp52,CustodianAccount1A,CustodianAccount3A,DE0001141604,mcp52,2000000,2500,Arriving,InFlight,t+1,
-USD-CustodianAccount1D-CustodianAccount3C-mcp2,CustodianAccount1D,CustodianAccount3C,USD,mcp2,1500000,,Deployed,,,
+id,clientCustodianAccountId,counterpartyCustodianAccountId,assetId,callId,quantities,value,reservedQuantities,status,subStatus,deliveryTime,pledgeTime
+DE0001104636-CustodianAccount1A-CustodianAccount3B-mcp1,CustodianAccount1A,CustodianAccount3B,DE0001104636,mcp1,1000000,10627,,Departed,Delayed,t+1,12:00:00
+GBP-CustodianAccount1D-CustodianAccount3B-mcp1,CustodianAccount1D,CustodianAccount3B,GBP,mcp1,500000,641025,,Departed,Cancelled,,12:00:00
+CAD-CustodianAccount1E-CustodianAccount3B-mcp1,CustodianAccount1E,CustodianAccount3B,CAD,mcp1,200000,150375,,Departed,InFlight,t+0,12:00:00
+JP1103121AC2-CustodianAccount1A-CustodianAccount3A-mcp52,CustodianAccount1A,CustodianAccount3A,JP1103121AC2,mcp52,10000000,4788789237,0,Arriving,Delayed,t+1,14:00:00
+CHF-CustodianAccount1E-CustodianAccount3A-mcp52,CustodianAccount1E,CustodianAccount3A,CHF,mcp52,300000,297029,0,Arriving,Cancelled,,14:00:00
+DE0001141604-CustodianAccount1A-CustodianAccount3A-mcp52,CustodianAccount1A,CustodianAccount3A,DE0001141604,mcp52,2000000,21083,2500,Arriving,InFlight,t+1,14:00:00
+USD-CustodianAccount1D-CustodianAccount3C-mcp2,CustodianAccount1D,CustodianAccount3C,USD,mcp2,1500000,1500000,,Deployed,,,
