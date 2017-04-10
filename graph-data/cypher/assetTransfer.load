@@ -13,14 +13,14 @@ ON CREATE SET
 	transfer.value = TOFLOAT(line.value),	
 	transfer.status = line.status,
 	transfer.subStatus = line.subStatus,
-	transfer.deliveryTime = line.deliveryTime
+	transfer.deliveryTime = line.deliveryTime,
 	transfer.pledgeTime = line.pledgeTime
 ON MATCH SET
 	transfer.quantities = TOFLOAT(line.quantities),	
 	transfer.value = TOFLOAT(line.value),	
 	transfer.status = line.status,
 	transfer.subStatus = line.subStatus,
-	transfer.deliveryTime = line.deliveryTime
+	transfer.deliveryTime = line.deliveryTime,
 	transfer.pledgeTime = line.pledgeTime
 
 MERGE (transfer)-[:FROM]->(from)
