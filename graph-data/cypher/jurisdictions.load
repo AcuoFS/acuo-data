@@ -1,0 +1,4 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/jurisdictions.csv' 
+AS line
+
+MERGE (:Jurisdiction {code:line.Code, name:line.Name})
