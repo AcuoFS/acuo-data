@@ -12,6 +12,8 @@ MERGE (l2)-[s2:COUNTERPARTY_SIGNS {MTA:toFloat(line.MTA2), rounding:toFloat(line
 
 MERGE (a)-[:DEFINES]->(:FXHaircut {agreementId:a.id,FXHaircut:toFloat(line.FXHaircut)})
 
+WITH *
+
 MATCH (w1:WorkingZone {code:line.HolidayZone1})
 MATCH (w2:WorkingZone {code:line.HolidayZone1})
 
