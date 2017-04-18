@@ -38,7 +38,7 @@ buildDataBase = function() {
                  '/cypher/portfolios.load', 
                  '/cypher/books.load')
 
-  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data'
+  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/feature/528/graph-data'
   
   load.url<-paste(load.preurl,sep='',load.name)
   
