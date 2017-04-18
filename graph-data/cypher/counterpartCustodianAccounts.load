@@ -1,5 +1,9 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/counterpartCustodianAccounts.csv' 
 AS line 
+
+MERGE (cust: Custodian {id:line.custodianId})
+SET cust.name = line.custodianName, cust.country = line.country, cust.countryShortName = line.countryShortName
+
 WITH line, SPLIT(line.CounterEntityId,'|') AS Entities
 
 MERGE (custac: CustodianAccount {id:line.accountId,name:line.accountName,region:line.accountRegion})

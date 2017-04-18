@@ -1,0 +1,399 @@
+Name,Code
+Aruba,ABW
+Aruba,ABW_FI
+Afghanistan,AFG
+Afghanistan,AFG_FI
+Albania,ALB
+Albania,ALB_FI
+Algeria,ALG
+Algeria,ALG_FI
+Angola,ANG
+Angola,ANG_FI
+Argentina,ARG
+Argentina,ARG_FI
+Armenia,ARM
+Armenia,ARM_FI
+Australia (Melbourne),AUM
+Australia (Melbourne),AUM_FI
+Australia (Sydney / NSW),AUS
+Australia,AUS_FI
+Austria (Österreich),AUT
+Austria,AUT_FI
+Azerbaijan,AZE
+Azerbaijan,AZE_FI
+Bahamas,BAH
+Bahamas,BAH_FI
+Bahrain,BAN
+Bahrain,BAN_FI
+Belarus,BAR
+Belarus,BAR_FI
+Bangladesh,BAS
+Bangladesh,BAS_FI
+Barbados,BBD
+Barbados,BBD_FI
+Burundi,BDI
+Burundi,BDI_FI
+Belgium (Belgique - België),BEL
+Belgium,BEL_FI
+Benin,BEN
+Benin,BEN_FI
+Bermuda,BER
+Bermuda,BER_FI
+Burkina Faso,BFA
+Burkina Faso,BFA_FI
+Belize,BLZ
+Belieze,BLZ_FI
+Myanmar,BMA
+Myanmar,BMA_FI
+Bolivia,BOL
+Bolivia,BOL_FI
+Bosnia,BOS
+Bosnia,BOS_FI
+Brazil,BRA
+Brazil Exchange,BRA_BVMF
+Brazil,BRA_FI
+Brunei,BRU
+Brunei,BRU_FI
+Bhutan,BTN
+Bhutan,BTN_FI
+Bulgaria,BUL
+Bulgaria,BUL_FI
+British Virgin Islands,BVI
+British Virgin Islands,BVI_FI
+Botswana,BWA
+Botswana,BWA_FI
+Central African Republic,CAF
+Central African Republic,CAF_FI
+Canada (Toronto / Ontario),CAN
+Canada,CAN_FI
+Cayman Islands,CAY
+Cayman Islands,CAY_FI
+Cuba,CBA
+Cuba,CBA_FI
+Congo,CDF
+Congo,CDF_FI
+Chile,CHI
+Chile,CHI_FI
+China,CHN
+China,CHN_FI
+China Exchange,CHX
+China Exchange,CHX_FI
+Cameroon,CMR
+Cameroon,CMR_FI
+Colombia,COL
+Colombia,COL_FI
+Comoros,COM
+Comoros,COM_FI
+Cape Verde,CPV
+Cape Verde,CPV_FI
+Costa Rica,CRC
+Costa Rica,CRC_FI
+Croatia,CRO
+Croatia,CRO_FI
+Cyprus,CYP
+Cyprus,CYP_FI
+Czech Republic,CZE
+Czech Republic,CZE_FI
+Denmark (Danmark),DEN
+Denmark,DEN_FI
+Dijibouti,DJI
+Dijibouti,DJI_FI
+Dominican Republic,DOM
+Dominican Republic,DOM_FI
+Dubai,DUB
+Ecuador,ECD
+Ecuador,ECD_FI
+Egypt,EGY
+Egypt,EGY_FI
+Euroland Calendar,EMU
+Euroland Calendar,EMU_FI
+Euronext,ENX
+Euronext,ENX_FI
+Eritrea,ERI
+Eritrea,ERI_FI
+Estonia,EST
+Estonia,EST_FI
+Ethiopia,ETH
+Ethiopia,ETH_FI
+Eurobond,EUR
+Eurobond,EUR_FI
+Fiji,FIJ
+Fiji,FIJ_FI
+Finland (Suomi),FIN
+Finland,FIN_FI
+Fakland Islands,FKI
+Fakland Islands ,FKI_FI
+France,FRA
+France,FRA_FI
+Gambia,GAM
+Gambia,GAM_FI
+Georgia,GEO
+Georgia,GEO_FI
+Germany (Deutschland),GER
+Germany,GER_FI
+Ghana,GHA
+Ghana,GHA_FI
+Gibraltar,GIB
+Gibralter,GIB_FI
+Guinea,GIN
+Guinea,GIN_FI
+Guinea-Bissau,GNB
+Guinea-Bissau,GNB_FI
+Greece,GRE
+Greece,GRE_FI
+Guernsey,GUN
+Guernsey,GUN_FI
+Guatemala,GUT
+Guatemala,GUT_FI
+Guyana,GUY
+Guyana,GUY_FI
+Haiti,HAI
+Haiti,HAI_FI
+Hong Kong,HKG
+Hong Kong,HKG_FI
+Honduras,HON
+Honduras,HON_FI
+Hungary,HUN
+Hungary,HUN_FI
+Iceland,ICL
+Iceland,ICL_FI
+Indonesia,IDS
+Indonesia,IDS_FI
+International Monetry Fund,IMF
+India,IND
+India,IND_FI
+Iran,IRA
+Iran,IRA_FI
+Ireland,IRL
+Ireland,IRL_FI
+Iraq,IRQ
+Iraq,IRQ_FI
+Israel,ISR
+Israel,ISR_FI
+Italy (Italia),ITL
+Italy,ITL_FI
+Ivory Coast,IVC
+Ivory Coast,IVC_FI
+Jamacia,JAM
+Jamacia,JAM_FI
+Japan (Nippon),JAP
+Japan,JAP_FI
+Jersey,JER
+Jersey,JER_FI
+Jordan,JOR
+Jordan,JOR_FI
+Cambodia,KAM
+Cambodia,KAM_FI
+Kazakhstan,KAZ
+Kazakhstan,KAZ_FI
+Kenya,KEN
+Kenya,KEN_FI
+Kyrgyzstan,KGZ
+Kyrgyzstan,KGZ_FI
+Korea,KOR
+Korea,KOR_FI
+Kuwait,KWT
+Kuwait,KWT_FI
+Laos,LAO
+Laos,LAO_FI
+Libya,LAR
+Libya,LAR_FI
+Latvia,LAT
+Latvia,LAT_FI
+Liberia,LBA
+Liberia,LBA_FI
+Lebanon,LEB
+Lebanon,LEB_FI
+Lesotho,LES
+Lesotho,LES_FI
+Lithuania,LIH
+Lithuania,LIH_FI
+London/NY,LNY_FI
+London/NY Floating-Rate Tranches,LNYFRT_FI
+London/Tokyo,LTK_FI
+Luxembourg,LUX
+Luxembourg,LUX_FI
+Macau,MAC
+Macau,MAC_FI
+Madagascar,MAD
+Madagascar,MAD_FI
+Malaysia,MAL
+Malaysia,MAL_FI
+Moldova,MDA
+Moldova,MDA_FI
+Maldives,MDV
+Maladives,MDV_FI
+Mexico,MEX
+Mexico,MEX_FI
+Macedonia,MKD
+Macedonia,MKD_FI
+Mali,MLI
+Mali,MLI_FI
+Malta,MLT
+Malta,MLT_FI
+Montenegro,MNE
+Montenegro,MNE_FI
+Mongolia,MNT
+Mongolia,MNT_FI
+Morocco,MOR
+Morocco,MOR_FI
+Mozambique,MOZ
+Mozambique,MOZ_FI
+Mauritania,MRT
+Mauritania,MRT_FI
+Marshall Islands,MSI
+Marshall Islands,MSI_FI
+Mauritius,MUS
+Mauritius,MUS_FI
+Malawi,MWI
+Malawi,MWI_FI
+Namibia,NAM
+Namibia,NAM_FI
+Netherlands Antilles,NAT
+Netherlands Antilles,NAT_FI
+Nigeria,NGN
+Nigeria,NGN_FI
+Niger,NGR
+Niger,NGR_FI
+Nicaragua,NIC
+Nicaragua,NIC_FI
+North Korea,NKR
+North Korea,NKR_FI
+Norway (Norge),NOR
+Norway,NOR_FI
+Nepal,NPL
+Nepal,NPL_FI
+Netherlands (Nederland),NTL
+Netherlands,NTL_FI
+Generic Null Calendar,NULL
+New Zealand,NZL
+New Zealand,NZL_FI
+Oman,OMN
+Oman,OMN_FI
+Pakistan,PAK
+Pakistan,PAK_FI
+Panama,PAN
+Panama,PAN_FI
+Paraguay,PAR
+Paraguay,PAR_FI
+Peru,PER
+Peru,PER_FI
+Philippines,PHI
+Philippines,PHI_FI
+Papa New Guinea,PNG
+Papa New Guinea,PNG_FI
+Poland,POL
+Poland,POL_FI
+Portugal,POR
+Portugal,POR_FI
+Puerto Rico,PRI
+Qatar,QAT
+Qatar,QAT_FI
+Romania,ROU
+Romania,ROU_FI
+South Africa,RSA
+South Africa,RSA_FI
+Russian Federation,RUS
+Russian Federation,RUS_FI
+Rwanda,RWA
+Rwanda,RWA_FI
+Saudi Arabia,SAU
+Saudi Arabia,SAU_FI
+Sudan,SDN
+Sudan,SDN_FI
+Senegal,SEN
+Senegal,SEN_FI
+ST Helena,SHN
+ST Helena,SHN_FI
+Singapore,SIN
+Singapore,SIN_FI
+Soloman Islands,SLB
+Solomon Islands,SLB_FI
+Sierra Leone,SLE
+Sierra Leone,SLE_FI
+Slovakia,SLK
+Slovak Republic,SLK_FI
+Slovenia,SLO
+Slovenia,SLO_FI
+El Salvador,SLV
+El Salvador,SLV_FI
+Somalia,SOM
+Somalia,SOM_FI
+Spain (España),SPA
+Spain,SPA_FI
+Serbia,SRB
+Serbia,SRB_FI
+Sri Lanka,SRI
+Sri Lanka,SRI_FI
+Sao Tome,STP
+Sao Tome,STP_FI
+Surinam,SUR
+Surinam,SUR_FI
+Sweden (Sverige),SWE
+Sweden,SWE_FI
+Switzerland (Suisse - Schweiz),SWI
+Switzerland,SWI_FI
+Swaziland,SWZ
+Swaziland,SWZ_FI
+Seychelles,SYC
+Seychelles,SYC_FI
+Syria,SYR
+Syria,SYR_FI
+Thailand,THA
+Thailand,THA_FI
+Tajikistan,TJK
+Tajikistan,TJK_FI
+Turkmenistan,TKM
+Turkmenistan,TKM_FI
+Togo,TOG
+Togo,TOG_FI
+Tonga,TON
+Tonga,TON_FI
+Trinidad and Tobago,TTO
+Trinidad and Tobago,TTO_FI
+Tunisia,TUN
+Tunisia,TUN_FI
+Turkey,TUR
+Turkey,TUR_FI
+Taiwan,TWN
+Taiwan,TWN_FI
+Tokyo,TYO_ISDA
+Tanzania,TZA
+Tanzania,TZA_FI
+United Arab Emirates,UAE
+United Arab Emirates,UAE_FI
+Uganda,UGA
+Uganda,UGA_FI
+United Kingdom,UKG
+United Kingdom,UKG_FI
+UKIEUIPE,UKIEUIPE
+United Kingdom (London Metal Exchange),UKLME
+Non-LME Prompt Days,UKLME_PROMPT
+Ukraine,UKR
+Ukraine,UKR_FI
+Uruguay,URU
+Uruguay,URU_FI
+United States of America,USA
+United States,USA_FI
+US Bond Futures,USC_FI
+United States of America Money Market,USM
+United States of America Money Market,USM_FI
+United States - NYSE Holidays,USN_FI
+Uzbekistan,UZB
+Uzbekistan,UZB_FI
+Venezuela,VEN
+Venezuela,VEN_FI
+Vietnam,VNM
+Vietnam,VNM_FI
+Vanuatu,VUT
+Vanuatu,VUT_FI
+Generic Weekend Calendar,WEEKEND
+Samoa,WSM
+Samoa,WSM_FI
+Yemen,YEM
+Yemen,YEM_FI
+Zambia,ZMB
+Zambia,ZMB_FI
+Zimbabwe,ZWE
+Zimbabwe,ZWE_FI
+

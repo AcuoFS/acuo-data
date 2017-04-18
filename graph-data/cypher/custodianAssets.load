@@ -3,9 +3,14 @@ AS line
 
 MATCH (custac:CustodianAccount {id:line.accountId})
 
-MERGE (custac)-[h:HOLDS {businessTimeFrom:line.businessTimeFrom, businessTimeTo:line.businessTimeTo}]->(a:Asset {id: line.assetId,idType: line.idType, name:line.name,
-	currency:line.currency,	yield: TOFLOAT(line.yield),type:line.type,ICADCode:line.ICADCode,ACUOCategory:line.ACUOCategory,
-	price:TOFLOAT(line.price),parValue:TOFLOAT(line.parValue),minUnit:TOFLOAT(line.minUnit),minUnitValue:TOFLOAT(line.minUnitValue)})
+MERGE (a:Asset {id: line.assetId, idType: line.idType, name:line.name,
+				currency:line.currency,	yield: TOFLOAT(line.yield), type:line.type,ICADCode:line.ICADCode,ACUOCategory:line.ACUOCategory,
+				price:TOFLOAT(line.price),parValue:TOFLOAT(line.parValue),minUnit:TOFLOAT(line.minUnit),minUnitValue:TOFLOAT(line.minUnitValue)})
+
+FOREACH(x IN (CASE WHEN line.AssetType = 'Bond' THEN [1] else [] END) | SET a :Bond)
+FOREACH(x IN (CASE WHEN line.AssetType = 'Cash' THEN [1] else [] END) | SET a :Cash)
+
+MERGE (custac)-[h:HOLDS {businessTimeFrom:line.businessTimeFrom, businessTimeTo:line.businessTimeTo}]->(a)
 
 ON CREATE SET
 h.availableQuantity=TOFLOAT(line.availableQuantity),
@@ -24,6 +29,12 @@ h.availableQuantity=TOFLOAT(line.availableQuantity),
 h.reservedQuantity=TOFLOAT(line.reservedQuantity),
 h.internalCost=TOFLOAT(line.internalCost),
 h.opptCost=TOFLOAT(line.opptCost)
+
+WITH *
+
+MERGE (source:PricingSource {name:line.PricingSource})
+
+MERGE (a)-[:PRICING_SOURCE]->(source)
 
 WITH line,a,custac, timestamp()/1000/60/60/24 AS todayDays, TOINT(line.futureDays) AS futureDays
 
