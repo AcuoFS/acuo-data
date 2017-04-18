@@ -1,4 +1,0 @@
-LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/custodians.csv' 
-AS line
-
-
