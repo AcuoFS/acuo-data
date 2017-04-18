@@ -32,9 +32,9 @@ h.opptCost=TOFLOAT(line.opptCost)
 
 WITH *
 
-MERGE (source:Source {name:line.PreferredSource})
+MERGE (source:PricingSource {name:line.PricingSource})
 
-MERGE (a)-[:PREFERRED_SOURCE]->(source)
+MERGE (a)-[:PRICING_SOURCE]->(source)
 
 WITH line,a,custac, timestamp()/1000/60/60/24 AS todayDays, TOINT(line.futureDays) AS futureDays
 
