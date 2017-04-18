@@ -13,6 +13,7 @@ buildDataBase = function() {
   clear(graph,input=FALSE)
   
   load.name <- c('/cypher/firms.load',
+                 '/cypher/workingZones.load',
                  '/cypher/legalentities.load',
                  '/cypher/clearingHouses.load',
                  '/cypher/fcms.load',
