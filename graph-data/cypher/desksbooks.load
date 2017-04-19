@@ -1,0 +1,11 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/desksbooks.csv'
+AS line
+
+MATCH (l:LegalEntity {id:line.LEI})
+
+MERGE (l)-[:MANAGES]->(d:Desk {id:line.DeskId})
+ON CREATE SET d.name = line.DeskName
+
+MERGE (d)-[:MANAGES]->(b:Book {id:line.BookId})
+ON CREATE SET b.name = line.BookName
+
