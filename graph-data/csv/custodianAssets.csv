@@ -55,5 +55,5 @@ CustodianAccount1E,HKD,CASH,,Hongkong Dollar,HKD,CASH,Cash,HK-CASH,CASH,,,,1,0,,
 CustodianAccount1E,CAD,CASH,,Canadian Dollar,CAD,CASH,Cash,CA-CASH,CASH,,,,1,0,,1,0.01,0.01,0.01,0.01,0,,10000000,0,0,0,0,08:00:00.000,20:00:00.000,DataScope
 CustodianAccount1E,NOK,CASH,,Norwegian Krone,NOK,CASH,Cash,NO-CASH,CASH,,,,1,0,,1,0.01,0.01,0.01,0.01,0,,10000000,0,0,0,0,08:00:00.000,20:00:00.000,DataScope
 CustodianAccount1E,SEK,CASH,,Swedish Krona,SEK,CASH,Cash,SE-CASH,CASH,,,,1,0,,1,0.01,0.01,0.01,0.01,0,,10000000,0,0,0,0,08:00:00.000,20:00:00.000,DataScope
-CustodianAccount1E,KRW,CASH,,South Korea Won,KRW,CASH,Cash,KW-CASH,CASH,,,,1,0,,1,0.01,0.01,0.01,0.01,0,,10000000,0,0,0,0,08:00:00.000,20:00:00.000,DataScope
+CustodianAccount1E,KRW,CASH,,South Korea Won,KRW,CASH,Cash,KR-CASH,CASH,,,,1,0,,1,0.01,0.01,0.01,0.01,0,,10000000,0,0,0,0,08:00:00.000,20:00:00.000,DataScope
 CustodianAccount1E,NZD,CASH,,New Zealand Dollar,NZD,CASH,Cash,NZ-CASH,CASH,,,,1,0,,1,0.01,0.01,0.01,0.01,0,,10000000,0,0,0,0,08:00:00.000,20:00:00.000,DataScope
