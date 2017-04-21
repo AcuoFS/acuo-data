@@ -32,7 +32,7 @@ OPTIONAL MATCH (ag)-[:DEFINES]-(:FXHaircut)<-[case3:ELSE_APPLY]-(ecl)
 
 FOREACH (i IN CASE WHEN c IS NOT NULL THEN [1] ELSE [] END| MERGE (a)-[:IF]->(c))
 
-MERGE (rule:Rule {id:a.id+ag.id, haircut:ie.haircut,interestRate:ie.interestRate,
+MERGE (ag)-[:IS_COMPOSED_OF]->(rule:Rule {haircut:ie.haircut,interestRate:ie.interestRate,
 	externalCost:ie.externalCost, marginType:ie.marginType})
 SET rule.FXHaircut= 
 		CASE 
@@ -42,4 +42,3 @@ SET rule.FXHaircut=
 		ELSE case3.FXHaircut 
 		END
 MERGE (rule)-[:APPLIES_TO]->(a)
-MERGE (rule)-[:RELATES_TO]->(ag)
