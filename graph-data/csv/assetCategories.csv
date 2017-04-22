@@ -8,6 +8,9 @@ AU-CASH,CASH,AUD,0.002,0,,,,,,0,0.05,a1|a2|a3|a4|a5|a6|a7|a8|a9|a10|a11|a12|a13|
 HK-CASH,CASH,HKD,0.004,0,,,,,,0,0.05,a1|a2|a3|a4|a5|a6|a7|a8|a9|a10|a11|a12|a13|a14|a15|a16|a17|a18|a19|a20|a21|a22|a23|a24|a25|a26|a27|a28|a29|a30,Variation|Initial
 CA-CASH,CASH,CAD,0.003,0,,,,,,0,0.05,a1|a2|a3|a4|a5|a6|a7|a8|a9|a10|a11|a12|a13|a14|a15|a16|a17|a18|a19|a20|a21|a22|a23|a24|a25|a26|a27|a28|a29|a30,Variation|Initial
 NO-CASH,CASH,NOK,0.005,0,,,,,,0,0.05,a1|a2|a3|a4|a5|a6|a7|a8|a9|a10|a11|a12|a13|a14|a15|a16|a17|a18|a19|a20|a21|a22|a23|a24|a25|a26|a27|a28|a29|a30,Variation|Initial
+SE-CASH,CASH,SEK,0.005,0,,,,,,0,0.05,a1|a2|a3|a4|a5|a6|a7|a8|a9|a10|a11|a12|a13|a14|a15|a16|a17|a18|a19|a20|a21|a22|a23|a24|a25|a26|a27|a28|a29|a30,Variation|Initial
+KR-CASH,CASH,KRW,0.005,0,,,,,,0,0.05,a1|a2|a3|a4|a5|a6|a7|a8|a9|a10|a11|a12|a13|a14|a15|a16|a17|a18|a19|a20|a21|a22|a23|a24|a25|a26|a27|a28|a29|a30,Variation|Initial
+NZ-CASH,CASH,NZD,0.005,0,,,,,,0,0.05,a1|a2|a3|a4|a5|a6|a7|a8|a9|a10|a11|a12|a13|a14|a15|a16|a17|a18|a19|a20|a21|a22|a23|a24|a25|a26|a27|a28|a29|a30,Variation|Initial
 ,,,,,,,,,,,,,
 SG-CASH,CASH,SGD,0.003,0.002,,,,,,0,0.05,a31|a32|a33|a34|a35|a36|a37|a38|a39|a40|a41|a42,Variation|Initial
 JP-CASH,CASH,JPY,0.005,0,,,,,,0,0.05,a31|a32|a33|a34|a35|a36|a37|a38|a39|a40|a41|a42,Variation|Initial
@@ -18,6 +21,9 @@ AU-CASH,CASH,AUD,0.002,0,,,,,,0,0.05,a31|a32|a33|a34|a35|a36|a37|a38|a39|a40|a41
 HK-CASH,CASH,HKD,0.004,0,,,,,,0,0.05,a31|a32|a33|a34|a35|a36|a37|a38|a39|a40|a41|a42,Variation|Initial
 CA-CASH,CASH,CAD,0.003,0,,,,,,0,0.05,a31|a32|a33|a34|a35|a36|a37|a38|a39|a40|a41|a42,Variation|Initial
 NO-CASH,CASH,NOK,0.005,0,,,,,,0,0.05,a31|a32|a33|a34|a35|a36|a37|a38|a39|a40|a41|a42,Variation|Initial
+SE-CASH,CASH,SEK,0.005,0,,,,,,0,0.05,a31|a32|a33|a34|a35|a36|a37|a38|a39|a40|a41|a42,Variation|Initial
+KR-CASH,CASH,KRW,0.005,0,,,,,,0,0.05,a31|a32|a33|a34|a35|a36|a37|a38|a39|a40|a41|a42,Variation|Initial
+NZ-CASH,CASH,NZD,0.005,0,,,,,,0,0.05,a31|a32|a33|a34|a35|a36|a37|a38|a39|a40|a41|a42,Variation|Initial
 ,,,,,,,,,,,,,
 US-TBILL,TBILL,USD,0.002,0,,AA,AAA,0,1,0.005,0,a31|a32|a33|a34|a35|a36|a37|a38|a39|a40|a41|a42,Initial
 DE-NOTE2,NOTE,EUR,0.002,0,,A,AAA,0,5,0.06,0.05,a31|a32|a33|a34|a35|a36|a37|a38|a39|a40|a41|a42,Initial
