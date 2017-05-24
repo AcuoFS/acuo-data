@@ -8,3 +8,5 @@ WITH *
 MATCH (c2:Currency {id:'USD'})
 
 MERGE (c1)<-[:FROM]-(fxRate:FXRate {value:toFloat(line.ValueToUSD)})-[:TO]->(c2)
+MERGE (value:FXValue {value:toFloat(line.ValueToUSD), from:timestamp()})-[:OF]->(fxRate)
+MERGE (fxRate)-[:LAST]->(value)
