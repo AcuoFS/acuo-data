@@ -1,0 +1,7 @@
+MATCH (n:MarginStatement) DETACH DELETE n;
+MATCH (n:StatementItem) DETACH DELETE n;
+MATCH (n:Step) DETACH DELETE n;
+MATCH (n:MarginValuation) DETACH DELETE n;
+MATCH (n:MarginValue) DETACH DELETE n;
+MATCH (n:TradeValuation) DETACH DELETE n;
+MATCH (n:TradeValue) DETACH DELETE n;
