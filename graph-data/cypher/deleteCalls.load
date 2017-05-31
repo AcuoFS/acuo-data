@@ -1,7 +1,10 @@
-MATCH (n:MarginStatement) DETACH DELETE n;
-MATCH (n:StatementItem) DETACH DELETE n;
-MATCH (n:Step) DETACH DELETE n;
-MATCH (n:MarginValuation) DETACH DELETE n;
-MATCH (n:MarginValue) DETACH DELETE n;
-MATCH (n:TradeValuation) DETACH DELETE n;
-MATCH (n:TradeValue) DETACH DELETE n;
+MATCH (n) 
+WHERE n:MarginStatement 
+OR n:StatementItem 
+OR n:Step 
+OR n:MarginValuation 
+OR n:MarginValue 
+OR n:TradeValuation 
+OR n:TradeValue
+OR n:AssetTransfer
+DETACH DELETE n;
