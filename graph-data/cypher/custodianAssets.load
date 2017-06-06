@@ -3,7 +3,7 @@ AS line
 
 MATCH (custac:CustodianAccount {id:line.accountId})
 
-MERGE (a:Asset {id: line.assetId, idType: line.idType, name:line.name,
+MERGE (a:Asset {id: line.assetId, idType: line.idType, name:line.name,settlementTime:line.settlementTime,
 				currency:line.currency,	yield: TOFLOAT(line.yield), type:line.type,ICADCode:line.ICADCode,ACUOCategory:line.ACUOCategory,
 				price:TOFLOAT(line.price),parValue:TOFLOAT(line.parValue),minUnit:TOFLOAT(line.minUnit),minUnitValue:TOFLOAT(line.minUnitValue)})
 
