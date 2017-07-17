@@ -1,0 +1,2 @@
+rule,agreementId,haircutProvider,issuerCountry,entityType,assetType,maturityLb,maturityUp,fitchRating,CounterpartyFitchRating,securityAR
+fitch-bond-secAR-0001,ag1,"""Fitch""","""AU"",""NZ""","""GVT"",""SUPN""",GOVT,0,1,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""AA-"",""AA"",""AA+"",""AAA""",0.99
