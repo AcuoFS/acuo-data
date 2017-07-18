@@ -7,4 +7,5 @@ OR n:MarginValue
 OR n:TradeValuation 
 OR n:TradeValue
 OR n:AssetTransfer
+OR n:Dispute
 DETACH DELETE n;
