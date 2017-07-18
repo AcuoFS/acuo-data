@@ -1,0 +1,45 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/csaFitchSecAR.csv' 
+AS line 
+
+MATCH (ag:Agreement {id:line.agreementId})
+
+FOREACH(i in CASE WHEN trim(line.rule) <> "" THEN [1] ELSE [] END
+	|MERGE (ag)-[:IS_COMPOSED_OF]->(rule1:Rule:ValuationPercentage {name:line.rule,haircutProvider:line.haircutProvider,
+	valuationPercentage:line.securityAR})
+	
+	FOREACH(k in CASE WHEN trim(line.issuerCountry) <> "" THEN [1] ELSE [] END
+	|MERGE (criteria1:Criteria:IssuerCountry {value:line.issuerCountry})
+	MERGE (rule1)-[:REQUIRES]->(criteria1)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.fitchRating) <> "" THEN [1] ELSE [] END
+	|MERGE (criteria2:Criteria:FitchRating {value:line.fitchRating})
+	MERGE (rule1)-[:REQUIRES]->(criteria2)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.entityType) <> "" THEN [1] ELSE [] END
+	|MERGE (criteria3:Criteria:EntityType {value:line.entityType})
+	MERGE (rule1)-[:REQUIRES]->(criteria3)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.assetType) <> "" THEN [1] ELSE [] END
+	|MERGE (criteria4:Criteria:AssetType {value:line.assetType})
+	MERGE (rule1)-[:REQUIRES]->(criteria4)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.maturityLb) <> "" THEN [1] ELSE [] END
+	|MERGE (criteria5:Criteria:MaturityLb {value:line.maturityLb})
+	MERGE (rule1)-[:REQUIRES]->(criteria5)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.maturityUb) <> "" THEN [1] ELSE [] END
+	|MERGE (criteria6:Criteria:MaturityUb {value:line.maturityUb})
+	MERGE (rule1)-[:REQUIRES]->(criteria6)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.counterpartyFitchRating) <> "" THEN [1] ELSE [] END
+	|MERGE (criteria7:Criteria:CounterpartyFitchRating {value:line.counterpartyFitchRating})
+	MERGE (rule1)-[:REQUIRES]->(criteria7)
+	)
+)
+

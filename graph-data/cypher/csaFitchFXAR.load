@@ -1,0 +1,19 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/csaFitchFXAR.csv' 
+AS line 
+MATCH (ag:Agreement {id:line.agreementId})
+
+FOREACH(i in CASE WHEN trim(line.rule) <> "" THEN [1] ELSE [] END
+	|MERGE (ag)-[:IS_COMPOSED_OF]->(rule1:Rule:ValuationPercentageFX {name:line.rule,haircutProvider:line.haircutProvider,
+	valuationPercentageFX:line.fxAR})
+	
+	FOREACH(k in CASE WHEN trim(line.fitchFxCurrency) <> "" THEN [1] ELSE [] END
+	|MERGE (criteria1:Criteria:FitchFxCurrency {value:line.fitchFxCurrency})
+	MERGE (rule1)-[:REQUIRES]->(criteria1)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.counterpartyFitchRating) <> "" THEN [1] ELSE [] END
+	|MERGE (criteria7:Criteria:CounterpartyFitchRating {value:line.counterpartyFitchRating})
+	MERGE (rule1)-[:REQUIRES]->(criteria7)
+	)
+)
+
