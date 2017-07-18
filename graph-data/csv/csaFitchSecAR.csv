@@ -1,4 +1,4 @@
-rule,agreementId,haircutProviderOperator,haircutProvider,issuerCountryOperator,issuerCountry,entityTypeOperator,entityType,assetTypeOperator,assetType,maturityLbOperator,maturityLb,maturityUbOperator,maturityUb,fitchRatingOperator,fitchRating,counterpartyFitchRatingOperator,counterpartyFitchRating,securityAR
+rule,agreementId,haircutProviderOperator,haircutProvider,issuerCountryOperator,issuerCountry,issuerEntityTypeOperator,issuerEntityType,assetAssetTypeOperator,assetAssetType,maturityLbOperator,maturityLb,maturityUbOperator,maturityUb,fitchRatingOperator,fitchRating,counterpartyFitchRatingOperator,counterpartyFitchRating,securityAR
 fitch-bond-secAR-0001,ag1,==,Fitch,in,"AU,NZ",in,"GVT,SUPN",==,GOVT,>=,0,<,1,in,"AA-,AA,AA+,AAA,F1+",in,"AA-,AA,AA+,AAA",0.99
 fitch-bond-secAR-0002,ag1,==,Fitch,in,"AU,NZ",in,"GVT,SUPN",==,GOVT,>=,1,<,3,in,"AA-,AA,AA+,AAA,F1+",in,"AA-,AA,AA+,AAA",0.965
 fitch-bond-secAR-0003,ag1,==,Fitch,in,"AU,NZ",in,"GVT,SUPN",==,GOVT,>=,3,<,,in,"AA-,AA,AA+,AAA,F1+",in,"AA-,AA,AA+,AAA",0.94
