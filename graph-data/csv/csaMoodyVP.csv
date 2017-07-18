@@ -1,4 +1,4 @@
-rule,agreementId,haircutProviderOperator,haircutProvider,issuerCountryOperator,issuerCountry,issuerIsUSGovAgencyOperator,issuerIsUSGovAgency,issuerNameOperator,issuerName,assetTypeOperator,assetType,typeOperator,type,currencyOperator,currency,maturityLbOperator,maturityLb,maturityUbOperator,maturityUb,moodyRatingOperator,moodyRating,rateTypeOperator,rateType,triggerOperator,trigger,valuationPercentage
+rule,agreementId,haircutProviderOperator,haircutProvider,issuerCountryOperator,issuerCountry,issuerIsUSGovAgencyOperator,issuerIsUSGovAgency,issuerNameOperator,issuerName,assetAssetTypeOperator,assetAssetType,assetTypeOperator,assetType,assetCurrencyOperator,assetCurrency,maturityLbOperator,maturityLb,maturityUbOperator,maturityUb,moodyRatingOperator,moodyRating,assetRateTypeOperator,assetRateType,triggerOperator,trigger,valuationPercentage
 csa-moody-haricut-0001,ag1,==,Moody,,,,,,,,,==,cash,==,GBP,,,,,,,,,==,1,1
 csa-moody-haricut-0002,ag1,==,Moody,,,,,,,,,==,cash,==,GBP,,,,,,,,,==,2,1
 csa-moody-haricut-0003,ag1,==,Moody,,,,,,,,,==,cash,==,EUR,,,,,,,,,==,1,0.99
