@@ -1,4 +1,4 @@
-rule,agreementId,haircutProviderOperator,haircutProvider,fitchFxCurrencyOperator,fitchFxCurrency,couterpartyFitchRatingOperator,counterpartyFitchRating,fxAR
+rule,agreementId,haircutProviderOperator,haircutProvider,fitchFxCurrencyOperator,fitchFxCurrency,counterpartyFitchRatingOperator,counterpartyFitchRating,fxAR
 rule-fitch-fxAR-a1,ag1,==,Fitch,in,"AUD,CAD,CHF,DKK,EUR,GBP,
 NOK,NZD,JPY,SEK,SGD,USD",in,"AA-,AA,AA+,AAA",0.86
 rule-fitch-fxAR-a2,ag1,==,Fitch,in,"AUD,CAD,CHF,DKK,EUR,GBP,
