@@ -2,18 +2,26 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/csaFitchFXAR.csv'
 AS line 
 MATCH (ag:Agreement {id:line.agreementId})
 
+MERGE (ag)-[:DEFINES]->(er:EligibilityRules)
+
 FOREACH(i in CASE WHEN trim(line.rule) <> "" THEN [1] ELSE [] END
-	|MERGE (ag)-[:IS_COMPOSED_OF]->(rule1:Rule:ValuationPercentageFX {name:line.rule,haircutProvider:line.haircutProvider,
+	|MERGE (er)-[:IS_COMPOSED_OF]->(rule1:Rule:ValuationPercentageFX {id:line.rule,
 	valuationPercentageFX:line.fxAR})
 	
 	FOREACH(k in CASE WHEN trim(line.fitchFxCurrency) <> "" THEN [1] ELSE [] END
-	|MERGE (criteria1:Criteria:FitchFxCurrency {value:line.fitchFxCurrency})
-	MERGE (rule1)-[:REQUIRES]->(criteria1)
+	|MERGE (criterion1:Criterion:FitchFxCurrency {value:line.fitchFxCurrency,operator:line.fitchFxCurrencyOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion1)
 	)
 
 	FOREACH(k in CASE WHEN trim(line.counterpartyFitchRating) <> "" THEN [1] ELSE [] END
-	|MERGE (criteria7:Criteria:CounterpartyFitchRating {value:line.counterpartyFitchRating})
-	MERGE (rule1)-[:REQUIRES]->(criteria7)
+	|MERGE (criterion2:Criterion:CounterpartyFitchRating {value:line.counterpartyFitchRating,operator:line.counterpartyFitchRatingOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion2)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.haircutProvider) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion3:Criterion:HaircutProvider {value:line.haircutProvider,operator:line.haircutProviderOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion3)
 	)
 )
+
 

@@ -3,43 +3,50 @@ AS line
 
 MATCH (ag:Agreement {id:line.agreementId})
 
+MERGE (ag)-[:DEFINES]->(er:EligibilityRules)
+
 FOREACH(i in CASE WHEN trim(line.rule) <> "" THEN [1] ELSE [] END
-	|MERGE (ag)-[:IS_COMPOSED_OF]->(rule1:Rule:ValuationPercentage {name:line.rule,haircutProvider:line.haircutProvider,
+	|MERGE (er)-[:IS_COMPOSED_OF]->(rule1:Rule:ValuationPercentage {id:line.rule,
 	valuationPercentage:line.securityAR})
 	
 	FOREACH(k in CASE WHEN trim(line.issuerCountry) <> "" THEN [1] ELSE [] END
-	|MERGE (criteria1:Criteria:IssuerCountry {value:line.issuerCountry})
-	MERGE (rule1)-[:REQUIRES]->(criteria1)
+	|MERGE (criterion1:Criterion:IssuerCountry {value:line.issuerCountry,operator:line.issuerCountryOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion1)
 	)
 
 	FOREACH(k in CASE WHEN trim(line.fitchRating) <> "" THEN [1] ELSE [] END
-	|MERGE (criteria2:Criteria:FitchRating {value:line.fitchRating})
-	MERGE (rule1)-[:REQUIRES]->(criteria2)
+	|MERGE (criterion2:Criterion:FitchRating {value:line.fitchRating,operator:line.fitchRatingOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion2)
 	)
 
-	FOREACH(k in CASE WHEN trim(line.entityType) <> "" THEN [1] ELSE [] END
-	|MERGE (criteria3:Criteria:EntityType {value:line.entityType})
-	MERGE (rule1)-[:REQUIRES]->(criteria3)
+	FOREACH(k in CASE WHEN trim(line.issuerEntityType) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion3:Criterion:IssuerEntityType {value:line.issuerEntityType,operator:line.issuerEntityTypeOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion3)
 	)
 
-	FOREACH(k in CASE WHEN trim(line.assetType) <> "" THEN [1] ELSE [] END
-	|MERGE (criteria4:Criteria:AssetType {value:line.assetType})
-	MERGE (rule1)-[:REQUIRES]->(criteria4)
+	FOREACH(k in CASE WHEN trim(line.assetAssetType) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion4:Criterion:AsestAssetType {value:line.assetAssetType,operator:line.assetAssetTypeOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion4)
 	)
 
 	FOREACH(k in CASE WHEN trim(line.maturityLb) <> "" THEN [1] ELSE [] END
-	|MERGE (criteria5:Criteria:MaturityLb {value:line.maturityLb})
-	MERGE (rule1)-[:REQUIRES]->(criteria5)
+	|MERGE (criterion5:Criterion:MaturityLb {value:line.maturityLb,operator:line.maturityLbOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion5)
 	)
 
 	FOREACH(k in CASE WHEN trim(line.maturityUb) <> "" THEN [1] ELSE [] END
-	|MERGE (criteria6:Criteria:MaturityUb {value:line.maturityUb})
-	MERGE (rule1)-[:REQUIRES]->(criteria6)
+	|MERGE (criterion6:Criterion:MaturityUb {value:line.maturityUb,operator:line.maturityUbOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion6)
 	)
 
 	FOREACH(k in CASE WHEN trim(line.counterpartyFitchRating) <> "" THEN [1] ELSE [] END
-	|MERGE (criteria7:Criteria:CounterpartyFitchRating {value:line.counterpartyFitchRating})
-	MERGE (rule1)-[:REQUIRES]->(criteria7)
+	|MERGE (criterion7:Criterion:CounterpartyFitchRating {value:line.counterpartyFitchRating,operator:line.counterpartyFitchRatingOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion7)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.haircutProvider) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion8:Criterion:HaircutProvider {value:line.haircutProvider,operator:line.haircutProviderOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion8)
 	)
 )
 

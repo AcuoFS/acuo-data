@@ -1,0 +1,72 @@
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/feature/708/graph-data/csv/csaMoodyVP.csv' 
+AS line 
+
+MATCH (ag:Agreement {id:line.agreementId})
+
+MERGE (ag)-[:DEFINES]->(er:EligibilityRules)
+
+FOREACH(i in CASE WHEN trim(line.rule) <> "" THEN [1] ELSE [] END
+	|MERGE (er)-[:IS_COMPOSED_OF]->(rule1:Rule:ValuationPercentage {id:line.rule,
+	valuationPercentage:line.valuationPercentage})
+	
+	FOREACH(k in CASE WHEN trim(line.issuerCountry) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion1:Criterion:IssuerCountry {value:line.issuerCountry,operator:line.issuerCountryOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion1)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.issuerIsUSGovAgency) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion2:Criterion:IssuerIsUSGovAgency {value:line.issuerIsUSGovAgency,operator:line.issuerIsUSGovAgencyOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion2)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.issuerName) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion3:Criterion:IssuerName {value:line.issuerName,operator:line.issuerNameOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion3)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.assetAssetType) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion4:Criterion:AssetAssetType {value:line.assetAssetType,operator:line.assetAssetTypeOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion4)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.assetType) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion5:Criterion:AssetType {value:line.assetType,operator:line.assetTypeOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion5)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.maturityLb) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion6:Criterion:MaturityLb {value:line.maturityLb,operator:line.maturityLbOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion6)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.maturityUb) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion7:Criterion:MaturityUb {value:line.maturityUb,operator:line.maturityUbOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion7)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.moodyRating) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion8:Criterion:MoodyRating {value:line.moodyRating,operator:line.moodyRatingOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion8)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.assetRateType) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion9:Criterion:AssetRateType {value:line.assetRateType,operator:line.assetRateTypeOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion9)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.trigger) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion10:Criterion:Trigger {value:line.trigger,operator:line.triggerOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion10)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.assetCurrency) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion11:Criterion:AssetCurrency {value:line.assetCurrency,operator:line.assetCurrencyOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion11)
+	)
+
+	FOREACH(k in CASE WHEN trim(line.haircutProvider) <> "" THEN [1] ELSE [] END
+	|MERGE (criterion12:Criterion:HaircutProvider {value:line.haircutProvider,operator:line.haircutProviderOperator})
+	MERGE (rule1)-[:REQUIRES]->(criterion12)
+	)
+)
+
