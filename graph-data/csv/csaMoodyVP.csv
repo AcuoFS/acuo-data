@@ -1,79 +1,79 @@
 rule,agreementId,haircutProvider,issuerCountry,issuerIsUSGovAgency,issuerName,assetType,type,assetType,maturityLb,maturityUb,moodyRating,rateType,trigger,valuationPercentage
-csa-moody-haricut-0001,ag1,"""Moody""",,,,,"""cash""",GOVT,,,,,1,1
-csa-moody-haricut-0002,ag1,"""Moody""",,,,,"""cash""","""GOVT""",,,,,2,1
-csa-moody-haricut-0003,ag1,"""Moody""",,,,,"""cash""","""GOVT""",,,,,1,0.99
-csa-moody-haricut-0004,ag1,"""Moody""",,,,,"""cash""","""GOVT""",,,,,2,0.97
-csa-moody-haricut-0005,ag1,"""Moody""",,,,,"""cash""","""GOVT""",,,,,1,0.98
-csa-moody-haricut-0006,ag1,"""Moody""",,,,,"""cash""","""GOVT""",,,,,2,0.95
-csa-moody-haricut-0007,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",0,1,,"""fix""",1,0.98
-csa-moody-haricut-0008,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",1,2,,"""fix""",1,0.98
-csa-moody-haricut-0009,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",2,3,,"""fix""",1,0.98
-csa-moody-haricut-0010,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",3,5,,"""fix""",1,0.98
-csa-moody-haricut-0011,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",5,7,,"""fix""",1,0.98
-csa-moody-haricut-0012,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",7,10,,"""fix""",1,0.98
-csa-moody-haricut-0013,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",10,20,,"""fix""",1,0.98
-csa-moody-haricut-0014,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",20,999,,"""fix""",1,0.98
-csa-moody-haricut-0015,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",0,999,,"""float""",1,0.98
-csa-moody-haricut-0016,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",0,1,,"""fix""",2,0.95
-csa-moody-haricut-0017,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",1,2,,"""fix""",2,0.94
-csa-moody-haricut-0018,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",2,3,,"""fix""",2,0.93
-csa-moody-haricut-0019,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",3,5,,"""fix""",2,0.92
-csa-moody-haricut-0020,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",5,7,,"""fix""",2,0.91
-csa-moody-haricut-0021,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",7,10,,"""fix""",2,0.89
-csa-moody-haricut-0022,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",10,20,,"""fix""",2,0.86
-csa-moody-haricut-0023,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",20,999,,"""fix""",2,0.84
-csa-moody-haricut-0024,ag1,"""Moody""",,,"""U.S. Treasury Department""",,"""bond""","""GOVT""",0,999,,"""float""",2,0.94
-csa-moody-haricut-0025,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",0,1,,"""fix""",1,0.98
-csa-moody-haricut-0026,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",1,2,,"""fix""",1,0.98
-csa-moody-haricut-0027,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",2,3,,"""fix""",1,0.98
-csa-moody-haricut-0028,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",3,5,,"""fix""",1,0.98
-csa-moody-haricut-0029,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",5,7,,"""fix""",1,0.98
-csa-moody-haricut-0030,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",7,10,,"""fix""",1,0.98
-csa-moody-haricut-0031,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",10,20,,"""fix""",1,0.98
-csa-moody-haricut-0032,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",20,999,,"""fix""",1,0.98
-csa-moody-haricut-0033,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",0,999,,"""float""",1,0.98
-csa-moody-haricut-0034,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",0,1,,"""fix""",2,0.94
-csa-moody-haricut-0035,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",1,2,,"""fix""",2,0.94
-csa-moody-haricut-0036,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",2,3,,"""fix""",2,0.93
-csa-moody-haricut-0037,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",3,5,,"""fix""",2,0.91
-csa-moody-haricut-0038,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",5,7,,"""fix""",2,0.9
-csa-moody-haricut-0039,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",7,10,,"""fix""",2,0.88
-csa-moody-haricut-0040,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",10,20,,"""fix""",2,0.85
-csa-moody-haricut-0041,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",20,999,,"""fix""",2,0.83
-csa-moody-haricut-0042,ag1,"""Moody""",,TRUE,,,"""bond""","""GOVT""",0,999,,"""float""",2,0.93
-csa-moody-haricut-0043,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",0,1,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",1,0.99
-csa-moody-haricut-0044,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",1,2,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",1,0.99
-csa-moody-haricut-0045,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",2,3,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",1,0.99
-csa-moody-haricut-0046,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",3,5,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",1,0.99
-csa-moody-haricut-0047,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",5,7,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",1,0.99
-csa-moody-haricut-0048,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",7,10,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",1,0.99
-csa-moody-haricut-0049,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",10,20,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",1,0.99
-csa-moody-haricut-0050,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",20,999,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",1,0.99
-csa-moody-haricut-0051,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",0,999,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""float""",1,0.99
-csa-moody-haricut-0052,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",0,1,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",2,0.97
-csa-moody-haricut-0053,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",1,2,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",2,0.96
-csa-moody-haricut-0054,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",2,3,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",2,0.95
-csa-moody-haricut-0055,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",3,5,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",2,0.93
-csa-moody-haricut-0056,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",5,7,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",2,0.92
-csa-moody-haricut-0057,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",7,10,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",2,0.91
-csa-moody-haricut-0058,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",10,20,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",2,0.86
-csa-moody-haricut-0059,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",20,999,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""fix""",2,0.84
-csa-moody-haricut-0060,ag1,"""Moody""",,,,"""GOVT""","""bond""","""GOVT""",0,999,"""Aaa"", ""Aa1"", ""Aa2"", ""Aa3""","""float""",2,0.96
-csa-moody-haricut-0061,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",0,1,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",1,1
-csa-moody-haricut-0062,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",1,2,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",1,1
-csa-moody-haricut-0063,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",2,3,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",1,1
-csa-moody-haricut-0064,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",3,5,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",1,1
-csa-moody-haricut-0065,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",5,7,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",1,1
-csa-moody-haricut-0066,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",7,10,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",1,1
-csa-moody-haricut-0067,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",10,20,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",1,1
-csa-moody-haricut-0068,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",20,999,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",1,1
-csa-moody-haricut-0069,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",0,999,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""float""",1,1
-csa-moody-haricut-0070,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",0,1,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",2,0.99
-csa-moody-haricut-0071,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",1,2,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",2,0.98
-csa-moody-haricut-0072,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",2,3,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",2,0.97
-csa-moody-haricut-0073,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",3,5,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",2,0.96
-csa-moody-haricut-0074,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",5,7,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",2,0.95
-csa-moody-haricut-0075,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",7,10,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",2,0.94
-csa-moody-haricut-0076,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",10,20,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",2,0.9
-csa-moody-haricut-0077,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",20,999,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""fix""",2,0.88
-csa-moody-haricut-0078,ag1,"""Moody""","""UK""",,,"""GOVT""","""bond""","""GOVT""",0,999,"""AA-"",""AA"",""AA+"",""AAA"",""F1+""","""float""",2,0.99
+csa-moody-haricut-0001,ag1,"Moody",,,,,"cash",GOVT,,,,,1,1
+csa-moody-haricut-0002,ag1,"Moody",,,,,"cash","GOVT",,,,,2,1
+csa-moody-haricut-0003,ag1,"Moody",,,,,"cash","GOVT",,,,,1,0.99
+csa-moody-haricut-0004,ag1,"Moody",,,,,"cash","GOVT",,,,,2,0.97
+csa-moody-haricut-0005,ag1,"Moody",,,,,"cash","GOVT",,,,,1,0.98
+csa-moody-haricut-0006,ag1,"Moody",,,,,"cash","GOVT",,,,,2,0.95
+csa-moody-haricut-0007,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",0,1,,"fix",1,0.98
+csa-moody-haricut-0008,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",1,2,,"fix",1,0.98
+csa-moody-haricut-0009,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",2,3,,"fix",1,0.98
+csa-moody-haricut-0010,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",3,5,,"fix",1,0.98
+csa-moody-haricut-0011,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",5,7,,"fix",1,0.98
+csa-moody-haricut-0012,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",7,10,,"fix",1,0.98
+csa-moody-haricut-0013,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",10,20,,"fix",1,0.98
+csa-moody-haricut-0014,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",20,999,,"fix",1,0.98
+csa-moody-haricut-0015,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",0,999,,"float",1,0.98
+csa-moody-haricut-0016,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",0,1,,"fix",2,0.95
+csa-moody-haricut-0017,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",1,2,,"fix",2,0.94
+csa-moody-haricut-0018,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",2,3,,"fix",2,0.93
+csa-moody-haricut-0019,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",3,5,,"fix",2,0.92
+csa-moody-haricut-0020,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",5,7,,"fix",2,0.91
+csa-moody-haricut-0021,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",7,10,,"fix",2,0.89
+csa-moody-haricut-0022,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",10,20,,"fix",2,0.86
+csa-moody-haricut-0023,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",20,999,,"fix",2,0.84
+csa-moody-haricut-0024,ag1,"Moody",,,"U.S. Treasury Department",,"bond","GOVT",0,999,,"float",2,0.94
+csa-moody-haricut-0025,ag1,"Moody",,TRUE,,,"bond","GOVT",0,1,,"fix",1,0.98
+csa-moody-haricut-0026,ag1,"Moody",,TRUE,,,"bond","GOVT",1,2,,"fix",1,0.98
+csa-moody-haricut-0027,ag1,"Moody",,TRUE,,,"bond","GOVT",2,3,,"fix",1,0.98
+csa-moody-haricut-0028,ag1,"Moody",,TRUE,,,"bond","GOVT",3,5,,"fix",1,0.98
+csa-moody-haricut-0029,ag1,"Moody",,TRUE,,,"bond","GOVT",5,7,,"fix",1,0.98
+csa-moody-haricut-0030,ag1,"Moody",,TRUE,,,"bond","GOVT",7,10,,"fix",1,0.98
+csa-moody-haricut-0031,ag1,"Moody",,TRUE,,,"bond","GOVT",10,20,,"fix",1,0.98
+csa-moody-haricut-0032,ag1,"Moody",,TRUE,,,"bond","GOVT",20,999,,"fix",1,0.98
+csa-moody-haricut-0033,ag1,"Moody",,TRUE,,,"bond","GOVT",0,999,,"float",1,0.98
+csa-moody-haricut-0034,ag1,"Moody",,TRUE,,,"bond","GOVT",0,1,,"fix",2,0.94
+csa-moody-haricut-0035,ag1,"Moody",,TRUE,,,"bond","GOVT",1,2,,"fix",2,0.94
+csa-moody-haricut-0036,ag1,"Moody",,TRUE,,,"bond","GOVT",2,3,,"fix",2,0.93
+csa-moody-haricut-0037,ag1,"Moody",,TRUE,,,"bond","GOVT",3,5,,"fix",2,0.91
+csa-moody-haricut-0038,ag1,"Moody",,TRUE,,,"bond","GOVT",5,7,,"fix",2,0.9
+csa-moody-haricut-0039,ag1,"Moody",,TRUE,,,"bond","GOVT",7,10,,"fix",2,0.88
+csa-moody-haricut-0040,ag1,"Moody",,TRUE,,,"bond","GOVT",10,20,,"fix",2,0.85
+csa-moody-haricut-0041,ag1,"Moody",,TRUE,,,"bond","GOVT",20,999,,"fix",2,0.83
+csa-moody-haricut-0042,ag1,"Moody",,TRUE,,,"bond","GOVT",0,999,,"float",2,0.93
+csa-moody-haricut-0043,ag1,"Moody",,,,"GOVT","bond","GOVT",0,1,"Aaa, Aa1, Aa2, Aa3","fix",1,0.99
+csa-moody-haricut-0044,ag1,"Moody",,,,"GOVT","bond","GOVT",1,2,"Aaa, Aa1, Aa2, Aa3","fix",1,0.99
+csa-moody-haricut-0045,ag1,"Moody",,,,"GOVT","bond","GOVT",2,3,"Aaa, Aa1, Aa2, Aa3","fix",1,0.99
+csa-moody-haricut-0046,ag1,"Moody",,,,"GOVT","bond","GOVT",3,5,"Aaa, Aa1, Aa2, Aa3","fix",1,0.99
+csa-moody-haricut-0047,ag1,"Moody",,,,"GOVT","bond","GOVT",5,7,"Aaa, Aa1, Aa2, Aa3","fix",1,0.99
+csa-moody-haricut-0048,ag1,"Moody",,,,"GOVT","bond","GOVT",7,10,"Aaa, Aa1, Aa2, Aa3","fix",1,0.99
+csa-moody-haricut-0049,ag1,"Moody",,,,"GOVT","bond","GOVT",10,20,"Aaa, Aa1, Aa2, Aa3","fix",1,0.99
+csa-moody-haricut-0050,ag1,"Moody",,,,"GOVT","bond","GOVT",20,999,"Aaa, Aa1, Aa2, Aa3","fix",1,0.99
+csa-moody-haricut-0051,ag1,"Moody",,,,"GOVT","bond","GOVT",0,999,"Aaa, Aa1, Aa2, Aa3","float",1,0.99
+csa-moody-haricut-0052,ag1,"Moody",,,,"GOVT","bond","GOVT",0,1,"Aaa, Aa1, Aa2, Aa3","fix",2,0.97
+csa-moody-haricut-0053,ag1,"Moody",,,,"GOVT","bond","GOVT",1,2,"Aaa, Aa1, Aa2, Aa3","fix",2,0.96
+csa-moody-haricut-0054,ag1,"Moody",,,,"GOVT","bond","GOVT",2,3,"Aaa, Aa1, Aa2, Aa3","fix",2,0.95
+csa-moody-haricut-0055,ag1,"Moody",,,,"GOVT","bond","GOVT",3,5,"Aaa, Aa1, Aa2, Aa3","fix",2,0.93
+csa-moody-haricut-0056,ag1,"Moody",,,,"GOVT","bond","GOVT",5,7,"Aaa, Aa1, Aa2, Aa3","fix",2,0.92
+csa-moody-haricut-0057,ag1,"Moody",,,,"GOVT","bond","GOVT",7,10,"Aaa, Aa1, Aa2, Aa3","fix",2,0.91
+csa-moody-haricut-0058,ag1,"Moody",,,,"GOVT","bond","GOVT",10,20,"Aaa, Aa1, Aa2, Aa3","fix",2,0.86
+csa-moody-haricut-0059,ag1,"Moody",,,,"GOVT","bond","GOVT",20,999,"Aaa, Aa1, Aa2, Aa3","fix",2,0.84
+csa-moody-haricut-0060,ag1,"Moody",,,,"GOVT","bond","GOVT",0,999,"Aaa, Aa1, Aa2, Aa3","float",2,0.96
+csa-moody-haricut-0061,ag1,"Moody","UK",,,"GOVT","bond","GOVT",0,1,"AA-,AA,AA+,AAA,F1+","fix",1,1
+csa-moody-haricut-0062,ag1,"Moody","UK",,,"GOVT","bond","GOVT",1,2,"AA-,AA,AA+,AAA,F1+","fix",1,1
+csa-moody-haricut-0063,ag1,"Moody","UK",,,"GOVT","bond","GOVT",2,3,"AA-,AA,AA+,AAA,F1+","fix",1,1
+csa-moody-haricut-0064,ag1,"Moody","UK",,,"GOVT","bond","GOVT",3,5,"AA-,AA,AA+,AAA,F1+","fix",1,1
+csa-moody-haricut-0065,ag1,"Moody","UK",,,"GOVT","bond","GOVT",5,7,"AA-,AA,AA+,AAA,F1+","fix",1,1
+csa-moody-haricut-0066,ag1,"Moody","UK",,,"GOVT","bond","GOVT",7,10,"AA-,AA,AA+,AAA,F1+","fix",1,1
+csa-moody-haricut-0067,ag1,"Moody","UK",,,"GOVT","bond","GOVT",10,20,"AA-,AA,AA+,AAA,F1+","fix",1,1
+csa-moody-haricut-0068,ag1,"Moody","UK",,,"GOVT","bond","GOVT",20,999,"AA-,AA,AA+,AAA,F1+","fix",1,1
+csa-moody-haricut-0069,ag1,"Moody","UK",,,"GOVT","bond","GOVT",0,999,"AA-,AA,AA+,AAA,F1+","float",1,1
+csa-moody-haricut-0070,ag1,"Moody","UK",,,"GOVT","bond","GOVT",0,1,"AA-,AA,AA+,AAA,F1+","fix",2,0.99
+csa-moody-haricut-0071,ag1,"Moody","UK",,,"GOVT","bond","GOVT",1,2,"AA-,AA,AA+,AAA,F1+","fix",2,0.98
+csa-moody-haricut-0072,ag1,"Moody","UK",,,"GOVT","bond","GOVT",2,3,"AA-,AA,AA+,AAA,F1+","fix",2,0.97
+csa-moody-haricut-0073,ag1,"Moody","UK",,,"GOVT","bond","GOVT",3,5,"AA-,AA,AA+,AAA,F1+","fix",2,0.96
+csa-moody-haricut-0074,ag1,"Moody","UK",,,"GOVT","bond","GOVT",5,7,"AA-,AA,AA+,AAA,F1+","fix",2,0.95
+csa-moody-haricut-0075,ag1,"Moody","UK",,,"GOVT","bond","GOVT",7,10,"AA-,AA,AA+,AAA,F1+","fix",2,0.94
+csa-moody-haricut-0076,ag1,"Moody","UK",,,"GOVT","bond","GOVT",10,20,"AA-,AA,AA+,AAA,F1+","fix",2,0.9
+csa-moody-haricut-0077,ag1,"Moody","UK",,,"GOVT","bond","GOVT",20,999,"AA-,AA,AA+,AAA,F1+","fix",2,0.88
+csa-moody-haricut-0078,ag1,"Moody","UK",,,"GOVT","bond","GOVT",0,999,"AA-,AA,AA+,AAA,F1+","float",2,0.99
