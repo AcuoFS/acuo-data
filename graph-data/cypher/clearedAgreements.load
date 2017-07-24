@@ -4,7 +4,7 @@ MATCH (l:LegalEntity {id:line.LegalEntityId})
 MATCH (fcm:LegalEntity {id:line.FCMId})
 MATCH (ch:ClearingHouse {id:line.ClearingHouseId})
 
-MERGE (a:Agreement {id:line.AgreementId, ampId:line.AmpId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, currency:line.Currency, FCMCustodian:line.FCMCustodianId, notificationTime:line.NotificationTime, tolerance:toFloat(line.Tolerance), initialBalanceCashToVariation:toInt(line.InitialBalanceCashToVariation), brokerMultiplier:toFloat(line.BrokerMultiplier)})
+MERGE (a:Agreement:ClearedAgreement {id:line.AgreementId, ampId:line.AmpId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, currency:line.Currency, FCMCustodian:line.FCMCustodianId, notificationTime:line.NotificationTime, tolerance:toFloat(line.Tolerance), initialBalanceCashToVariation:toInt(line.InitialBalanceCashToVariation), brokerMultiplier:toFloat(line.BrokerMultiplier)})
 
 MERGE (l)-[s1:CLIENT_SIGNS {initialBalance:toFloat(line.InitialBalance), variationBalance:toFloat(line.VariationBalance), initialPending:toFloat(line.InitialPending), variationPending:toFloat(line.VariationPending), initialBalanceCash:toFloat(line.InitialBalanceCash), variationBalanceCash:toFloat(line.VariationBalanceCash), initialPendingCash:toFloat(line.InitialPendingCash), variationPendingCash:toFloat(line.VariationPendingCash), initialBalanceNonCash:toFloat(line.InitialBalanceNonCash), variationBalanceNonCash:toFloat(line.VariationBalanceNonCash), initialPendingNonCash:toFloat(line.InitialPendingNonCash), variationPendingNonCash:toFloat(line.VariationPendingNonCash)}]->(a)
 MERGE (fcm)-[s2:COUNTERPARTY_SIGNS]->(a)
