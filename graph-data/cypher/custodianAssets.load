@@ -5,7 +5,8 @@ MATCH (custac:CustodianAccount {id:line.accountId})
 
 MERGE (a:Asset {id: line.assetId, idType: line.idType, name:line.name,settlementTime:line.settlementTime,
 				currency:line.currency,	yield: TOFLOAT(line.yield), type:line.type,ICADCode:line.ICADCode,ACUOCategory:line.ACUOCategory,
-				price:TOFLOAT(line.price),parValue:TOFLOAT(line.parValue),minUnit:TOFLOAT(line.minUnit),minUnitValue:TOFLOAT(line.minUnitValue)})
+				price:TOFLOAT(line.price),parValue:TOFLOAT(line.parValue),minUnit:TOFLOAT(line.minUnit),minUnitValue:TOFLOAT(line.minUnitValue),
+				issuerSector:line.issuerSector,issuerCountryCode:line.issuerCountryCode})
 
 FOREACH(x IN (CASE WHEN TOUPPER(line.type) = 'BOND' THEN [1] else [] END) | SET a :Bond)
 FOREACH(x IN (CASE WHEN TOUPPER(line.type) = 'CASH' THEN [1] else [] END) | SET a :Cash)
