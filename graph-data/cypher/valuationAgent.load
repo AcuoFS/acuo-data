@@ -1,0 +1,14 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/valuationAgent.csv' 
+AS line 
+
+MATCH (ag:Agreement {id:line.agreementId})
+
+MERGE (ag)-[:DEFINES]->(va:ValuationAgent)
+
+MERGE (va)-[:INCLUDES]->(:ValuationAgent {condition:"condition1",value:"making",description:"the party [making/receiving] the demand of delivery amount."})
+
+MERGE (va)-[:INCLUDES]->(:ValuationAgent {condition:"condition2",value:"making",description:"the party [making/receiving] the demand of return amount."})
+
+MERGE (va)-[:INCLUDES]->(:ValuationAgent {condition:"condition3",value:"making",description:"the party [making/receiving] the demand of disputed calculations."})
+
+MERGE (va)-[:INCLUDES]->(:ValuationAgent {condition:"condition4",value:"transferee",description:"the [transferee/transferor] of distributions and interest amount."})
