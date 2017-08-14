@@ -3,7 +3,7 @@ AS line
 
 MATCH (ag:Agreement {id:line.agreementId})
 
-MERGE (ag)-[:DEFINES]->(er:EligibilityRules)
+MERGE (ag)-[:DEFINES]->(er:EligibilityRules {side:line.side})
 
 FOREACH(i in CASE WHEN trim(line.rule) <> "" THEN [1] ELSE [] END
 	|MERGE (er)-[:IS_COMPOSED_OF]->(rule1:Rule:ValuationPercentageFX {id:line.rule,

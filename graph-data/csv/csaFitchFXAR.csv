@@ -1,5 +1,5 @@
-rule,agreementId,haircutProviderOperator,haircutProvider,fitchFxCurrencyOperator,fitchFxCurrency,counterpartyFitchRatingOperator,counterpartyFitchRating,fxAR
-rule-fitch-fxAR-a1,a34,==,Fitch,in,"AUD,CAD,CHF,DKK,EUR,GBP,
+rule,agreementId,side,haircutProviderOperator,haircutProvider,fitchFxCurrencyOperator,fitchFxCurrency,counterpartyFitchRatingOperator,counterpartyFitchRating,fxAR
+rule-fitch-fxAR-a1,a12,928581SHELI3PYW91M,==,Fitch,in,"AUD,CAD,CHF,DKK,EUR,GBP,
 NOK,NZD,JPY,SEK,SGD,USD",in,"AA-,AA,AA+,AAA",0.86
-rule-fitch-fxAR-a2,a34,==,Fitch,in,"AUD,CAD,CHF,DKK,EUR,GBP,
+rule-fitch-fxAR-a2,a12,928581SHELI3PYW91M,==,Fitch,in,"AUD,CAD,CHF,DKK,EUR,GBP,
 NOK,NZD,JPY,SEK,SGD,USD",in,"A+,A,A-,BBB+,BBB,BBB-,BB+,BB,BB-,B+,B,B-,CCC+,CCC,CCC-,CC,C",0.905

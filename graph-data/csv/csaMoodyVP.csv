@@ -1,79 +1,79 @@
-rule,agreementId,haircutProviderOperator,haircutProvider,issuerCountryOperator,issuerCountry,issuerIsUSGovAgencyOperator,issuerIsUSGovAgency,issuerNameOperator,issuerName,assetAssetTypeOperator,assetAssetType,assetTypeOperator,assetType,assetCurrencyOperator,assetCurrency,maturityLbOperator,maturityLb,maturityUbOperator,maturityUb,moodyRatingOperator,moodyRating,assetRateTypeOperator,assetRateType,triggerOperator,trigger,valuationPercentage
-csa-moody-haricut-0001,a34,==,Moody,,,,,,,,,==,cash,==,GBP,,,,,,,,,==,1,1
-csa-moody-haricut-0002,a34,==,Moody,,,,,,,,,==,cash,==,GBP,,,,,,,,,==,2,1
-csa-moody-haricut-0003,a34,==,Moody,,,,,,,,,==,cash,==,EUR,,,,,,,,,==,1,0.99
-csa-moody-haricut-0004,a34,==,Moody,,,,,,,,,==,cash,==,EUR,,,,,,,,,==,2,0.97
-csa-moody-haricut-0005,a34,==,Moody,,,,,,,,,==,cash,==,USD,,,,,,,,,==,1,0.98
-csa-moody-haricut-0006,a34,==,Moody,,,,,,,,,==,cash,==,USD,,,,,,,,,==,2,0.95
-csa-moody-haricut-0007,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,0,<,1,,,==,fix,==,1,0.98
-csa-moody-haricut-0008,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,1,<,2,,,==,fix,==,1,0.98
-csa-moody-haricut-0009,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,2,<,3,,,==,fix,==,1,0.98
-csa-moody-haricut-0010,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,3,<,5,,,==,fix,==,1,0.98
-csa-moody-haricut-0011,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,5,<,7,,,==,fix,==,1,0.98
-csa-moody-haricut-0012,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,7,<,10,,,==,fix,==,1,0.98
-csa-moody-haricut-0013,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,10,<,20,,,==,fix,==,1,0.98
-csa-moody-haricut-0014,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,20,<,999,,,==,fix,==,1,0.98
-csa-moody-haricut-0015,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,0,<,999,,,==,float,==,1,0.98
-csa-moody-haricut-0016,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,0,<,1,,,==,fix,==,2,0.95
-csa-moody-haricut-0017,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,1,<,2,,,==,fix,==,2,0.94
-csa-moody-haricut-0018,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,2,<,3,,,==,fix,==,2,0.93
-csa-moody-haricut-0019,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,3,<,5,,,==,fix,==,2,0.92
-csa-moody-haricut-0020,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,5,<,7,,,==,fix,==,2,0.91
-csa-moody-haricut-0021,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,7,<,10,,,==,fix,==,2,0.89
-csa-moody-haricut-0022,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,10,<,20,,,==,fix,==,2,0.86
-csa-moody-haricut-0023,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,20,<,999,,,==,fix,==,2,0.84
-csa-moody-haricut-0024,a34,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,0,<,999,,,==,float,==,2,0.94
-csa-moody-haricut-0025,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,0,<,1,,,==,fix,==,1,0.98
-csa-moody-haricut-0026,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,1,<,2,,,==,fix,==,1,0.98
-csa-moody-haricut-0027,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,2,<,3,,,==,fix,==,1,0.98
-csa-moody-haricut-0028,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,3,<,5,,,==,fix,==,1,0.98
-csa-moody-haricut-0029,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,5,<,7,,,==,fix,==,1,0.98
-csa-moody-haricut-0030,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,7,<,10,,,==,fix,==,1,0.98
-csa-moody-haricut-0031,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,10,<,20,,,==,fix,==,1,0.98
-csa-moody-haricut-0032,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,20,<,999,,,==,fix,==,1,0.98
-csa-moody-haricut-0033,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,0,<,999,,,==,float,==,1,0.98
-csa-moody-haricut-0034,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,0,<,1,,,==,fix,==,2,0.94
-csa-moody-haricut-0035,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,1,<,2,,,==,fix,==,2,0.94
-csa-moody-haricut-0036,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,2,<,3,,,==,fix,==,2,0.93
-csa-moody-haricut-0037,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,3,<,5,,,==,fix,==,2,0.91
-csa-moody-haricut-0038,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,5,<,7,,,==,fix,==,2,0.9
-csa-moody-haricut-0039,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,7,<,10,,,==,fix,==,2,0.88
-csa-moody-haricut-0040,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,10,<,20,,,==,fix,==,2,0.85
-csa-moody-haricut-0041,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,20,<,999,,,==,fix,==,2,0.83
-csa-moody-haricut-0042,a34,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,0,<,999,,,==,float,==,2,0.93
-csa-moody-haricut-0043,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,0,<,1,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
-csa-moody-haricut-0044,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,1,<,2,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
-csa-moody-haricut-0045,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,2,<,3,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
-csa-moody-haricut-0046,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,3,<,5,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
-csa-moody-haricut-0047,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,5,<,7,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
-csa-moody-haricut-0048,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,7,<,10,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
-csa-moody-haricut-0049,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,10,<,20,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
-csa-moody-haricut-0050,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,20,<,999,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
-csa-moody-haricut-0051,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,0,<,999,in,"Aaa, Aa1, Aa2, Aa3",==,float,==,1,0.99
-csa-moody-haricut-0052,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,0,<,1,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.97
-csa-moody-haricut-0053,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,1,<,2,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.96
-csa-moody-haricut-0054,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,2,<,3,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.95
-csa-moody-haricut-0055,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,3,<,5,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.93
-csa-moody-haricut-0056,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,5,<,7,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.92
-csa-moody-haricut-0057,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,7,<,10,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.91
-csa-moody-haricut-0058,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,10,<,20,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.86
-csa-moody-haricut-0059,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,20,<,999,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.84
-csa-moody-haricut-0060,a34,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,0,<,999,in,"Aaa, Aa1, Aa2, Aa3",==,float,==,2,0.96
-csa-moody-haricut-0061,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,0,<,1,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
-csa-moody-haricut-0062,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,1,<,2,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
-csa-moody-haricut-0063,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,2,<,3,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
-csa-moody-haricut-0064,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,3,<,5,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
-csa-moody-haricut-0065,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,5,<,7,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
-csa-moody-haricut-0066,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,7,<,10,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
-csa-moody-haricut-0067,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,10,<,20,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
-csa-moody-haricut-0068,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,20,<,999,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
-csa-moody-haricut-0069,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,0,<,999,in,"AA-,AA,AA+,AAA,F1+",==,float,==,1,1
-csa-moody-haricut-0070,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,0,<,1,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.99
-csa-moody-haricut-0071,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,1,<,2,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.98
-csa-moody-haricut-0072,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,2,<,3,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.97
-csa-moody-haricut-0073,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,3,<,5,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.96
-csa-moody-haricut-0074,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,5,<,7,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.95
-csa-moody-haricut-0075,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,7,<,10,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.94
-csa-moody-haricut-0076,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,10,<,20,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.9
-csa-moody-haricut-0077,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,20,<,999,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.88
-csa-moody-haricut-0078,a34,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,0,<,999,in,"AA-,AA,AA+,AAA,F1+",==,float,==,2,0.99
+rule,agreementId,side,haircutProviderOperator,haircutProvider,issuerCountryOperator,issuerCountry,issuerIsUSGovAgencyOperator,issuerIsUSGovAgency,issuerNameOperator,issuerName,assetAssetTypeOperator,assetAssetType,assetTypeOperator,assetType,assetCurrencyOperator,assetCurrency,maturityLbOperator,maturityLb,maturityUbOperator,maturityUb,moodyRatingOperator,moodyRating,assetRateTypeOperator,assetRateType,triggerOperator,trigger,valuationPercentage
+csa-moody-haricut-0001,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,,,==,cash,==,GBP,,,,,,,,,==,1,1
+csa-moody-haricut-0002,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,,,==,cash,==,GBP,,,,,,,,,==,2,1
+csa-moody-haricut-0003,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,,,==,cash,==,EUR,,,,,,,,,==,1,0.99
+csa-moody-haricut-0004,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,,,==,cash,==,EUR,,,,,,,,,==,2,0.97
+csa-moody-haricut-0005,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,,,==,cash,==,USD,,,,,,,,,==,1,0.98
+csa-moody-haricut-0006,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,,,==,cash,==,USD,,,,,,,,,==,2,0.95
+csa-moody-haricut-0007,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,0,<,1,,,==,fix,==,1,0.98
+csa-moody-haricut-0008,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,1,<,2,,,==,fix,==,1,0.98
+csa-moody-haricut-0009,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,2,<,3,,,==,fix,==,1,0.98
+csa-moody-haricut-0010,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,3,<,5,,,==,fix,==,1,0.98
+csa-moody-haricut-0011,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,5,<,7,,,==,fix,==,1,0.98
+csa-moody-haricut-0012,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,7,<,10,,,==,fix,==,1,0.98
+csa-moody-haricut-0013,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,10,<,20,,,==,fix,==,1,0.98
+csa-moody-haricut-0014,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,20,<,999,,,==,fix,==,1,0.98
+csa-moody-haricut-0015,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,0,<,999,,,==,float,==,1,0.98
+csa-moody-haricut-0016,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,0,<,1,,,==,fix,==,2,0.95
+csa-moody-haricut-0017,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,1,<,2,,,==,fix,==,2,0.94
+csa-moody-haricut-0018,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,2,<,3,,,==,fix,==,2,0.93
+csa-moody-haricut-0019,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,3,<,5,,,==,fix,==,2,0.92
+csa-moody-haricut-0020,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,5,<,7,,,==,fix,==,2,0.91
+csa-moody-haricut-0021,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,7,<,10,,,==,fix,==,2,0.89
+csa-moody-haricut-0022,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,10,<,20,,,==,fix,==,2,0.86
+csa-moody-haricut-0023,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,20,<,999,,,==,fix,==,2,0.84
+csa-moody-haricut-0024,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,in,U.S. Treasury Department,,,==,bond,==,USD,>=,0,<,999,,,==,float,==,2,0.94
+csa-moody-haricut-0025,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,0,<,1,,,==,fix,==,1,0.98
+csa-moody-haricut-0026,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,1,<,2,,,==,fix,==,1,0.98
+csa-moody-haricut-0027,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,2,<,3,,,==,fix,==,1,0.98
+csa-moody-haricut-0028,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,3,<,5,,,==,fix,==,1,0.98
+csa-moody-haricut-0029,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,5,<,7,,,==,fix,==,1,0.98
+csa-moody-haricut-0030,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,7,<,10,,,==,fix,==,1,0.98
+csa-moody-haricut-0031,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,10,<,20,,,==,fix,==,1,0.98
+csa-moody-haricut-0032,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,20,<,999,,,==,fix,==,1,0.98
+csa-moody-haricut-0033,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,0,<,999,,,==,float,==,1,0.98
+csa-moody-haricut-0034,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,0,<,1,,,==,fix,==,2,0.94
+csa-moody-haricut-0035,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,1,<,2,,,==,fix,==,2,0.94
+csa-moody-haricut-0036,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,2,<,3,,,==,fix,==,2,0.93
+csa-moody-haricut-0037,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,3,<,5,,,==,fix,==,2,0.91
+csa-moody-haricut-0038,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,5,<,7,,,==,fix,==,2,0.9
+csa-moody-haricut-0039,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,7,<,10,,,==,fix,==,2,0.88
+csa-moody-haricut-0040,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,10,<,20,,,==,fix,==,2,0.85
+csa-moody-haricut-0041,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,20,<,999,,,==,fix,==,2,0.83
+csa-moody-haricut-0042,a12,5493OOS20A8EOTNL3L19,==,Moody,,,==,TRUE,,,,,==,bond,==,USD,>=,0,<,999,,,==,float,==,2,0.93
+csa-moody-haricut-0043,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,0,<,1,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
+csa-moody-haricut-0044,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,1,<,2,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
+csa-moody-haricut-0045,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,2,<,3,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
+csa-moody-haricut-0046,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,3,<,5,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
+csa-moody-haricut-0047,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,5,<,7,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
+csa-moody-haricut-0048,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,7,<,10,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
+csa-moody-haricut-0049,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,10,<,20,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
+csa-moody-haricut-0050,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,20,<,999,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,1,0.99
+csa-moody-haricut-0051,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,0,<,999,in,"Aaa, Aa1, Aa2, Aa3",==,float,==,1,0.99
+csa-moody-haricut-0052,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,0,<,1,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.97
+csa-moody-haricut-0053,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,1,<,2,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.96
+csa-moody-haricut-0054,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,2,<,3,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.95
+csa-moody-haricut-0055,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,3,<,5,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.93
+csa-moody-haricut-0056,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,5,<,7,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.92
+csa-moody-haricut-0057,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,7,<,10,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.91
+csa-moody-haricut-0058,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,10,<,20,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.86
+csa-moody-haricut-0059,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,20,<,999,in,"Aaa, Aa1, Aa2, Aa3",==,fix,==,2,0.84
+csa-moody-haricut-0060,a12,5493OOS20A8EOTNL3L19,==,Moody,,,,,,,==,GOVT,==,bond,==,EUR,>=,0,<,999,in,"Aaa, Aa1, Aa2, Aa3",==,float,==,2,0.96
+csa-moody-haricut-0061,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,0,<,1,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
+csa-moody-haricut-0062,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,1,<,2,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
+csa-moody-haricut-0063,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,2,<,3,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
+csa-moody-haricut-0064,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,3,<,5,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
+csa-moody-haricut-0065,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,5,<,7,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
+csa-moody-haricut-0066,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,7,<,10,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
+csa-moody-haricut-0067,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,10,<,20,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
+csa-moody-haricut-0068,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,20,<,999,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,1,1
+csa-moody-haricut-0069,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,0,<,999,in,"AA-,AA,AA+,AAA,F1+",==,float,==,1,1
+csa-moody-haricut-0070,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,0,<,1,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.99
+csa-moody-haricut-0071,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,1,<,2,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.98
+csa-moody-haricut-0072,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,2,<,3,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.97
+csa-moody-haricut-0073,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,3,<,5,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.96
+csa-moody-haricut-0074,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,5,<,7,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.95
+csa-moody-haricut-0075,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,7,<,10,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.94
+csa-moody-haricut-0076,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,10,<,20,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.9
+csa-moody-haricut-0077,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,20,<,999,in,"AA-,AA,AA+,AAA,F1+",==,fix,==,2,0.88
+csa-moody-haricut-0078,a12,5493OOS20A8EOTNL3L19,==,Moody,in,UK,,,,,==,GOVT,==,bond,==,GBP,>=,0,<,999,in,"AA-,AA,AA+,AAA,F1+",==,float,==,2,0.99
