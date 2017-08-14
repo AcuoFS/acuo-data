@@ -3,7 +3,7 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/bilateralAgreements.csv' AS lin
 MATCH (l1:LegalEntity {id:line.Party1})
 MATCH (l2:LegalEntity {id:line.Party2})
 
-MERGE (a:Agreement:BilateralAgreement:ChildAgreement {id:line.AgreementId, ampId:line.AmpId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, notificationTime:line.NotificationTime, currency:line.Currency, counterpartCustodian:line.CounterpartCustodianId, threshold:toFloat(line.Threshold), baseCurrency:line.BaseCurrency,law:line.Law, tolerance:toFloat(line.Tolerance),
+MERGE (a:Agreement:BilateralAgreement:ChildAgreement {id:line.AgreementId, ampId:line.AmpId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, notificationTime:line.NotificationTime, resolutionTime:line.resolutionTime,currency:line.Currency, counterpartCustodian:line.CounterpartCustodianId, threshold:toFloat(line.Threshold), baseCurrency:line.BaseCurrency,law:line.Law, tolerance:toFloat(line.Tolerance),
 	interestTransfer:line.interestTransfer,interestPaymentNetting:line.interestPaymentNetting,interestAdjustment:line.interestAdjustment,negativeInterest:line.negativeInterest,dailyInterestCompounding:line.dailyInterestCompounding,creditSupportOffsets:line.creditSupportOffsets})
 
 WITH *
