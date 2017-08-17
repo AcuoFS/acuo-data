@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/bilateralAgreements.csv' AS line
+LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/feature/777/graph-data/csv/bilateralAgreements.csv' AS line
 
 MATCH (l1:LegalEntity {id:line.Party1})
 MATCH (l2:LegalEntity {id:line.Party2})
@@ -15,7 +15,17 @@ SET s1.collectIM = 	CASE
 					WHEN l1.jurisdiction="EU" AND l1.aboveNotionalThreshold= "yes" AND (l1.type="FC" OR l1.type="NFC+") AND (l1.establishedIn="EU") 
 					AND l2.jurisdiction="EU" AND l2.aboveNotionalThreshold= "yes" AND (l2.type="FC" OR l2.type="NFC+") AND (l2.establishedIn="EU" OR l2.establishedIn="TCE") 
 					THEN "yes"
-					WHEN l1.jurisdiction<>"EU" OR l2.jurisdiction<>"EU"
+
+					WHEN (l1.jurisdiction="US_PR" OR l1.jurisdiction="US_CFTC") AND l1.type1="SE"
+					AND (l2.jurisdiction="US_PR" OR l1.jurisdiction="US_CFTC") AND l2.type1="SE"
+					THEN "yes"
+					WHEN (l1.jurisdiction="US_PR" OR l1.jurisdiction="US_CFTC") AND l1.type1="SE"
+					AND (l2.jurisdiction="US_PR" OR l1.jurisdiction="US_CFTC") AND l2.aboveNotionalThreshold= "yes" AND l2.type="FEU"
+					THEN "yes"
+					WHEN (l1.jurisdiction="US_PR" OR l1.jurisdiction="US_CFTC") AND l1.aboveNotionalThreshold= "yes" AND l1.type="FEU"
+					AND (l2.jurisdiction="US_PR" OR l1.jurisdiction="US_CFTC") AND l2.type1="SE"
+					THEN "yes"
+					WHEN l1.jurisdiction<>"EU" OR l2.jurisdiction<>"EU" OR l1.jurisdiction<>"US_PR" OR l2.jurisdiction<>"US_PR" OR l1.jurisdiction<>"US_CFTC" OR l2.jurisdiction<>"US_CFTC" 
 					THEN "unknown"
 					ELSE "no"
 					END
@@ -23,7 +33,18 @@ SET s1.collectIM = 	CASE
 SET s1.collectVM = CASE WHEN l1.jurisdiction="EU" AND (l1.type="FC" OR l1.type="NFC+") AND (l1.establishedIn="EU" OR l1.establishedIn="TCE") 
 					AND l2.jurisdiction="EU" AND (l2.type="FC" OR l2.type="NFC+") AND (l2.establishedIn="EU" OR l2.establishedIn="TCE")
 					THEN "yes"
-					WHEN l1.jurisdiction<>"EU" OR l2.jurisdiction<>"EU"
+
+					WHEN (l1.jurisdiction="US_PR" OR l1.jurisdiction="US_CFTC") AND l1.type1="SE"
+					AND (l2.jurisdiction="US_PR" OR l1.jurisdiction="US_CFTC") AND l2.type1="SE"
+					THEN "yes"
+					WHEN (l1.jurisdiction="US_PR" OR l1.jurisdiction="US_CFTC") AND l1.type1="SE"
+					AND (l2.jurisdiction="US_PR" OR l1.jurisdiction="US_CFTC")  AND l2.type="FEU"
+					THEN "yes"
+					WHEN (l1.jurisdiction="US_PR" OR l1.jurisdiction="US_CFTC") AND l1.type="FEU"
+					AND (l2.jurisdiction="US_PR" OR l1.jurisdiction="US_CFTC") AND l2.type1="SE"
+					THEN "yes"
+
+					WHEN l1.jurisdiction<>"EU" OR l2.jurisdiction<>"EU" OR l1.jurisdiction<>"US_PR" OR l2.jurisdiction<>"US_PR" OR l1.jurisdiction<>"US_CFTC" OR l2.jurisdiction<>"US_CFTC" 
 					THEN "unknown"
 					ELSE "no"
 					END
