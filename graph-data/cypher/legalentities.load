@@ -2,7 +2,7 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/legalentities.csv' AS line
 
 MATCH (c:Firm {id:line.ClientId})
 
-MERGE (e:LegalEntity {id:line.EntityId, name:line.EntityName, holidayZone:line.HolidayZone, shortName:line.EntityShortName,jurisdiction:line.Jurisdiction})
+MERGE (e:LegalEntity {id:line.EntityId, name:line.EntityName, holidayZone:line.HolidayZone, shortName:line.EntityShortName,jurisdiction:line.Jurisdiction,type:line.type,establishedIn:line.establishedIn,aboveNotionalThreshold:line.aboveNotionalThreshold})
 
 MERGE (c)-[:MANAGES]->(e)
 
