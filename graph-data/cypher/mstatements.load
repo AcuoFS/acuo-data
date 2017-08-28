@@ -8,4 +8,4 @@ ON MATCH SET ms.totalAmount=ms.totalAmount + toFloat(line.TotalAmount)
 
 MERGE (ms)-[:STEMS_FROM]->(a)
 MERGE (ms)-[:DIRECTED_TO]->(ce) 
-MERGE (ms)-[:SENT_FROM]->(e))
+MERGE (ms)-[:SENT_FROM]->(e)
