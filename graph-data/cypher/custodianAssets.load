@@ -14,12 +14,18 @@ MERGE (custac)-[h:HOLDS {businessTimeFrom:line.businessTimeFrom, businessTimeTo:
 
 ON CREATE SET
 h.availableQuantity=TOFLOAT(line.availableQuantity),
+//	h.deployedQuantity=TOFLOAT(line.deployedQuantity),
+//	h.departingQuantity=TOFLOAT(line.departingQuantity),
+//	h.arrivingQuantity =TOFLOAT(line.arrivingQuantity),
 h.reservedQuantity=TOFLOAT(line.reservedQuantity),
 h.internalCost=TOFLOAT(line.internalCost),
 h.opptCost=TOFLOAT(line.opptCost)
 
 ON MATCH SET
 h.availableQuantity=TOFLOAT(line.availableQuantity),
+//	h.deployedQuantity=TOFLOAT(line.deployedQuantity),
+//	h.departedQuantity=TOFLOAT(line.departedQuantity),
+//	h.arrivingQuantity =TOFLOAT(line.arrivingQuantity),
 h.reservedQuantity=TOFLOAT(line.reservedQuantity),
 h.internalCost=TOFLOAT(line.internalCost),
 h.opptCost=TOFLOAT(line.opptCost)
@@ -32,6 +38,8 @@ MERGE (a)-[:PRICING_SOURCE]->(source)
 
 WITH line,a,custac, timestamp()/1000/60/60/24 AS todayDays, TOINT(line.futureDays) AS futureDays
 
+FOREACH (i IN CASE 	WHEN trim(line.ISIN)<>"" THEN [1] 
+	ELSE [] END | SET a.ISIN=line.ISIN)
 FOREACH (i IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
 	ELSE [] END | SET a.ticker=line.ticker)
 FOREACH (i IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityDate)<>"" THEN [1] 
