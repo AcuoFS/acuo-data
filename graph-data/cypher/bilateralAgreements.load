@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/feature/777/graph-data/csv/bilateralAgreements.csv' AS line
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/bilateralAgreements.csv' AS line
 
 MATCH (l1:LegalEntity {id:line.Party1})
 MATCH (l2:LegalEntity {id:line.Party2})
