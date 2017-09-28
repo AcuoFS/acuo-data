@@ -23,7 +23,7 @@ FOREACH (i in initial | MERGE (mc:InitialMargin:StatementItem:MarginCall {id:lin
 SET mc.initialBalanceCash = CASE WHEN initialSettledCash IS NULL THEN 0 ELSE initialSettledCash.amount END,
 	mc.initialBalanceNonCash = CASE WHEN initialSettledNonCash IS NULL THEN 0 ELSE initialSettledNonCash.amount END,
 	mc.balanceAmount = mc.initialBalanceCash + mc.initialBalanceNonCash,
-	mc.pendingCollateral = initialPendingCash+initialPendingNonCash
+	mc.pendingCollateral = mc.initialPendingCash+mc.initialPendingNonCash
 )
 
 FOREACH (i in variation | MERGE (mc:VariationMargin:StatementItem:MarginCall {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, side:line.Side, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1, excessAmount:toFloat(line.ExcessAmount), marginAmount:toFloat(line.TotalCallAmount), marginAmount:toFloat(line.TotalCallAmount), returnAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.DeliverAmount), exposure:toFloat(line.Exposure)})
