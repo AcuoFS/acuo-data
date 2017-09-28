@@ -30,13 +30,14 @@ SET mc.initialBalanceCash = CASE WHEN initialSettledCash IS NULL THEN 0 ELSE ini
 )
 
 FOREACH (i in variation | MERGE (mc:VariationMargin:StatementItem:MarginCall {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, side:line.Side, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1, excessAmount:toFloat(line.ExcessAmount), marginAmount:toFloat(line.TotalCallAmount), marginAmount:toFloat(line.TotalCallAmount), returnAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.DeliverAmount), exposure:toFloat(line.Exposure)})
-SET mc.initialBalanceCash = CASE WHEN initialSettledCash IS NULL THEN 0 ELSE initialSettledCash.amount END,
-	mc.initialBalanceNonCash = CASE WHEN initialSettledNonCash IS NULL THEN 0 ELSE initialSettledNonCash.amount END,
-	mc.balanceAmount = mc.initialBalanceCash + mc.initialBalanceNonCash,
-	mc.pendingCollateral = CASE WHEN initialPendingCash IS NULL AND initialPendingNonCash IS NULL THEN 0 
-	WHEN initialPendingCash IS NULL AND NOT initialPendingNonCash IS NULL THEN initialPendingNonCash.amount
-	WHEN NOT initialPendingCash IS NULL AND initialPendingNonCash IS NULL THEN initialPendingCash.amount
-	ELSE initialPendingCash.amount+ initialPendingNonCash END
+SET	mc.balanceAmount = CASE WHEN variationSettledCash IS NULL AND variationSettledNonCash IS NULL THEN 0 
+	WHEN variationSettledCash IS NULL AND NOT variationSettledNonCash IS NULL THEN variationSettledNonCash.amount
+	WHEN NOT variationSettledCash IS NULL AND variationSettledNonCash IS NULL THEN variationSettledCash.amount
+	ELSE variationSettledCash.amount+ variationSettledNonCash END,
+	mc.pendingCollateral = CASE WHEN variationPendingCash IS NULL AND variationPendingNonCash IS NULL THEN 0 
+	WHEN variationPendingCash IS NULL AND NOT variationPendingNonCash IS NULL THEN variationPendingNonCash.amount
+	WHEN NOT variationPendingCash IS NULL AND variationPendingNonCash IS NULL THEN variationPendingCash.amount
+	ELSE variationPendingCash.amount+ variationPendingNonCash END
 )
 FOREACH (i in IP | MERGE (mc:InterestPayment:StatementItem {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, side:line.Side, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1, marginAmount:toFloat(line.TotalCallAmount)}))
 
