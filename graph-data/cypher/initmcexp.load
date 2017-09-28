@@ -3,6 +3,14 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/initmcexp.csv' AS line
 MATCH (a:Agreement {id:line.AgreementId})
 MATCH (e:LegalEntity)-[s:CLIENT_SIGNS]->(a)
 MATCH (ms:MarginStatement {id:line.StatementId})
+OPTIONAL MATCH (ms)-[:BALANCE]-[:Collateral {marginType:'initial',status:'pending',assetType:'cash'}]-[:LATEST]->(initialPendingCash:CollateralValue)
+OPTIONAL MATCH (ms)-[:BALANCE]-[:Collateral {marginType:'initial',status:'pending',assetType:'NonCash'}]-[:LATEST]->(initialPendingNonCash:CollateralValue)
+OPTIONAL MATCH (ms)-[:BALANCE]-[:Collateral {marginType:'initial',status:'settled',assetType:'cash'}]-[:LATEST]->(initialSettledCash:CollateralValue)
+OPTIONAL MATCH (ms)-[:BALANCE]-[:Collateral {marginType:'initial',status:'settled',assetType:'NonCash'}]-[:LATEST]->(initialSettledNonCash:CollateralValue)
+OPTIONAL MATCH (ms)-[:BALANCE]-[:Collateral {marginType:'variation',status:'pending',assetType:'cash'}]-[:LATEST]->(variationPendingCash:CollateralValue)
+OPTIONAL MATCH (ms)-[:BALANCE]-[:Collateral {marginType:'variation',status:'pending',assetType:'NonCash'}]-[:LATEST]->(variationPendingNonCash:CollateralValue)
+OPTIONAL MATCH (ms)-[:BALANCE]-[:Collateral {marginType:'variation',status:'settled',assetType:'cash'}]-[:LATEST]->(variationSettledCash:CollateralValue)
+OPTIONAL MATCH (ms)-[:BALANCE]-[:Collateral {marginType:'variation',status:'settled',assetType:'NonCash'}]-[:LATEST]->(variationSettledNonCash:CollateralValue)
 
 WITH *, CASE WHEN line.MarginType = 'Initial' THEN [1] ELSE [] END as initial
 WITH *, CASE WHEN line.MarginType = 'Variation' THEN [1] ELSE [] END as variation
@@ -11,9 +19,17 @@ WITH *, CASE WHEN line.MarginType = 'ProductCashFlow' THEN [1] ELSE [] END as PC
 WITH *, CASE WHEN line.MarginType = 'PAI' THEN [1] ELSE [] END as PAI
 WITH *, CASE WHEN line.MarginType = 'FeesAndComms' THEN [1] ELSE [] END as FC
 
-FOREACH (i in initial | MERGE (mc:InitialMargin:StatementItem:MarginCall {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, side:line.Side, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1, excessAmount:toFloat(line.ExcessAmount), marginAmount:toFloat(line.TotalCallAmount), marginAmount:toFloat(line.TotalCallAmount), returnAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.DeliverAmount), balanceAmount:toFloat(line.CollateralValue), pendingCollateral:toFloat(line.PendingCollateral), exposure:toFloat(line.Exposure), IMRole:line.IMRole, exchangeRequirement:toFloat(line.Exposure), brokerRequirement:toFloat(line.Exposure)*a.brokerMultiplier, initialBalanceCash:s.initialBalanceCash, initialBalanceNonCash:s.initialBalanceNonCash}))
+FOREACH (i in initial | MERGE (mc:InitialMargin:StatementItem:MarginCall {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, side:line.Side, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1, excessAmount:toFloat(line.ExcessAmount), marginAmount:toFloat(line.TotalCallAmount), marginAmount:toFloat(line.TotalCallAmount), returnAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.DeliverAmount), exposure:toFloat(line.Exposure), IMRole:line.IMRole, exchangeRequirement:toFloat(line.Exposure), brokerRequirement:toFloat(line.Exposure)*a.brokerMultiplier})
+SET mc.initialBalanceCash = CASE WHEN initialSettledCash IS NULL THEN 0 ELSE initialSettledCash.amount END,
+	mc.initialBalanceNonCash = CASE WHEN initialSettledNonCash IS NULL THEN 0 ELSE initialSettledNonCash.amount END,
+	mc.balanceAmount = mc.initialBalanceCash + mc.initialBalanceNonCash,
+	mc.pendingCollateral = initialPendingCash+initialPendingNonCash
+)
 
-FOREACH (i in variation | MERGE (mc:VariationMargin:StatementItem:MarginCall {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, side:line.Side, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1, excessAmount:toFloat(line.ExcessAmount), marginAmount:toFloat(line.TotalCallAmount), marginAmount:toFloat(line.TotalCallAmount), returnAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.DeliverAmount), balanceAmount:toFloat(line.CollateralValue), pendingCollateral:toFloat(line.PendingCollateral), exposure:toFloat(line.Exposure)}))
+FOREACH (i in variation | MERGE (mc:VariationMargin:StatementItem:MarginCall {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, side:line.Side, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1, excessAmount:toFloat(line.ExcessAmount), marginAmount:toFloat(line.TotalCallAmount), marginAmount:toFloat(line.TotalCallAmount), returnAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.ReturnAmount), deliverAmount:toFloat(line.DeliverAmount), exposure:toFloat(line.Exposure)})
+SET mc.variationBalanceCash = CASE WHEN variationSettledCash IS NULL THEN 0 ELSE variationSettledCash.amount END,
+	mc.variationBalanceNonCash = CASE WHEN variationSettledNonCash IS NULL THEN 0 ELSE variationSettledNonCash.amount END
+)
 
 FOREACH (i in IP | MERGE (mc:InterestPayment:StatementItem {id:line.CallId, callDate:line.CallDate, marginType:line.MarginType, direction:line.Direction, side:line.Side, currency:line.Currency, valuationDate:line.ValuationDate, parentRank:1, marginAmount:toFloat(line.TotalCallAmount)}))
 
