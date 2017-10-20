@@ -3,11 +3,11 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/bilateralMasterAgreements.csv' 
 MATCH (l1:LegalEntity {id:line.Party1})
 MATCH (l2:LegalEntity {id:line.Party2})
 
-MERGE (a:Agreement:MasterAgreement:BilateralAgreement {id:line.AgreementId, ampId:line.AmpId, name:line.AgreementName, agreementDate:line.AgreementDate, terminationCurrency:line.TerminationCurrency})
+MERGE (a:Agreement:MasterAgreement:BilateralAgreement {id:line.AgreementId, name:line.AgreementName, agreementDate:line.AgreementDate, terminationCurrency:line.TerminationCurrency})
 
-MERGE (l1)-[s1:CLIENT_SIGNS]->(a)
+//MERGE (l1)-[s1:CLIENT_SIGNS]->(a)
 
-MERGE (l2)-[s2:COUNTERPARTY_SIGNS]->(a)
+//MERGE (l2)-[s2:COUNTERPARTY_SIGNS]->(a)
 
 //MERGE (a)-[:FIRST]->(s:Step {status:'Active'})
 //MERGE (a)-[:LAST]->(s)
