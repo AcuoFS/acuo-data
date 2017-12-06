@@ -7,25 +7,19 @@ MERGE (a:Asset {id: line.assetId, idType: line.idType, name:line.name,settlement
 				currency:line.currency,	yield: TOFLOAT(line.yield), type:line.type,ICADCode:line.ICADCode,ACUOCategory:line.ACUOCategory,
 				price:TOFLOAT(line.price),parValue:TOFLOAT(line.parValue),minUnit:TOFLOAT(line.minUnit),minUnitValue:TOFLOAT(line.minUnitValue)})
 
-FOREACH(x IN (CASE WHEN line.AssetType = 'Bond' THEN [1] else [] END) | SET a :Bond)
-FOREACH(x IN (CASE WHEN line.AssetType = 'Cash' THEN [1] else [] END) | SET a :Cash)
+FOREACH(x IN (CASE WHEN TOUPPER(line.type) = 'BOND' THEN [1] else [] END) | SET a :Bond)
+FOREACH(x IN (CASE WHEN TOUPPER(line.type) = 'CASH' THEN [1] else [] END) | SET a :Cash)
 
 MERGE (custac)-[h:HOLDS {businessTimeFrom:line.businessTimeFrom, businessTimeTo:line.businessTimeTo}]->(a)
 
 ON CREATE SET
 h.availableQuantity=TOFLOAT(line.availableQuantity),
-//	h.deployedQuantity=TOFLOAT(line.deployedQuantity),
-//	h.departingQuantity=TOFLOAT(line.departingQuantity),
-//	h.arrivingQuantity =TOFLOAT(line.arrivingQuantity),
 h.reservedQuantity=TOFLOAT(line.reservedQuantity),
 h.internalCost=TOFLOAT(line.internalCost),
 h.opptCost=TOFLOAT(line.opptCost)
 
 ON MATCH SET
 h.availableQuantity=TOFLOAT(line.availableQuantity),
-//	h.deployedQuantity=TOFLOAT(line.deployedQuantity),
-//	h.departedQuantity=TOFLOAT(line.departedQuantity),
-//	h.arrivingQuantity =TOFLOAT(line.arrivingQuantity),
 h.reservedQuantity=TOFLOAT(line.reservedQuantity),
 h.internalCost=TOFLOAT(line.internalCost),
 h.opptCost=TOFLOAT(line.opptCost)
@@ -38,8 +32,6 @@ MERGE (a)-[:PRICING_SOURCE]->(source)
 
 WITH line,a,custac, timestamp()/1000/60/60/24 AS todayDays, TOINT(line.futureDays) AS futureDays
 
-FOREACH (i IN CASE 	WHEN trim(line.ISIN)<>"" THEN [1] 
-	ELSE [] END | SET a.ISIN=line.ISIN)
 FOREACH (i IN CASE 	WHEN trim(line.ticker)<>"" THEN [1] 
 	ELSE [] END | SET a.ticker=line.ticker)
 FOREACH (i IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityDate)<>"" THEN [1] 
@@ -48,7 +40,10 @@ FOREACH (i IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityDate)<>"
 	ELSE [] END | SET a.timeToMaturityDays=TOFLOAT(futureDays-todayDays), a.timeToMaturityYears = TOFLOAT(a.timeToMaturityDays/365))
 FOREACH (i IN CASE 	WHEN trim(line.fitchRating)<>"" THEN [1] 
 	ELSE [] END | SET a.rating=line.fitchRating)
-
+FOREACH (i IN CASE 	WHEN trim(line.issuerSector)<>"" THEN [1] 
+	ELSE [] END | SET a.issuerSector=line.issuerSector)
+FOREACH (i IN CASE 	WHEN trim(line.issuerCountryCode)<>"" THEN [1] 
+	ELSE [] END | SET a.issuerCountryCode=line.issuerCountryCode)
 
 WITH line,custac,a
 
