@@ -9,4 +9,10 @@ ON CREATE SET fcm.name=line.FCMName, fcm.jurisdiction=line.Jurisdiction, fcm.sho
 
 MERGE (fcm)-[:MEMBER_OF]->(ch)
 MERGE (f)-[:MANAGES]->(fcm)
+
+WITH *
+
+MATCH (wz:WorkingZone {code:line.WorkingZone})
+
+MERGE (fcm)-[:OPERATES_IN]->(wz)
 ;

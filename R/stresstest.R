@@ -32,7 +32,7 @@ buildDataBase = function() {
                  '/cypher/currencies.load', 
                  '/cypher/portfolios.load')
   
-  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data'
+  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/master/graph-data'
   
   load.url<-paste(load.preurl,sep='',load.name)
   

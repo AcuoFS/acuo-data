@@ -1,0 +1,6 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/books.csv'
+AS line
+
+MATCH (p:Portfolio {id:line.PortfolioId})
+
+MERGE (b:Book {id:line.BookId})-[:PART_OF]->(p)

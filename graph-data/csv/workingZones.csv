@@ -1,0 +1,208 @@
+Name,Code
+Afghanistan,AFG_FI
+Albania,ALB_FI
+Algeria,ALG_FI
+Angola,ANG_FI
+Argentina,ARG_FI
+Armenia,ARM_FI
+Aruba,ABW_FI
+Australia,AUS_FI
+Australia (Melbourne),AUM_FI
+Austria,AUT_FI
+Azerbaijan,AZE_FI
+Bahamas,BAH_FI
+Bahrain,BAN_FI
+Bangladesh,BAS_FI
+Barbados,BBD_FI
+Belarus,BAR_FI
+Belgium,BEL_FI
+Belieze,BLZ_FI
+Benin,BEN_FI
+Bermuda,BER_FI
+Bhutan,BTN_FI
+Bolivia,BOL_FI
+Bosnia,BOS_FI
+Botswana,BWA_FI
+Brazil,BRA_FI
+Brazil Exchange,BRA_BVMF
+British Virgin Islands,BVI_FI
+Brunei,BRU_FI
+Bulgaria,BUL_FI
+Burkina Faso,BFA_FI
+Burundi,BDI_FI
+Cambodia,KAM_FI
+Cameroon,CMR_FI
+Canada,CAN_FI
+Cape Verde,CPV_FI
+Cayman Islands,CAY_FI
+Central African Republic,CAF_FI
+Chile,CHI_FI
+China,CHN_FI
+China Exchange,CHX_FI
+Colombia,COL_FI
+Comoros,COM_FI
+Congo,CDF_FI
+Costa Rica,CRC_FI
+Croatia,CRO_FI
+Cuba,CBA_FI
+Cyprus,CYP_FI
+Czech Republic,CZE_FI
+Denmark,DEN_FI
+Dijibouti,DJI_FI
+Dominican Republic,DOM_FI
+Dubai,DUB
+Ecuador,ECD_FI
+Egypt,EGY_FI
+El Salvador,SLV_FI
+Eritrea,ERI_FI
+Estonia,EST_FI
+Ethiopia,ETH_FI
+Eurobond,EUR_FI
+Euroland Calendar,EMU_FI
+Euronext,ENX_FI
+Fakland Islands ,FKI_FI
+Fiji,FIJ_FI
+Finland,FIN_FI
+France,FRA_FI
+Gambia,GAM_FI
+Generic Null Calendar,NULL
+Generic Weekend Calendar,WEEKEND
+Georgia,GEO_FI
+Germany,GER_FI
+Ghana,GHA_FI
+Gibralter,GIB_FI
+Greece,GRE_FI
+Guatemala,GUT_FI
+Guernsey,GUN_FI
+Guinea,GIN_FI
+Guinea-Bissau,GNB_FI
+Guyana,GUY_FI
+Haiti,HAI_FI
+Honduras,HON_FI
+Hong Kong,HKG_FI
+Hungary,HUN_FI
+Iceland,ICL_FI
+India,IND_FI
+Indonesia,IDS_FI
+International Monetry Fund,IMF
+Iran,IRA_FI
+Iraq,IRQ_FI
+Ireland,IRL_FI
+Israel,ISR_FI
+Italy,ITL_FI
+Ivory Coast,IVC_FI
+Jamacia,JAM_FI
+Japan,JAP_FI
+Jersey,JER_FI
+Jordan,JOR_FI
+Kazakhstan,KAZ_FI
+Kenya,KEN_FI
+Korea,KOR_FI
+Kuwait,KWT_FI
+Kyrgyzstan,KGZ_FI
+Laos,LAO_FI
+Latvia,LAT_FI
+Lebanon,LEB_FI
+Lesotho,LES_FI
+Liberia,LBA_FI
+Libya,LAR_FI
+Lithuania,LIH_FI
+London/NY,LNY_FI
+London/NY Floating-Rate Tranches,LNYFRT_FI
+London/Tokyo,LTK_FI
+Luxembourg,LUX_FI
+Macau,MAC_FI
+Macedonia,MKD_FI
+Madagascar,MAD_FI
+Maladives,MDV_FI
+Malawi,MWI_FI
+Malaysia,MAL_FI
+Maldives,MDV
+Mali,MLI_FI
+Malta,MLT_FI
+Marshall Islands,MSI_FI
+Mauritania,MRT_FI
+Mauritius,MUS_FI
+Mexico,MEX_FI
+Moldova,MDA_FI
+Mongolia,MNT_FI
+Montenegro,MNE_FI
+Morocco,MOR_FI
+Mozambique,MOZ_FI
+Myanmar,BMA_FI
+Namibia,NAM_FI
+Nepal,NPL_FI
+Netherlands,NTL_FI
+Netherlands Antilles,NAT_FI
+New Zealand,NZL_FI
+Nicaragua,NIC_FI
+Niger,NGR_FI
+Nigeria,NGN_FI
+Non-LME Prompt Days,UKLME_PROMPT
+North Korea,NKR_FI
+Norway,NOR_FI
+Oman,OMN_FI
+Pakistan,PAK_FI
+Panama,PAN_FI
+Papa New Guinea,PNG_FI
+Paraguay,PAR_FI
+Peru,PER_FI
+Philippines,PHI_FI
+Poland,POL_FI
+Portugal,POR_FI
+Puerto Rico,PRI
+Qatar,QAT_FI
+Romania,ROU_FI
+Russian Federation,RUS_FI
+Rwanda,RWA_FI
+Samoa,WSM_FI
+Sao Tome,STP_FI
+Saudi Arabia,SAU_FI
+Senegal,SEN_FI
+Serbia,SRB_FI
+Seychelles,SYC_FI
+Sierra Leone,SLE_FI
+Singapore,SIN_FI
+Slovak Republic,SLK_FI
+Slovenia,SLO_FI
+Solomon Islands,SLB_FI
+Somalia,SOM_FI
+South Africa,RSA_FI
+Spain,SPA_FI
+Sri Lanka,SRI_FI
+ST Helena,SHN_FI
+Sudan,SDN_FI
+Surinam,SUR_FI
+Swaziland,SWZ_FI
+Sweden,SWE_FI
+Switzerland,SWI_FI
+Syria,SYR_FI
+Taiwan,TWN_FI
+Tajikistan,TJK_FI
+Tanzania,TZA_FI
+Thailand,THA_FI
+Togo,TOG_FI
+Tokyo,TYO_ISDA
+Tonga,TON_FI
+Trinidad and Tobago,TTO_FI
+Tunisia,TUN_FI
+Turkey,TUR_FI
+Turkmenistan,TKM_FI
+Uganda,UGA_FI
+UKIEUIPE,UKIEUIPE
+Ukraine,UKR_FI
+United Arab Emirates,UAE_FI
+United Kingdom,UKG_FI
+United Kingdom (London Metal Exchange),UKLME
+United States,USA_FI
+United States - NYSE Holidays,USN_FI
+United States of America Money Market,USM_FI
+Uruguay,URU_FI
+US Bond Futures,USC_FI
+Uzbekistan,UZB_FI
+Vanuatu,VUT_FI
+Venezuela,VEN_FI
+Vietnam,VNM_FI
+Yemen,YEM_FI
+Zambia,ZMB_FI
+Zimbabwe,ZWE_FI

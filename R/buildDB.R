@@ -6,13 +6,14 @@ readLoad <- function(path) {
 }
 
 buildDataBase = function() {
-  graph = startGraph("http://margin.acuo.com:7474/db/data/")
+#  graph = startGraph("http://margin.acuo.com:7474/db/data/")
 #  graph = startGraph("http://qa.acuo.com:7474/db/data/")
-#  graph = startGraph("http://localhost:7474/db/data/")
+  graph = startGraph("http://localhost:7474/db/data/")
   
   clear(graph,input=FALSE)
   
   load.name <- c('/cypher/firms.load',
+                 '/cypher/workingZones.load',
                  '/cypher/legalentities.load',
                  '/cypher/clearingHouses.load',
                  '/cypher/fcms.load',
@@ -21,7 +22,7 @@ buildDataBase = function() {
                  '/cypher/clearedAgreements.load',
                  '/cypher/ratingScores.load',
                  '/cypher/assetCategories.load',
-                 '/cypher/custodians.load',
+#                 '/cypher/custodians.load',
                  '/cypher/custodianAccounts.load',
                  '/cypher/counterpartCustodianAccounts.load',
                  '/cypher/custodianAssets.load',
@@ -30,10 +31,12 @@ buildDataBase = function() {
                  '/cypher/initmcexp.load',
                  '/cypher/initmc.load',
                  '/cypher/infopres.load',
+#                 '/cypher/reconEverything.load',
                  '/cypher/settings.load',
                  '/cypher/assetTransfer.load',
                  '/cypher/currencies.load', 
-                 '/cypher/portfolios.load')
+                 '/cypher/portfolios.load', 
+                 '/cypher/books.load')
 
   load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data'
   
