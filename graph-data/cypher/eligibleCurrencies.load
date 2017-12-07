@@ -6,5 +6,5 @@ UNWIND agreementIds AS agreementId
 
 MATCH (ag:Agreement {id:agreementId})
 
-MERGE (ag)-[:DIFINES]->(ec:EligibleCurrency {currency:line.currency, interestRate:line.interestRate,dayCount:line.dayCount})
+MERGE (ag)-[:DEFINES]->(ec:EligibleCurrency {currency:line.currency, interestRate:line.interestRate,dayCount:line.dayCount})
 
