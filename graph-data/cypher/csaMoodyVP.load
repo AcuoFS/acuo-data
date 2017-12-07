@@ -1,4 +1,4 @@
-LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/AcuoFS/acuo-data/feature/708/graph-data/csv/csaMoodyVP.csv' 
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/csaMoodyVP.csv' 
 AS line 
 
 MATCH (ag:Agreement {id:line.agreementId})
