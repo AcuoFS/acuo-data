@@ -1,0 +1,7 @@
+agreementId,type,name
+a1,Swap,interest rate swap|currency swap
+a1,Security-Based Swap,credit default swap
+a1,OTC Derivative,forward rate agreement
+,,
+a2,Swap,interest rate swap|currency swap
+a2,OTC Derivative,forward rate agreement
