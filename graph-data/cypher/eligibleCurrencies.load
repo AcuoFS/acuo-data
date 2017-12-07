@@ -4,18 +4,7 @@ WITH line,SPLIT(line.agreementId,'|') AS agreementIds
 
 UNWIND agreementIds AS agreementId
 
-MATCH (ag:Agreement {id:agreementId})-[:DEFINES]->(fxh:FXHaircut)
+MATCH (ag:Agreement {id:agreementId})
 
-MERGE (ecl:EligibleCurrencyList {agreementId:ag.id})
-
-MERGE (ag)-[:DIFINES {interestRate:line.interestRate,dayCount:line.dayCount}]->(ec:EligibleCurrency {currency:line.currency})
-
-MERGE (ec)-[:IN]->(ecl)
-
-MERGE (c:Cash {type:'Cash'})-[:APPLY {FXHaircut:0}]->(fxh)
-
-MERGE (c)-[:ELSEIF]->(n:NonCash)-[:AND]->(ecl)
-
-MERGE (ecl)-[:THEN_APPLY {FXHaircut:0}]->(fxh)
-MERGE (ecl)-[:ELSE_APPLY {FXHaircut:fxh.FXHaircut}]->(fxh)
+MERGE (ag)-[:DEFINES]->(ec:EligibleCurrency {currency:line.currency, interestRate:line.interestRate,dayCount:line.dayCount})
 

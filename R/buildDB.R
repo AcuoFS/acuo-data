@@ -18,7 +18,9 @@ buildDataBase = function() {
                  '/cypher/clearingHouses.load',
                  '/cypher/fcms.load',
                  '/cypher/tradingAccounts.load',
+                 '/cypher/bilateralMasterAgreements.load',
                  '/cypher/bilateralAgreements.load',
+                 '/cypher/valuationAgent.load',
                  '/cypher/clearedAgreements.load',
                  '/cypher/ratingScores.load',
                  '/cypher/assetCategories.load',
@@ -27,6 +29,10 @@ buildDataBase = function() {
                  '/cypher/counterpartCustodianAccounts.load',
                  '/cypher/custodianAssets.load',
                  '/cypher/buildEligibility.load',
+                 '/cypher/eligibleCurrencies.load',
+                 '/cypher/csaFitchFXAR.load',
+                 '/cypher/csaFitchSecAR.load',
+                 '/cypher/csaMoodyVP.load',
                  '/cypher/mstatements.load',
                  '/cypher/initmcexp.load',
                  '/cypher/initmc.load',
@@ -38,7 +44,7 @@ buildDataBase = function() {
                  '/cypher/portfolios.load', 
                  '/cypher/books.load')
 
-  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/develop/graph-data'
+  load.preurl<-'https://raw.githubusercontent.com/AcuoFS/acuo-data/feature/708/graph-data'
   
   load.url<-paste(load.preurl,sep='',load.name)
   
