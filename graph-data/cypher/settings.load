@@ -1,12 +1,6 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/settings.csv' 
 AS line
 
-MERGE (s:Settings {name:line.Name})
-
-set s.rating = toFloat(line.Rating)
-
-WITH *
-
 MATCH (c:Client {id:line.ClientId})
 
-MERGE (c)-[:HAS]->(s);
+MERGE (c)-[:HAS_SETTINGS]->(s:Settings {name:line.Name, rating:toFloat(line.Rating)})
