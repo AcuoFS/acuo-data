@@ -4,7 +4,10 @@ MATCH (l1:LegalEntity {id:line.Party1})
 MATCH (l2:LegalEntity {id:line.Party2})
 
 MERGE (a:Agreement {id:line.AgreementId, ampId:line.AmpId, name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, notificationTime:line.NotificationTime, currency:line.Currency, counterpartCustodian:line.CounterpartCustodianId, threshold:toFloat(line.Threshold), baseCurrency:line.BaseCurrency,law:line.Law, tolerance:toFloat(line.Tolerance),	
-interestTransfer:line.interestTransfer,interestPaymentNetting:line.interestPaymentNetting,interestAdjustment:line.interestAdjustment,negativeInterest:line.negativeInterest,dailyInterestCompounding:line.dailyInterestCompounding,regime:line.regime})
+interestTransfer:line.interestTransfer,interestPaymentNetting:line.interestPaymentNetting,interestAdjustment:line.interestAdjustment,negativeInterest:line.negativeInterest,dailyInterestCompounding:line.dailyInterestCompounding,regime:line.regime,
+marginCallEnabled:line.marginCallEnabled,allowMultipleCallsPerDay:line.allowMultipleCallsPerDay,variationCallsEnabled:line.variationCallsEnabled,separateVariationCallsByCurrency:line.separateVariationCallsByCurrency,initialCallsEnabled:line.initialCallsEnabled,separateInitialCallsByCurrency:line.separateInitialCallsByCurrency,
+substitutionEnabled:line.substitutionEnabled,timeZone:line.timeZone,valuationAgentAmpId:line.valuationAgentAmpId,soleCalculation:line.soleCalculation,agreementEmailList:line.agreementEmailList
+})
 
 WITH *
 
