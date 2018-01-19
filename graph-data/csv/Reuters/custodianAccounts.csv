@@ -1,0 +1,7 @@
+accountId,accountName,accountRegion,custodianId,custodianName,country,countryShortName,clientId,tradingAccountId
+CustodianAccount1A,CustodianAccount1A,region100,Custodian1,Custodian1,Singapore,SG,999,TRSG8745|TRSG3126|TRSG9071|TRUS3014|TRUS6924|TRHK4931
+CustodianAccount1B,CustodianAccount1B,region101,Custodian1,Custodian1,Singapore,SG,999,TRSG8745|TRSG3126|TRUS3014|TRUK2046|TRAUS4931|TRHK7439|ATRHK3021
+CustodianAccount1C,CustodianAccount1C,region102,Custodian1,Custodian1,Singapore,SG,999,TRSG8745|TRSG3126|TRUS6924|TRUK2046
+CustodianAccount1D,CustodianAccount1D,region103,Custodian1,Custodian1,Singapore,SG,999,TRSG8745|TRSG3126|TRUK2046|TRSG9071|TRUS6924|TRAUS4931|TRHK7439|TRHK3021
+CustodianAccount1E,CustodianAccount1E,region104,Custodian1,Custodian1,Singapore,SG,999,TRSG8745|TRSG3126|TRSG9071|TRUS3014
+CustodianAccount1F,CustodianAccount1F,region105,Custodian1,Custodian1,Singapore,SG,999,TRSG8745|TRSG3126|TRSG9071|TRUS3014|TRUS6924|TRHK4931|TRUK2046
