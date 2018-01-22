@@ -1,0 +1,8 @@
+ClientName,ClientShortName,ClientId,Type,PreferredCurrency
+Palo,Palo,888,Client,USD
+Counterpart A,Counterpart A,111,Counterpart,
+Counterpart B,Counterpart B,222,Counterpart,
+J.P. Morgan,JPM,333,Counterpart,
+Goldman Sachs,Goldman Sachs,444,Counterpart,
+Morgan Stanley,Morgan Stanley,555,Counterpart,
+DBS,DBS,777,Counterpart,
