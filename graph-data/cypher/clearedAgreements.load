@@ -4,7 +4,7 @@ MATCH (l:LegalEntity {id:line.LegalEntityId})
 MATCH (fcm:LegalEntity {id:line.FCMId})
 MATCH (ch:ClearingHouse {id:line.ClearingHouseId})
 
-MERGE (a:Agreement:ClearedAgreement {id:line.AgreementId, coalesce(ampId:line.AmpId,""), name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, currency:line.Currency, FCMCustodian:line.FCMCustodianId, notificationTime:line.NotificationTime, tolerance:toFloat(line.Tolerance), initialBalanceCashToVariation:toInt(line.InitialBalanceCashToVariation), brokerMultiplier:toFloat(line.BrokerMultiplier)})
+MERGE (a:Agreement:ClearedAgreement {id:line.AgreementId, ampId:coalesce(line.AmpId,""), name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, currency:line.Currency, FCMCustodian:line.FCMCustodianId, notificationTime:line.NotificationTime, tolerance:toFloat(line.Tolerance), initialBalanceCashToVariation:toInt(line.InitialBalanceCashToVariation), brokerMultiplier:toFloat(line.BrokerMultiplier)})
 
 MERGE (l)-[s1:CLIENT_SIGNS]->(a)
 MERGE (fcm)-[s2:COUNTERPARTY_SIGNS]->(a)
