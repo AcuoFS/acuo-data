@@ -1,9 +1,4 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/firms.csv' AS line
 
-FOREACH(n IN (CASE WHEN line.Type = 'Client' THEN [1] else [] END) |
-  MERGE (c:Client:Firm {id:line.ClientId, name:line.ClientName, shortName:line.ClientShortName, preferredCurrency:line.PreferredCurrency})
-)
+MERGE (c:Client:Firm {id:line.ClientId, name:line.ClientName, shortName:line.ClientShortName, preferredCurrency:line.PreferredCurrency})
 
-FOREACH(n IN (CASE WHEN line.Type = 'Counterpart' THEN [1] else [] END) |
-  MERGE (c:Counterpart:Firm {id:line.ClientId, name:line.ClientName, shortName:line.ClientShortName})
-)
