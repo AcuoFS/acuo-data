@@ -1,0 +1,15 @@
+EntityName,EntityShortName,EntityId,ClientId,HolidayZone,Jurisdiction,type,type1,establishedIn,aboveNotionalThreshold
+Reuters Transaction Services Limited,Reuters UK,549300SDDJE84DDJNB30,666,UKG_FI,EU,NFC+,SE,TCE,yes
+Thomson Reuters (Markets) Group,Reuters US,549300WQWDPFSMQ8I087,666,USN_FI,US_CFTC,NFC+,FEU,TCE,yes
+Thomson Reuters Transaction Services Pte. Ltd,Reuters SG,5493004U2OZSNOP2ML97,666,SIN_FI,SG_MAS,NFC+,SE,TCE,yes
+Thomson Reuters Hong Kong,Reuters HK,549300561UZND4C7B569,666,HKG_FI,HK_HKMA,NFC+,SE,TCE,no
+Counterpart AR1,Counterpart AR1,W7K13LBE6OLJ663LISWQ,111,SIN_FI,SG_MAS,FC,SE,EU,yes
+Counterpart AR2,Counterpart AR2,FLWQQ213I639BH37WD1N,111,KOR_FI,KOR_FSS,NFC+,SE,EU,yes
+Counterpart AR3,Counterpart AR3,6BP9B5XIIOCTY6H0MFMJ,111,SIN_FI,SG_MAS,FC,FEU,EU,no
+Counterpart AR4,Counterpart AR4,XQMDGAGQXJ5OHQ8I994V,111,SIN_FI,SG_MAS,FC,FEU,EU,yes
+Counterpart AR5,Counterpart AR5,0SOJM5F1XDPSIZO9TX9J,111,SIN_FI,SG_MAS,FC,SE,EU,no
+Counterpart BR1,Counterpart BR1,2TEBDUI1CT9Y2WLC8GR7,222,FRA_FI,EU,NFC+,SE,TCE,yes
+Counterpart BR2,Counterpart BR2,R1SVUR5HEZ0O093VM2KL,222,UKG_FI,EU,NFC+,SE,EU,yes
+Counterpart BR3,Counterpart BR3,PFYUZLB1WMXL7LJ0V1IY,222,USN_FI,US_PR,FC,SE,EU,no
+Counterpart BR4,Counterpart BR4,LKY5XBK1ZJILZ74JW70H,222,UKG_FI,EU,FC,SE,EU,yes
+Counterpart BR5,Counterpart BR5,CQB2PRVDFRFTC2ZDLJTX,222,SIN_FI,SG_MAS,FC,SE,EU,yes

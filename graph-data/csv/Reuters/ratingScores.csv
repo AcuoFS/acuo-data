@@ -1,0 +1,25 @@
+score,fitchRating,fitchRatingST,SnPRating,SnPRatingST,moodysRating,moodysRatingST
+100,AAA,F1+,AAA,A-1+,Aaa,P-1
+99,AA+,F1+,AA+,A-1+,Aa1,P-1
+98,AA,F1+,AA,A-1+,Aa2,P-1
+97,AA-,F1+,AA?,A-1+,Aa3,P-1
+96,A+,F1,A+,A-1,A1,P-1
+95,A,F1,A,A-1,A2,P-1
+94,A-,F2,A?,A-2,A3,P-2
+93,BBB+,F2,BBB+,A-2,Baa1,P-2
+92,BBB,F3,BBB,A-2,Baa2,P-3
+91,BBB-,F3,BBB?,A-3,Baa3,P-3
+90,BB+,B,BB+,B,Ba1,Not Prime
+89,BB,B,BB,B,Ba2,Not Prime
+88,BB-,B,BB?,B,Ba3,Not Prime
+87,B+,B,B+,B,B1,Not Prime
+86,B,B,B,B,B2,Not Prime
+85,B-,B,B?,B,B3,Not Prime
+84,CCC+,C,CCC+,C,Caa1,Not Prime
+83,CCC,C,CCC,C,Caa2,Not Prime
+82,CCC?,C,CCC?,C,Caa3,Not Prime
+81,CC,C,CC,C,Ca,Not Prime
+80,C,C,C,C,,Not Prime
+79,DDD,D,RD,D,C,Not Prime
+78,DD,D,SD,D,/,Not Prime
+77,D,D,D,D,/,Not Prime

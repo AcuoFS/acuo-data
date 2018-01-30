@@ -1,0 +1,8 @@
+ClientName,ClientShortName,ClientId,Type,PreferredCurrency
+Thomson Reuters Corporation,Reuters,666,Client,SGD
+Counterpart AR,Counterpart AR,111,Counterpart,
+Counterpart BR,Counterpart BR,222,Counterpart,
+J.P. Morgan,JPM,333,Counterpart,
+"Goldman Sachs Group, Inc.",Goldman Sachs,444,Counterpart,
+Morgan Stanley Bank AG,Morgan Stanley,555,Counterpart,
+DBS,DBS,777,Counterpart,
