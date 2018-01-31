@@ -7,7 +7,8 @@ SET cust.name = line.custodianName, cust.country = line.country, cust.countrySho
 WITH line, SPLIT(line.tradingAccountId,'|') AS TradingAccounts
 
 MATCH (client:Client {id:line.clientId})
-MERGE (client)-[:HAS]->(custac: CustodianAccount {id:line.accountId,name:line.accountName,region:line.accountRegion})
+MERGE (custac: CustodianAccount {id:line.accountId,name:line.accountName,region:line.accountRegion})
+MERGE (client)-[:HAS]->(custac)
 WITH custac,line,TradingAccounts
 MATCH (cust:Custodian {id:line.custodianId})
 MERGE (custac)<-[:MANAGES]-(cust)
