@@ -2,6 +2,4 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/portfolios.csv' AS line
 
 MATCH (a:Agreement {id:line.AgreementId})
 
-MERGE (p:Portfolio {id:line.PortfolioId})
-
-MERGE (p)-[:FOLLOWS]->(a)
+MERGE (p:Portfolio {id:line.PortfolioId})-[:FOLLOWS]->(a)
