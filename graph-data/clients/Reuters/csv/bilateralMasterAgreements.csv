@@ -1,32 +1,32 @@
 AgreementName,AgreementId,AgreementDate,Party1,Party2,TerminationCurrency
-Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty AR1,mr1,7/29/2015,5493004U2OZSNOP2ML97,W7K13LBE6OLJ663LISWQ,USD
-Master Thomson Reuters (Markets) Group v Counterparty AR2,mr2,7/29/2015,549300WQWDPFSMQ8I087,FLWQQ213I639BH37WD1N,SGD
-Master Reuters Transaction Services Limited v Counterparty AR3,mr3,7/29/2015,5493004U2OZSNOP2ML97,6BP9B5XIIOCTY6H0MFMJ,NOK
-Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty AR4,mr4,7/29/2015,5493004U2OZSNOP2ML97,XQMDGAGQXJ5OHQ8I994V,SEK
-Master Thomson Reuters (Markets) Group v Counterparty AR5,mr5,7/9/2015,549300WQWDPFSMQ8I087,0SOJM5F1XDPSIZO9TX9J,EUR
-Master Reuters Transaction Services Limited v Counterparty BR1,mr6,7/29/2015,5493004U2OZSNOP2ML97,2TEBDUI1CT9Y2WLC8GR7,GBP
-Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty BR2,mr7,7/29/2015,5493004U2OZSNOP2ML97,R1SVUR5HEZ0O093VM2KL,KRW
-Master Thomson Reuters (Markets) Group v Counterparty BR3,mr8,7/9/2015,549300WQWDPFSMQ8I087,PFYUZLB1WMXL7LJ0V1IY,JPY
-Master Reuters Transaction Services Limited v Counterparty BR4,mr9,5/5/2014,5493004U2OZSNOP2ML97,LKY5XBK1ZJILZ74JW70H,AUD
-Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty BR5,mr10,5/6/2014,5493004U2OZSNOP2ML97,CQB2PRVDFRFTC2ZDLJTX,CAD
-Master Thomson Reuters (Markets) Group v Counterparty AR1,mr11,3/28/2013,549300WQWDPFSMQ8I087,W7K13LBE6OLJ663LISWQ,NZD
-Master Reuters Transaction Services Limited v Counterparty AR2,mr12,3/29/2013,5493004U2OZSNOP2ML97,FLWQQ213I639BH37WD1N,USD
-Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty AR3,mr13,7/29/2015,5493004U2OZSNOP2ML97,6BP9B5XIIOCTY6H0MFMJ,SGD
-Master Thomson Reuters (Markets) Group v Counterparty AR4,mr14,7/29/2015,549300WQWDPFSMQ8I087,XQMDGAGQXJ5OHQ8I994V,NOK
-Master Reuters Transaction Services Limited v Counterparty AR5,mr15,7/29/2015,5493004U2OZSNOP2ML97,0SOJM5F1XDPSIZO9TX9J,SEK
-Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty BR1,mr16,7/29/2015,5493004U2OZSNOP2ML97,2TEBDUI1CT9Y2WLC8GR7,EUR
-Master Thomson Reuters (Markets) Group v Counterparty BR2,mr17,7/9/2015,549300WQWDPFSMQ8I087,R1SVUR5HEZ0O093VM2KL,GBP
-Master Reuters Transaction Services Limited v Counterparty BR3,mr18,7/29/2015,5493004U2OZSNOP2ML97,PFYUZLB1WMXL7LJ0V1IY,KRW
-Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty BR4,mr19,7/29/2015,5493004U2OZSNOP2ML97,LKY5XBK1ZJILZ74JW70H,JPY
-Master Thomson Reuters (Markets) Group v Counterparty BR5,mr20,7/9/2015,549300WQWDPFSMQ8I087,CQB2PRVDFRFTC2ZDLJTX,AUD
-Master Reuters Transaction Services Limited v Counterparty AR1,mr21,5/5/2014,5493004U2OZSNOP2ML97,W7K13LBE6OLJ663LISWQ,CAD
-Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty AR2,mr22,5/6/2014,5493004U2OZSNOP2ML97,FLWQQ213I639BH37WD1N,NZD
-Master Thomson Reuters (Markets) Group v Counterparty AR3,mr23,3/28/2013,549300WQWDPFSMQ8I087,6BP9B5XIIOCTY6H0MFMJ,USD
-Master Reuters Transaction Services Limited v Counterparty AR4,mr24,3/29/2013,5493004U2OZSNOP2ML97,XQMDGAGQXJ5OHQ8I994V,SGD
-Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty AR5,mr25,7/29/2015,5493004U2OZSNOP2ML97,0SOJM5F1XDPSIZO9TX9J,NOK
-Master Thomson Reuters (Markets) Group v Counterparty BR1,mr26,7/29/2015,549300WQWDPFSMQ8I087,2TEBDUI1CT9Y2WLC8GR7,SEK
-Master Reuters Transaction Services Limited v Counterparty BR2,mr27,7/29/2015,5493004U2OZSNOP2ML97,R1SVUR5HEZ0O093VM2KL,EUR
-Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty BR3,mr28,7/29/2015,5493004U2OZSNOP2ML97,PFYUZLB1WMXL7LJ0V1IY,GBP
-Master Thomson Reuters (Markets) Group v Counterparty BR4,mr29,7/9/2015,549300WQWDPFSMQ8I087,LKY5XBK1ZJILZ74JW70H,KRW
-Master Reuters Transaction Services Limited v Counterparty BR5,mr30,7/29/2015,5493004U2OZSNOP2ML97,CQB2PRVDFRFTC2ZDLJTX,JPY
-Master Thomson Reuters Hong Kong v Counterparty AR1,mr44,7/29/2015,549300561UZND4C7B569,W7K13LBE6OLJ663LISWQ,USD
+Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty AR1,mr1,2015/07/29,5493004U2OZSNOP2ML97,W7K13LBE6OLJ663LISWQ,USD
+Master Thomson Reuters (Markets) Group v Counterparty AR2,mr2,2015/07/29,549300WQWDPFSMQ8I087,FLWQQ213I639BH37WD1N,SGD
+Master Reuters Transaction Services Limited v Counterparty AR3,mr3,2015/07/29,5493004U2OZSNOP2ML97,6BP9B5XIIOCTY6H0MFMJ,NOK
+Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty AR4,mr4,2015/07/29,5493004U2OZSNOP2ML97,XQMDGAGQXJ5OHQ8I994V,SEK
+Master Thomson Reuters (Markets) Group v Counterparty AR5,mr5,2015/09/07,549300WQWDPFSMQ8I087,0SOJM5F1XDPSIZO9TX9J,EUR
+Master Reuters Transaction Services Limited v Counterparty BR1,mr6,2015/07/29,5493004U2OZSNOP2ML97,2TEBDUI1CT9Y2WLC8GR7,GBP
+Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty BR2,mr7,2015/07/29,5493004U2OZSNOP2ML97,R1SVUR5HEZ0O093VM2KL,KRW
+Master Thomson Reuters (Markets) Group v Counterparty BR3,mr8,2015/09/07,549300WQWDPFSMQ8I087,PFYUZLB1WMXL7LJ0V1IY,JPY
+Master Reuters Transaction Services Limited v Counterparty BR4,mr9,2014/05/05,5493004U2OZSNOP2ML97,LKY5XBK1ZJILZ74JW70H,AUD
+Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty BR5,mr10,2014/06/05,5493004U2OZSNOP2ML97,CQB2PRVDFRFTC2ZDLJTX,CAD
+Master Thomson Reuters (Markets) Group v Counterparty AR1,mr11,2013/28/03,549300WQWDPFSMQ8I087,W7K13LBE6OLJ663LISWQ,NZD
+Master Reuters Transaction Services Limited v Counterparty AR2,mr12,2015/03/29,5493004U2OZSNOP2ML97,FLWQQ213I639BH37WD1N,USD
+Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty AR3,mr13,2015/07/29,5493004U2OZSNOP2ML97,6BP9B5XIIOCTY6H0MFMJ,SGD
+Master Thomson Reuters (Markets) Group v Counterparty AR4,mr14,2015/07/29,549300WQWDPFSMQ8I087,XQMDGAGQXJ5OHQ8I994V,NOK
+Master Reuters Transaction Services Limited v Counterparty AR5,mr15,2015/07/29,5493004U2OZSNOP2ML97,0SOJM5F1XDPSIZO9TX9J,SEK
+Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty BR1,mr16,2015/07/29,5493004U2OZSNOP2ML97,2TEBDUI1CT9Y2WLC8GR7,EUR
+Master Thomson Reuters (Markets) Group v Counterparty BR2,mr17,2015/09/07,549300WQWDPFSMQ8I087,R1SVUR5HEZ0O093VM2KL,GBP
+Master Reuters Transaction Services Limited v Counterparty BR3,mr18,2015/07/29,5493004U2OZSNOP2ML97,PFYUZLB1WMXL7LJ0V1IY,KRW
+Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty BR4,mr19,2015/07/29,5493004U2OZSNOP2ML97,LKY5XBK1ZJILZ74JW70H,JPY
+Master Thomson Reuters (Markets) Group v Counterparty BR5,mr20,2015/09/07,549300WQWDPFSMQ8I087,CQB2PRVDFRFTC2ZDLJTX,AUD
+Master Reuters Transaction Services Limited v Counterparty AR1,mr21,2015/05/05,5493004U2OZSNOP2ML97,W7K13LBE6OLJ663LISWQ,CAD
+Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty AR2,mr22,2014/06/05,5493004U2OZSNOP2ML97,FLWQQ213I639BH37WD1N,NZD
+Master Thomson Reuters (Markets) Group v Counterparty AR3,mr23,2013/03/28,549300WQWDPFSMQ8I087,6BP9B5XIIOCTY6H0MFMJ,USD
+Master Reuters Transaction Services Limited v Counterparty AR4,mr24,2015/03/29,5493004U2OZSNOP2ML97,XQMDGAGQXJ5OHQ8I994V,SGD
+Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty AR5,mr25,2015/07/29,5493004U2OZSNOP2ML97,0SOJM5F1XDPSIZO9TX9J,NOK
+Master Thomson Reuters (Markets) Group v Counterparty BR1,mr26,2015/07/29,549300WQWDPFSMQ8I087,2TEBDUI1CT9Y2WLC8GR7,SEK
+Master Reuters Transaction Services Limited v Counterparty BR2,mr27,2015/07/29,5493004U2OZSNOP2ML97,R1SVUR5HEZ0O093VM2KL,EUR
+Master Thomson Reuters Transaction Services Pte. Ltd v Counterparty BR3,mr28,2015/07/29,5493004U2OZSNOP2ML97,PFYUZLB1WMXL7LJ0V1IY,GBP
+Master Thomson Reuters (Markets) Group v Counterparty BR4,mr29,2015/09/07,549300WQWDPFSMQ8I087,LKY5XBK1ZJILZ74JW70H,KRW
+Master Reuters Transaction Services Limited v Counterparty BR5,mr30,2015/07/29,5493004U2OZSNOP2ML97,CQB2PRVDFRFTC2ZDLJTX,JPY
+Master Thomson Reuters Hong Kong v Counterparty AR1,mr44,2015/07/29,549300561UZND4C7B569,W7K13LBE6OLJ663LISWQ,USD
