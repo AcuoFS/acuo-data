@@ -4,8 +4,8 @@ AS line
 MATCH (c1:Currency {id:line.CurrencyISO})
 MATCH (c2:Currency {id:'USD'})
 
-MERGE (fxRate:FXRate {value:toFloat(line.ValueToUSD)})
-MERGE (c1)<-[:FROM]-(fxRate)-[:TO]->(c2)
-MERGE (value:FXValue {value:toFloat(line.ValueToUSD), from:toInt(timestamp()/1000)})
-MERGE (value)-[:OF]->(fxRate)
-MERGE (fxRate)-[:LAST]->(value);
+MERGE (fxRate:FXRate {value:toFloat(line.ValueToUSD)})<-[:OF]-(v:FXValue)
+ON CREATE SET 	v.value = toFloat(line.ValueToUSD),
+				v.from:toInt(timestamp()/1000)
+MERGE (fxRate)-[:LAST]->(value)
+MERGE (c1)<-[:FROM]-(fxRate)-[:TO]->(c2);
