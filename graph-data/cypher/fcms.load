@@ -2,17 +2,13 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/fcms.csv' AS line
 
 MATCH (ch:ClearingHouse {id:line.ClearingHouseId})
 MATCH (f:Firm {id:line.FirmId})
+MATCH (wz:WorkingZone {code:line.WorkingZone})
 
 MERGE (fcm:FCM:LegalEntity {id:line.FCMId})
-
-ON CREATE SET fcm.name=line.FCMName, fcm.jurisdiction=line.Jurisdiction, fcm.shortName=line.FCMShortName
+ON CREATE SET	fcm.name=line.FCMName, 
+				fcm.jurisdiction=line.Jurisdiction, 
+				fcm.shortName=line.FCMShortName
 
 MERGE (fcm)-[:MEMBER_OF]->(ch)
 MERGE (f)-[:MANAGES]->(fcm)
-
-WITH *
-
-MATCH (wz:WorkingZone {code:line.WorkingZone})
-
-MERGE (fcm)-[:OPERATES_IN]->(wz)
-;
+MERGE (fcm)-[:OPERATES_IN]->(wz);

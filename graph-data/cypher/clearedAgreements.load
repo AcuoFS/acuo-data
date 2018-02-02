@@ -4,8 +4,18 @@ MATCH (l:LegalEntity {id:line.LegalEntityId})
 MATCH (fcm:LegalEntity {id:line.FCMId})
 MATCH (ch:ClearingHouse {id:line.ClearingHouseId})
 
-MERGE (a:Agreement:ClearedAgreement {id:line.AgreementId, ampId:coalesce(line.AmpId,""), name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, currency:line.Currency, FCMCustodian:line.FCMCustodianId, notificationTime:line.NotificationTime, tolerance:toFloat(line.Tolerance), initialBalanceCashToVariation:toInt(line.InitialBalanceCashToVariation), brokerMultiplier:toFloat(line.BrokerMultiplier)})
+MERGE (a:Agreement:ClearedAgreement {id:line.AgreementId})
+ON CREATE SET 	a.ampId:coalesce(line.AmpId,""), 
+				a.name:line.AgreementName, 
+				a.agreementDate:line.AgreementDate, 
+				a.type:line.Type, 
+				a.currency:line.Currency, 
+				a.FCMCustodian:line.FCMCustodianId, 
+				a.notificationTime:line.NotificationTime, 
+				a.tolerance:toFloat(line.Tolerance), 
+				a.initialBalanceCashToVariation:toInt(line.InitialBalanceCashToVariation), 
+				a.brokerMultiplier:toFloat(line.BrokerMultiplier)
 
 MERGE (l)-[s1:CLIENT_SIGNS]->(a)
 MERGE (fcm)-[s2:COUNTERPARTY_SIGNS]->(a)
-MERGE (a)-[:IN_CH]->(ch)
+MERGE (a)-[:IN_CH]->(ch);

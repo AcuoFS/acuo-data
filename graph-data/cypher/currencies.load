@@ -1,5 +1,5 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/currencies.csv'
 AS line
 
-MERGE (c1:Currency {id:line.CurrencyISO, name:line.CurrencyName})
-
+MERGE (c:Currency {id:line.CurrencyISO})
+ON CREATE SET 	c.name:line.CurrencyName;

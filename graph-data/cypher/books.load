@@ -4,5 +4,4 @@ AS line
 MATCH (p:Portfolio {id:line.PortfolioId})
 
 MERGE (b:Book {id:line.BookId})
-
 MERGE (b)-[:PART_OF]->(p)

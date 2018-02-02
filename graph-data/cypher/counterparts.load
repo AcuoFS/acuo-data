@@ -1,3 +1,5 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/counterparts.csv' AS line
 
-MERGE (c:Counterpart:Firm {id:line.ClientId, name:line.ClientName, shortName:line.ClientShortName})
+MERGE (counterpart:Counterpart:Firm {id:line.ClientId})
+ON CREATE SET 	counterpart.name:line.ClientName, 
+				counterpart.shortName:line.ClientShortName

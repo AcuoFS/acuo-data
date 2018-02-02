@@ -2,28 +2,43 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/bilateralAgreements.csv' AS lin
 
 MATCH (l1:LegalEntity {id:line.Party1})
 MATCH (l2:LegalEntity {id:line.Party2})
-
-MERGE (a:Agreement {id:line.AgreementId, ampId:coalesce(line.AmpId,""), name:line.AgreementName, agreementDate:line.AgreementDate, type:line.Type, notificationTime:line.NotificationTime, currency:line.Currency, counterpartCustodian:line.CounterpartCustodianId, threshold:toFloat(line.Threshold), baseCurrency:line.BaseCurrency,law:line.Law, tolerance:toFloat(line.Tolerance),	
-interestTransfer:line.interestTransfer,interestPaymentNetting:line.interestPaymentNetting,interestAdjustment:line.interestAdjustment,negativeInterest:line.negativeInterest,dailyInterestCompounding:line.dailyInterestCompounding,regime:line.regime,
-marginCallEnabled:line.marginCallEnabled,allowMultipleCallsPerDay:line.allowMultipleCallsPerDay,variationCallsEnabled:line.variationCallsEnabled,separateVariationCallsByCurrency:line.separateVariationCallsByCurrency,initialCallsEnabled:line.initialCallsEnabled,separateInitialCallsByCurrency:line.separateInitialCallsByCurrency,
-substitutionEnabled:line.substitutionEnabled,timeZone:line.timeZone,valuationAgentAmpId:coalesce(line.valuationAgentAmpId,""),soleCalculation:line.soleCalculation,agreementEmailList:line.agreementEmailList
-})
-
-WITH *
-
 MATCH (ma:MasterAgreement {id:line.MasterAgreementId})
-MERGE (a)<-[:REFERENCE]-(ma)
-
-MERGE (l1)-[s1:CLIENT_SIGNS {MTA:toFloat(line.MTA1), rounding:toFloat(line.Rounding1)}]->(a)
-
-MERGE (l2)-[s2:COUNTERPARTY_SIGNS {MTA:toFloat(line.MTA2), rounding:toFloat(line.Rounding2)}]->(a)
-
-MERGE (a)-[:DEFINES]->(:FXHaircut {agreementId:a.id,FXHaircut:toFloat(line.FXHaircut)})
-
-WITH *
-
 MATCH (w1:WorkingZone {code:line.HolidayZone1})
 MATCH (w2:WorkingZone {code:line.HolidayZone2})
 
+MERGE (a:Agreement {id:line.AgreementId})
+ON CREATE SET 	a.ampId:coalesce(line.AmpId,""), 
+				a.name:line.AgreementName, 
+				a.agreementDate:line.AgreementDate, 
+				a.type:line.Type, 
+				a.notificationTime:line.NotificationTime, 
+				a.currency:line.Currency, 
+				a.counterpartCustodian:line.CounterpartCustodianId, 
+				a.threshold:toFloat(line.Threshold), 
+				a.baseCurrency:line.BaseCurrency,
+				a.law:line.Law, 
+				a.tolerance:toFloat(line.Tolerance),
+				a.interestTransfer:line.interestTransfer,
+				a.interestPaymentNetting:line.interestPaymentNetting,
+				a.interestAdjustment:line.interestAdjustment,
+				a.negativeInterest:line.negativeInterest,
+				a.dailyInterestCompounding:line.dailyInterestCompounding,
+				a.regime:line.regime,
+				a.marginCallEnabled:line.marginCallEnabled,
+				a.allowMultipleCallsPerDay:line.allowMultipleCallsPerDay,
+				a.variationCallsEnabled:line.variationCallsEnabled,
+				a.separateVariationCallsByCurrency:line.separateVariationCallsByCurrency,
+				a.initialCallsEnabled:line.initialCallsEnabled,
+				a.separateInitialCallsByCurrency:line.separateInitialCallsByCurrency,
+				a.substitutionEnabled:line.substitutionEnabled,
+				a.timeZone:line.timeZone,
+				a.valuationAgentAmpId:coalesce(line.valuationAgentAmpId,""),
+				a.soleCalculation:line.soleCalculation,
+				a.agreementEmailList:line.agreementEmailList
+
+MERGE (a)<-[:REFERENCE]-(ma)
+MERGE (l1)-[s1:CLIENT_SIGNS {MTA:toFloat(line.MTA1), rounding:toFloat(line.Rounding1)}]->(a)
+MERGE (l2)-[s2:COUNTERPARTY_SIGNS {MTA:toFloat(line.MTA2), rounding:toFloat(line.Rounding2)}]->(a)
+MERGE (a)-[:DEFINES]->(:FXHaircut {agreementId:a.id,FXHaircut:toFloat(line.FXHaircut)})
 MERGE (a)-[:WORKING_ZONE]->(w1)
-MERGE (a)-[:WORKING_ZONE]->(w2)
+MERGE (a)-[:WORKING_ZONE]->(w2);
