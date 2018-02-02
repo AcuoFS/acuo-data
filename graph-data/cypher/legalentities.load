@@ -3,14 +3,14 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/legalentities.csv' AS line
 MATCH (c:Firm {id:line.ClientId})
 
 MERGE (entity:LegalEntity {id:line.EntityId})
-ON CREATE SET 	entity.name:line.EntityName, 
-				entity.holidayZone:line.HolidayZone, 
-				entity.shortName:line.EntityShortName,
-				entity.jurisdiction:line.Jurisdiction,
-				entity.type:line.type,
-				entity.type1:line.type1,
-				entity.establishedIn:line.establishedIn,
-				entity.aboveNotionalThreshold:line.aboveNotionalThreshold
+ON CREATE SET 	entity.name = line.EntityName, 
+				entity.holidayZone = line.HolidayZone, 
+				entity.shortName = line.EntityShortName,
+				entity.jurisdiction = line.Jurisdiction,
+				entity.type = line.type,
+				entity.type1 = line.type1,
+				entity.establishedIn = line.establishedIn,
+				entity.aboveNotionalThreshold = line.aboveNotionalThreshold
 
 MERGE (c)-[:MANAGES]->(e)
 

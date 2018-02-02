@@ -5,16 +5,16 @@ MATCH (fcm:LegalEntity {id:line.FCMId})
 MATCH (ch:ClearingHouse {id:line.ClearingHouseId})
 
 MERGE (a:Agreement:ClearedAgreement {id:line.AgreementId})
-ON CREATE SET 	a.ampId:coalesce(line.AmpId,""), 
-				a.name:line.AgreementName, 
-				a.agreementDate:line.AgreementDate, 
-				a.type:line.Type, 
-				a.currency:line.Currency, 
-				a.FCMCustodian:line.FCMCustodianId, 
-				a.notificationTime:line.NotificationTime, 
-				a.tolerance:toFloat(line.Tolerance), 
-				a.initialBalanceCashToVariation:toInt(line.InitialBalanceCashToVariation), 
-				a.brokerMultiplier:toFloat(line.BrokerMultiplier)
+ON CREATE SET 	a.ampId = coalesce(line.AmpId,""), 
+				a.name = line.AgreementName, 
+				a.agreementDate = line.AgreementDate, 
+				a.type = line.Type, 
+				a.currency = line.Currency, 
+				a.FCMCustodian = line.FCMCustodianId, 
+				a.notificationTime = line.NotificationTime, 
+				a.tolerance = toFloat(line.Tolerance), 
+				a.initialBalanceCashToVariation = toInt(line.InitialBalanceCashToVariation), 
+				a.brokerMultiplier = toFloat(line.BrokerMultiplier)
 
 MERGE (l)-[s1:CLIENT_SIGNS]->(a)
 MERGE (fcm)-[s2:COUNTERPARTY_SIGNS]->(a)

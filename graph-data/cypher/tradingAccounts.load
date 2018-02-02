@@ -4,7 +4,7 @@ AS line
 MATCH (e:LegalEntity {id:line.EntityId})
 
 MERGE (acc:TradingAccount {id:line.AccountId})
-ON CREATE SET	acc.name:line.AccountName, 
-				acc.shortName:line.AccountShortName
+ON CREATE SET	acc.name = line.AccountName, 
+				acc.shortName = line.AccountShortName
 
 MERGE (e)-[:HAS]->(acc);

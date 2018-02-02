@@ -3,26 +3,32 @@ AS line
 
 MATCH (custac:CustodianAccount {id:line.accountId})
 
-MERGE (a:Asset {id: line.assetId, idType: line.idType, name:line.name,settlementTime:line.settlementTime,
-				currency:line.currency,	yield: TOFLOAT(line.yield), type:line.type,ICADCode:line.ICADCode,ACUOCategory:line.ACUOCategory,
-				price:TOFLOAT(line.price),parValue:TOFLOAT(line.parValue),minUnit:TOFLOAT(line.minUnit),minUnitValue:TOFLOAT(line.minUnitValue)})
+MERGE (a:Asset {id: line.assetId})
+ON CREATE SET 	a.idType: line.idType, 
+				a.name:line.name,
+				a.settlementTime:line.settlementTime,
+				a.currency:line.currency,	
+				a.yield:TOFLOAT(line.yield), 
+				a.type:line.type,
+				a.ICADCode:line.ICADCode,
+				a.ACUOCategory:line.ACUOCategory,
+				a.price:TOFLOAT(line.price),
+				a.parValue:TOFLOAT(line.parValue),
+				a.minUnit:TOFLOAT(line.minUnit),
+				a.minUnitValue:TOFLOAT(line.minUnitValue)
 
 FOREACH(x IN (CASE WHEN TOUPPER(line.type) = 'BOND' THEN [1] else [] END) | SET a :Bond)
 FOREACH(x IN (CASE WHEN TOUPPER(line.type) = 'CASH' THEN [1] else [] END) | SET a :Cash)
 
 MERGE (custac)-[h:HOLDS {businessTimeFrom:line.businessTimeFrom, businessTimeTo:line.businessTimeTo}]->(a)
-
-ON CREATE SET
-h.availableQuantity=TOFLOAT(line.availableQuantity),
-h.reservedQuantity=TOFLOAT(line.reservedQuantity),
-h.internalCost=TOFLOAT(line.internalCost),
-h.opptCost=TOFLOAT(line.opptCost)
-
-ON MATCH SET
-h.availableQuantity=TOFLOAT(line.availableQuantity),
-h.reservedQuantity=TOFLOAT(line.reservedQuantity),
-h.internalCost=TOFLOAT(line.internalCost),
-h.opptCost=TOFLOAT(line.opptCost)
+ON CREATE SET 	h.availableQuantity=TOFLOAT(line.availableQuantity),
+				h.reservedQuantity=TOFLOAT(line.reservedQuantity),
+				h.internalCost=TOFLOAT(line.internalCost),
+				h.opptCost=TOFLOAT(line.opptCost)
+ON MATCH SET 	h.availableQuantity=TOFLOAT(line.availableQuantity),
+				h.reservedQuantity=TOFLOAT(line.reservedQuantity),
+				h.internalCost=TOFLOAT(line.internalCost),
+				h.opptCost=TOFLOAT(line.opptCost)
 
 WITH *
 

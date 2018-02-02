@@ -1,6 +1,6 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/clearingHouses.csv' AS line
 
 MERGE (ch:ClearingHouse {id:line.ClearingHouseId})
-ON CREATE SET 	ch.name:line.ClearingHouseName,
-                ch.shortName:line.ClearingHouseShortName,
-                ch.jurisdiction:line.ClearingHouseJurisdiction;
+ON CREATE SET 	ch.name = line.ClearingHouseName,
+                ch.shortName = line.ClearingHouseShortName,
+                ch.jurisdiction = line.ClearingHouseJurisdiction;

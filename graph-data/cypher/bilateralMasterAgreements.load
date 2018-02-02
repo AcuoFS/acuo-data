@@ -1,6 +1,6 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/bilateralMasterAgreements.csv' AS line
 
 MERGE (a:Agreement:MasterAgreement:BilateralAgreement {id:line.AgreementId})
-ON CREATE SET 	a.name:line.AgreementName, 
-				a.agreementDate:line.AgreementDate, 
-				a.terminationCurrency:line.TerminationCurrency;
+ON CREATE SET 	a.name = line.AgreementName, 
+				a.agreementDate = line.AgreementDate, 
+				a.terminationCurrency = line.TerminationCurrency;

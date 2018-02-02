@@ -2,5 +2,5 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/ratingScores.csv'
 AS line
 
 MERGE (fr:FitchRating {rating:line.fitchRating})
-ON CREATE SET 	fr.score=TOINT(line.score)
-				fr.source:'Fitch';
+ON CREATE SET 	fr.score = TOINT(line.score)
+				fr.source = 'Fitch';
