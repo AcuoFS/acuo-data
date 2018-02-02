@@ -6,6 +6,6 @@ MATCH (c2:Currency {id:'USD'})
 
 MERGE (fxRate:FXRate {value:toFloat(line.ValueToUSD)})<-[:OF]-(v:FXValue)
 ON CREATE SET 	v.value = toFloat(line.ValueToUSD),
-				v.from:toInt(timestamp()/1000)
+				v.from = toInt(timestamp()/1000)
 MERGE (fxRate)-[:LAST]->(value)
 MERGE (c1)<-[:FROM]-(fxRate)-[:TO]->(c2);
