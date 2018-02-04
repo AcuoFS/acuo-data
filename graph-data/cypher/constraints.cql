@@ -1,3 +1,20 @@
+DROP CONSTRAINT ON ( `currency`:`Currency` ) 					ASSERT `currency`.`id`  	IS UNIQUE;
+DROP CONSTRAINT ON ( `trade`:`Trade` ) 						ASSERT `trade`.`id` 		IS UNIQUE;
+DROP CONSTRAINT ON ( `asset`:`Asset` ) 						ASSERT `asset`.`id`  		IS UNIQUE;
+DROP CONSTRAINT ON ( `transfer`:`AssetTransfer` ) 			ASSERT `transfer`.`id`  	IS UNIQUE;
+DROP CONSTRAINT ON ( `agreement`:`Agreement` ) 				ASSERT `agreement`.`id`  	IS UNIQUE;
+DROP CONSTRAINT ON ( `firm`:`Firm` ) 							ASSERT `firm`.`id`  		IS UNIQUE;
+DROP CONSTRAINT ON ( `statement`:`StatementItem` ) 			ASSERT `statement`.`id`  	IS UNIQUE;
+DROP CONSTRAINT ON ( `custodianAcct`:`CustodianAccount` ) 	ASSERT `custodianAcct`.`id` IS UNIQUE;
+DROP CONSTRAINT ON ( `settlement`:`Settlement` ) 				ASSERT `settlement`.`id`  	IS UNIQUE;
+DROP CONSTRAINT ON ( `pricing`:`PricingSource` ) 				ASSERT `pricing`.`name`		IS UNIQUE;
+DROP CONSTRAINT ON ( `custodian`:`Custodian` ) 				ASSERT `custodian`.`id`  	IS UNIQUE;
+DROP CONSTRAINT ON ( `fund`:`Fund` ) 							ASSERT `fund`.`id`  		IS UNIQUE;
+DROP CONSTRAINT ON ( `margin`:`MarginStatement` ) 			ASSERT `margin`.`id`  		IS UNIQUE;
+DROP CONSTRAINT ON ( `clearing`:`ClearingHouse` ) 			ASSERT `clearing`.`id`  	IS UNIQUE;
+DROP CONSTRAINT ON ( `entity`:`LegalEntity` ) 				ASSERT `entity`.`id`  		IS UNIQUE;
+DROP CONSTRAINT ON ( `book`:`Book` ) 							ASSERT `book`.`id`  		IS UNIQUE;
+
 CREATE CONSTRAINT ON ( `currency`:`Currency` ) 					ASSERT `currency`.`id`  	IS UNIQUE;
 CREATE CONSTRAINT ON ( `trade`:`Trade` ) 						ASSERT `trade`.`id` 		IS UNIQUE;
 CREATE CONSTRAINT ON ( `asset`:`Asset` ) 						ASSERT `asset`.`id`  		IS UNIQUE;
