@@ -3,8 +3,8 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/bilateralAgreements.csv' AS lin
 MATCH (l1:LegalEntity {id:line.Party1})
 MATCH (l2:LegalEntity {id:line.Party2})
 MATCH (ma:MasterAgreement {id:line.MasterAgreementId})
-MATCH (w1:WorkingZone {code:line.HolidayZone1})
-MATCH (w2:WorkingZone {code:line.HolidayZone2})
+MATCH (w1:WorkingZone {name:line.HolidayZone1})
+MATCH (w2:WorkingZone {name:line.HolidayZone2})
 
 MERGE (a:Agreement {id:line.AgreementId})
 ON CREATE SET 	a.ampId = coalesce(line.AmpId,""), 
