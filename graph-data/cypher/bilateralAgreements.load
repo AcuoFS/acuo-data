@@ -3,8 +3,6 @@ LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/bilateralAgreements.csv' AS lin
 MATCH (l1:LegalEntity {id:line.Party1})
 MATCH (l2:LegalEntity {id:line.Party2})
 MATCH (ma:MasterAgreement {id:line.MasterAgreementId})
-MATCH (w1:WorkingZone {name:line.HolidayZone1})
-MATCH (w2:WorkingZone {name:line.HolidayZone2})
 
 MERGE (a:Agreement {id:line.AgreementId})
 ON CREATE SET 	a.ampId = coalesce(line.AmpId,""), 
@@ -40,5 +38,9 @@ MERGE (a)<-[:REFERENCE]-(ma)
 MERGE (l1)-[s1:CLIENT_SIGNS {MTA:toFloat(line.MTA1), rounding:toFloat(line.Rounding1)}]->(a)
 MERGE (l2)-[s2:COUNTERPARTY_SIGNS {MTA:toFloat(line.MTA2), rounding:toFloat(line.Rounding2)}]->(a)
 MERGE (a)-[:DEFINES]->(:FXHaircut {agreementId:a.id,FXHaircut:toFloat(line.FXHaircut)})
-MERGE (a)-[:WORKING_ZONE]->(w1)
-MERGE (a)-[:WORKING_ZONE]->(w2);
+
+//MATCH (w1:WorkingZone {name:line.HolidayZone1})
+//MATCH (w2:WorkingZone {name:line.HolidayZone2})
+//MERGE (a)-[:WORKING_ZONE]->(w1)
+//MERGE (a)-[:WORKING_ZONE]->(w2)
+;
