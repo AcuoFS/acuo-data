@@ -4,18 +4,15 @@ AS line
 MATCH (custac:CustodianAccount {id:line.accountId})
 
 MERGE (a:Asset {id: line.assetId})
-ON CREATE SET 	a.idType = line.idType, 
-				a.name = line.name,
-				a.settlementTime = line.settlementTime,
-				a.currency = line.currency,	
-				a.yield = TOFLOAT(line.yield), 
+ON CREATE SET 	a.idType = line.idType,
+				a.name = line.name,		
+				a.currency = line.currency,
+				a.yield = TOFLOAT(line.yield),
 				a.type = line.type,
 				a.ICADCode = line.ICADCode,
 				a.ACUOCategory = line.ACUOCategory,
-				a.price = TOFLOAT(line.price),
 				a.parValue = TOFLOAT(line.parValue),
-				a.minUnit = TOFLOAT(line.minUnit),
-				a.minUnitValue = TOFLOAT(line.minUnitValue)
+				a.minUnit = TOFLOAT(line.minUnit)
 
 FOREACH(x IN (CASE WHEN TOUPPER(line.type) = 'BOND' THEN [1] else [] END) | SET a :Bond)
 FOREACH(x IN (CASE WHEN TOUPPER(line.type) = 'CASH' THEN [1] else [] END) | SET a :Cash)
@@ -44,17 +41,7 @@ FOREACH (i IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityDate)<>"
 	ELSE [] END | SET a.issueDate=line.issueDate, a.maturityDate=line.maturityDate)
 FOREACH (i IN CASE 	WHEN trim(line.issueDate)<>"" AND trim(line.maturityDate)<>"" AND futureDays>todayDays THEN [1] 
 	ELSE [] END | SET a.timeToMaturityDays=TOFLOAT(futureDays-todayDays), a.timeToMaturityYears = TOFLOAT(a.timeToMaturityDays/365))
-FOREACH (i IN CASE 	WHEN trim(line.fitchRating)<>"" THEN [1] 
-	ELSE [] END | SET a.rating=line.fitchRating)
 FOREACH (i IN CASE 	WHEN trim(line.issuerSector)<>"" THEN [1] 
 	ELSE [] END | SET a.issuerSector=line.issuerSector)
 FOREACH (i IN CASE 	WHEN trim(line.issuerCountryCode)<>"" THEN [1] 
 	ELSE [] END | SET a.issuerCountryCode=line.issuerCountryCode)
-
-WITH line,custac,a
-
-MATCH (security:Asset)
-MATCH (fr:FitchRating)
-WHERE security.id=a.id
-AND fr.rating=security.rating
-SET a.ratingScore= fr.score
