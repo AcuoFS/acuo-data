@@ -12,7 +12,7 @@ FOREACH (i IN CASE
 	WHEN a.ticker=ac.ticker THEN 1
 	WHEN UPPER(a.type)='CASH' AND a.currency=ac.currency THEN 1
 	WHEN UPPER(a.type)='GOLD' THEN 1
-	WHEN a.timeToMaturityYears<=ac.maturityUp AND a.timeToMaturityYears>ac.maturityLb THEN 1	
+	WHEN a.timeToMaturityYears<=ac.maturityUp AND a.timeToMaturityYears>ac.maturityLb 
 		AND a.fitchRating in SPLIT(ac.fitchRatings,",") THEN 1
 	ELSE [] END | MERGE (a)-[:IS_IN]->(ac))
 
