@@ -46,4 +46,4 @@ FOREACH (i IN CASE 	WHEN trim(line.issuerSector)<>"" THEN [1]
 FOREACH (i IN CASE 	WHEN trim(line.issuerCountryCode)<>"" THEN [1] 
 	ELSE [] END | SET a.issuerCountryCode=line.issuerCountryCode)
 FOREACH (i IN CASE 	WHEN trim(line.fitchRating)<>"" THEN [1] 
-	ELSE [] END | SET a.rating=line.fitchRating)
+	ELSE [] END | SET a.fitchRating=line.fitchRating)
