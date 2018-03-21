@@ -1,12 +1,12 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/assetCategories.csv'
 AS line
-WITH line, SPLIT(line.marginType,'|') AS marginTypes, SPLIT(line.agreementId,'|') AS agreementIds
+WITH line, SPLIT(line.marginType,'|') AS marginTypes, SPLIT(line.agreementId,'|') AS agreementIds, SPLIT(line.fitchRatings,',') AS fitchRatings
 
 UNWIND agreementIds AS agreementId
 MATCH (ag:Agreement {id:agreementId})
 FOREACH(ignoreMe IN CASE WHEN trim(line.maturityLb)<>"" THEN [1]
 	ELSE [] END| 
-	MERGE (a:AssetCategory {ICADCode: line.ICADCode, type: line.type, currency:line.currency, ratingLb:line.ratingLb, ratingUp:line.ratingUp,
+	MERGE (a:AssetCategory {ICADCode: line.ICADCode, type: line.type, currency:line.currency, fitchRatings:line.fitchRatings, 
 	maturityLb:TOFLOAT(line.maturityLb),maturityUp:TOFLOAT(line.maturityUp)})
 	MERGE (a)-[is:IS_ELIGIBLE_UNDER {marginType: marginTypes, haircut:TOFLOAT(line.haircut), FXHaircut:TOFLOAT(line.FXHaircut),
 	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate)}]->(ag)
@@ -25,16 +25,6 @@ FOREACH(ignoreMe IN CASE WHEN line.type="CASH" THEN [1]
 	externalCost:TOFLOAT(line.externalCost),interestRate:TOFLOAT(line.interestRate)}]->(ag)
 )
 
-WITH DISTINCT(1) AS temp
-MATCH (a:AssetCategory)
-WHERE NOT a.ratingLb IS NULL
-AND NOT a.ratingUp IS NULL
-
-WITH a
-MATCH (frLb:FitchRating {rating:a.ratingLb}), (frUp:FitchRating {rating:a.ratingUp})
-
-SET a.ratingScoreLb= frLb.score,
-	a.ratingScoreUp= frUp.score
 
 // Use only one relationship and the property 'marginTypes' for the eligibility
 // In the case that the haircut/cost/limit for IM/VM are different,
