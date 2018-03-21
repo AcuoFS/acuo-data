@@ -1,6 +1,6 @@
 LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/assetCategories.csv'
 AS line
-WITH line, SPLIT(line.marginType,'|') AS marginTypes, SPLIT(line.agreementId,'|') AS agreementIds, SPLIT(line.fitchRatings,',') AS fitchRatings
+WITH line, SPLIT(line.marginType,'|') AS marginTypes, SPLIT(line.agreementId,'|') AS agreementIds
 
 UNWIND agreementIds AS agreementId
 MATCH (ag:Agreement {id:agreementId})
