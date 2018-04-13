@@ -1,0 +1,9 @@
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/ratingMethods.csv'
+AS line
+WITH line, SPLIT(line.legalEntityId,',') AS legalEntityIds
+
+UNWIND legalEntityIds AS legalEntityId
+MATCH (le:LegalEntity {id:legalEntityId})
+OPTIONAL MATCH (a:Asset {id:line.assetId})
+
+MERGE (le)-[:APPLIES]->(ratingMethod:RatingMethod {ratingMethod:line.ratingMethod})-[:TO]->(a)
