@@ -6,4 +6,4 @@ UNWIND legalEntityIds AS legalEntityId
 MATCH (le:LegalEntity {id:legalEntityId})
 OPTIONAL MATCH (a:Asset {id:line.assetId})
 
-MERGE (le)-[:APPLIES]->(ratingMethod:RatingMethod {ratingMethod:line.ratingMethod})-[:TO]->(a)
+MERGE (le)-[:ADOPTS]->(ratingMethod:RatingMethod {ratingMethod:line.ratingMethod})-[:FOR]->(a)
