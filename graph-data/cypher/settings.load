@@ -1,6 +1,18 @@
-LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/settings.csv' 
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/settings.csv'
 AS line
 
-MATCH (c:Client {id:line.ClientId})
+WITH line, "ratings." + line.Name as key, line.Rating as value
 
-MERGE (c)-[:HAS_SETTINGS]->(s:Settings {name:line.Name, rating:toFloat(line.Rating)})
+MATCH (c:Client) WHERE c.id = line.ClientId
+
+WITH line, c
+
+MERGE (c)-[:HAS_SETTINGS]->(s:Settings)
+ON CREATE SET s.debugMode = false
+
+WITH s, "ratings."+line.Name as key, line.Rating as value
+
+CALL apoc.create.setProperty(s, key, value)
+YIELD node
+
+RETURN count(*)
