@@ -7,7 +7,6 @@ MERGE (a:Asset {id: line.assetId})
 ON CREATE SET 	a.idType = line.idType,
 				a.name = line.name,		
 				a.currency = line.currency,
-				a.yield = TOFLOAT(line.yield),
 				a.type = line.type,
 				a.ICADCode = line.ICADCode,
 				a.ACUOCategory = line.ACUOCategory,
