@@ -1,5 +1,5 @@
-LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/custodianAssets.csv' 
-AS line 
+LOAD CSV WITH HEADERS FROM '%dataImportLink%/csv/custodianAssets.csv'
+AS line
 
 MATCH (a:Asset {id:line.assetId}),(custac:CustodianAccount {id:line.accountId})
 
@@ -8,11 +8,11 @@ WHERE a.ICADCode=ac.ICADCode
 AND a.currency=ac.currency
 
 WITH DISTINCT a, ac, custac
-FOREACH (i IN CASE 
+FOREACH (i IN CASE
 	WHEN a.ticker=ac.ticker THEN 1
 	WHEN UPPER(a.type)='CASH' AND a.currency=ac.currency THEN 1
 	WHEN UPPER(a.type)='GOLD' THEN 1
-	WHEN a.timeToMaturityYears<=ac.maturityUp AND a.timeToMaturityYears>ac.maturityLb 
+	WHEN a.timeToMaturityYears<=ac.maturityUp AND a.timeToMaturityYears>ac.maturityLb
 		AND a.fitchRating in SPLIT(ac.fitchRatings,",") THEN 1
 	ELSE [] END | MERGE (a)-[:IS_IN]->(ac))
 
@@ -30,13 +30,16 @@ OPTIONAL MATCH (ag)-[:DEFINES]-(:FXHaircut)<-[case3:ELSE_APPLY]-(ecl)
 
 FOREACH (i IN CASE WHEN c IS NOT NULL THEN [1] ELSE [] END| MERGE (a)-[:IF]->(c))
 
-MERGE (ag)-[:IS_COMPOSED_OF]->(rule:Rule {haircut:ie.haircut,interestRate:ie.interestRate,
-	externalCost:ie.externalCost, marginType:ie.marginType})
-SET rule.FXHaircut= 
-		CASE 
+MERGE (ag)-[:IS_COMPOSED_OF]->(rule:Rule)
+ON CREATE SET
+	rule.haircut = ie.haircut,
+	rule.interestRate = ie.interestRate,
+	rule.marginType = ie.marginType
+	rule.FXHaircut =
+		CASE
 		WHEN c IS NULL THEN 0
 		WHEN UPPER(a.type)=UPPER(c.type) THEN case1.FXHaircut
 		WHEN a.currency IN ec.currency THEN case2.FXHaircut
-		ELSE case3.FXHaircut 
+		ELSE case3.FXHaircut
 		END
 MERGE (rule)-[:APPLIES_TO]->(a)
