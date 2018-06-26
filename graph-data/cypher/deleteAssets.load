@@ -1,0 +1,11 @@
+MATCH (n)
+WHERE n:FitchRating
+OR n:AssetCategory
+OR n:ExternalCost
+OR n:Custodian
+OR n:CustodianAccount
+OR n:Asset
+OR n:PricingSource
+OR n:Rule
+OR n:RatingMethod
+DETACH DELETE n;

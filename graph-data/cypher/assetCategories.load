@@ -21,7 +21,8 @@ ON CREATE SET
 	//is.externalCost = TOFLOAT(line.externalCost),
 	is.interestRate = TOFLOAT(line.interestRate)
 
-MERGE (a)<-[:APPLIED_TO]-(:ExternalCost {value:TOFLOAT(line.externalCost)})-[:DEFINED_BY]->(ag)
+WITH line, a, ag
+CALL apoc.when(line.externalCost IS NOT NULL,'MERGE (a)<-[:APPLIED_TO]-(:ExternalCost {value:value})-[:DEFINED_BY]->(ag)', '', {value:line.externalCost,a:a,ag:ag}) yield value RETURN value
 
 // Use only one relationship and the property 'marginTypes' for the eligibility
 // In the case that the haircut/cost/limit for IM/VM are different,
