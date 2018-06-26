@@ -34,7 +34,7 @@ MERGE (ag)-[:IS_COMPOSED_OF]->(rule:Rule)
 ON CREATE SET
 	rule.haircut = ie.haircut,
 	rule.interestRate = ie.interestRate,
-	rule.marginType = ie.marginType
+	rule.marginType = ie.marginType,
 	rule.FXHaircut =
 		CASE
 		WHEN c IS NULL THEN 0
